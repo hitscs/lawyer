@@ -1,0 +1,48 @@
+<div id="menu" class="page box relative">
+    <dl id="topmenu">  
+        [@cms_channel_list]
+        <dt class="menu_first">
+        <a href="${site.url!}" target="_self" [#if !channel??]class="selected"[/#if]><span>首 页</span></a>
+        </dt>
+        [#list tag_list as c]
+        [#if c_index<8]
+        <dt>
+        <a href="${c.url}"  target="_self" [#if channel??&&channel.id==c.id] class="selected" [/#if]><span>${c.name}</span></a>
+        </dt>
+        [/#if]
+        [/#list]
+        [/@cms_channel_list]
+<!--         <dt><a href="${base}/wldc/index.jhtml" target="blank">网络调查</a></dt>
+        <dt><a href="${base}/job/index.jhtml" target="blank">招聘</a></dt>
+        <dt>
+        <a href="${base}/guestbook.jspx" target="blank">留言版</a>
+        </dt>
+        <dt style="border-right:0;">
+        <a href="http://bbs.jeecms.com" target="blank">论坛</a>
+        </dt> -->
+    </dl>
+</div>
+<div class="clear"></div>
+<div class="kc-navigation-icon">
+        <div class="nav-icon">
+            <ul>
+                <li><a class="ic1" target="_blank" href="#">刑法</a></li>
+                <li><a class="ic3" target="_blank" href="#">婚姻法</a></li>
+                <li><a class="ic4" target="_blank" href="#">劳动法</a></li>
+                <li><a class="ic5" target="_blank" href="#">合同法</a></li>
+                <li><a class="ic6" target="_blank" href="#">公司法</a></li>
+                <li><a class="ic7" target="_blank" href="#">房地产法</a></li>
+                <li><a class="ic8" target="_blank" href="#">交通事故</a></li>
+                <li><a class="ic14" target="_blank" href="#">债权债务</a></li>
+                <li><a class="ic9" target="_blank" href="#">工程纠纷</a></li>
+                <li><a class="ic10" target="_blank" href="#">知识产权</a></li>
+                <li><a class="ic11" target="_blank" href="#">损害赔偿</a></li>
+                <li><a class="ic12" target="_blank" href="#">医疗事故</a></li>
+                <li><a class="ic13" target="_blank" href="#">征地补偿</a></li>
+                <li><a class="ic2" target="_blank" href="#">拆迁安置</a></li>
+<!--                <li><a class="ic15" target="_blank" href="http://fanben.lawtime.cn/">合同范本</a></li>
+                 <li><a class="ic16" target="_blank" href="http://wenshu.lawtime.cn/">法律文书</a></li>-->
+                <li><a class="ic17" target="_blank" href="#">更多</a></li> 
+            </ul>
+        </div>
+    </div>

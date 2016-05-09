@@ -1,0 +1,251 @@
+
+.kc-navigation-icon {
+    background: #f8f8f8 none repeat scroll 0 0;
+}
+.kc-picad, .logo-search, .navlist, .kc-navigation-icon, .access, .main, .user-guide, .links {
+    margin: 0 auto;
+    width: 100%;
+}
+
+
+
+.nav-icon li .ic1 {
+    background-position: 6px 4px;
+}
+.nav-icon li .ic2 {
+    background-position: 22px -41px;
+}
+.nav-icon li .ic3 {
+    background-position: 12px -91px;
+}
+.nav-icon li .ic4 {
+    background-position: 15px -141px;
+}
+.nav-icon li .ic5 {
+    background-position: 16px -191px;
+}
+.nav-icon li .ic6 {
+    background-position: 15px -241px;
+}
+.nav-icon li .ic7 {
+    background-position: 21px -291px;
+}
+.nav-icon li .ic8 {
+    background-position: 16px -341px;
+}
+.nav-icon li .ic9 {
+    background-position: 19px -393px;
+}
+.nav-icon li .ic10 {
+    background-position: 22px -441px;
+}
+.nav-icon li .ic11 {
+    background-position: 19px -491px;
+}
+.nav-icon li .ic12 {
+    background-position: 19px -541px;
+}
+.nav-icon li .ic13 {
+    background-position: 19px -591px;
+}
+.nav-icon li .ic14 {
+    background-position: 20px -641px;
+}
+.nav-icon li .ic15 {
+    background-position: 22px -691px;
+}
+.nav-icon li .ic16 {
+    background-position: 20px -741px;
+}
+.nav-icon li .ic17 {
+    background-position: 7px -790px;
+}
+.nav-icon li a {
+    float: left;
+    padding: 30px 6px 3px 8px;
+}
+.nav-icon li a {
+    background: rgba(0, 0, 0, 0) url("http://img3.lawtimeimg.com/images/spelawyer/specialty/kc_pub_icon.gif?v=1397608950") no-repeat scroll 0 0;
+    color: #9b9b9b;
+}
+a {
+    color: #666;
+    text-decoration: none;
+}
+
+.w252 {
+    float: left;
+    width: 252px;
+}
+.w250 {
+    float: left;
+    width: 250px;
+}
+.w456 {
+    float: left;
+    margin: 10px auto auto 10px;
+    width: 456px;
+}
+.w260 {
+    float: right;
+    width: 254px;
+}
+.w718 {
+    float: left;
+    width: 718px;
+}
+.x474 {
+    float: left;
+    /* margin: 10px auto auto 10px; */
+    width: 474px;
+}
+
+.rim08 {
+/*     border-left: 1px solid #cfcfcf;
+    border-right: 1px solid #cfcfcf; */
+    border-top: 2px solid #206f96;
+}
+
+
+.category-nav {
+    background: #f8f8f8 none repeat scroll 0 0;
+    height: 172px;
+    /* margin-bottom: 20px; */
+    overflow: hidden;
+    padding-left: 15px;
+}
+.category-nav ul {
+    margin-right: -30px;
+}
+.category-nav li {
+    float: left;
+    height: 61px;
+    overflow: hidden;
+    padding: 15px 19px 0 0;
+    width: 61px;
+}
+.category-nav li a {
+    background-color: #6392c8;
+    background-image: url("../img/index/category_nav.gif");
+    color: #fff;
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    padding-top: 41px;
+    text-align: center;
+    text-decoration: none;
+    width: 61px;
+}
+.category-nav li a:hover {
+    background-color: #fd8b3e;
+    color: #fff;
+    text-decoration: none;
+}
+.category-nav .icon-1 a:hover {
+    background-position: -80px 0;
+}
+.category-nav .icon-2 a {
+    background-position: 0 -60px;
+}
+.category-nav .icon-2 a:hover {
+    background-position: -80px -60px;
+}
+.category-nav .icon-3 a {
+    background-position: 0 -120px;
+}
+.category-nav .icon-3 a:hover {
+    background-position: -80px -120px;
+}
+.category-nav .icon-4 a {
+    background-position: 0 -180px;
+}
+.category-nav .icon-4 a:hover {
+    background-position: -80px -180px;
+}
+.category-nav .icon-5 a {
+    background-position: 0 -240px;
+}
+.category-nav .icon-5 a:hover {
+    background-position: -80px -240px;
+}
+.category-nav .icon-6 a {
+    background-position: 0 -300px;
+}
+.category-nav .icon-6 a:hover {
+    background-position: -80px -300px;
+}
+.category-nav .icon-7 a {
+    background-position: 0 -360px;
+}
+.category-nav .icon-7 a:hover {
+    background-position: -80px -360px;
+}
+.category-nav .icon-8 a {
+    background-position: 0 -420px;
+}
+.category-nav .icon-8 a:hover {
+    background-position: -80px -420px;
+}
+
+
+
+.changeMenu1 {
+    width: 100%;
+}
+.tuku3 {
+    background-image: url("../img/changeBg0.gif");
+    background-repeat: repeat-x;
+    border-left: 1px solid #dbdee1;
+    border-right: 1px solid #dbdee1;
+    height: 36px;
+    width: 998px;
+}
+.tuku3 ul {
+}
+.tuku3 ul li {
+    float: left;
+    height: 36px;
+    width: 109px;
+}
+.tuku3 ul li.curr {
+    background-image: url("../img/changeBg1.gif");
+    border: 0 none;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    width: 109px;
+}
+.tuku3 ul li.normaltab {
+    background-image: url("../img/changeBg2.gif");
+    border: 0 none;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    width: 109px;
+}
+.tuku3 ul li.curr a {
+    color: #c50b0e;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 36px;
+}
+.tuku3 ul li.normaltab a {
+    color: #333333;
+    font-size: 14px;
+    line-height: 36px;
+}
+.dis {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+.undis {
+    display: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+
+

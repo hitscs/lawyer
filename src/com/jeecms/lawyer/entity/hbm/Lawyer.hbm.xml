@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.jeecms.lawyer.entity">
+	<class name="Lawyer" table="jc_user_lawyer">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write" />
+		<id name="id" type="java.lang.Integer" column="user_id">
+			<generator class="foreign">
+				<param name="property">user</param>
+			</generator>
+		</id>
+
+		<property name="company" column="lawyer_company" type="string" not-null="false" length="255" />
+
+
+		<property name="certificateNumber" column="lawyer_certificatenumber" type="string" not-null="false" length="255" />
+		<property name="goodAtField" column="lawyer_goodatfield" type="string" not-null="false" length="255" />
+		<property name="professionalField" column="lawyer_professionalfield" type="string" not-null="false" length="255" />
+		<property name="trustYears" column="lawyer_trustyears" type="java.lang.Integer" not-null="false" length="5" />
+		<property name="lawyerLevel" column="lawyer_lawyerlevel" type="string" not-null="false" length="255" />
+		<property name="lawyerResume" column="lawyer_lawyerresume" type="string" not-null="false" length="2000" />
+
+
+		<one-to-one name="user" class="com.jeecms.core.entity.CmsUser" constrained="true" />
+		
+		<set name="type" table="jc_lawyer_lawyertype">
+			<key column="user_id" />
+			<many-to-many column="type_id" class="com.jeecms.lawyer.entity.LawyerType" />
+		</set>
+	</class>
+</hibernate-mapping>

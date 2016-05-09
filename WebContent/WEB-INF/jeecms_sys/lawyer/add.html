@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title></title>
+<#include "/jeecms_sys/head.html"/>
+<script type="text/javascript">
+$(function() {
+	$("#jvForm").validate();
+});
+</script>
+</head>
+<body>
+<#include "/common/image_upload.html"/>
+<div class="box-positon">
+	<div class="rpos"><@s.m "global.position"/>: <@s.m "cms.lawyer.function"/> - <@s.m "global.add"/></div>
+	<form class="ropt">
+		<input class="return-button" type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.do';"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<div class="body-box">
+<#assign usernameExist><@s.m "error.usernameExist"/></#assign>
+<@p.form id="jvForm" action="o_save.do" labelWidth="12">
+<@p.text width="50" colspan="1" label="cmsUser.username" name="username" required="true" maxlength="100" vld="{required:true,username:true,remote:'../member/v_check_username.do',messages:{remote:'${usernameExist}'}}"/>
+<@p.text width="50" colspan="1" label="cmsUser.email" name="email" size="30" class="email"/><@p.tr/>
+<@p.password width="50" colspan="1" label="cmsUser.password" id="password" name="password" maxlength="100" required="true" class="required"/>
+<@p.password width="50" colspan="1" label="cmsUser.pwdAgain" required="true" equalTo="#password"/><@p.tr/>
+<@p.select colspan="1" width="50" label="cmsUser.group" name="groupId" list=groupList listKey="id" listValue="name" required="true"/>
+<@p.hidden  name="grain" value="0"/>
+<@p.tr/>
+<@p.text width="50" colspan="1" label="cmsUser.realname" name="realname" maxlength="100"/>
+<@p.radio width="50" colspan="1" label="cmsUser.gender" name="gender" list={"true":"cmsUser.male","false":"cmsUser.female","":"cmsUser.secrecy"}/><@p.tr/>
+<@p.text width="50" colspan="1" label="cmsUser.birthday" name="birthday" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate"/>
+<@p.text width="50" colspan="1" label="cmsUser.comefrom" name="comefrom" maxlength="150"/><@p.tr/>
+<@p.text width="50" colspan="1" label="cmsUser.qq" name="qq" maxlength="100"/>
+<@p.text width="50" colspan="1" label="cmsUser.msn" name="msn" maxlength="100"/><@p.tr/>
+<@p.text width="50" colspan="1" label="cmsUser.phone" name="phone" maxlength="50"/>
+<@p.text width="50" colspan="1" label="cmsUser.mobile" name="mobile" maxlength="50"/><@p.tr/>
+<@p.text colspan="2" label="cmsUser.comefrom" name="comefrom" maxlength="150" size="70"/><@p.tr/>
+
+<@p.td id="linkLogo" label="个人头像" colspan="1" width="50" noHeight="true">
+<@p.text id="uploadImgPath0" name="userImg" style="width:180px"/> <input class="preview-button" type="button" value="<@s.m "imageupload.preview"/>" onclick="previewImg(0);"/><br/>
+<span id="ufc0" style="position:relative">
+<input type='text' id='uploadFileText0' size="14"/>  
+<input class="browse" type='button' value='<@s.m "global.browse"/>'/>
+<input onchange="$('#uploadFileText0').val(this.value)" size="14" type="file" id="uploadFile0" class="file-button"/>
+</span>
+<input type="hidden" id="mark0" value="false"/> <input class="upload-button" type="button" value="<@s.m "imageupload.upload"/>" onclick="upload(0);"/><br/>
+</@p.td><@p.td colspan="1" width="50">
+<!-- <img id="preImg0" alt="<@s.m "imageupload.preview"/>" style="width:100px;height:70px;background-color:#ccc;border:1px solid #333"/>
+ --></@p.td><@p.tr/>
+
+<@p.text width="50" colspan="1" label="执业机构" name="company" maxlength="50"/>
+<@p.text width="50" colspan="1" label="执业证号" name="certificateNumber" maxlength="50"/><@p.tr/>
+<@p.text colspan="2" label="擅长领域" name="goodAtField" maxlength="150"/><@p.tr/>
+<@p.text colspan="2" label="专业领域" name="professionalField" maxlength="150"/><@p.tr/>
+<@p.text width="50" colspan="1" label="诚信认证年限" name="trustYears" maxlength="50"/><@p.tr/>
+<@p.textarea colspan="2" label="cmsUser.intro" name="intro" maxlength="255" cols="70" rows="5"/><@p.tr/>
+
+
+
+
+
+
+ 
+<@p.td colspan="2"><@p.submit code="global.submit"/> &nbsp; <@p.reset code="global.reset"/></@p.td>
+</@p.form>
+</div>
+</body>
+</html>
