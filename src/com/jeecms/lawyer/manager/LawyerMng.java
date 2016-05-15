@@ -21,9 +21,9 @@ public abstract interface LawyerMng
 	public CmsUser registerMember(String username, String email,
 			String password, String ip, Integer groupId,Integer grain, boolean disabled,CmsUserExt userExt,Lawyer lawyer,Map<String,String>attr);
 	
-	public CmsUser registerMember(String username, String email,
+/*	public CmsUser registerMember(String username, String email,
 			String password, String ip, Integer groupId, boolean disabled,CmsUserExt userExt,Map<String,String>attr, Boolean activation , EmailSender sender, MessageTemplate msgTpl)throws UnsupportedEncodingException, MessagingException ;
- 
+*/ 
   public abstract List<Lawyer> getList(int paramInt, boolean paramBoolean);
   
   public abstract Lawyer findById(Integer paramInteger);

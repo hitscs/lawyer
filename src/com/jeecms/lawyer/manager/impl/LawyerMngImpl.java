@@ -45,30 +45,15 @@ public class LawyerMngImpl implements LawyerMng {
 	}
 
 	public CmsUser registerMember(String username, String email, String password, String ip, Integer groupId, Integer grain, boolean disabled, CmsUserExt userExt, Lawyer lawyer,Map<String, String> attr) {
-		UnifiedUser unifiedUser = unifiedUserMng.save(username, email, password, ip);
 		CmsUser user = new CmsUser();
-		user.forMember(unifiedUser);
-		user.setAttr(attr);
-		user.setDisabled(disabled);
-		CmsGroup group = null;
-		if (groupId != null) {
-			group = cmsGroupMng.findById(groupId);
-		} else {
-			group = cmsGroupMng.getRegDef();
-		}
-		if (group == null) {
-			throw new RuntimeException("register default member group not found!");
-		}
-		user.setGroup(group);
-		user.init();
-		cmsUserDao.save(user);
-		cmsUserExtMng.save(userExt, user);
+
+		user=cmsUserMng.registerMember(username, email, password, ip, groupId, grain, disabled, userExt, attr);
 		lawyerDao.save(lawyer,user);
 		
 		return user;
 	}
 
-	public CmsUser registerMember(String username, String email, String password, String ip, Integer groupId, boolean disabled, CmsUserExt userExt, Map<String, String> attr, Boolean activation,
+/*	public CmsUser registerMember(String username, String email, String password, String ip, Integer groupId, boolean disabled, CmsUserExt userExt, Map<String, String> attr, Boolean activation,
 			EmailSender sender, MessageTemplate msgTpl) throws UnsupportedEncodingException, MessagingException {
 		UnifiedUser unifiedUser = unifiedUserMng.save(username, email, password, ip, activation, sender, msgTpl);
 		CmsUser user = new CmsUser();
@@ -89,7 +74,7 @@ public class LawyerMngImpl implements LawyerMng {
 		cmsUserDao.save(user);
 		cmsUserExtMng.save(userExt, user);
 		return user;
-	}
+	}*/
 
 	@Transactional(readOnly = true)
 	public java.util.List<Lawyer> getList(int count, boolean cache) {
@@ -162,9 +147,7 @@ public class LawyerMngImpl implements LawyerMng {
 	}
 
 
-	/**
-	 * @param cmsUserMng the cmsUserMng to set
-	 */
+	@Autowired
 	public void setCmsUserMng(CmsUserMng cmsUserMng) {
 		this.cmsUserMng = cmsUserMng;
 	}
