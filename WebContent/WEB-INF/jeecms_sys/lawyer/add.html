@@ -8,7 +8,94 @@
 $(function() {
 	$("#jvForm").validate();
 });
+
+
+
+/** 
+* 加载市 
+* 
+*/ 
+function loadCity() { 
+var provinceId = $("#province option:selected").val(); 
+if(provinceId == null || provinceId == ""){ 
+//alert("找不到省"); 
+}else{ 
+$.post("../area/v_list.do", { 
+"pid" : provinceId 
+}, function(data, result) { 
+if(data == "noId"){ 
+alert("请求错误"); 
+}else if(data == "null"){ 
+alert("系统找不到属于该省的市"); 
+}else{ 
+data = eval("{" + data + "}"); 
+var citySelect = $("#city"); 
+var myCity = $("#myCity").val(); 
+citySelect.html(""); 
+for ( var i = 0; i < data.length; i++) { 
+if(myCity != null && myCity != "" && myCity > 0 && myCity == data[i].id){ 
+citySelect.append("<option selected='selected' value='" + data[i].id + "'>" 
++ data[i].name + "</option>"); 
+}else{ 
+citySelect.append("<option value='" + data[i].id + "'>" 
++ data[i].name + "</option>"); 
+} 
+} 
+loadRegion(); 
+} 
+}); 
+} 
+}; 
+/** 
+* 加载区 
+* 
+*/ 
+function loadRegion() { 
+var cityId = $("#citySelect option:selected").val(); 
+if(cityId == null || cityId == "" || cityId < 1){ 
+alert("找不到市"); 
+}else{ 
+$.post(rootPath+"/loadRegion", { 
+"q" : cityId 
+}, function(data, result) { 
+if(data == "noId"){ 
+alert("请求错误"); 
+}else if(data == "null"){ 
+alert("系统找不到属于该市的区"); 
+}else{ 
+data = eval("{" + data + "}"); 
+var regionSelect = $("#regionSelect"); 
+var myRegion = $("#myRegion").val(); 
+regionSelect.html(""); 
+for ( var i = 0; i < data.length; i++) { 
+if(myRegion != null && myRegion != "" && myRegion > 0 && myRegion == data[i].id){ 
+regionSelect.append("<option selected='selected' value='" + data[i].id + "'>" 
++ data[i].name + "</option>"); 
+}else{ 
+regionSelect.append("<option value='" + data[i].id + "'>" 
++ data[i].name + "</option>"); 
+} 
+} 
+} 
+}); 
+} 
+}; 
+/** 
+* 省改变事件 
+* 
+*/ 
+$("#provinceSelect").change(loadCity); 
+/** 
+* 市改变事件 
+* 
+*/ 
+$("#citySelect").change(loadRegion); 
+
+$(function() { 
+loadCity(); 
+}); 
 </script>
+
 </head>
 <body>
 <#include "/common/image_upload.html"/>
@@ -27,6 +114,11 @@ $(function() {
 <@p.password width="50" colspan="1" label="cmsUser.password" id="password" name="password" maxlength="100" required="true" class="required"/>
 <@p.password width="50" colspan="1" label="cmsUser.pwdAgain" required="true" equalTo="#password"/><@p.tr/>
 <!-- <@p.select colspan="1" width="50" label="cmsUser.group" name="groupId" list=groupList listKey="id" listValue="name" required="true"/> -->
+<@p.select colspan="1" width="50" label="所属地区" name="province" list=areaList listKey="id" listValue="name" required="true"/>
+<!-- <select id="city" name="city"> 
+</select>  -->
+<!-- <select id="regionSelect" name="region"> 
+</select> --><@p.tr/>
 <@p.hidden  name="groupId" value="3"/>
 <@p.hidden  name="grain" value="0"/>
 <@p.tr/>
@@ -38,7 +130,7 @@ $(function() {
 <@p.text width="50" colspan="1" label="cmsUser.msn" name="msn" maxlength="100"/><@p.tr/>
 <@p.text width="50" colspan="1" label="cmsUser.phone" name="phone" maxlength="50"/>
 <@p.text width="50" colspan="1" label="cmsUser.mobile" name="mobile" maxlength="50"/><@p.tr/>
-<@p.text colspan="2" label="cmsUser.comefrom" name="comefrom" maxlength="150" size="70"/><@p.tr/>
+<@p.text colspan="2" label="详细地址" name="comefrom" maxlength="150" size="70"/><@p.tr/>
 
 <@p.td id="linkLogo" label="个人头像" colspan="1" width="50" noHeight="true">
 <@p.text id="uploadImgPath0" name="userImg" style="width:180px"/> <input class="preview-button" type="button" value="<@s.m "imageupload.preview"/>" onclick="previewImg(0);"/><br/>
