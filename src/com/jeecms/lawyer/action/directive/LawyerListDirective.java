@@ -21,12 +21,12 @@ import freemarker.template.TemplateModel;
 public class LawyerListDirective implements TemplateDirectiveModel {
 	public static final String PARAM_COUNT = "count";
 	@Autowired
-	private LawyerMng testMng;
+	private LawyerMng lawyerMng;
 
 	public void execute(Environment env, Map params, TemplateModel[] loopVars, TemplateDirectiveBody body)
 			throws TemplateException, IOException {
 		Integer count = DirectiveUtils.getInt("count", params);
-		List<Lawyer> list = this.testMng.getList(count.intValue(), true);
+		List<Lawyer> list = this.lawyerMng.getList(count.intValue(), true);
 		Map<String, TemplateModel> paramWrap = new HashMap(params);
 		paramWrap.put("tag_list", ObjectWrapper.DEFAULT_WRAPPER.wrap(list));
 		Map<String, TemplateModel> origMap = DirectiveUtils.addParamsToVariable(env, paramWrap);

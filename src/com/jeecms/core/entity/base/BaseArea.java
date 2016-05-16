@@ -146,9 +146,13 @@ public abstract class BaseArea  implements Serializable {
 	}
 
 
-	public String toString () {
+/*	public String toString () {
 		return super.toString();
+	}*/
+
+	@Override
+	public String toString() {
+		return "Area [id=" + id + ", name=" + name + ", pid=" + pid
+				+ ", level=" + level + "]";
 	}
-
-
 }

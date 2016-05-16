@@ -26,7 +26,8 @@ $(function() {
 <@p.text width="50" colspan="1" label="cmsUser.email" name="email" size="30" class="email"/><@p.tr/>
 <@p.password width="50" colspan="1" label="cmsUser.password" id="password" name="password" maxlength="100" required="true" class="required"/>
 <@p.password width="50" colspan="1" label="cmsUser.pwdAgain" required="true" equalTo="#password"/><@p.tr/>
-<@p.select colspan="1" width="50" label="cmsUser.group" name="groupId" list=groupList listKey="id" listValue="name" required="true"/>
+<!-- <@p.select colspan="1" width="50" label="cmsUser.group" name="groupId" list=groupList listKey="id" listValue="name" required="true"/> -->
+<@p.hidden  name="groupId" value="3"/>
 <@p.hidden  name="grain" value="0"/>
 <@p.tr/>
 <@p.text width="50" colspan="1" label="cmsUser.realname" name="realname" maxlength="100"/>

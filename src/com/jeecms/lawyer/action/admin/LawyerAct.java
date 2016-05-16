@@ -16,18 +16,18 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jeecms.common.page.Pagination;
-import com.jeecms.common.page.SimplePage;
 import com.jeecms.common.web.CookieUtils;
 import com.jeecms.common.web.RequestUtils;
+import com.jeecms.core.entity.Area;
 import com.jeecms.core.entity.CmsConfigItem;
 import com.jeecms.core.entity.CmsGroup;
 import com.jeecms.core.entity.CmsSite;
 import com.jeecms.core.entity.CmsUser;
 import com.jeecms.core.entity.CmsUserExt;
+import com.jeecms.core.manager.AreaMng;
 import com.jeecms.core.manager.CmsConfigItemMng;
 import com.jeecms.core.manager.CmsGroupMng;
 import com.jeecms.core.manager.CmsLogMng;
-import com.jeecms.core.manager.CmsUserMng;
 import com.jeecms.core.web.WebErrors;
 import com.jeecms.core.web.util.CmsUtils;
 import com.jeecms.lawyer.entity.Lawyer;
@@ -64,8 +64,10 @@ import com.jeecms.lawyer.manager.LawyerMng;
 		CmsSite site=CmsUtils.getSite(request);
 		List<CmsGroup> groupList = cmsGroupMng.getList();
 		List<CmsConfigItem>registerItems=cmsConfigItemMng.getList(site.getConfig().getId(), CmsConfigItem.CATEGORY_REGISTER);
+		List<Area> areaList = areaMng.getList(0);
 		model.addAttribute("registerItems", registerItems);
 		model.addAttribute("groupList", groupList);	   
+		model.addAttribute("areaList", areaList);
 	   return "lawyer/add"; }
    
  
@@ -89,6 +91,7 @@ import com.jeecms.lawyer.manager.LawyerMng;
 		if (errors.hasErrors()) {
 			return errors.showErrorPage(model);
 		}
+		//groupId=3;
 		String ip = RequestUtils.getIpAddr(request);
 		Map<String,String>attrs=RequestUtils.getRequestMap(request, "attr_");
 		bean = manager.registerMember(username, email, password, ip, groupId, grain, false, ext, lawyer, attrs);
@@ -175,6 +178,8 @@ import com.jeecms.lawyer.manager.LawyerMng;
 	private CmsGroupMng cmsGroupMng;
 	@Autowired
 	private CmsLogMng cmsLogMng;
+	@Autowired
+	private AreaMng areaMng;
 	@Autowired
 	 private LawyerMng manager;
 	@Autowired
