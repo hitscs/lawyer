@@ -86,7 +86,7 @@ import com.jeecms.lawyer.manager.LawyerMng;
    @RequiresPermissions({"lawyer:o_save"})
    @RequestMapping({"/lawyer/o_save.do"})
    public String save(CmsUser bean, CmsUserExt ext,Lawyer lawyer, String username,
-			String email, String password, Integer groupId,Integer grain, HttpServletRequest request, ModelMap model) {
+			String email, String password, Integer groupId,Integer grain,Integer provinceId,Integer cityId,Integer regionId, HttpServletRequest request, ModelMap model) {
 		WebErrors errors = validateSave(bean, request);
 		if (errors.hasErrors()) {
 			return errors.showErrorPage(model);
@@ -94,7 +94,7 @@ import com.jeecms.lawyer.manager.LawyerMng;
 		//groupId=3;
 		String ip = RequestUtils.getIpAddr(request);
 		Map<String,String>attrs=RequestUtils.getRequestMap(request, "attr_");
-		bean = manager.registerMember(username, email, password, ip, groupId, grain, false, ext, lawyer, attrs);
+		bean = manager.registerMember(username, email, password, ip, groupId, grain, provinceId, cityId, regionId, false, ext, lawyer, attrs);
 		log.info("save CmsMember id={}", bean.getId());
 		cmsLogMng.operating(request, "cmsMember.log.save", "id=" + bean.getId()
 				+ ";username=" + bean.getUsername());

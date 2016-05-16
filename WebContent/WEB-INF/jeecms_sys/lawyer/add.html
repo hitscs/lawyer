@@ -114,7 +114,7 @@ loadCity();
 <@p.password width="50" colspan="1" label="cmsUser.password" id="password" name="password" maxlength="100" required="true" class="required"/>
 <@p.password width="50" colspan="1" label="cmsUser.pwdAgain" required="true" equalTo="#password"/><@p.tr/>
 <!-- <@p.select colspan="1" width="50" label="cmsUser.group" name="groupId" list=groupList listKey="id" listValue="name" required="true"/> -->
-<@p.select colspan="1" width="50" label="所属地区" name="province" list=areaList listKey="id" listValue="name" required="true"/>
+<@p.select colspan="1" width="50" label="所属地区" name="provinceId" list=areaList listKey="id" listValue="name" required="true"/>
 <!-- <select id="city" name="city"> 
 </select>  -->
 <!-- <select id="regionSelect" name="region"> 
@@ -130,8 +130,8 @@ loadCity();
 <@p.text width="50" colspan="1" label="cmsUser.msn" name="msn" maxlength="100"/><@p.tr/>
 <@p.text width="50" colspan="1" label="cmsUser.phone" name="phone" maxlength="50"/>
 <@p.text width="50" colspan="1" label="cmsUser.mobile" name="mobile" maxlength="50"/><@p.tr/>
-<@p.text colspan="2" label="详细地址" name="comefrom" maxlength="150" size="70"/><@p.tr/>
-
+<!-- <@p.text colspan="2" label="详细地址" name="comefrom" maxlength="150" size="70"/><@p.tr/>
+ -->
 <@p.td id="linkLogo" label="个人头像" colspan="1" width="50" noHeight="true">
 <@p.text id="uploadImgPath0" name="userImg" style="width:180px"/> <input class="preview-button" type="button" value="<@s.m "imageupload.preview"/>" onclick="previewImg(0);"/><br/>
 <span id="ufc0" style="position:relative">

@@ -37,7 +37,7 @@ img{ border:0; -ms-interpolation-mode:bicubic;}
 /*导航栏*/
 #menu{ background-image:url(../img/index/daohanglanBg.jpg); height:35px; width:100%;}
 #topmenu{ margin:0; text-align:center;}
-#topmenu dt{text-align:center; padding:0; float:left; margin:0px; height:20px; line-height:20px; font-weight:bold; width:9.8%; margin-top:8px; border-right:1px dashed #71b4f1;}
+#topmenu dt{text-align:center; padding:0; float:left; margin:0px; height:20px; line-height:20px; font-weight:bold; width:8.8%; margin-top:8px; border-right:1px dashed #71b4f1;}
 #topmenu dt .menu_first{padding-left:15px; width:9.8%;}
 #topmenu dt a{color:#fff; font-size:14px;}
 #topmenu dt a.selected:link,#topmenu dt a.selected:visited{font-weight:bold; color:#cfe8ff;  width:100%; display:block;}

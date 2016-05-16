@@ -57,14 +57,14 @@ function doCheck(){
 	<@p.column code="cmsUser.loginCountForList" align="center">${cmsUser.loginCount}</@p.column><#t/>
 	<@p.column code="cmsUser.disabled" align="center"><#if cmsUser.disabled><span style="color:red"><@s.m "global.true"/></span><#else><@s.m "global.false"/></#if></@p.column><#t/>
 	<@p.column code="global.operate" align="center">
-		<a href="v_edit.do?id=${cmsUser.id}&pageNo=${pageNo!}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
+<!-- 		<a href="v_edit.do?id=${cmsUser.id}&pageNo=${pageNo!}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
 		<a href="o_delete.do?ids=${cmsUser.id}&pageNo=${pageNo!}" onclick="if(!$.confirmToUrl(this.href)) {return false;}" class="pn-opt"><@s.m "global.delete"/></a><#t/>
-	</@p.column><#t/>
+ -->	</@p.column><#t/>
 </@p.table>
 <div style="background:url(${base}/res/common/img/theme/boxTitleBG.jpg) repeat-x; height:20px; overflow:hidden;">
-<input class="del-button" type="button" value="<@s.m "global.delete"/>" onclick="optDelete();"/ style="float:left; border-right:1px solid #ffffff;">
+<!-- <input class="del-button" type="button" value="<@s.m "global.delete"/>" onclick="optDelete();"/ style="float:left; border-right:1px solid #ffffff;">
 <input class="check" type="button" value="<@s.m "global.check"/>" onclick="optCheck();"/ style="float:left; border-right:1px solid #ffffff;">
-</div>
+ --></div>
 </form>
 </div>
 <#include "/common/alert_message.html"/>

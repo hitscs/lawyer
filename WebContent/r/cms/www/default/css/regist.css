@@ -16,7 +16,7 @@ Copyright: JEECMS
 
 .header{width:980px; height:70px; margin:0 auto 10px;}
 .header .brand{float:left;padding-left:20px;}
-.header .brand h1 a{display:block;width:292px; height:70px;overflow:hidden;text-indent:-9999px;margin-right:10px;background:url(../img/member/login-logo.gif) no-repeat; cursor:pointer;}
+.header .brand h1 a{display:block;width:292px; height:70px;overflow:hidden;text-indent:-9999px;margin-right:10px;background:url(../img/index/146154800255567.png) no-repeat; cursor:pointer;}
 
 .main{width:980px;margin:0 auto; font-size:14px; margin-bottom:20px;}
 .main h2{text-indent:20px; color:#3e3e3e;}
@@ -37,6 +37,6 @@ label.error{font-size:12px;}
 .regist-header{background:url(../img/member/bg1.gif) repeat-x;width:100%; height:125px;}
 .rgheader{width:980px; height:87px; margin:0 auto 10px;}
 .rgheader .brand{float:left;padding-left:20px;}
-.rgheader .brand h1 a{display:block;width:292px; height:87px;overflow:hidden;text-indent:-9999px;margin-right:10px;background:url(../img/member/regist-logo.gif) no-repeat;}
+.rgheader .brand h1 a{display:block;width:292px; height:87px;overflow:hidden;text-indent:-9999px;margin-right:10px;background:url(../img/index/146154800255567.png) no-repeat;}
 .rg-tbg{background:url(../img/member/regist-tbg.gif) no-repeat top; width:952px;}
 .regist-submit{background:url(../img/member/regist-sumbit.gif) no-repeat; width:202px; height:43px; border:0 none; cursor:pointer;}

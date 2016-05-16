@@ -1,32 +1,17 @@
 package com.jeecms.lawyer.manager.impl;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Map;
-
-import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jeecms.cms.manager.main.ChannelMng;
-import com.jeecms.cms.manager.main.ContentMng;
-import com.jeecms.common.email.EmailSender;
-import com.jeecms.common.email.MessageTemplate;
 import com.jeecms.common.hibernate3.Updater;
 import com.jeecms.common.page.Pagination;
-import com.jeecms.core.dao.CmsUserDao;
-import com.jeecms.core.entity.CmsGroup;
 import com.jeecms.core.entity.CmsUser;
 import com.jeecms.core.entity.CmsUserExt;
-import com.jeecms.core.entity.UnifiedUser;
-import com.jeecms.core.manager.CmsGroupMng;
-import com.jeecms.core.manager.CmsRoleMng;
-import com.jeecms.core.manager.CmsSiteMng;
-import com.jeecms.core.manager.CmsUserExtMng;
+import com.jeecms.core.manager.AreaMng;
 import com.jeecms.core.manager.CmsUserMng;
-import com.jeecms.core.manager.CmsUserSiteMng;
-import com.jeecms.core.manager.UnifiedUserMng;
 import com.jeecms.lawyer.dao.LawyerDao;
 import com.jeecms.lawyer.entity.Lawyer;
 import com.jeecms.lawyer.manager.LawyerMng;
@@ -36,7 +21,7 @@ import com.jeecms.lawyer.manager.LawyerMng;
 public class LawyerMngImpl implements LawyerMng {
 	private LawyerDao lawyerDao;
 	
-	private CmsUserDao cmsUserDao;
+
 
 	@Transactional(readOnly = true)
 	public Pagination getPage(String username, String email, Integer siteId, Integer groupId, Boolean disabled, Boolean admin, Integer rank, int pageNo, int pageSize) {
@@ -44,9 +29,11 @@ public class LawyerMngImpl implements LawyerMng {
 		return page;
 	}
 
-	public CmsUser registerMember(String username, String email, String password, String ip, Integer groupId, Integer grain, boolean disabled, CmsUserExt userExt, Lawyer lawyer,Map<String, String> attr) {
+	public CmsUser registerMember(String username, String email, String password, String ip, Integer groupId, Integer grain,Integer provinceId,Integer cityId,Integer regionId, boolean disabled, CmsUserExt userExt, Lawyer lawyer,Map<String, String> attr) {
 		CmsUser user = new CmsUser();
-
+		if(provinceId!=null) userExt.setProvince(areaMng.findById(provinceId));
+		if(cityId!=null) userExt.setCity(areaMng.findById(cityId));
+		if(regionId!=null) userExt.setRegion(areaMng.findById(regionId));
 		user=cmsUserMng.registerMember(username, email, password, ip, groupId, grain, disabled, userExt, attr);
 		lawyerDao.save(lawyer,user);
 		
@@ -111,40 +98,12 @@ public class LawyerMngImpl implements LawyerMng {
 		}
 		return beans;
 	}
-	private CmsUserSiteMng cmsUserSiteMng;
-	private CmsSiteMng cmsSiteMng;
-	private ChannelMng channelMng;
-	private CmsRoleMng cmsRoleMng;
-	private CmsGroupMng cmsGroupMng;
-	private UnifiedUserMng unifiedUserMng;
+
 	private CmsUserMng cmsUserMng;
-	private CmsUserExtMng cmsUserExtMng;
-	@Autowired
-	private ContentMng contentMng;
-	@Autowired
-	public void setCmsUserSiteMng(CmsUserSiteMng cmsUserSiteMng) {
-		this.cmsUserSiteMng = cmsUserSiteMng;
-	}
 
 	@Autowired
-	public void setCmsSiteMng(CmsSiteMng cmsSiteMng) {
-		this.cmsSiteMng = cmsSiteMng;
-	}
+	private AreaMng areaMng;
 
-	@Autowired
-	public void setChannelMng(ChannelMng channelMng) {
-		this.channelMng = channelMng;
-	}
-
-	@Autowired
-	public void setCmsRoleMng(CmsRoleMng cmsRoleMng) {
-		this.cmsRoleMng = cmsRoleMng;
-	}
-
-	@Autowired
-	public void setUnifiedUserMng(UnifiedUserMng unifiedUserMng) {
-		this.unifiedUserMng = unifiedUserMng;
-	}
 
 
 	@Autowired
@@ -152,15 +111,6 @@ public class LawyerMngImpl implements LawyerMng {
 		this.cmsUserMng = cmsUserMng;
 	}
 
-	@Autowired
-	public void setCmsUserExtMng(CmsUserExtMng cmsUserExtMng) {
-		this.cmsUserExtMng = cmsUserExtMng;
-	}
-
-	@Autowired
-	public void setCmsGroupMng(CmsGroupMng cmsGroupMng) {
-		this.cmsGroupMng = cmsGroupMng;
-	}
 
 
 	@Autowired
