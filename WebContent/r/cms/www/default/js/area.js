@@ -1,20 +1,20 @@
 
 /** 
-* ¼ÓÔØÊĞ 
+* åŠ è½½å¸‚ 
 * 
 */ 
 function loadCity() { 
 var provinceId = $("#provinceSelect option:selected").val(); 
 if(provinceId == null || provinceId == ""){ 
-//alert("ÕÒ²»µ½Ê¡"); 
+//alert("æ‰¾ä¸åˆ°çœ"); 
 }else{ 
 $.post(rootPath+"/loadCity", { 
 "q" : provinceId 
 }, function(data, result) { 
 if(data == "noId"){ 
-alert("ÇëÇó´íÎó"); 
+alert("è¯·æ±‚é”™è¯¯"); 
 }else if(data == "null"){ 
-alert("ÏµÍ³ÕÒ²»µ½ÊôÓÚ¸ÃÊ¡µÄÊĞ"); 
+alert("ç³»ç»Ÿæ‰¾ä¸åˆ°å±äºè¯¥çœçš„å¸‚"); 
 }else{ 
 data = eval("{" + data + "}"); 
 var citySelect = $("#citySelect"); 
@@ -35,21 +35,21 @@ loadRegion();
 } 
 }; 
 /** 
-* ¼ÓÔØÇø 
+* åŠ è½½åŒº 
 * 
 */ 
 function loadRegion() { 
 var cityId = $("#citySelect option:selected").val(); 
 if(cityId == null || cityId == "" || cityId < 1){ 
-alert("ÕÒ²»µ½ÊĞ"); 
+alert("æ‰¾ä¸åˆ°å¸‚"); 
 }else{ 
 $.post(rootPath+"/loadRegion", { 
 "q" : cityId 
 }, function(data, result) { 
 if(data == "noId"){ 
-alert("ÇëÇó´íÎó"); 
+alert("è¯·æ±‚é”™è¯¯"); 
 }else if(data == "null"){ 
-alert("ÏµÍ³ÕÒ²»µ½ÊôÓÚ¸ÃÊĞµÄÇø"); 
+alert("ç³»ç»Ÿæ‰¾ä¸åˆ°å±äºè¯¥å¸‚çš„åŒº"); 
 }else{ 
 data = eval("{" + data + "}"); 
 var regionSelect = $("#regionSelect"); 
@@ -69,12 +69,12 @@ regionSelect.append("<option value='" + data[i].id + "'>"
 } 
 }; 
 /** 
-* Ê¡¸Ä±äÊÂ¼ş 
+* çœæ”¹å˜äº‹ä»¶ 
 * 
 */ 
 $("#provinceSelect").change(loadCity); 
 /** 
-* ÊĞ¸Ä±äÊÂ¼ş 
+* å¸‚æ”¹å˜äº‹ä»¶ 
 * 
 */ 
 $("#citySelect").change(loadRegion); 
