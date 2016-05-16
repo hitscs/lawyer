@@ -19,6 +19,9 @@
 		<property name="userImg" column="user_img" type="string" not-null="false" length="255"/>
 		<property name="userSignature" column="user_signature" type="string" not-null="false" length="255"/>
 		<one-to-one name="user" class="CmsUser" constrained="true"/>
-		<many-to-one name="area" column="area" class="Area" not-null="false"></many-to-one>
+		<!-- <many-to-one name="area" column="area" class="Area" not-null="false"></many-to-one> -->
+		<many-to-one name="province" column="province" class="Area" not-null="false"></many-to-one>
+		<many-to-one name="city" column="city" class="Area" not-null="false"></many-to-one>
+		<many-to-one name="region" column="region" class="Area" not-null="false"></many-to-one>
 	</class>
 </hibernate-mapping>

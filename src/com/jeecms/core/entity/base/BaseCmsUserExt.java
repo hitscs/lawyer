@@ -66,7 +66,10 @@ public abstract class BaseCmsUserExt  implements Serializable {
 	// one to one
 	private com.jeecms.core.entity.CmsUser user;
 
-	private com.jeecms.core.entity.Area area;
+	//private com.jeecms.core.entity.Area area;
+	private com.jeecms.core.entity.Area province;
+	private com.jeecms.core.entity.Area city;
+	private com.jeecms.core.entity.Area region;
 
 	/**
 	 * Return the unique identifier of this class
@@ -266,12 +269,54 @@ public abstract class BaseCmsUserExt  implements Serializable {
 
 
 
-	public com.jeecms.core.entity.Area getArea() {
+/*	public com.jeecms.core.entity.Area getArea() {
 		return area;
 	}
 
 	public void setArea(com.jeecms.core.entity.Area area) {
 		this.area = area;
+	}*/
+
+	/**
+	 * @return the province
+	 */
+	public com.jeecms.core.entity.Area getProvince() {
+		return province;
+	}
+
+	/**
+	 * @param province the province to set
+	 */
+	public void setProvince(com.jeecms.core.entity.Area province) {
+		this.province = province;
+	}
+
+	/**
+	 * @return the city
+	 */
+	public com.jeecms.core.entity.Area getCity() {
+		return city;
+	}
+
+	/**
+	 * @param city the city to set
+	 */
+	public void setCity(com.jeecms.core.entity.Area city) {
+		this.city = city;
+	}
+
+	/**
+	 * @return the region
+	 */
+	public com.jeecms.core.entity.Area getRegion() {
+		return region;
+	}
+
+	/**
+	 * @param region the region to set
+	 */
+	public void setRegion(com.jeecms.core.entity.Area region) {
+		this.region = region;
 	}
 
 	public boolean equals (Object obj) {

@@ -19,7 +19,7 @@ public class AreaMngImpl implements AreaMng {
 	}
 	@Transactional(readOnly = true)
 	public List<Area> getList(Integer pid) {
-		return dao.getList();
+		return dao.getList(pid);
 	}
 	@Transactional(readOnly = true)
 	public Area findById(Integer id) {

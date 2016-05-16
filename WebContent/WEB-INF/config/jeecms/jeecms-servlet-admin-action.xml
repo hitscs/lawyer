@@ -29,6 +29,7 @@
 	<bean id="cmsAdminGlobalAct" class="com.jeecms.cms.action.admin.main.CmsAdminGlobalAct"/>
 	<bean id="cmsAdminLocalAct" class="com.jeecms.cms.action.admin.main.CmsAdminLocalAct"/>
 	<bean id="cmsMemberAct" class="com.jeecms.cms.action.admin.main.CmsMemberAct"/>
+	<bean id="areaAct" class="com.jeecms.cms.action.admin.main.AreaAct"/>
 	<bean id="cmsModelAct" class="com.jeecms.cms.action.admin.main.CmsModelAct"/>
 	<bean id="cmsModelItemAct" class="com.jeecms.cms.action.admin.main.CmsModelItemAct"/>
 	<bean id="channelAct" class="com.jeecms.cms.action.admin.main.ChannelAct"/>

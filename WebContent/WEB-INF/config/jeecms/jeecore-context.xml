@@ -72,6 +72,7 @@
 	<bean id="cmsUserSiteDao" class="com.jeecms.core.dao.impl.CmsUserSiteDaoImpl"/>
 	<bean id="cmsGroupDao" class="com.jeecms.core.dao.impl.CmsGroupDaoImpl"/>
 	<bean id="cmsRoleDao" class="com.jeecms.core.dao.impl.CmsRoleDaoImpl"/>
+	<bean id="areaDao" class="com.jeecms.core.dao.impl.AreaDaoImpl"/>
 	<bean id="cmsLogDao" class="com.jeecms.core.dao.impl.CmsLogDaoImpl"/>
 	<bean id="cmsDictionaryDao" class="com.jeecms.core.dao.impl.CmsDictionaryDaoImpl"/>
 	<bean id="cmsSiteCompanyDao" class="com.jeecms.core.dao.impl.CmsSiteCompanyDaoImpl"/>
@@ -91,6 +92,7 @@
 	<bean id="cmsUserSiteMng" class="com.jeecms.core.manager.impl.CmsUserSiteMngImpl"/>
 	<bean id="cmsGroupMng" class="com.jeecms.core.manager.impl.CmsGroupMngImpl"/>
 	<bean id="cmsRoleMng" class="com.jeecms.core.manager.impl.CmsRoleMngImpl"/>
+	<bean id="areaMng" class="com.jeecms.core.manager.impl.AreaMngImpl"/>
 	<bean id="cmsLogMng" class="com.jeecms.core.manager.impl.CmsLogMngImpl"/>
 	<bean id="cmsDictionaryMng" class="com.jeecms.core.manager.impl.CmsDictionaryMngImpl"/>
 	<bean id="cmsSiteCompanyMng" class="com.jeecms.core.manager.impl.CmsSiteCompanyMngImpl"/>

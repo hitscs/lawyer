@@ -8,8 +8,8 @@ var provinceId = $("#provinceSelect option:selected").val();
 if(provinceId == null || provinceId == ""){ 
 //alert("找不到省"); 
 }else{ 
-$.post(rootPath+"/loadCity", { 
-"q" : provinceId 
+$.post("../area/v_list.do", { 
+"pid" : provinceId 
 }, function(data, result) { 
 if(data == "noId"){ 
 alert("请求错误"); 
