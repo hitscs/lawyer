@@ -71,16 +71,16 @@ import com.jeecms.lawyer.manager.LawyerMng;
 	   return "lawyer/add"; }
    
  
-   @RequiresPermissions({"test:v_edit"})
-   @RequestMapping({"/test/v_edit.do"})
+   @RequiresPermissions({"lawyer:v_edit"})
+   @RequestMapping({"/lawyer/v_edit.do"})
    public String edit(Integer id, Integer pageNo, HttpServletRequest request, ModelMap model) {
      WebErrors errors = validateEdit(id, request);
      if (errors.hasErrors()) {
        return errors.showErrorPage(model);
      }
-     model.addAttribute("test", this.manager.findById(id));
+     model.addAttribute("lawyer", this.manager.findById(id));
      model.addAttribute("pageNo", pageNo);
-     return "test/edit";
+     return "lawyer/edit";
    }
    
    @RequiresPermissions({"lawyer:o_save"})
