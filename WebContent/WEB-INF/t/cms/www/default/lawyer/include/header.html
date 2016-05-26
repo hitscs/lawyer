@@ -1,35 +1,100 @@
-<div class="theTop">
-	<div class="theTopLeft">
-    [#include "../include/header_register.html"/]
-    </div>
-    <div class="theTopRight">
-    <a href="${base}/tag.jspx" target="_blank">Tags</a>&nbsp;|&nbsp;<a href="${base}/guestbook.jspx" target="_blank">留言板</a>&nbsp;|&nbsp;<a href="${base}/rss.jspx" target="_blank">RSS订阅</a>&nbsp;|&nbsp;<a onclick="SetHome(window.location)"href="javascript:void(0)">设为首页</a>&nbsp;|&nbsp;<a onclick="AddFavorite(window.location,document.title)"href="javascript:void(0)">加入收藏</a>&nbsp;
-    <A name="gb2big5" id="gb2big5">繁體中文</A>
-	<Script Language=Javascript Src="${resSys}/gb2big5.js"></Script>
-    </div>
-</div>
-<script type="text/javascript" language="javascript">
-   //加入收藏
-       function AddFavorite(sURL, sTitle) {
-           sURL =encodeURI(sURL); 
-       try{   
-          window.external.addFavorite(sURL, sTitle);   
-       }catch(e) {   
-          try{   
-              window.sidebar.addPanel(sTitle, sURL, "");   
-           }catch (e){   
-              alert("您的浏览器不支持自动加入收藏功能，请使用Ctrl+D进行添加，或手动在浏览器里进行设置！");
-          }   
-       }
-   }
-   
-   //设为首页
-   function SetHome(url){
-       if (document.all) {
-          document.body.style.behavior='url(#default#homepage)';
-             document.body.setHomePage(url);
-       }else{
-           alert("您的浏览器不支持自动设置页面为首页功能，请您手动在浏览器里设置该页面为首页！");
-       }
-   }
-</script>
+	<DIV style="DISPLAY: none" id="browser_ie">
+		<DIV class=brower_info>
+			<DIV class=notice_info>
+				<P>
+					你的浏览器版本过低，可能导致网站不能正常访问！<BR> 为了你能正常使用网站功能，请使用这些浏览器。 
+				</P>
+			</DIV>
+			<DIV class=browser_list>
+				<SPAN><A href="#" target="_blank"><IMG src="/${res}/lawyer/images/Chrome.png"><BR> Chrome</A> </SPAN> <SPAN><A href="#" target="_blank"><IMG src="/${res}/lawyer/images/Firefox.png"><BR> Firefox</A></SPAN> <SPAN><A href="#" target="_blank"><IMG
+						src="/${res}/lawyer/images/Safari.png"><BR> Safari</A></SPAN> <SPAN><A href="#" target="_blank"><IMG src="/${res}/lawyer/images/IE.png"><BR> IE9及以上</A></SPAN>
+			</DIV>
+		</DIV>
+	</DIV>
+	<SCRIPT>
+	if (!$.support.leadingWhitespace) {
+	    $("#browser_ie").show();
+	}
+    </SCRIPT>
+	<div id="itop">
+		<div class="w1000">
+[#include "../include/header_register.html"/]
+			<div class="itop_r">
+				<ul>
+					<li class="top_nav_item"><a class="top_nav_link" href="#" target="_blank">首页</a></li>
+					<li class="top_nav_item"><a class="top_nav_link" href="#" target="_blank">法律咨询</a></li>
+					<li class="top_nav_item"><a class="top_nav_link" href="#" target="_blank">找律师</a></li>
+					<li class="top_nav_item top_nav_icon"><i></i> <a class="top_nav_link" href="javascript:void(0);">网站导航</a>
+						<div class="top_nav_pop">
+							<div class="clearfix">
+								<span>综合<br> 导航<em></em></span>
+								<ul>
+									<li><a class="priority" href="#" target="_blank">法律咨询</a></li>
+									<li><a href="#" target="_blank">专业律师</a></li>
+									<li><a href="#" target="_blank">律师在线</a></li>
+									<li><a href="#" target="_blank">电话咨询</a></li>
+									<li><a href="#" target="_blank">法律百科</a></li>
+									<li><a href="" target="_blank">法律知识</a></li>
+									<li><a href="" target="_blank">法律法规</a></li>
+									<li><a href="" target="_blank">司法案例</a></li>
+									<li><a href="" target="_blank">律师事务所</a></li>
+									<li><a href="" target="_blank">法律快搜</a></li>
+									<li><a href="" target="_blank">法律视野</a></li>
+								</ul>
+							</div>
+							<div class="clearfix tn_lanmu">
+								<span>精品<br> 栏目<em></em></span>
+								<ul>
+									<li><a href="" target="_blank">法律经验</a></li>
+									<li><a class="priority" href="" target="_blank">互联网金融</a></li>
+									<li><a href="" target="_blank">律师文集</a></li>
+									<li><a href="" target="_blank">成功案例</a></li>
+									<li><a href="" target="_blank">律师访谈</a></li>
+									<li><a href="" target="_blank">短信咨询</a></li>
+									<li><a href="" target="_blank">在线特约</a></li>
+								</ul>
+							</div>
+							<div class="clearfix">
+								<span>专业<br> 频道<em></em></span>
+								<ul>
+									<li><a href="" target="_blank">刑法</a></li>
+									<li><a href="" target="_blank">婚姻法</a></li>
+									<li><a href="" target="_blank">劳动法</a></li>
+									<li><a href="" target="_blank">损害赔偿</a></li>
+									<li><a href="" target="_blank">房地产法</a></li>
+									<li><a href="" target="_blank">交通事故</a></li>
+									<li><a href="" target="_blank">工程建筑</a></li>
+									<li><a href="" target="_blank">知识产权</a></li>
+									<li><a href="" target="_blank">拆迁</a></li>
+									<li><a href="" target="_blank">公司法</a></li>
+									<li><a href="" target="_blank">合同法</a></li>
+									<li><a href="" target="_blank">医疗事故</a></li>
+									<li><a href="" target="_blank">征地补偿</a></li>
+									<li><a href="" target="_blank">债权债务</a></li>
+									<li><a href="" target="_blank">合同范本</a></li>
+									<li><a href="" target="_blank">法律文书</a></li>
+								</ul>
+							</div>
+							<div class="clearfix tn_fuwu">
+								<span>便捷<br> 服务<em></em></span>
+								<ul>
+									<li><a href="" target="_blank">网站地图</a></li>
+									<li><a href="" target="_blank">城市切换</a></li>
+									<li><a href="" target="_blank">帮助中心</a></li>
+									<li><a href="" target="_blank">找回密码</a></li>
+									<li><a href="" target="_blank">投诉建议</a></li>
+									<li><a class="priority" href="" target="_blank">律师加盟</a></li>
+									<li><a href="" target="_blank">联系我们</a></li>
+								</ul>
+								<h6 class="clear"></h6>
+							</div>
+							<div class="top_nav_botton">
+								<a href="" title="免费发布咨询" class="tn_zixun" target="_blank">免费发布咨询</a> <a href="" title="发布案件委托" class="tn_weituo" target="_blank">发布案件委托</a> <a href="" title="解答法律咨询" class="tn_jieda" target="_blank">解答法律咨询</a>
+							</div>
+						</div></li>
+					<li class="top_nav_item top_nav_question"><strong>律师咨询热线：400-888-8340</strong></li>
+				</ul>
+			</div>
+			<h6 class="clear"></h6>
+		</div>
+	</div>

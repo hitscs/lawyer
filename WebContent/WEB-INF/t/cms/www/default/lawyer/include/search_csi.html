@@ -30,23 +30,30 @@ function qkeypress(){
 	}
 }
 </script>
-<div class="pageTitle">
-    <!-- LOGO_begin -->
-    <div class="webLogo">
-        <img src="../../${res}/img/index/146154800255567.png" />
-    </div>
-    <!-- LOGO_end -->
-    <!-- 搜索_begin -->
-    <div class="searchCon">
-        <form action="${base}/search.jspx" target="_blank" id="searchForm">
-        <div class="ui-widget">
-            <div class="searchBg">
-            	<input name="q" value="${oldq!'请输入关键词'}" type="text" onfocus="if(this.value=='请输入关键词')this.value=''"  onkeypress="qkeypress()" onblur="if(this.value=='')this.value='请输入关键词'"  maxlength="50" autocomplete="off" / style="border:0;width:98%;">
-            </div>
+	<div id="iheader">
+		<div class="w1000">
+			<div class="ilogo">
+				<a href="#"><img src="/${res}/lawyer/images/ilogo.png" /></a>
+			</div>
+			<div class="search_box">
+				<div class="search">
+					<form name=search_form onSubmit="" target="_blank" method=post>
+						<div id="pt1" class="select">
+							<a id="s0">综合</a>
+							<div style="display: none;" id="pt2" class="part">
+								<p>
+									<a id="s1">咨询</a> <a id="s2">知识</a> <a id="s3">律师</a> <a id="s4">法规</a> <a id="s5">律所</a> <a id="s6">案例</a> <a id="s7">文集</a>
+								</p>
+							</div>
+						</div>
+						<input id="catid" name="catid" type="hidden" value="7"> <input id="q" class="enter" name="infos"> <input class="sb" name="Input" type="submit" value="马上搜索">
+					</form>
+				</div>
+				<a href="#" class="free_zixun">免费咨询</a>
+				<h6 class="clear"></h6>
+			</div>
+			<h6 class="clear"></h6>
 		</div>
-            <input type="submit" class="searchMenu" value=""/ >
-        </form>
-    </div>
-    <!-- 搜索_end -->
-</div>
-<div class="clear"></div>
+	</div>
+	
+	<script src="/${res}/lawyer/js/search.js"></script>
