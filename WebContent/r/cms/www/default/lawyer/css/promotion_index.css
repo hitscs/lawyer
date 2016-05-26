@@ -1,0 +1,70 @@
+
+.header {
+	BORDER-BOTTOM: #e7e8ea 1px solid; BORDER-LEFT: #e7e8ea 1px; BORDER-TOP: #e7e8ea 1px solid; BORDER-RIGHT: #e7e8ea 1px
+}
+.header .header-inner {
+	PADDING-LEFT: 32px; WIDTH: 1180px; HEIGHT: 87px; FONT-SIZE: 14px
+}
+.wrap {
+	MARGIN: 0px auto; WIDTH: 1280px
+}
+.header-logo {
+	TEXT-INDENT: -9999px; WIDTH: 280px; BACKGROUND: url(../images/logo_1.png) no-repeat 0px 16px; FLOAT: left; HEIGHT: 80px
+}
+.header-account {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 13px; FLOAT: right; MARGIN-LEFT: 23px; PADDING-TOP: 27px
+}
+.header-account A {
+	BORDER-BOTTOM: #1f8dd6 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #1f8dd6 1px solid; LINE-HEIGHT: 31px;      WIDTH: 68px; DISPLAY: inline-block; BORDER-TOP: #1f8dd6 1px solid; CURSOR: pointer; MARGIN-RIGHT: 11px;        BORDER-RIGHT: #1f8dd6 1px solid; border-radius: 4px
+}
+.header-inner .btn-signin {
+	COLOR: #1f8dd6
+}
+.header-inner .btn-signup {
+	BACKGROUND-COLOR: #1f8dd6; COLOR: #fff
+}
+.header-nav {
+	FLOAT: right; FONT-SIZE: 18px
+}
+.header-nav LI {
+	POSITION: relative; MARGIN: 0px; FLOAT: left; BORDER-TOP: #fff 3px solid
+}
+.header-nav LI A {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 5px; LINE-HEIGHT: 78px; PADDING-LEFT: 25px; OUTLINE-WIDTH: 0px; PADDING-RIGHT: 25px; DISPLAY: block; VERTICAL-ALIGN: middle; PADDING-TOP: 0px
+}
+.header-nav LI.selected {
+	BORDER-TOP: #1f8dd6 3px solid
+}
+.header .head-user {
+	PADDING-LEFT: 7px; PADDING-RIGHT: 13px; FLOAT: right
+}
+.header .head-user LI {
+	LINE-HEIGHT: 78px; FLOAT: left; COLOR: #1f8dd6; MARGIN-RIGHT: 11px
+}
+.header .head-user A {
+	LINE-HEIGHT: 87px; DISPLAY: inline-block; HEIGHT: 87px; COLOR: #1f8dd6; MARGIN-LEFT: 5px
+}
+.header .head-user A.btn-signin {
+	TEXT-ALIGN: center; LINE-HEIGHT: 31px; BACKGROUND-COLOR: #1f8dd6; WIDTH: 67px; HEIGHT: 31px; COLOR: #fff; MARGIN-LEFT: 20px; VERTICAL-ALIGN: -2px; border-radius: 4px; _margin-top: 28px
+}
+#browser_ie {
+	BACKGROUND-COLOR: #f6f6b4; DISPLAY: none; HEIGHT: 85px; COLOR: #000; FONT-SIZE: 15px
+}
+#browser_ie .brower_info {
+	MARGIN: 0px auto; WIDTH: 800px; PADDING-TOP: 17px
+}
+#browser_ie .brower_info .notice_info {
+	POSITION: relative; MARGIN-TOP: 5px; FLOAT: left
+}
+#browser_ie .brower_info .notice_info P {
+	TEXT-ALIGN: left; LINE-HEIGHT: 25px; WIDTH: 360px; DISPLAY: inline-block
+}
+#browser_ie .browser_list {
+	POSITION: relative; FLOAT: left
+}
+#browser_ie .browser_list IMG {
+	WIDTH: 40px; HEIGHT: 40px
+}
+#browser_ie .browser_list SPAN {
+	TEXT-ALIGN: center; WIDTH: 80px; DISPLAY: inline-block
+}
