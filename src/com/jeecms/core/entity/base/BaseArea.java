@@ -13,6 +13,7 @@ public abstract class BaseArea  implements Serializable {
 	public static String PROP_LEVEL = "level";
 	public static String PROP_NAME = "name";
 	public static String PROP_ID = "id";
+	public static String PROP_SHORTNAME = "shortName";
 
 
 	// constructors
@@ -36,6 +37,7 @@ public abstract class BaseArea  implements Serializable {
 		java.lang.String name,
 		java.lang.Integer pid,
 		java.lang.Integer level,
+		java.lang.String shortName,
 		java.lang.Boolean all) {
 
 		this.setId(id);
@@ -59,6 +61,7 @@ public abstract class BaseArea  implements Serializable {
 	private java.lang.String name;
 	private java.lang.Integer pid;
 	private java.lang.Integer level;
+	private java.lang.String shortName;
 	private java.lang.Boolean all;
 
 	// many to one
@@ -116,6 +119,20 @@ public abstract class BaseArea  implements Serializable {
 		this.site = site;
 	}
 
+	/**
+	 * @return the shortName
+	 */
+	public java.lang.String getShortName() {
+		return shortName;
+	}
+
+	/**
+	 * @param shortName the shortName to set
+	 */
+	public void setShortName(java.lang.String shortName) {
+		this.shortName = shortName;
+	}
+
 	public java.lang.Boolean getAll() {
 		return all;
 	}
@@ -153,6 +170,6 @@ public abstract class BaseArea  implements Serializable {
 	@Override
 	public String toString() {
 		return "Area [id=" + id + ", name=" + name + ", pid=" + pid
-				+ ", level=" + level + "]";
+				+ ", level=" + level + ", shortName=" + shortName +"]";
 	}
 }
