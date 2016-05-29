@@ -10,8 +10,8 @@ $(function() {
 </script>
 <form id="jvForm" name="jvForm" action="${base}/login.jspx" method="post">
 <input type="hidden" name="returnUrl" value="${location}"/>
-				<span> <input type="text" id="username" name="username" class="required" title="用户名不能为空" value="用户名" onfocus="if (value =='用户名'){value =''}" onblur="if (value ==''){value='用户名'}" />
-				</span> <span> <input type="password" id="password" name="password" class="required" title="密码不能为空" value="密码" onfocus="if (value =='密码'){value =''}" onblur="if (value ==''){value='密码'}" />
+				<span> <input type="text" id="username" name="username" class="required" title="用户名不能为空" placeholder="用户名" />
+				</span> <span> <input type="password" id="password" name="password" class="required" title="密码不能为空" placeholder="密码" />
 				</span> <a href="#" onclick="javascript:document.all.jvForm.submit()" class="itop_login">登陆</a> <a href="${base}/register.jspx" class="itop_reg">注册</a>
 <!-- 				<div class="more_login">
 					<a href="#" class="more_login_t">其他登陆方式</a>

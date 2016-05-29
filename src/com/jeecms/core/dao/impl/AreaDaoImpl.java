@@ -15,7 +15,7 @@ public class AreaDaoImpl extends HibernateBaseDao<Area, Integer>
 	@SuppressWarnings("unchecked")
 	public List<Area> getList() {
 		String hql = "from Area bean ";
-		hql+="where 1=1 order by bean.priority asc";
+		hql+="where 1=1 order by bean.id asc";
 		return find(hql);
 	}
 /**
