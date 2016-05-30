@@ -24,7 +24,7 @@ public class IndexAct {
 	@Autowired
 	private LawyerTypeMng lawyerTypeManager;
 	// @RequiresPermissions("unified_user:v_check_username")
-	@RequestMapping("/index/area.do")
+	@RequestMapping("/index/area.jspx")
 	public String getArea(Integer pid, HttpServletRequest request, HttpServletResponse response) {
 		if (null == pid)
 			pid = 0;
@@ -35,7 +35,7 @@ public class IndexAct {
 
 		return null;
 	}
-	@RequestMapping("/index/lawyerType.do")
+	@RequestMapping("/index/lawyerType.jspx")
 	public String getLawyerType(Integer pid, HttpServletRequest request, HttpServletResponse response) {
 		if (null == pid)
 			pid = 0;

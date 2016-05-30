@@ -12,8 +12,32 @@
 
 		<script type="text/javascript">
 		function init(){
+			   $.ajax({
+				    type :"POST",
+					url :"index/area.jspx",
+					cache :false,
+					async :false,
+					//data : params,
+					dataType : "json",
+					timeout :30000,
+				    success: function (data) {
+					//alert(data);
+				    	 buildArea(data);
+				    	 
+				    }
+				});
+		}
+		function buildArea(data) {
+		    //alert(data);
+		var html ='';
+		    for (var i = 0; i < data.length; i++) {
 			
+			html=html+'<a href="#">'+data[i].shortName+'</a>';
 			
+
+			}
+		    html=html+'<h6 class="clear"></h6>';
+		    $("#areaList").html(html);
 		}
 		
 		</script>
@@ -45,17 +69,17 @@
 								<li>
 									<h3>热门专业律师</h3>
 									<div class="pane_list">
-										<a href="#">北京离婚律师</a> <a href="#">北京房地产律师</a> <a href="#">北京刑事辩护律师</a> <a href="#">北京房地产律师</a> <a href="#">北京债权债务律师</a> <a href="#">北京离婚律师</a> <a href="#">北京房地产律师</a> <a href="#">北京离婚律师</a>
-										<h6 class="clear"></h6>
+<!-- 										<a href="#">北京离婚律师</a> <a href="#">北京房地产律师</a> <a href="#">北京刑事辩护律师</a> <a href="#">北京房地产律师</a> <a href="#">北京债权债务律师</a> <a href="#">北京离婚律师</a> <a href="#">北京房地产律师</a> <a href="#">北京离婚律师</a>
+ -->										<h6 class="clear"></h6>
 									</div>
 								</li>
 							</ul>
 							<ul class="pane_c">
 								<li>
 									<h3>全国律师</h3>
-									<div class="pane_list">
-										<a href="#">安徽</a> <a href="#">北京</a> <a href="#">重庆</a> <a href="#">福建</a> <a href="#">安徽</a> <a href="#">北京</a> <a href="#">重庆</a> <a href="#">福建</a> <a href="#">安徽</a> <a href="#">北京</a> <a href="#">重庆</a> <a href="#">福建</a> <a href="#">安徽</a> <a href="#">北京</a> <a href="#">重庆</a> <a
-											href="#">福建</a> <a href="#">安徽</a> <a href="#">北京</a> <a href="#">重庆</a> <a href="#">福建</a>
+									<div class="pane_list" id="areaList">
+<!-- 										<a href="#">安徽</a> <a href="#">北京</a> <a href="#">重庆</a> <a href="#">福建</a> <a href="#">安徽</a> <a href="#">北京</a> <a href="#">重庆</a> <a href="#">福建</a> <a href="#">安徽</a> <a href="#">北京</a> <a href="#">重庆</a> <a href="#">福建</a> <a href="#">安徽</a> <a href="#">北京</a> <a href="#">重庆</a> <a
+											href="#">福建</a> <a href="#">安徽</a> <a href="#">北京</a> <a href="#">重庆</a> <a href="#">福建</a> -->
 										<h6 class="clear"></h6>
 									</div>
 								</li>

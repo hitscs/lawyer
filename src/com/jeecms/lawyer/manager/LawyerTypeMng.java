@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.jeecms.lawyer.entity.LawyerType;
 
-public interface LawyerTypeMng {
+public abstract interface LawyerTypeMng {
 
 	public List<LawyerType> getList();
 

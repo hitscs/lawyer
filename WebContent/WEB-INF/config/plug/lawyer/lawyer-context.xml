@@ -6,4 +6,6 @@
 	<bean id="lawyer_list" class="com.jeecms.lawyer.action.directive.LawyerListDirective"/>
 	<bean id="lawyerMng" class="com.jeecms.lawyer.manager.impl.LawyerMngImpl"/>
 	<bean id="lawyerDao" class="com.jeecms.lawyer.dao.impl.LawyerDaoImpl"/>
+	<bean id="lawyerTypeMng" class="com.jeecms.lawyer.manager.impl.LawyerTypeMngImpl"/>
+	<bean id="lawyerTypeDao" class="com.jeecms.lawyer.dao.impl.LawyerTypeDaoImpl"/>
 </beans>

@@ -7,4 +7,5 @@
 	default-lazy-init="true">
 	
 	<bean id="lawyerFrontAct" class="com.jeecms.lawyer.action.front.LawyerAct"/>
+	<bean id="lawyerFrontIndexAct" class="com.jeecms.lawyer.action.front.IndexAct"/>
 </beans>
