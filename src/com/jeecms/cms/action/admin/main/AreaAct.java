@@ -28,7 +28,7 @@ public class AreaAct {
  * @param pid
  */
 
-	@RequiresPermissions("area:v_list")
+	//@RequiresPermissions("area:v_list")
 	@RequestMapping("/area/v_list.do")
 	public void list(HttpServletRequest request,HttpServletResponse response, Integer pid) {
 		
