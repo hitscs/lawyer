@@ -4,6 +4,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title></title>
 <#include "/jeecms_sys/head.html"/>
+<link rel="stylesheet" href="${base}/res/ztree/css/ztree.css" type="text/css">
+<script type="text/javascript" src="${base}/res/ztree/js/jquery.ztree.all-3.5.min.js"></script>
+<style type="text/css">
+.perm-container{}
+.perm-layout-1{padding:3px 0;}
+.perm-layout-2{padding-left:30px;}
+</style>
 <script type="text/javascript">
     $(function() {
 	$("#jvForm").validate();
@@ -16,27 +23,22 @@
     function loadCity() {
 	var provinceId = $("#provinceId").val();
 
-	$.post("area/v_list.do", {
+	$.post("../area/v_list.do", {
 	    "pid" : provinceId
 	}, function(data) {
+	    
+		var html ="";
+		    for (var i = 0; i < data.length; i++) {
+			
+			html=html+"<option value='" + data[i].id + "'>"+ data[i].name + "</option>";
+			
 
-	    data = eval("{" + data + "}");
-	    var citySelect = $("#cityId");
-	    citySelect.html("");
-	    for (var i = 0; i < data.length; i++) {
+			}
+		    $("#cityId").html(html);	    
 
-		citySelect.append("<option value='" + data[i].id + "'>"
-			+ data[i].name + "</option>");
-
-	    }
 	});
     }
 
-    /** 
-     * 省改变事件 
-     * 
-     */
-    $("#provinceId").change(loadCity());
 
     
 </script>
@@ -56,18 +58,13 @@
 <@p.text width="50" colspan="1" label="cmsUser.username" name="username" required="true" maxlength="100" vld="{required:true,username:true,remote:'../member/v_check_username.do',messages:{remote:'${usernameExist}'}}"/>
 <@p.text width="50" colspan="1" label="cmsUser.email" name="email" size="30" class="email"/><@p.tr/>
 <@p.password width="50" colspan="1" label="cmsUser.password" id="password" name="password" maxlength="100" required="true" class="required"/>
-<@p.password width="50" colspan="1" label="cmsUser.pwdAgain" required="true" equalTo="#password"/><@p.tr/>
-<!-- <@p.select colspan="1" width="50" label="cmsUser.group" name="groupId" list=groupList listKey="id" listValue="name" required="true"/> -->
-<!-- <@p.select colspan="1" width="50" label="所属地区" name="provinceId" list=areaList listKey="id" listValue="name" required="true"/> -->
+<@p.password width="50" colspan="1" label="cmsUser.pwdAgain" required="true" equalTo="#password"/>
 
-<!-- <select id="city" name="city"> 
-</select>  -->
-<!-- <select id="regionSelect" name="region"> 
-</select> --><@p.tr/>
 <tr>
-<td colspan="4">
-<label>所属地区:</label>
-<select id="provinceId" name="provinceId">
+<td class="pn-flabel pn-flabel-h" width="12%">
+<label>所属地区:</label></td>
+<td class="pn-fcontent" width="88%" colspan="3">
+<select id="provinceId" name="provinceId" onchange="loadCity()">
 <#list areaList as c> 
 
 <option value="${c.id}">${c.shortName}</option>
@@ -84,10 +81,10 @@
 <@p.tr/>
 <@p.text width="50" colspan="1" label="cmsUser.realname" name="realname" maxlength="100"/>
 <@p.radio width="50" colspan="1" label="cmsUser.gender" name="gender" list={"true":"cmsUser.male","false":"cmsUser.female","":"cmsUser.secrecy"}/><@p.tr/>
-<@p.text width="50" colspan="1" label="cmsUser.birthday" name="birthday" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate"/>
-<@p.text width="50" colspan="1" label="cmsUser.comefrom" name="comefrom" maxlength="150"/><@p.tr/>
-<@p.text width="50" colspan="1" label="cmsUser.qq" name="qq" maxlength="100"/>
-<@p.text width="50" colspan="1" label="cmsUser.msn" name="msn" maxlength="100"/><@p.tr/>
+<@p.text width="50" colspan="2" label="cmsUser.birthday" name="birthday" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate"/>
+<!-- <@p.text width="50" colspan="1" label="cmsUser.comefrom" name="comefrom" maxlength="150"/> --><@p.tr/>
+<@p.text width="50" colspan="2" label="cmsUser.qq" name="qq" maxlength="100"/>
+<!-- <@p.text width="50" colspan="1" label="cmsUser.msn" name="msn" maxlength="100"/> --><@p.tr/>
 <@p.text width="50" colspan="1" label="cmsUser.phone" name="phone" maxlength="50"/>
 <@p.text width="50" colspan="1" label="cmsUser.mobile" name="mobile" maxlength="50"/><@p.tr/>
 <!-- <@p.text colspan="2" label="详细地址" name="comefrom" maxlength="150" size="70"/><@p.tr/>
@@ -106,15 +103,10 @@
 
 <@p.text width="50" colspan="1" label="执业机构" name="company" maxlength="50"/>
 <@p.text width="50" colspan="1" label="执业证号" name="certificateNumber" maxlength="50"/><@p.tr/>
-<@p.text colspan="2" label="擅长领域" name="goodAtField" maxlength="150"/><@p.tr/>
-<@p.text colspan="2" label="专业领域" name="professionalField" maxlength="150"/><@p.tr/>
-<@p.text width="50" colspan="1" label="诚信认证年限" name="trustYears" maxlength="50"/><@p.tr/>
+<@p.text width="50" colspan="1" label="擅长领域" name="goodAtField" maxlength="150"/>
+<@p.text width="50" colspan="1" label="专业领域" name="professionalField" maxlength="150"/><@p.tr/>
+<@p.text width="50" colspan="2" label="诚信认证年限" name="trustYears" maxlength="50"/><@p.tr/>
 <@p.textarea colspan="2" label="cmsUser.intro" name="intro" maxlength="255" cols="70" rows="5"/><@p.tr/>
-
-
-
-
-
 
  
 <@p.td colspan="2"><@p.submit code="global.submit"/> &nbsp; <@p.reset code="global.reset"/></@p.td>
