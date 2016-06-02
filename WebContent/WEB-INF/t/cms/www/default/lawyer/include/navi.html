@@ -2,13 +2,13 @@
 	<div id="imenu">
 		<dl class="w1000">
 		[@cms_channel_list]
-			<dd class="current">
-				<a href="${site.url!}" target="_self" [#if !channel??]class="selected"[/#if]>首 页</a>
+			<dd [#if !channel??]class="current"[/#if]>
+				<a href="${site.url!}" target="_self" >首 页</a>
 			</dd>
 			        [#list tag_list as c]
         [#if c_index<10]
-        <dd>
-        <a href="${c.url}"  target="_self" [#if channel??&&channel.id==c.id] class="selected" [/#if]>${c.name}</a>
+        <dd [#if channel??&&channel.id==c.id] class="current" [/#if]>
+        <a href="${c.url}"  target="_self" >${c.name}</a>
         </dd>
         [/#if]
         [/#list]
