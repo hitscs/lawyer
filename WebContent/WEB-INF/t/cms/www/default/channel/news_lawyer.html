@@ -2,13 +2,74 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <title>专业律师</title>
+<!--[if lt IE 9]>
+<script src="${resSys}/html5.js" type="text/javascript"></script>
+<![endif]-->
 	<link type="text/css" rel="stylesheet" href="/${res}/lawyer/css/style.css" />
 	<script src="/${res}/lawyer/js/jquery-1.8.2.min.js" type="text/javascript"></script>
     <link type="text/css" rel="stylesheet" href="/${res}/lawyer/css/promotion_index.css" />
     <script src="/${res}/lawyer/js/js_jquery-1.11.1.min.js" type="text/javascript"></script>
     <script src="/${res}/lawyer/js/common.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+    $(function(){
+	
+	   $.ajax({
+		    type :"get",
+			url :"index/allLawyerType.jspx",
+			cache :false,
+			async :false,
+			dataType : "json",
+			timeout :30000,
+		    success: function (data) {
+		    	 buildLawyerType(data);
+		    	 
+		    }
+		});
+    })
+/* 		function loadLawyerType(){
+		    alert(1111111);
+			   $.ajax({
+				    type :"POST",
+					url :"index/allLawyerType.jspx",
+					cache :false,
+					async :false,
+					dataType : "json",
+					timeout :30000,
+				    success: function (data) {
+				    	 buildLawyerType(data);
+				    	 
+				    }
+				});
+		} */
+		function buildLawyerType(data) {
+		 	var html ='';
+		    for (var i = 0; i < data.length; i++) {
+			
+			html=html+'<ul class=""><li>
+	                      if(data[i].level==1){
+	                	  <h3>data[i].name</h3>
+	                      }
+	                      <div class="lawyer_menu_list">
+	                      for(var j = 0; j < data.length; j++){
+	                	  if(data[i].id==data[j].pid){
+	                	      <a href="#">data[j].name</a>
+	                	  }
+	                	  
+	                      }
+	                         
+	                          <h6 class="clear"></h6>
+	                        </div>
+	                      </li>
+	                    </ul>';
+
+			}
+		    $("#lawyerType").html(html);
+		}
+		
+		</script>
 </head>
 <body>
 [#include "../lawyer/include/header.html"/]
@@ -21,61 +82,8 @@
                 <ul class="lawyer_menu_tab">
                   <li class="hit"><span>按专业找律师</span></li>
                 </ul>
-                <div class="lawyer_menu_con">
-                    <ul class="">
-                      <li>
-                        <h3>民商法</h3>
-                        <div class="lawyer_menu_list"> <a href="#">劳动工伤</a> <a href="#">损害赔偿</a> <a href="#">劳动工伤</a> <a href="#">离婚</a> <a href="#">工商事务</a> <a href="#">劳动工伤</a>
-                          <h6 class="clear"></h6>
-                        </div>
-                        <span>名誉/肖像/人身权</span>
-                      </li>
-                    </ul>
-					<ul class="">
-                      <li>
-                        <h3>民商法</h3>
-                        <div class="lawyer_menu_list"> <a href="#">劳动工伤</a> <a href="#">损害赔偿</a> <a href="#">劳动工伤</a> <a href="#">离婚</a> <a href="#">工商事务</a> <a href="#">劳动工伤</a>
-                          <h6 class="clear"></h6>
-                        </div>
-                        <span>名誉/肖像/人身权</span>
-                      </li>
-                    </ul>
-                  	<ul class="">
-                      <li>
-                        <h3>民商法</h3>
-                        <div class="lawyer_menu_list"> <a href="#">劳动工伤</a> <a href="#">损害赔偿</a> <a href="#">劳动工伤</a> <a href="#">离婚</a> <a href="#">工商事务</a> <a href="#">劳动工伤</a>
-                          <h6 class="clear"></h6>
-                        </div>
-                        <span>名誉/肖像/人身权</span>
-                      </li>
-                    </ul>
-                    <ul class="">
-                      <li>
-                        <h3>民商法</h3>
-                        <div class="lawyer_menu_list"> <a href="#">劳动工伤</a> <a href="#">损害赔偿</a> <a href="#">劳动工伤</a> <a href="#">离婚</a> <a href="#">工商事务</a> <a href="#">劳动工伤</a>
-                          <h6 class="clear"></h6>
-                        </div>
-                        <span>名誉/肖像/人身权</span>
-                      </li>
-                    </ul>
-                    <ul class="">
-                      <li>
-                        <h3>民商法</h3>
-                        <div class="lawyer_menu_list"> <a href="#">劳动工伤</a> <a href="#">损害赔偿</a> <a href="#">劳动工伤</a> <a href="#">离婚</a> <a href="#">工商事务</a> <a href="#">劳动工伤</a>
-                          <h6 class="clear"></h6>
-                        </div>
-                        <span>名誉/肖像/人身权</span>
-                      </li>
-                    </ul>
-                    <ul class="">
-                      <li>
-                        <h3>民商法</h3>
-                        <div class="lawyer_menu_list"> <a href="#">劳动工伤</a> <a href="#">损害赔偿</a> <a href="#">劳动工伤</a> <a href="#">离婚</a> <a href="#">工商事务</a> <a href="#">劳动工伤</a>
-                          <h6 class="clear"></h6>
-                        </div>
-                        <span>名誉/肖像/人身权</span>
-                      </li>
-                    </ul>
+                <div class="lawyer_menu_con" id="lawyerType">
+
                 </div>
           </div>
           	<div class="lawyer_center">

@@ -46,4 +46,14 @@ public class IndexAct {
 
 		return null;
 	}
+	@RequestMapping("/index/allLawyerType.jspx")
+	public String getAllLawyerType(HttpServletRequest request, HttpServletResponse response) {
+
+		List<LawyerType> list = lawyerTypeManager.getList();
+
+		String json = JSONArray.fromObject(list).toString();
+		ResponseUtils.renderJson(response, json);
+
+		return null;
+	}
 }
