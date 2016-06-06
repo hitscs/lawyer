@@ -332,7 +332,7 @@ function submitContent(){
 <@s.m "content.topicIds"/>: 
 <span id="topics">
 <select name="topicIds" >
-<option><@s.m 'content.topics'/></option>
+<option value="0"><@s.m 'content.topics'/></option>
 <#list topicList as t>
 <option value="${t.id}"  <#if topicIds?seq_contains(t.id)>selected="selected"</#if>>${t.sname}</option>
 </#list>

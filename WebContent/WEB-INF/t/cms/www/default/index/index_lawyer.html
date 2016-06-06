@@ -112,9 +112,9 @@
 				<script src="/${res}/lawyer/js/jquery.superslide.2.1.1.js" type="text/javascript"></script>
 				<div class="ibanner">
 					<ul class="51buypic">
-						 [@cms_content_list count='5' orderBy='4' typeId='3' titLen='18' channelOption='1' channelId='1']
+						 [@cms_content_list count='5' orderBy='4'  titLen='18' channelOption='1' channelId='143']
 						 [#list tag_list as a]
-							<li><a href="${a.url}" target="_blank"> <img src="/jeecms${a.typeImg!site.defImg}"  /> </a></li>
+							<li><a href="${a.goto!'#'}" target="_blank"> <img src="${a.typeImg!site.defImg}"  /> </a></li>
 						 [/#list] 
 						 [/@cms_content_list]						
 					</ul>
@@ -138,18 +138,18 @@
 					<h2 class="tyjbls_t">特邀嘉宾律师</h2>
 					<div class="tyjbls_con">
 					
-						 [@cms_content_list count='5' orderBy='4' typeId='3' titLen='18' channelOption='1' channelId='87']
+						 [@cms_content_list count='4' orderBy='4'  titLen='8' channelOption='1' channelId='87']
 						 [#list tag_list as a]
 						 
 						<dl>
 							<dt>
-								<a href="${a.url}" target="_blank"><img src="/jeecms${a.typeImg!site.defImg}" /></a>
+								<a href="${a.goto!'#'}" target="_blank"><img src="${a.typeImg!site.defImg}" /></a>
 							</dt>
 							<dd>
 								<h2>
-									<a href="${a.url}">${a.url}</a>
+									<a href="${a.goto!'#'}">[@text_cut s=a.title len=titLen /]</a>
 								</h2>
-								<h3>${a.url}</h3>
+								<h3>${a.telephone!'400-888-8340'}</h3>
 							</dd>
 						</dl>						 
 						 [/#list] 
@@ -166,14 +166,14 @@
 					</ul>
 					<div class="inews1_con">
 						<ul style="display: block;">
-							[@cms_content_list count='10' titLen='14' orderBy='7' channelOption='1' channelId='91'] 
+							[@cms_content_list count='4' titLen='14' orderBy='7' channelOption='1' channelId='91'] 
 							[#list tag_list as a]
 							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
 							[/#list] 
 							[/@cms_content_list]							
 						</ul>
 						<ul>
-							[@cms_content_list count='10' titLen='14' orderBy='7' channelOption='1' channelId='89'] 
+							[@cms_content_list count='4' titLen='14' orderBy='7' channelOption='1' channelId='89'] 
 							[#list tag_list as a]
 							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
 							[/#list] 
