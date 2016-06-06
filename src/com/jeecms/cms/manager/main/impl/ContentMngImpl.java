@@ -409,7 +409,9 @@ public class ContentMngImpl implements ContentMng, ChannelDeleteChecker {
 		topics.clear();
 		if (topicIds != null && topicIds.length > 0) {
 			for (Integer tid : topicIds) {
-				topics.add(cmsTopicMng.findById(tid));
+				if(tid!=null&&tid!=0){
+					topics.add(cmsTopicMng.findById(tid));
+				}
 			}
 		}
 		// 更新浏览会员组
