@@ -17,7 +17,7 @@
     $(function(){
 	
 	   $.ajax({
-		    type :"get",
+		    type :"POST",
 			url :"index/allLawyerType.jspx",
 			cache :false,
 			async :false,
@@ -48,7 +48,7 @@
 		 	var html ='';
 		    for (var i = 0; i < data.length; i++) {
 			
-			html=html+'<ul class=""><li>
+/* 			html=html+'<ul class=""><li>
 	                      if(data[i].level==1){
 	                	  <h3>data[i].name</h3>
 	                      }
@@ -63,7 +63,7 @@
 	                          <h6 class="clear"></h6>
 	                        </div>
 	                      </li>
-	                    </ul>';
+	                    </ul>'; */
 
 			}
 		    $("#lawyerType").html(html);
