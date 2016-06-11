@@ -19,8 +19,8 @@ public class LawyerTypeMngImpl implements LawyerTypeMng {
 	}
 
 	@Transactional(readOnly = true)
-	public List<LawyerType> getList(Integer pid) {
-		return dao.getList(pid);
+	public List<LawyerType> getList(Integer pId) {
+		return dao.getList(pId);
 	}
 
 	@Transactional(readOnly = true)

@@ -78,6 +78,8 @@
 </tr>
 <@p.hidden  name="groupId" value="3"/>
 <@p.hidden  name="grain" value="0"/>
+<@p.hidden  id="professionalField" name="professionalField" value=""/>
+<@p.hidden  id="goodAtField" name="goodAtField" value=""/>
 <@p.tr/>
 <@p.text width="50" colspan="1" label="cmsUser.realname" name="realname" maxlength="100"/>
 <@p.radio width="50" colspan="1" label="cmsUser.gender" name="gender" list={"true":"cmsUser.male","false":"cmsUser.female","":"cmsUser.secrecy"}/><@p.tr/>
@@ -103,14 +105,83 @@
 
 <@p.text width="50" colspan="1" label="执业机构" name="company" maxlength="50"/>
 <@p.text width="50" colspan="1" label="执业证号" name="certificateNumber" maxlength="50"/><@p.tr/>
-<@p.text width="50" colspan="1" label="擅长领域" name="goodAtField" maxlength="150"/>
-<@p.text width="50" colspan="1" label="专业领域" name="professionalField" maxlength="150"/><@p.tr/>
+
 <@p.text width="50" colspan="2" label="诚信认证年限" name="trustYears" maxlength="50"/><@p.tr/>
 <@p.textarea colspan="2" label="cmsUser.intro" name="intro" maxlength="255" cols="70" rows="5"/><@p.tr/>
 
+<tr>
+<td class="pn-flabel pn-flabel-h" width="12%">
+<label>专业领域:</label></td>
+<td class="pn-fcontent" width="38%" colspan="1">
+<div class="content_wrap">
+	<div class="zTreeDemoBackground left">
+		<ul id="tree" class="ztree"></ul>
+	</div>
+</div>
+
+</td>
+<td class="pn-flabel pn-flabel-h" width="12%">
+<label>擅长领域:</label></td>
+<td class="pn-fcontent" width="38%" colspan="1">
+<div class="content_wrap">
+	<div class="zTreeDemoBackground left">
+		<ul id="tree1" class="ztree"></ul>
+	</div>
+</div>
+
+</td>
+</tr>
+
  
-<@p.td colspan="2"><@p.submit code="global.submit"/> &nbsp; <@p.reset code="global.reset"/></@p.td>
+<@p.td colspan="2"><@p.submit code="global.submit" onclick="submitNodes()"/> &nbsp; <@p.reset code="global.reset"/></@p.td>
 </@p.form>
 </div>
+	<script type="text/javascript">
+
+		var setting = {
+			check: {
+				enable: true
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			}
+		};
+		var zNodes =${allLawyerType};
+		$(document).ready(function(){
+			ztree =$.fn.zTree.init($("#tree"), setting, zNodes);
+		});
+		$(document).ready(function(){
+			ztree1 =$.fn.zTree.init($("#tree1"), setting, zNodes);
+		});
+
+function submitNodes(){
+	var nodes = ztree.getCheckedNodes(true);
+	var str = "";
+	for(var i=0;i<nodes.length;i++){
+		    str += nodes[i].id+ ",";
+		
+	}
+	
+/* 	if(str.length>0) {
+	    str = str.substring(0,str.length-1);
+	}
+	
+ */	
+	var nodes1 = ztree1.getCheckedNodes(true);
+	var str1 = "";
+	for(var i=0;i<nodes1.length;i++){
+		    str1 += nodes1[i].id+ ",";
+	}
+/* 	if(str1.length>0) {
+	    str1 = str1.substring(0,str1.length-1);
+	}	 */
+
+	$("#professionalField").val(str);
+	
+	$("#goodAtField").val(str1);
+}
+</script>
 </body>
 </html>

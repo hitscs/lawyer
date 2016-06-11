@@ -36,10 +36,10 @@ public class IndexAct {
 		return null;
 	}
 	@RequestMapping("/index/lawyerType.jspx")
-	public String getLawyerType(Integer pid, HttpServletRequest request, HttpServletResponse response) {
-		if (null == pid)
-			pid = 0;
-		List<LawyerType> list = lawyerTypeManager.getList(pid);
+	public String getLawyerType(Integer pId, HttpServletRequest request, HttpServletResponse response) {
+		if (null == pId)
+			pId = 0;
+		List<LawyerType> list = lawyerTypeManager.getList(pId);
 
 		String json = JSONArray.fromObject(list).toString();
 		ResponseUtils.renderJson(response, json);

@@ -8,7 +8,7 @@ public abstract interface LawyerTypeMng {
 
 	public List<LawyerType> getList();
 
-	public List<LawyerType> getList(Integer pid);
+	public List<LawyerType> getList(Integer pId);
 
 	public LawyerType findById(Integer id);
 

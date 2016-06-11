@@ -6,7 +6,7 @@ public abstract class BaseLawyerType implements Serializable {
 
 	public static String REF = "LawyerType";
 	//public static String PROP_SITE = "site";
-	public static String PROP_PID = "pid";
+	public static String PROP_PID = "pId";
 	public static String PROP_LEVEL = "level";
 	public static String PROP_NAME = "name";
 	public static String PROP_ID = "id";
@@ -27,11 +27,11 @@ public abstract class BaseLawyerType implements Serializable {
 	/**
 	 * Constructor for required fields
 	 */
-	public BaseLawyerType(java.lang.Integer id, java.lang.String name, java.lang.Integer pid, java.lang.Integer level) {
+	public BaseLawyerType(java.lang.Integer id, java.lang.String name, java.lang.Integer pId, java.lang.Integer level) {
 
 		this.setId(id);
 		this.setName(name);
-		this.setPid(pid);
+		this.setpId(pId);
 		this.setLevel(level);
 		initialize();
 	}
@@ -46,7 +46,7 @@ public abstract class BaseLawyerType implements Serializable {
 
 	// fields
 	private java.lang.String name;
-	private java.lang.Integer pid;
+	private java.lang.Integer pId;
 	private java.lang.Integer level;
 	//private java.lang.Boolean all;
 
@@ -74,14 +74,22 @@ public abstract class BaseLawyerType implements Serializable {
 		this.name = name;
 	}
 
-	public java.lang.Integer getPid() {
-		return pid;
+
+
+
+	/**
+	 * @return the pId
+	 */
+	public java.lang.Integer getpId() {
+		return pId;
 	}
 
-	public void setPid(java.lang.Integer pid) {
-		this.pid = pid;
+	/**
+	 * @param pId the pId to set
+	 */
+	public void setpId(java.lang.Integer pId) {
+		this.pId = pId;
 	}
-
 
 	public java.lang.Integer getLevel() {
 		return level;

@@ -31,7 +31,11 @@ import com.jeecms.core.manager.CmsLogMng;
 import com.jeecms.core.web.WebErrors;
 import com.jeecms.core.web.util.CmsUtils;
 import com.jeecms.lawyer.entity.Lawyer;
+import com.jeecms.lawyer.entity.LawyerType;
 import com.jeecms.lawyer.manager.LawyerMng;
+import com.jeecms.lawyer.manager.LawyerTypeMng;
+
+import net.sf.json.JSONArray;
  
  
  
@@ -65,9 +69,13 @@ import com.jeecms.lawyer.manager.LawyerMng;
 		List<CmsGroup> groupList = cmsGroupMng.getList();
 		List<CmsConfigItem>registerItems=cmsConfigItemMng.getList(site.getConfig().getId(), CmsConfigItem.CATEGORY_REGISTER);
 		List<Area> areaList = areaMng.getList(0);
+		List<LawyerType> list = lawyerTypeManager.getList();
+
+		String json = JSONArray.fromObject(list).toString();		
 		model.addAttribute("registerItems", registerItems);
 		model.addAttribute("groupList", groupList);	   
 		model.addAttribute("areaList", areaList);
+		model.addAttribute("allLawyerType", json);
 	   return "lawyer/add"; }
    
  
@@ -184,4 +192,6 @@ import com.jeecms.lawyer.manager.LawyerMng;
 	 private LawyerMng manager;
 	@Autowired
 	private CmsConfigItemMng cmsConfigItemMng;
+	@Autowired
+	private LawyerTypeMng lawyerTypeManager;
  }
