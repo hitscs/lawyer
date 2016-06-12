@@ -19,6 +19,8 @@ public abstract interface LawyerDao
   
   public abstract Lawyer save(Lawyer lawyer, CmsUser user);
   
+  public abstract Lawyer update(Lawyer lawyer, CmsUser user);
+  
   public abstract Lawyer updateByUpdater(Updater<Lawyer> paramUpdater);
   
   public abstract Lawyer deleteById(Integer paramInteger);

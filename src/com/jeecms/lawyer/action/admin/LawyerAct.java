@@ -2,6 +2,7 @@
  
  import static com.jeecms.common.page.SimplePage.cpn;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +29,7 @@ import com.jeecms.core.manager.AreaMng;
 import com.jeecms.core.manager.CmsConfigItemMng;
 import com.jeecms.core.manager.CmsGroupMng;
 import com.jeecms.core.manager.CmsLogMng;
+import com.jeecms.core.manager.CmsUserMng;
 import com.jeecms.core.web.WebErrors;
 import com.jeecms.core.web.util.CmsUtils;
 import com.jeecms.lawyer.entity.Lawyer;
@@ -81,15 +83,40 @@ import net.sf.json.JSONArray;
  
    @RequiresPermissions({"lawyer:v_edit"})
    @RequestMapping({"/lawyer/v_edit.do"})
-   public String edit(Integer id, Integer pageNo, HttpServletRequest request, ModelMap model) {
-     WebErrors errors = validateEdit(id, request);
-     if (errors.hasErrors()) {
-       return errors.showErrorPage(model);
-     }
-     model.addAttribute("lawyer", this.manager.findById(id));
-     model.addAttribute("pageNo", pageNo);
-     return "lawyer/edit";
-   }
+	public String edit(Integer id, Integer queryGroupId, Boolean queryDisabled,
+			HttpServletRequest request, ModelMap model) {
+		String queryUsername = RequestUtils.getQueryParam(request,
+				"queryUsername");
+		String queryEmail = RequestUtils.getQueryParam(request, "queryEmail");
+		CmsSite site=CmsUtils.getSite(request);
+		WebErrors errors = validateEdit(id, request);
+		if (errors.hasErrors()) {
+			return errors.showErrorPage(model);
+		}
+		CmsUser user=cmsUserMng.findById(id);
+		List<CmsGroup> groupList = cmsGroupMng.getList();
+		List<CmsConfigItem>registerItems=cmsConfigItemMng.getList(site.getConfig().getId(), CmsConfigItem.CATEGORY_REGISTER);
+		List<Area> areaList = areaMng.getList(0);
+		List<LawyerType> list = lawyerTypeManager.getList();
+		String json = JSONArray.fromObject(list).toString();
+		
+		List<String>userAttrValues=new ArrayList<String>();
+		for(CmsConfigItem item:registerItems){
+			userAttrValues.add(user.getAttr().get(item.getField()));
+		}
+		model.addAttribute("queryUsername", queryUsername);
+		model.addAttribute("queryEmail", queryEmail);
+		model.addAttribute("queryGroupId", queryGroupId);
+		model.addAttribute("queryDisabled", queryDisabled);
+		model.addAttribute("groupList", groupList);
+		model.addAttribute("cmsMember", user);
+		model.addAttribute("registerItems", registerItems);
+		model.addAttribute("userAttrValues", userAttrValues);
+		model.addAttribute("areaList", areaList);
+		model.addAttribute("allLawyerType", json);
+		model.addAttribute("lawyer", manager.findById(id));
+		return "lawyer/edit";
+	}
    
    @RequiresPermissions({"lawyer:o_save"})
    @RequestMapping({"/lawyer/o_save.do"})
@@ -109,33 +136,72 @@ import net.sf.json.JSONArray;
 		return "redirect:v_list.do";
    }
    
-/*   @RequiresPermissions({"test:o_update"})
-   @RequestMapping({"/test/o_update.do"})
-   public String update(Lawyer bean, Integer pageNo, HttpServletRequest request, ModelMap model)
-   {
-     WebErrors errors = validateUpdate(bean.getId(), request);
-     if (errors.hasErrors()) {
-       return errors.showErrorPage(model);
-     }
-     bean = this.manager.update(bean);
-     log.info("update CmsTest id={}.", bean.getId());
-     return list(pageNo, request, model);
-   }*/
+	@RequiresPermissions("lawyer:o_update")
+	@RequestMapping("/lawyer/o_update.do")
+	public String update(Integer id, String email, String password,
+			Boolean disabled, CmsUserExt ext,Lawyer lawyer, Integer groupId,Integer grain,Integer provinceId,Integer cityId,Integer regionId,
+			String queryUsername, String queryEmail, Integer queryGroupId,
+			Boolean queryDisabled, Integer pageNo, HttpServletRequest request,
+			ModelMap model) {
+		WebErrors errors = validateUpdate(id, request);
+		if (errors.hasErrors()) {
+			return errors.showErrorPage(model);
+		}
+		Map<String,String>attrs=RequestUtils.getRequestMap(request, "attr_");
+		CmsUser bean = manager.updateMember(id,email, password, disabled,provinceId, cityId, regionId, ext, lawyer, groupId,grain,attrs);
+		log.info("update CmsMember id={}.", bean.getId());
+		cmsLogMng.operating(request, "cmsMember.log.update", "id="
+				+ bean.getId() + ";username=" + bean.getUsername());
+
+		return list(queryUsername, queryEmail, queryGroupId, queryDisabled,
+				pageNo, request, model);
+	}
    
-/*   @RequiresPermissions({"test:o_delete"})
-   @RequestMapping({"/test/o_delete.do"})
-   public String delete(Integer[] ids, Integer pageNo, HttpServletRequest request, ModelMap model)
-   {
-     WebErrors errors = validateDelete(ids, request);
-     if (errors.hasErrors()) {
-       return errors.showErrorPage(model);
-     }
-     Lawyer[] beans = this.manager.deleteByIds(ids);
-     Lawyer[] arrayOfCmsTest1; int j = (arrayOfCmsTest1 = beans).length; for (int i = 0; i < j; i++) { Lawyer bean = arrayOfCmsTest1[i];
-       log.info("delete CmsTest id={}", bean.getId());
-     }
-     return list(pageNo, request, model);
-   }*/
+   @RequiresPermissions({"lawyer:o_delete"})
+   @RequestMapping({"/lawyer/o_delete.do"})
+	public String delete(Integer[] ids, Integer queryGroupId,
+			Boolean queryDisabled, Integer pageNo, HttpServletRequest request,
+			ModelMap model) {
+		String queryUsername = RequestUtils.getQueryParam(request,
+				"queryUsername");
+		String queryEmail = RequestUtils.getQueryParam(request, "queryEmail");
+		WebErrors errors = validateDelete(ids, request);
+		if (errors.hasErrors()) {
+			return errors.showErrorPage(model);
+		}
+		CmsUser[] beans = cmsUserMng.deleteByIds(ids);
+		for (CmsUser bean : beans) {
+			log.info("delete CmsMember id={}", bean.getId());
+			cmsLogMng.operating(request, "cmsMember.log.delete", "id="
+					+ bean.getId() + ";username=" + bean.getUsername());
+		}
+		return list(queryUsername, queryEmail, queryGroupId, queryDisabled,
+				pageNo, request, model);
+	}
+   
+	@RequiresPermissions("lawyer:o_check")
+	@RequestMapping("/lawyer/o_check.do")
+	public String check(Integer[] ids, Integer queryGroupId,
+			Boolean queryDisabled, Integer pageNo, HttpServletRequest request,
+			ModelMap model) {
+		String queryUsername = RequestUtils.getQueryParam(request,
+				"queryUsername");
+		String queryEmail = RequestUtils.getQueryParam(request, "queryEmail");
+		WebErrors errors = validateDelete(ids, request);
+		if (errors.hasErrors()) {
+			return errors.showErrorPage(model);
+		}
+		for(Integer id:ids){
+			CmsUser user=cmsUserMng.findById(id);
+			user.setDisabled(false);
+			cmsUserMng.updateUser(user);
+			log.info("check CmsMember id={}", user.getId());
+			cmsLogMng.operating(request, "cmsMember.log.delete", "id="
+					+ user.getId() + ";username=" + user.getUsername());
+		}
+		return list(queryUsername, queryEmail, queryGroupId, queryDisabled,
+				pageNo, request, model);
+	}
    
 	private WebErrors validateSave(CmsUser bean, HttpServletRequest request) {
 		WebErrors errors = WebErrors.create(request);
@@ -194,4 +260,6 @@ import net.sf.json.JSONArray;
 	private CmsConfigItemMng cmsConfigItemMng;
 	@Autowired
 	private LawyerTypeMng lawyerTypeManager;
+	@Autowired
+	private CmsUserMng cmsUserMng;
  }

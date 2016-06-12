@@ -2,6 +2,7 @@ package com.jeecms.lawyer.manager.impl;
 
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +12,9 @@ import com.jeecms.common.page.Pagination;
 import com.jeecms.core.entity.CmsUser;
 import com.jeecms.core.entity.CmsUserExt;
 import com.jeecms.core.manager.AreaMng;
+import com.jeecms.core.manager.CmsUserExtMng;
 import com.jeecms.core.manager.CmsUserMng;
+import com.jeecms.core.manager.UnifiedUserMng;
 import com.jeecms.lawyer.dao.LawyerDao;
 import com.jeecms.lawyer.entity.Lawyer;
 import com.jeecms.lawyer.manager.LawyerMng;
@@ -38,6 +41,28 @@ public class LawyerMngImpl implements LawyerMng {
 		lawyerDao.save(lawyer,user);
 		
 		return user;
+	}
+	
+	public CmsUser updateMember(Integer id, String email, String password,
+			Boolean isDisabled,Integer provinceId,Integer cityId,Integer regionId, CmsUserExt ext,Lawyer lawyer, Integer groupId,Integer grain,Map<String,String>attr) {
+		CmsUser entity = cmsUserMng.findById(id);
+		if (!StringUtils.isBlank(email)) {
+			entity.setEmail(email);
+		}
+		if (isDisabled != null) {
+			entity.setDisabled(isDisabled);
+		}
+		
+		// 更新属性表
+		if (attr != null) {
+			Map<String, String> attrOrig = entity.getAttr();
+			attrOrig.clear();
+			attrOrig.putAll(attr);
+		}
+		cmsUserExtMng.update(ext, entity);
+		unifiedUserMng.update(id, password, email);
+		lawyerDao.update(lawyer,entity);
+		return entity;
 	}
 
 /*	public CmsUser registerMember(String username, String email, String password, String ip, Integer groupId, boolean disabled, CmsUserExt userExt, Map<String, String> attr, Boolean activation,
@@ -100,7 +125,10 @@ public class LawyerMngImpl implements LawyerMng {
 	}
 
 	private CmsUserMng cmsUserMng;
-
+	@Autowired
+	private UnifiedUserMng unifiedUserMng;
+	@Autowired
+	private CmsUserExtMng cmsUserExtMng;
 	@Autowired
 	private AreaMng areaMng;
 

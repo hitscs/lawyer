@@ -11,8 +11,8 @@ $.alert("<@s.m 'global.prompt'/>","${error}");
 parent.document.getElementById("uploadImgPath${uploadNum}").value="${uploadPath}";
 var imgSrc = parent.document.getElementById("preImg${uploadNum}");
 if(!$(imgSrc).attr("noResize")) {
-	$(imgSrc).css("width","auto");
-	$(imgSrc).css("height","auto");
+	//$(imgSrc).css("width","auto");
+	//$(imgSrc).css("height","auto");
 }
 if("${uploadPath}".indexOf("?")==-1) {
 	$(imgSrc).attr("src","${uploadPath}?d="+new Date()*1);

@@ -29,8 +29,12 @@
 	    
 		var html ="";
 		    for (var i = 0; i < data.length; i++) {
+			if(data[i].id==${cmsMember.city.id}){
+			    html=html+"<option value='" + data[i].id + "' selected='selected'>"+ data[i].name + "</option>";
+			}else{
+			    html=html+"<option value='" + data[i].id + "'>"+ data[i].name + "</option>"; 
+			}
 			
-			html=html+"<option value='" + data[i].id + "'>"+ data[i].name + "</option>";
 			
 
 			}
@@ -46,7 +50,7 @@
 <body onload="loadCity()">
 <#include "/common/image_upload.html"/>
 <div class="box-positon">
-	<div class="rpos"><@s.m "global.position"/>: <@s.m "cms.lawyer.function"/> - <@s.m "global.add"/></div>
+	<div class="rpos"><@s.m "global.position"/>: <@s.m "cmsMember.function"/> - <@s.m "global.add"/></div>
 	<form class="ropt">
 		<input class="return-button" type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.do';"/>
 	</form>
@@ -55,10 +59,10 @@
 <div class="body-box">
 <#assign usernameExist><@s.m "error.usernameExist"/></#assign>
 <@p.form id="jvForm" action="o_save.do" labelWidth="12">
-<@p.text width="50" colspan="1" label="cmsUser.username" name="username" required="true" maxlength="100" vld="{required:true,username:true,remote:'../member/v_check_username.do',messages:{remote:'${usernameExist}'}}"/>
-<@p.text width="50" colspan="1" label="cmsUser.email" name="email" size="30" class="email"/><@p.tr/>
-<@p.password width="50" colspan="1" label="cmsUser.password" id="password" name="password" maxlength="100" required="true" class="required"/>
-<@p.password width="50" colspan="1" label="cmsUser.pwdAgain" required="true" equalTo="#password"/>
+<@p.td width="50" colspan="1" label="cmsUser.username">${cmsMember.username}<#if cmsMember.admin> &nbsp; <span style="color:red">[<@s.m "cmsUser.admin"/>]</span></#if></@p.td>
+<@p.text width="50" colspan="1" label="cmsUser.email" name="email" value=cmsMember.email size="30" class="email"/><@p.tr/>
+<@p.password width="50" colspan="1" label="cmsUser.password" id="password" name="password" help="cmsUser.password.help"/>
+<@p.password width="50" colspan="1" label="cmsUser.pwdAgain" equalTo="#password" help="cmsUser.password.help"/><@p.tr/>
 
 <tr>
 <td class="pn-flabel pn-flabel-h" width="12%">
@@ -67,7 +71,7 @@
 <select id="provinceId" name="provinceId" onchange="loadCity()">
 <#list areaList as c> 
 
-<option value="${c.id}">${c.shortName}</option>
+<option value="${c.id}" <#if c.id==cmsMember.province.id > selected="selected"</#if> >${c.shortName}</option>
 
 </#list>
 </select>
@@ -81,16 +85,17 @@
 <@p.hidden  id="professionalField" name="professionalField" value=""/>
 <@p.hidden  id="goodAtField" name="goodAtField" value=""/>
 <@p.tr/>
-<@p.text width="50" colspan="1" label="cmsUser.realname" name="realname" maxlength="100"/>
-<@p.radio width="50" colspan="1" label="cmsUser.gender" name="gender" list={"true":"cmsUser.male","false":"cmsUser.female","":"cmsUser.secrecy"}/><@p.tr/>
-<@p.text width="50" colspan="2" label="cmsUser.birthday" name="birthday" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate"/>
-<!-- <@p.text width="50" colspan="1" label="cmsUser.comefrom" name="comefrom" maxlength="150"/> --><@p.tr/>
-<@p.text width="50" colspan="2" label="cmsUser.qq" name="qq" maxlength="100"/>
-<!-- <@p.text width="50" colspan="1" label="cmsUser.msn" name="msn" maxlength="100"/> --><@p.tr/>
-<@p.text width="50" colspan="1" label="cmsUser.phone" name="phone" maxlength="50"/>
-<@p.text width="50" colspan="1" label="cmsUser.mobile" name="mobile" maxlength="50"/><@p.tr/>
-<!-- <@p.text colspan="2" label="详细地址" name="comefrom" maxlength="150" size="70"/><@p.tr/>
- -->
+<@p.radio width="50" colspan="1" label="cmsUser.disabled" name="disabled" value=cmsMember.disabled list={"true":"global.true","false":"global.false"} required="true"/>
+<@p.td width="50" colspan="1" label="cmsUser.loginCount">${cmsMember.loginCount}</@p.td><@p.tr/>
+<@p.td width="50" colspan="1" label="cmsUser.register">${cmsMember.registerTime?string('yyyy-MM-dd HH:mm:ss')} &nbsp; ${cmsMember.registerIp}</@p.td>
+<@p.td width="50" colspan="1" label="cmsUser.lastLogin">${cmsMember.lastLoginTime?string('yyyy-MM-dd HH:mm:ss')} &nbsp; ${cmsMember.lastLoginIp}</@p.td><@p.tr/>
+<@p.text width="50" colspan="1" label="cmsUser.realname" name="realname" value=cmsMember.realname maxlength="100"/>
+<@p.radio width="50" colspan="1" label="cmsUser.gender" name="gender" value=cmsMember.gender list={"true":"cmsUser.male","false":"cmsUser.female","":"cmsUser.secrecy"}/><@p.tr/>
+<@p.text width="50" colspan="1" label="cmsUser.birthday" name="birthday" value=(cmsMember.birthday?string('yyyy-MM-dd'))! onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate"/>
+<@p.text width="50" colspan="1" label="cmsUser.qq" name="qq" value=cmsMember.qq maxlength="100"/><@p.tr/>
+<!-- <@p.text width="50" colspan="1" label="cmsUser.msn" name="msn" value=cmsMember.msn maxlength="100"/><@p.tr/> -->
+<@p.text width="50" colspan="1" label="cmsUser.phone" name="phone" value=cmsMember.phone maxlength="50"/>
+<@p.text width="50" colspan="1" label="cmsUser.mobile" name="mobile" value=cmsMember.mobile maxlength="50"/><@p.tr/>
 <@p.td id="linkLogo" label="个人头像" colspan="1" width="50" noHeight="true">
 <@p.text id="uploadImgPath0" name="userImg" style="width:180px"/> <input class="preview-button" type="button" value="<@s.m "imageupload.preview"/>" onclick="previewImg(0);"/><br/>
 <span id="ufc0" style="position:relative">
@@ -103,11 +108,11 @@
 <!-- <img id="preImg0" alt="<@s.m "imageupload.preview"/>" style="width:100px;height:70px;background-color:#ccc;border:1px solid #333"/>
  --></@p.td><@p.tr/>
 
-<@p.text width="50" colspan="1" label="执业机构" name="company" maxlength="50"/>
-<@p.text width="50" colspan="1" label="执业证号" name="certificateNumber" maxlength="50"/><@p.tr/>
+<@p.text width="50" colspan="1" label="执业机构" name="company" maxlength="50" value=lawyer.company/>
+<@p.text width="50" colspan="1" label="执业证号" name="certificateNumber" maxlength="50" value=lawyer.certificateNumber/><@p.tr/>
 
-<@p.text width="50" colspan="2" label="诚信认证年限" name="trustYears" maxlength="50"/><@p.tr/>
-<@p.textarea colspan="2" label="cmsUser.intro" name="intro" maxlength="255" cols="70" rows="5"/><@p.tr/>
+<@p.text width="50" colspan="2" label="诚信认证年限" name="trustYears" maxlength="50" value=lawyer.trustYears/><@p.tr/>
+<@p.textarea colspan="2" label="cmsUser.intro" name="intro" value=cmsMember.intro maxlength="255" cols="70" rows="5"/><@p.tr/>
 
 <tr>
 <td class="pn-flabel pn-flabel-h" width="12%">
@@ -133,7 +138,10 @@
 </tr>
 
  
-<@p.td colspan="2"><@p.submit code="global.submit" onclick="submitNodes()"/> &nbsp; <@p.reset code="global.reset"/></@p.td>
+<@p.td colspan="2">
+<@p.hidden name="id" value=cmsMember.id/>
+<@p.submit code="global.submit" onclick="submitNodes()"/> &nbsp; <@p.reset code="global.reset"/>
+</@p.td>
 </@p.form>
 </div>
 	<script type="text/javascript">

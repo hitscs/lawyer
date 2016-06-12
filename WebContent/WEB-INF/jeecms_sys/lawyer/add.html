@@ -46,7 +46,7 @@
 <body onload="loadCity()">
 <#include "/common/image_upload.html"/>
 <div class="box-positon">
-	<div class="rpos"><@s.m "global.position"/>: <@s.m "cms.lawyer.function"/> - <@s.m "global.add"/></div>
+	<div class="rpos"><@s.m "global.position"/>: <@s.m "cmsMember.function"/> - <@s.m "global.add"/></div>
 	<form class="ropt">
 		<input class="return-button" type="submit" value="<@s.m "global.backToList"/>" onclick="this.form.action='v_list.do';"/>
 	</form>
@@ -100,8 +100,8 @@
 </span>
 <input type="hidden" id="mark0" value="false"/> <input class="upload-button" type="button" value="<@s.m "imageupload.upload"/>" onclick="upload(0);"/><br/>
 </@p.td><@p.td colspan="1" width="50">
-<!-- <img id="preImg0" alt="<@s.m "imageupload.preview"/>" style="width:100px;height:70px;background-color:#ccc;border:1px solid #333"/>
- --></@p.td><@p.tr/>
+ <img id="preImg0" alt="<@s.m "imageupload.preview"/>" style="width:80px;height:100px;background-color:#ccc;border:1px solid #333"/>
+</@p.td><@p.tr/>
 
 <@p.text width="50" colspan="1" label="执业机构" name="company" maxlength="50"/>
 <@p.text width="50" colspan="1" label="执业证号" name="certificateNumber" maxlength="50"/><@p.tr/>

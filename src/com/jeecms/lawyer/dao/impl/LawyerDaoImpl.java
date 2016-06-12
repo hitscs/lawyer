@@ -70,7 +70,12 @@ public class LawyerDaoImpl extends HibernateBaseDao<Lawyer, Integer>implements c
 		getSession().save(lawyer);
 		return lawyer;
 	}
+	public Lawyer update(Lawyer lawyer, CmsUser user) {
 
+		lawyer.setUser(user);
+		getSession().update(lawyer);
+		return lawyer;
+	}
 	public Lawyer deleteById(Integer id) {
 		Lawyer entity = (Lawyer) super.get(id);
 		if (entity != null) {

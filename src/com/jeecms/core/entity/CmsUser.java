@@ -105,6 +105,31 @@ public class CmsUser extends BaseCmsUser implements PriorityInterface {
 			return null;
 		}
 	}
+	public Area getProvince() {
+		CmsUserExt ext = getUserExt();
+		if (ext != null) {
+			return ext.getProvince();
+		} else {
+			return null;
+		}
+	}
+	
+	public Area getCity() {
+		CmsUserExt ext = getUserExt();
+		if (ext != null) {
+			return ext.getCity();
+		} else {
+			return null;
+		}
+	}
+	public Area getRegion() {
+		CmsUserExt ext = getUserExt();
+		if (ext != null) {
+			return ext.getRegion();
+		} else {
+			return null;
+		}
+	}
 	public String getUserImg() {
 		CmsUserExt ext = getUserExt();
 		if (ext != null) {
