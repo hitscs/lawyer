@@ -207,7 +207,7 @@
 					<div class="jbls_con">
 						 [@cms_content_list count='3' orderBy='4'  titLen='8' channelOption='1' channelId='84']
 						 [#list tag_list as a]
-						 <a href="${a.goto!'#'}"><img src="${a.typeImg!site.defImg}" /></a> 						 
+						 <a href="${a.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="270px" height="80px"/></a> 						 
 						 [/#list] 
 						 [/@cms_content_list]
 					</div>
@@ -330,75 +330,17 @@
 						</div>
 						<div class="clear"></div>
 					</div>
-					<div class="icase_box">
-						<div class="icase_l">
-							<p>5法律快车律师访谈栏目是一款律师线上互动对话高端产品，由专栏组诚邀专业律师对法律热点事件、经典案例、常见法律问题等进行专业剖析、解读、经验分享，为广大用户解答疑难，从而更全面展示律师个人的专业实力。快车律师访谈栏目是一款律师线上互动对话高端产品，</p>
-						</div>
-						<div class="icase_r">
-							<h3>全面透析律师专业实力</h3>
-							<div class="icase_img">
-								<img src="/${res}/lawyer/images/icase.gif" />
-							</div>
-						</div>
-						<div class="clear"></div>
-					</div>
-					<div class="icase_box">
-						<div class="icase_l">
-							<p>6法律快车律师访谈栏目是一款律师线上互动对话高端产品，由专栏组诚邀专业律师对法律热点事件、经典案例、常见法律问题等进行专业剖析、解读、经验分享，为广大用户解答疑难，从而更全面展示律师个人的专业实力。快车律师访谈栏目是一款律师线上互动对话高端产品，</p>
-						</div>
-						<div class="icase_r">
-							<h3>全面透析律师专业实力</h3>
-							<div class="icase_img">
-								<img src="/${res}/lawyer/images/icase.gif" />
-							</div>
-						</div>
-						<div class="clear"></div>
-					</div>
-					<div class="icase_box">
-						<div class="icase_l">
-							<p>7法律快车律师访谈栏目是一款律师线上互动对话高端产品，由专栏组诚邀专业律师对法律热点事件、经典案例、常见法律问题等进行专业剖析、解读、经验分享，为广大用户解答疑难，从而更全面展示律师个人的专业实力。快车律师访谈栏目是一款律师线上互动对话高端产品，</p>
-						</div>
-						<div class="icase_r">
-							<h3>全面透析律师专业实力</h3>
-							<div class="icase_img">
-								<img src="/${res}/lawyer/images/icase.gif" />
-							</div>
-						</div>
-						<div class="clear"></div>
-					</div>
-					<div class="icase_box">
-						<div class="icase_l">
-							<p>8法律快车律师访谈栏目是一款律师线上互动对话高端产品，由专栏组诚邀专业律师对法律热点事件、经典案例、常见法律问题等进行专业剖析、解读、经验分享，为广大用户解答疑难，从而更全面展示律师个人的专业实力。快车律师访谈栏目是一款律师线上互动对话高端产品，</p>
-						</div>
-						<div class="icase_r">
-							<h3>全面透析律师专业实力</h3>
-							<div class="icase_img">
-								<img src="/${res}/lawyer/images/icase.gif" />
-							</div>
-						</div>
-						<div class="clear"></div>
-					</div>
-					<div class="icase_box">
-						<div class="icase_l">
-							<p>9法律快车律师访谈栏目是一款律师线上互动对话高端产品，由专栏组诚邀专业律师对法律热点事件、经典案例、常见法律问题等进行专业剖析、解读、经验分享，为广大用户解答疑难，从而更全面展示律师个人的专业实力。快车律师访谈栏目是一款律师线上互动对话高端产品，</p>
-						</div>
-						<div class="icase_r">
-							<h3>全面透析律师专业实力</h3>
-							<div class="icase_img">
-								<img src="/${res}/lawyer/images/icase.gif" />
-							</div>
-						</div>
-						<div class="clear"></div>
-					</div>
+
 				</div>
 			</div>
 			<div class="clear"></div>
 			<div class="people">
 				<ul>
-					<li><a href="#"><img src="/${res}/lawyer/images/people1.jpg" /></a></li>
-					<li><a href="#"><img src="/${res}/lawyer/images/people2.jpg" /></a></li>
-					<li><a href="#"><img src="/${res}/lawyer/images/people3.jpg" /></a></li>
-					<li><a href="#"><img src="/${res}/lawyer/images/people4.jpg" /></a></li>
+					[@cms_content_list count='4' orderBy='4'  titLen='8' channelOption='1' channelId='84']
+						[#list tag_list as a]
+						 <a href="${a.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="226px" height="90px"/></a> 						 
+						[/#list] 
+					[/@cms_content_list]
 					<h6 class="clear"></h6>
 				</ul>
 			</div>
@@ -413,49 +355,29 @@
 							<span>权威专家</span>
 						</h2>
 						<div class="zj_box">
+					[@cms_content_list count='4' orderBy='4'  titLen='8' channelOption='1' channelId='84']
+						[#list tag_list as a]
 							<dl>
-								<a href="#">
+								<a href="${a.goto!'#'}">
 									<dt>
-										<img src="/${res}/lawyer/images/zj.jpg" />
+										<img src="${a.typeImg!site.defImg}" width="125px" height="105px"/>
 									</dt>
-									<dd>易轶主任</dd>
+									<dd>${a.title}</dd>
 								</a>
-							</dl>
-							<dl>
-								<a href="#">
-									<dt>
-										<img src="/${res}/lawyer/images/zj.jpg" />
-									</dt>
-									<dd>易轶主任</dd>
-								</a>
-							</dl>
-							<dl>
-								<a href="#">
-									<dt>
-										<img src="/${res}/lawyer/images/zj.jpg" />
-									</dt>
-									<dd>易轶主任</dd>
-								</a>
-							</dl>
-							<dl>
-								<a href="#">
-									<dt>
-										<img src="/${res}/lawyer/images/zj.jpg" />
-									</dt>
-									<dd>易轶主任</dd>
-								</a>
-							</dl>
+							</dl>						 
+						[/#list] 
+					[/@cms_content_list]
 							<h6 class="clear"></h6>
 						</div>
 					</div>
-					<div class="hot">
+<!-- 					<div class="hot">
 						<h2 class="hot_t">
 							<span>北京热线律师</span>
 						</h2>
 						<div class="hot_pic">
 							<a href="#"><img src="/${res}/lawyer/images/hot_pic.jpg" /></a>
 						</div>
-					</div>
+					</div> -->
 				</div>
 				<div class="icenter2">
 					<h2 class="title2">
@@ -510,110 +432,26 @@
 						<span>北京婚姻律师</span>
 					</h2>
 					<ul class="hunyin">
+ 						 [@cms_content_list count='3' orderBy='4'  titLen='8' channelOption='1' channelId='87']
+						 [#list tag_list as a]
+						 
 						<li>
 							<div class="h_people">
 								<p class="img">
-									<a href="" target="_blank"><img src="/${res}/lawyer/images/56758566969.jpg" /></a>
+									<a href="${a.goto!'#'}" target="_blank"><img src="${a.typeImg!site.defImg}" width="65px" height="80px"/></a>
 								</p>
 							</div>
 							<div class="name">
-								<a href="" target="_blank">诚邀加盟</a>
+								<a href="${a.goto!'#'}" target="_blank">[@text_cut s=a.title len=titLen /]</a>
 							</div>
 							<div class="advisory">
-								<a href="" target="_blank">咨询律师</a>
+								<a href="${a.goto!'#'}" target="_blank">咨询律师</a>
 							</div>
-						</li>
-						<li>
-							<div class="h_people">
-								<p class="img">
-									<a href="" target="_blank"><img src="/${res}/lawyer/images/56758566969.jpg" /></a>
-								</p>
-							</div>
-							<div class="name">
-								<a href="" target="_blank">诚邀加盟</a>
-							</div>
-							<div class="advisory">
-								<a href="" target="_blank">咨询律师</a>
-							</div>
-						</li>
-						<li>
-							<div class="h_people">
-								<p class="img">
-									<a href="" target="_blank"><img src="/${res}/lawyer/images/56758566969.jpg" /></a>
-								</p>
-							</div>
-							<div class="name">
-								<a href="" target="_blank">诚邀加盟</a>
-							</div>
-							<div class="advisory">
-								<a href="" target="_blank">咨询律师</a>
-							</div>
-						</li>
-						<li>
-							<div class="h_people">
-								<p class="img">
-									<a href="" target="_blank"><img src="/${res}/lawyer/images/56758566969.jpg" /></a>
-								</p>
-							</div>
-							<div class="name">
-								<a href="" target="_blank">诚邀加盟</a>
-							</div>
-							<div class="advisory">
-								<a href="" target="_blank">咨询律师</a>
-							</div>
-						</li>
-						<li>
-							<div class="h_people">
-								<p class="img">
-									<a href="" target="_blank"><img src="/${res}/lawyer/images/56758566969.jpg" /></a>
-								</p>
-							</div>
-							<div class="name">
-								<a href="" target="_blank">诚邀加盟</a>
-							</div>
-							<div class="advisory">
-								<a href="" target="_blank">咨询律师</a>
-							</div>
-						</li>
-						<li>
-							<div class="h_people">
-								<p class="img">
-									<a href="" target="_blank"><img src="/${res}/lawyer/images/56758566969.jpg" /></a>
-								</p>
-							</div>
-							<div class="name">
-								<a href="" target="_blank">诚邀加盟</a>
-							</div>
-							<div class="advisory">
-								<a href="" target="_blank">咨询律师</a>
-							</div>
-						</li>
-						<li>
-							<div class="h_people">
-								<p class="img">
-									<a href="" target="_blank"><img src="/${res}/lawyer/images/56758566969.jpg" /></a>
-								</p>
-							</div>
-							<div class="name">
-								<a href="" target="_blank">诚邀加盟</a>
-							</div>
-							<div class="advisory">
-								<a href="" target="_blank">咨询律师</a>
-							</div>
-						</li>
-						<li>
-							<div class="h_people">
-								<p class="img">
-									<a href="" target="_blank"><img src="/${res}/lawyer/images/56758566969.jpg" /></a>
-								</p>
-							</div>
-							<div class="name">
-								<a href="" target="_blank">诚邀加盟</a>
-							</div>
-							<div class="advisory">
-								<a href="" target="_blank">咨询律师</a>
-							</div>
-						</li>
+						</li>						 
+						 
+						 [/#list] 
+						 [/@cms_content_list]  					
+
 						<h6 class="clear"></h6>
 					</ul>
 				</div>
@@ -622,10 +460,11 @@
 			<div class="clear"></div>
 			<div class="people">
 				<ul>
-					<li><a href="#"><img src="/${res}/lawyer/images/people1.jpg" /></a></li>
-					<li><a href="#"><img src="/${res}/lawyer/images/people2.jpg" /></a></li>
-					<li><a href="#"><img src="/${res}/lawyer/images/people3.jpg" /></a></li>
-					<li><a href="#"><img src="/${res}/lawyer/images/people4.jpg" /></a></li>
+					[@cms_content_list count='4' orderBy='4'  titLen='8' channelOption='1' channelId='84']
+						[#list tag_list as a]
+						 <a href="${a.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="226px" height="90px"/></a> 						 
+						[/#list] 
+					[/@cms_content_list]
 					<h6 class="clear"></h6>
 				</ul>
 			</div>
@@ -660,14 +499,14 @@
 							<div class="zj_info">2013年9月21日，李莉与王女士签订了一份房屋买卖协议，双方约定王女士将自己名下的一套房屋转让给李莉，李莉一次性付清全部购房款110万元，王女士负责办理房屋过户等手续,李莉支付了全部购房款。同年10月，该小区房价大涨，王女士感觉自己卖亏了，拒不配合办理房屋过户手续</div>
 						</div>
 					</div>
-					<div class="hot">
+<!-- 					<div class="hot">
 						<h2 class="hot_t">
 							<span>北京热线律师</span>
 						</h2>
 						<div class="hot_pic">
 							<a href="#"><img src="/${res}/lawyer/images/hot_pic.jpg" /></a>
 						</div>
-					</div>
+					</div> -->
 				</div>
 				<div class="icenter2">
 					<h2 class="title2">
@@ -722,110 +561,25 @@
 						<span>北京婚姻律师</span>
 					</h2>
 					<ul class="hunyin">
+ 						 [@cms_content_list count='3' orderBy='4'  titLen='8' channelOption='1' channelId='87']
+						 [#list tag_list as a]
+						 
 						<li>
 							<div class="h_people">
 								<p class="img">
-									<a href="" target="_blank"><img src="/${res}/lawyer/images/56758566969.jpg" /></a>
+									<a href="${a.goto!'#'}" target="_blank"><img src="${a.typeImg!site.defImg}" width="65px" height="80px"/></a>
 								</p>
 							</div>
 							<div class="name">
-								<a href="" target="_blank">诚邀加盟</a>
+								<a href="${a.goto!'#'}" target="_blank">[@text_cut s=a.title len=titLen /]</a>
 							</div>
 							<div class="advisory">
-								<a href="" target="_blank">咨询律师</a>
+								<a href="${a.goto!'#'}" target="_blank">咨询律师</a>
 							</div>
-						</li>
-						<li>
-							<div class="h_people">
-								<p class="img">
-									<a href="" target="_blank"><img src="/${res}/lawyer/images/56758566969.jpg" /></a>
-								</p>
-							</div>
-							<div class="name">
-								<a href="" target="_blank">诚邀加盟</a>
-							</div>
-							<div class="advisory">
-								<a href="" target="_blank">咨询律师</a>
-							</div>
-						</li>
-						<li>
-							<div class="h_people">
-								<p class="img">
-									<a href="" target="_blank"><img src="/${res}/lawyer/images/56758566969.jpg" /></a>
-								</p>
-							</div>
-							<div class="name">
-								<a href="" target="_blank">诚邀加盟</a>
-							</div>
-							<div class="advisory">
-								<a href="" target="_blank">咨询律师</a>
-							</div>
-						</li>
-						<li>
-							<div class="h_people">
-								<p class="img">
-									<a href="" target="_blank"><img src="/${res}/lawyer/images/56758566969.jpg" /></a>
-								</p>
-							</div>
-							<div class="name">
-								<a href="" target="_blank">诚邀加盟</a>
-							</div>
-							<div class="advisory">
-								<a href="" target="_blank">咨询律师</a>
-							</div>
-						</li>
-						<li>
-							<div class="h_people">
-								<p class="img">
-									<a href="" target="_blank"><img src="/${res}/lawyer/images/56758566969.jpg" /></a>
-								</p>
-							</div>
-							<div class="name">
-								<a href="" target="_blank">诚邀加盟</a>
-							</div>
-							<div class="advisory">
-								<a href="" target="_blank">咨询律师</a>
-							</div>
-						</li>
-						<li>
-							<div class="h_people">
-								<p class="img">
-									<a href="" target="_blank"><img src="/${res}/lawyer/images/56758566969.jpg" /></a>
-								</p>
-							</div>
-							<div class="name">
-								<a href="" target="_blank">诚邀加盟</a>
-							</div>
-							<div class="advisory">
-								<a href="" target="_blank">咨询律师</a>
-							</div>
-						</li>
-						<li>
-							<div class="h_people">
-								<p class="img">
-									<a href="" target="_blank"><img src="/${res}/lawyer/images/56758566969.jpg" /></a>
-								</p>
-							</div>
-							<div class="name">
-								<a href="" target="_blank">诚邀加盟</a>
-							</div>
-							<div class="advisory">
-								<a href="" target="_blank">咨询律师</a>
-							</div>
-						</li>
-						<li>
-							<div class="h_people">
-								<p class="img">
-									<a href="" target="_blank"><img src="/${res}/lawyer/images/56758566969.jpg" /></a>
-								</p>
-							</div>
-							<div class="name">
-								<a href="" target="_blank">诚邀加盟</a>
-							</div>
-							<div class="advisory">
-								<a href="" target="_blank">咨询律师</a>
-							</div>
-						</li>
+						</li>						 
+						 
+						 [/#list] 
+						 [/@cms_content_list]
 						<h6 class="clear"></h6>
 					</ul>
 				</div>
@@ -834,10 +588,11 @@
 			<div class="clear"></div>
 			<div class="people">
 				<ul>
-					<li><a href="#"><img src="/${res}/lawyer/images/people1.jpg" /></a></li>
-					<li><a href="#"><img src="/${res}/lawyer/images/people2.jpg" /></a></li>
-					<li><a href="#"><img src="/${res}/lawyer/images/people3.jpg" /></a></li>
-					<li><a href="#"><img src="/${res}/lawyer/images/people4.jpg" /></a></li>
+					[@cms_content_list count='4' orderBy='4'  titLen='8' channelOption='1' channelId='84']
+						[#list tag_list as a]
+						 <a href="${a.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="226px" height="90px"/></a> 						 
+						[/#list] 
+					[/@cms_content_list]
 					<h6 class="clear"></h6>
 				</ul>
 			</div>
@@ -872,14 +627,14 @@
 							<div class="zj_info">2013年9月21日，李莉与王女士签订了一份房屋买卖协议，双方约定王女士将自己名下的一套房屋转让给李莉，李莉一次性付清全部购房款110万元，王女士负责办理房屋过户等手续,李莉支付了全部购房款。同年10月，该小区房价大涨，王女士感觉自己卖亏了，拒不配合办理房屋过户手续</div>
 						</div>
 					</div>
-					<div class="hot">
+<!-- 					<div class="hot">
 						<h2 class="hot_t">
 							<span>北京热线律师</span>
 						</h2>
 						<div class="hot_pic">
 							<a href="#"><img src="/${res}/lawyer/images/hot_pic.jpg" /></a>
 						</div>
-					</div>
+					</div> -->
 				</div>
 				<div class="icenter2">
 					<h2 class="title2">
@@ -934,110 +689,25 @@
 						<span>北京婚姻律师</span>
 					</h2>
 					<ul class="hunyin">
+ 						 [@cms_content_list count='3' orderBy='4'  titLen='8' channelOption='1' channelId='87']
+						 [#list tag_list as a]
+						 
 						<li>
 							<div class="h_people">
 								<p class="img">
-									<a href="" target="_blank"><img src="/${res}/lawyer/images/56758566969.jpg" /></a>
+									<a href="${a.goto!'#'}" target="_blank"><img src="${a.typeImg!site.defImg}" width="65px" height="80px"/></a>
 								</p>
 							</div>
 							<div class="name">
-								<a href="" target="_blank">诚邀加盟</a>
+								<a href="${a.goto!'#'}" target="_blank">[@text_cut s=a.title len=titLen /]</a>
 							</div>
 							<div class="advisory">
-								<a href="" target="_blank">咨询律师</a>
+								<a href="${a.goto!'#'}" target="_blank">咨询律师</a>
 							</div>
-						</li>
-						<li>
-							<div class="h_people">
-								<p class="img">
-									<a href="" target="_blank"><img src="/${res}/lawyer/images/56758566969.jpg" /></a>
-								</p>
-							</div>
-							<div class="name">
-								<a href="" target="_blank">诚邀加盟</a>
-							</div>
-							<div class="advisory">
-								<a href="" target="_blank">咨询律师</a>
-							</div>
-						</li>
-						<li>
-							<div class="h_people">
-								<p class="img">
-									<a href="" target="_blank"><img src="/${res}/lawyer/images/56758566969.jpg" /></a>
-								</p>
-							</div>
-							<div class="name">
-								<a href="" target="_blank">诚邀加盟</a>
-							</div>
-							<div class="advisory">
-								<a href="" target="_blank">咨询律师</a>
-							</div>
-						</li>
-						<li>
-							<div class="h_people">
-								<p class="img">
-									<a href="" target="_blank"><img src="/${res}/lawyer/images/56758566969.jpg" /></a>
-								</p>
-							</div>
-							<div class="name">
-								<a href="" target="_blank">诚邀加盟</a>
-							</div>
-							<div class="advisory">
-								<a href="" target="_blank">咨询律师</a>
-							</div>
-						</li>
-						<li>
-							<div class="h_people">
-								<p class="img">
-									<a href="" target="_blank"><img src="/${res}/lawyer/images/56758566969.jpg" /></a>
-								</p>
-							</div>
-							<div class="name">
-								<a href="" target="_blank">诚邀加盟</a>
-							</div>
-							<div class="advisory">
-								<a href="" target="_blank">咨询律师</a>
-							</div>
-						</li>
-						<li>
-							<div class="h_people">
-								<p class="img">
-									<a href="" target="_blank"><img src="/${res}/lawyer/images/56758566969.jpg" /></a>
-								</p>
-							</div>
-							<div class="name">
-								<a href="" target="_blank">诚邀加盟</a>
-							</div>
-							<div class="advisory">
-								<a href="" target="_blank">咨询律师</a>
-							</div>
-						</li>
-						<li>
-							<div class="h_people">
-								<p class="img">
-									<a href="" target="_blank"><img src="/${res}/lawyer/images/56758566969.jpg" /></a>
-								</p>
-							</div>
-							<div class="name">
-								<a href="" target="_blank">诚邀加盟</a>
-							</div>
-							<div class="advisory">
-								<a href="" target="_blank">咨询律师</a>
-							</div>
-						</li>
-						<li>
-							<div class="h_people">
-								<p class="img">
-									<a href="" target="_blank"><img src="/${res}/lawyer/images/56758566969.jpg" /></a>
-								</p>
-							</div>
-							<div class="name">
-								<a href="" target="_blank">诚邀加盟</a>
-							</div>
-							<div class="advisory">
-								<a href="" target="_blank">咨询律师</a>
-							</div>
-						</li>
+						</li>						 
+						 
+						 [/#list] 
+						 [/@cms_content_list]
 						<h6 class="clear"></h6>
 					</ul>
 				</div>

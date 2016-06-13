@@ -30,17 +30,11 @@
             <div class="ywdt">
             	<div class="title_t"><span>业务动态</span></div>
                 <ul>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
+                			[@cms_content_list count='11' titLen='24' orderBy='7' channelOption='1' channelId='91'] 
+							[#list tag_list as a]
+							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
+							[/#list] 
+							[/@cms_content_list]
                 </ul>
             </div>
             <div class="clear"></div>
@@ -48,48 +42,23 @@
         <div class="right">
 			<div class="title_t"><span>专业团队</span></div>
 			<div class="team">
-              <dl>
-                <dt><a href="#"><img src="/${res}/lawyer/images/tyjbls.jpg"  /></a></dt>
-                <dd>
-                  <h2><a href="#">马丹洋律师</a></h2>
-                  <h3>139 1093 8880</h3>
-                </dd>
-              </dl>
-              <dl>
-                <dt><a href="#"><img src="/${res}/lawyer/images/tyjbls.jpg"  /></a></dt>
-                <dd>
-                  <h2><a href="#">马丹洋律师</a></h2>
-                  <h3>139 1093 8880</h3>
-                </dd>
-              </dl>
-              <dl>
-                <dt><a href="#"><img src="/${res}/lawyer/images/tyjbls.jpg"  /></a></dt>
-                <dd>
-                  <h2><a href="#">马丹洋律师</a></h2>
-                  <h3>139 1093 8880</h3>
-                </dd>
-              </dl>
-              <dl>
-                <dt><a href="#"><img src="/${res}/lawyer/images/tyjbls.jpg"  /></a></dt>
-                <dd>
-                  <h2><a href="#">马丹洋律师</a></h2>
-                  <h3>139 1093 8880</h3>
-                </dd>
-              </dl>
-              <dl>
-                <dt><a href="#"><img src="/${res}/lawyer/images/tyjbls.jpg"  /></a></dt>
-                <dd>
-                  <h2><a href="#">马丹洋律师</a></h2>
-                  <h3>139 1093 8880</h3>
-                </dd>
-              </dl>
-              <dl>
-                <dt><a href="#"><img src="/${res}/lawyer/images/tyjbls.jpg"  /></a></dt>
-                <dd>
-                  <h2><a href="#">马丹洋律师</a></h2>
-                  <h3>139 1093 8880</h3>
-                </dd>
-              </dl>
+ 						 [@cms_content_list count='6' orderBy='4'  titLen='8' channelOption='1' channelId='87']
+						 [#list tag_list as a]
+						 
+						<dl>
+							<dt>
+								<a href="${a.goto!'#'}" target="_blank"><img src="${a.typeImg!site.defImg}" /></a>
+							</dt>
+							<dd>
+								<h2>
+									<a href="${a.goto!'#'}">[@text_cut s=a.title len=titLen /]</a>
+								</h2>
+								<h3>${a.telephone!'400-888-8340'}</h3>
+							</dd>
+						</dl>						 
+						 [/#list] 
+						 [/@cms_content_list]  			
+
               <h6 class="clear"></h6>
         </div>
         
@@ -107,27 +76,21 @@
            <div class="sfal">
                <div class="title_t"><span>司法案例</span></div>
                 <ul>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
+                			[@cms_content_list count='9' titLen='24' orderBy='7' channelOption='1' channelId='91'] 
+							[#list tag_list as a]
+							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
+							[/#list] 
+							[/@cms_content_list]
                 </ul>
 			</div>
            <div class="cjwt">
                <div class="title_t"><span>常见问题</span></div>
                 <ul>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
-                 	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
-                	<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请</a></li>
+                			[@cms_content_list count='9' titLen='24' orderBy='7' channelOption='1' channelId='91'] 
+							[#list tag_list as a]
+							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
+							[/#list] 
+							[/@cms_content_list]
                </ul>
 			</div>
             

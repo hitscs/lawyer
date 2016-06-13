@@ -19,10 +19,11 @@
 		<div class="left">
             <div class="flexslider">
                 <ul class="slides">
-                    <li><img src="/${res}/lawyer/images/img1.jpg" /></li>
-                    <li><img src="/${res}/lawyer/images/img1.jpg" /></li>
-                    <li><img src="/${res}/lawyer/images/img1.jpg" /></li>
-                    <li><img src="/${res}/lawyer/images/img1.jpg" /></li>
+                    [@cms_content_list count='5' orderBy='4'  titLen='18' channelOption='1' channelId='143']
+						 [#list tag_list as a]
+							<li><a href="${a.goto!'#'}" target="_blank"> <img src="${a.typeImg!site.defImg}"  /> </a></li>
+						 [/#list] 
+					[/@cms_content_list]	
                 </ul>
             </div>
             <script src="/${res}/lawyer/js/jquery.flexslider-min.js"></script>
@@ -81,42 +82,21 @@
         <div class="right">
             <div class="title_t"><span><em>特约</em> • 明律评论员</span></div>
  			<div class="team2">
-              <dl>
-                <dt><a href="#"><img src="/${res}/lawyer/images/tyjbls.jpg"></a></dt>
-                <dd>
-                  <h2><a href="#">马丹洋律师</a></h2>
-                </dd>
-              </dl>
-              <dl>
-                <dt><a href="#"><img src="/${res}/lawyer/images/tyjbls.jpg"></a></dt>
-                <dd>
-                  <h2><a href="#">马丹洋律师</a></h2>
-                </dd>
-              </dl>
-              <dl>
-                <dt><a href="#"><img src="/${res}/lawyer/images/tyjbls.jpg"></a></dt>
-                <dd>
-                  <h2><a href="#">马丹洋律师</a></h2>
-                </dd>
-              </dl>
-              <dl>
-                <dt><a href="#"><img src="/${res}/lawyer/images/tyjbls.jpg"></a></dt>
-                <dd>
-                  <h2><a href="#">马丹洋律师</a></h2>
-                </dd>
-              </dl>
-              <dl>
-                <dt><a href="#"><img src="/${res}/lawyer/images/tyjbls.jpg"></a></dt>
-                <dd>
-                  <h2><a href="#">马丹洋律师</a></h2>
-                </dd>
-              </dl>
-              <dl>
-                <dt><a href="#"><img src="/${res}/lawyer/images/tyjbls.jpg"></a></dt>
-                <dd>
-                  <h2><a href="#">马丹洋律师</a></h2>
-                </dd>
-              </dl>
+ 			
+ 					[@cms_content_list count='6' orderBy='4'  titLen='8' channelOption='1' channelId='84']
+						[#list tag_list as a]
+							<dl>
+								<dt>
+									<a href="${a.goto!'#'}">
+									<img src="${a.typeImg!site.defImg}" width="125px" height="105px"/>
+									</a>
+								</dt>
+								<dd><h2><a href="${a.goto!'#'}">${a.title}</a></h2></dd>
+								
+							</dl>						 
+						[/#list] 
+					[/@cms_content_list]
+
               <h6 class="clear"></h6>
         </div>
 			<div class="title_t"><span>热点排行</span></div>
