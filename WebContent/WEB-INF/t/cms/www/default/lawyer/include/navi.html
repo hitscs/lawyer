@@ -9,7 +9,7 @@
 				<a href="${base}/lawyer/index.jspx" target="_self" >专业律师</a>
 			</dd>			
 			        [#list tag_list as c]
-        [#if c_index<10&&c_index>1]
+        [#if c_index<10&&c_index>0]
         <dd [#if channel??&&channel.id==c.id] class="current" [/#if]>
         <a href="${c.url}"  target="_self" >${c.name}</a>
         </dd>
