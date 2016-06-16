@@ -35,6 +35,10 @@
 		<property name="user" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
 		<property name="autoCommitOnClose" value="true"/>
+		<!--JDBC的标准参数，用以控制数据源内加载的PreparedStatements数量。但由于预缓存的statements  
+       属于单个connection而不是整个连接池。所以设置这个参数需要考虑到多方面的因素。  
+       如果maxStatements与maxStatementsPerConnection均为0，则缓存被关闭。Default: 0-->
+		<property name="maxStatements" value="0"/> 
 		<property name="checkoutTimeout" value="${cpool.checkoutTimeout}"/>
 		<property name="initialPoolSize" value="${cpool.minPoolSize}"/>
 		<property name="minPoolSize" value="${cpool.minPoolSize}"/>
