@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <title>案件委托</title>
 	<link type="text/css" rel="stylesheet" href="/${res}/lawyer/css/style.css" />
 	<script src="/${res}/lawyer/js/jquery-1.8.2.min.js" type="text/javascript"></script>
@@ -89,7 +89,7 @@
                                          <li><a href="#" rel="5">北京5</a></li>
                                       </ul>
                                   </div>
-                                   <div id="dropdown3" class="droplist fl" style="z-index:5;margin-left:12px;">
+<!--                                    <div id="dropdown3" class="droplist fl" style="z-index:5;margin-left:12px;">
                                       <p>北京</p>
                                       <ul>
                                          <li><a href="#" rel="1">北京1</a></li>
@@ -98,7 +98,7 @@
                                          <li><a href="#" rel="4">北京4</a></li>
                                          <li><a href="#" rel="5">北京5</a></li>
                                       </ul>
-                                  </div>
+                                  </div> -->
                                   <h6 class="clear"></h6>
                                   </dd>
                             </dl>
@@ -136,7 +136,7 @@
                         <div class="case_contact_btn">
                         	<a href="#">案件提交委托</a>
                         	<a href="#">重填案件信息</a>
-                        	<a href="#">登录个人助手</a>
+                        	
                             <h6 class="clear"></h6>
                         </div> <h6 class="clear"></h6>
                     </div>
@@ -146,50 +146,40 @@
 		<div class="lawyer_r" style="margin-top:-4px;">
 			<div class="title_t"><span>推荐律师</span></div>
             <div class="tjls">
-              <dl>
-                <dt><a href="#"><img src="/${res}/lawyer/images/tyjbls.jpg"></a></dt>
-                <dd>
-                  <h2><a href="#">马丹洋律师</a></h2>
-                  <h3>139 1093 8880</h3>
-                </dd>
-              </dl>
-              <dl>
-                <dt><a href="#"><img src="/${res}/lawyer/images/tyjbls.jpg"></a></dt>
-                <dd>
-                  <h2><a href="#">马丹洋律师</a></h2>
-                  <h3>139 1093 8880</h3>
-                </dd>
-              </dl>
-              <dl>
-                <dt><a href="#"><img src="/${res}/lawyer/images/tyjbls.jpg"></a></dt>
-                <dd>
-                  <h2><a href="#">马丹洋律师</a></h2>
-                  <h3>139 1093 8880</h3>
-                </dd>
-              </dl>
-              <dl>
-                <dt><a href="#"><img src="/${res}/lawyer/images/tyjbls.jpg"></a></dt>
-                <dd>
-                  <h2><a href="#">马丹洋律师</a></h2>
-                  <h3>139 1093 8880</h3>
-                </dd>
-              </dl>
+ 					[@cms_content_list count='3' orderBy='4' titLen='8' channelOption='1' channelId='102'] [#list tag_list as a]
+					<dl>
+						<dt>
+							<a href="${a.goto!'#'}" target="_blank"><img src="${a.typeImg!site.defImg}" width="110px" height="82px"/></a>
+						</dt>
+						<dd>
+							<h2>
+								<a href="${a.goto!'#'}">[@text_cut s=a.title len=titLen /]</a>
+							</h2>
+							<h3>${a.telephone!'400-888-8340'}</h3>
+						</dd>
+					</dl>
+					[/#list] [/@cms_content_list]           
+
               <h6 class="clear"></h6>
         </div>
             <div class="charge">
 				<div class="title_t"><span>收费政策</span></div>
                 <ul>
-                	<li><a href="#"><strong>李律师：</strong>是上本科大二时当的兵，请问复</a></li>
-                	<li><a href="#"><strong>李律师：</strong>是上本科大二时当的兵，请问复</a></li>
-                	<li><a href="#"><strong>李律师：</strong>是上本科大二时当的兵，请问复</a></li>
+							[@cms_content_list count='4' titLen='14' orderBy='7' channelOption='1' channelId='150'] 
+							[#list tag_list as a]
+							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
+							[/#list] 
+							[/@cms_content_list]
                 </ul>
 			</div>
             <div class="charge">
 				<div class="title_t"><span>收费标准</span></div>
                 <ul>
-                	<li><a href="#"><strong>李律师：</strong>是上本科大二时当的兵，请问复</a></li>
-                	<li><a href="#"><strong>李律师：</strong>是上本科大二时当的兵，请问复</a></li>
-                	<li><a href="#"><strong>李律师：</strong>是上本科大二时当的兵，请问复</a></li>
+							[@cms_content_list count='4' titLen='14' orderBy='7' channelOption='1' channelId='151'] 
+							[#list tag_list as a]
+							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
+							[/#list] 
+							[/@cms_content_list]
                 </ul>
 			</div>
 			<div class="lawyer_gg"><a href="#"><img src="/${res}/lawyer/images/gg_f.jpg" /></a></div>
@@ -202,51 +192,19 @@
             <a class="abtn aleft" href="#left" title="左移"></a>
             <div class="imglist_w">
                 <ul class="imglist">
-                    <li>
-                        <h2><a href="#"><img width="150" height="150" src="/${res}/lawyer/images/75265928562.jpg" /></a></h2>
-                        <p><a target="_blank" href="#">马丹洋律师</a></p>
-                        <span>139 1093 8880</span>
+   						 [@cms_content_list count='9' orderBy='4'  titLen='8' channelOption='1' channelId='110']
+						 [#list tag_list as a]
+						 
+						 
+					<li>
+                        <h2><a href="${a.goto!'#'}" target="_blank"><img width="120" height="120" src="${a.typeImg!site.defImg}" /></a></h2>
+                        <p><a target="_blank" href="${a.goto!'#'}">[@text_cut s=a.title len=titLen /]</a></p>
+                        <span>${a.telephone!'400-888-8340'}</span>
                     </li>
-                    <li>
-                        <h2><a href="#"><img width="150" height="150" src="/${res}/lawyer/images/75265928562.jpg" /></a></h2>
-                        <p><a target="_blank" href="#">马丹洋律师</a></p>
-                        <span>139 1093 8880</span>
-                    </li>
-                    <li>
-                        <h2><a href="#"><img width="150" height="150" src="/${res}/lawyer/images/75265928562.jpg" /></a></h2>
-                        <p><a target="_blank" href="#">马丹洋律师</a></p>
-                        <span>139 1093 8880</span>
-                    </li>
-                    <li>
-                        <h2><a href="#"><img width="150" height="150" src="/${res}/lawyer/images/75265928562.jpg" /></a></h2>
-                        <p><a target="_blank" href="#">马丹洋律师</a></p>
-                        <span>139 1093 8880</span>
-                    </li>
-                    <li>
-                        <h2><a href="#"><img width="150" height="150" src="/${res}/lawyer/images/75265928562.jpg" /></a></h2>
-                        <p><a target="_blank" href="#">马丹洋律师</a></p>
-                        <span>139 1093 8880</span>
-                    </li>
-                    <li>
-                        <h2><a href="#"><img width="150" height="150" src="/${res}/lawyer/images/75265928562.jpg" /></a></h2>
-                        <p><a target="_blank" href="#">马丹洋律师</a></p>
-                        <span>139 1093 8880</span>
-                    </li>
-                    <li>
-                        <h2><a href="#"><img width="150" height="150" src="/${res}/lawyer/images/75265928562.jpg" /></a></h2>
-                        <p><a target="_blank" href="#">马丹洋律师</a></p>
-                        <span>139 1093 8880</span>
-                    </li>
-                    <li>
-                        <h2><a href="#"><img width="150" height="150" src="/${res}/lawyer/images/75265928562.jpg" /></a></h2>
-                        <p><a target="_blank" href="#">马丹洋律师</a></p>
-                         <span>139 1093 8880</span>
-                   </li>
-                    <li>
-                        <h2><a href="#"><img width="150" height="150" src="/${res}/lawyer/images/75265928562.jpg" /></a></h2>
-                        <p><a target="_blank" href="#">马丹洋律师</a></p>
-                        <span>139 1093 8880</span>
-                    </li>
+						 
+						 [/#list] 
+						 [/@cms_content_list]                 
+
                     
                 </ul><!--imglist end-->
             </div>

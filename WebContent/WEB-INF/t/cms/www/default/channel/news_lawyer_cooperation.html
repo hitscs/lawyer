@@ -32,19 +32,12 @@
         </div>
         <div class="right2">
  			<div class="hezuo">
-            	<a href="#"><img src="/${res}/lawyer/images/5464645.jpg" /></a>
-            	<a href="#"><img src="/${res}/lawyer/images/5464645.jpg" /></a>
-            	<a href="#"><img src="/${res}/lawyer/images/5464645.jpg" /></a>
-            	<a href="#"><img src="/${res}/lawyer/images/5464645.jpg" /></a>
-            	<a href="#"><img src="/${res}/lawyer/images/5464645.jpg" /></a>
-            	<a href="#"><img src="/${res}/lawyer/images/5464645.jpg" /></a>
-            	<a href="#"><img src="/${res}/lawyer/images/5464645.jpg" /></a>
-            	<a href="#"><img src="/${res}/lawyer/images/5464645.jpg" /></a>
-            	<a href="#"><img src="/${res}/lawyer/images/5464645.jpg" /></a>
-            	<a href="#"><img src="/${res}/lawyer/images/5464645.jpg" /></a>
-            	<a href="#"><img src="/${res}/lawyer/images/5464645.jpg" /></a>
-            	<a href="#"><img src="/${res}/lawyer/images/5464645.jpg" /></a>
-                
+						 [@cms_content_list count='5' orderBy='4'  titLen='18' channelOption='1' channelId='141']
+						 [#list tag_list as a]
+							<li><a href="${a.goto!'#'}" target="_blank"> <img src="${a.typeImg!site.defImg}"  /> </a></li>
+						 [/#list] 
+						 [/@cms_content_list]	 			
+               
                 <h6 class="clear"></h6>
             </div>
         </div>

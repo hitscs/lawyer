@@ -20,7 +20,7 @@
             <div class="special fl">
             <div class="title_t"><span>新法速递</span></div>
                 <ul>
-                			[@cms_content_list count='9' titLen='24' orderBy='7' channelOption='1' channelId='91'] 
+                			[@cms_content_list count='9' titLen='24' orderBy='7' channelOption='1' channelId='134'] 
 							[#list tag_list as a]
 							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
 							[/#list] 
@@ -31,7 +31,7 @@
             <div class="special fr">
             <div class="title_t"><span>热门案例</span></div>
                 <ul>
-                			[@cms_content_list count='9' titLen='24' orderBy='7' channelOption='1' channelId='91'] 
+                			[@cms_content_list count='9' titLen='24' orderBy='7' channelOption='1' channelId='135'] 
 							[#list tag_list as a]
 							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
 							[/#list] 
@@ -41,8 +41,11 @@
         </div>
         <div class="right">
             <div class="title_t"><span>法规专题</span></div>
- 			<div class="gg_b"><a href="#"><img src="/${res}/lawyer/images/gg_g.jpg" /></a></div>
- 			<div class="gg_b" style="margin-bottom:0;"><a href="#"><img src="/${res}/lawyer/images/gg_h.jpg" /></a></div>
+        				 [@cms_content_list count='2' orderBy='4'  titLen='8' channelOption='1' channelId='136']
+						 [#list tag_list as a]
+						 <div class="gg_b"><a href="${a.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="325px" height="95px"/></a> </div>						 
+						 [/#list] 
+						 [/@cms_content_list] 
         </div>
         <div class="clear"></div>
 		<div class="left">
@@ -72,15 +75,11 @@
         <div class="right">
             <div class="title_t"><span>推荐律所</span></div>
         	<div class="groom">
-            	<a href="#"><img src="/${res}/lawyer/images/groom_pic.jpg" /></a>
-                <a href="#"><img src="/${res}/lawyer/images/groom_pic.jpg" /></a>
-                <a href="#"><img src="/${res}/lawyer/images/groom_pic.jpg" /></a>
-                <a href="#"><img src="/${res}/lawyer/images/groom_pic.jpg" /></a>
-                <a href="#"><img src="/${res}/lawyer/images/groom_pic.jpg" /></a>
-                <a href="#"><img src="/${res}/lawyer/images/groom_pic.jpg" /></a>
-                <a href="#"><img src="/${res}/lawyer/images/groom_pic.jpg" /></a>
-                <a href="#"><img src="/${res}/lawyer/images/groom_pic.jpg" /></a>
-                <a href="#"><img src="/${res}/lawyer/images/groom_pic.jpg" /></a>
+        				 [@cms_content_list count='9' orderBy='4'  titLen='8' channelOption='1' channelId='148']
+						 [#list tag_list as a]
+						 <a href="${a.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="107px" height="65px"/></a> 						 
+						 [/#list] 
+						 [/@cms_content_list]
                 <h6 class="clear"></h6>
             </div>
         </div>
@@ -114,12 +113,12 @@
             <div class="title_t"><span>推荐律师</span></div>
         	
             <div class="tuijian">
- 						 [@cms_content_list count='3' orderBy='4'  titLen='8' channelOption='1' channelId='87']
+ 						 [@cms_content_list count='3' orderBy='4'  titLen='8' channelOption='1' channelId='137']
 						 [#list tag_list as a]
 						 
 						<dl>
 							<dt>
-								<a href="${a.goto!'#'}" target="_blank"><img src="${a.typeImg!site.defImg}" /></a>
+								<a href="${a.goto!'#'}" target="_blank"><img src="${a.typeImg!site.defImg}" width="100px" height="167px"/></a>
 							</dt>
 							<dd>
 								<h2>
