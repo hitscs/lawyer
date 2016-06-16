@@ -76,8 +76,11 @@
 
 </td>
 </tr>
-<@p.hidden  name="groupId" value="3"/>
-<@p.hidden  name="grain" value="0"/>
+<@p.select colspan="2" width="50" label="cmsUser.group" name="groupId" list=groupList listKey="id" listValue="name" required="true"/>
+<!--<@p.text width="50" colspan="1" label="content.doc.grain" name="grain" value="0" required="true" class="required digits" maxlength="10"/>
+
+ <@p.hidden  name="groupId" value="3"/>-->
+<@p.hidden  name="grain" value="0"/> 
 <@p.hidden  id="professionalField" name="professionalField" value=""/>
 <@p.hidden  id="goodAtField" name="goodAtField" value=""/>
 <@p.tr/>
