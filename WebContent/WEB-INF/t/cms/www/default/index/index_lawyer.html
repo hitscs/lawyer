@@ -27,6 +27,23 @@
 				    	 
 				    }
 				});
+			   
+			   
+			   $.ajax({
+				    type :"POST",
+					url :"index/allLawyerType.jspx",
+					cache :false,
+					async :false,
+					//data : params,
+					dataType : "json",
+					timeout :30000,
+				    success: function (data) {
+					//alert(data);
+				    	 buildAllLawyerType(data);
+				    	 
+				    }
+				});			   
+			   
 	     })
 
 		function buildArea(data) {
@@ -41,6 +58,32 @@
 		    html=html+'<h6 class="clear"></h6>';
 		    $("#areaList").html(html);
 		}
+		function buildAllLawyerType(data) {
+		    //alert(data);
+		var html ='';
+		var n=0;
+		    for (var i = 0; i < data.length; i++) {
+		    	
+		    	if(data[i].pId==0&&n<6){
+		    		n=n+1;
+		    		html =html+'<ul class="pane_a"><li><h3>'+data[i].name+'</h3><div class="pane_list">';
+		    		var m=0;
+						for(var j = 0; j < data.length; j++){
+							
+							if(data[j].pId==data[i].id&&m<3){
+								
+								html =html+'<a href="#">'+data[j].name+'</a>';
+								m=m+1;
+							}
+							
+						}
+							
+						html =html+'<h6 class="clear"></h6></div></li></ul>';
+		    		
+		    	}
+			}
+		    $("#lawyerTypeList").html(html);
+		}	    
 		
 		</script>
 </head>
@@ -60,9 +103,9 @@
 						<div class="pane" style="display: block;">
 							<ul class="pane_a">
 								<li>
-									<h3>北京地区</h3>
+									<h3>热点地区地区</h3>
 									<div class="pane_list">
-										<a href="#">海淀律师</a> <a href="#">海淀律师</a> <a href="#">海淀律师</a> <a href="#">海淀律师</a> <a href="#">海淀律师</a> <a href="#">海淀律师</a>
+										<a href="#">北京</a> <a href="#">上海</a> <a href="#">天津</a> <a href="#">广东</a> <a href="#">福建</a> <a href="#">河北</a><a href="#">山东</a><a href="#">浙江</a><a href="#">黑龙江</a><a href="#">湖南</a><a href="#">辽宁</a>
 										<h6 class="clear"></h6>
 									</div>
 								</li>
@@ -80,32 +123,15 @@
 								<li>
 									<h3>全国律师</h3>
 									<div class="pane_list" id="areaList">
-<!-- 										<a href="#">安徽</a> <a href="#">北京</a> <a href="#">重庆</a> <a href="#">福建</a> <a href="#">安徽</a> <a href="#">北京</a> <a href="#">重庆</a> <a href="#">福建</a> <a href="#">安徽</a> <a href="#">北京</a> <a href="#">重庆</a> <a href="#">福建</a> <a href="#">安徽</a> <a href="#">北京</a> <a href="#">重庆</a> <a
-											href="#">福建</a> <a href="#">安徽</a> <a href="#">北京</a> <a href="#">重庆</a> <a href="#">福建</a> -->
 										<h6 class="clear"></h6>
 									</div>
 								</li>
 							</ul>
 						</div>
-						<div class="pane">
-<!-- 							<ul class="pane_a">
-								<li>
-									<h3>北京地区</h3>
-									<div class="pane_list">
-										<a href="#">海淀律师</a> <a href="#">海淀律师</a> <a href="#">海淀律师</a> <a href="#">海淀律师</a> <a href="#">海淀律师</a> <a href="#">海淀律师</a>
-										<h6 class="clear"></h6>
-									</div>
-								</li>
-							</ul> -->
-							<ul class="pane_b">
-								<li>
-									<h3>热门专业律师</h3>
-									<div class="pane_list">
-										<a href="#">北京离婚律师</a> <a href="#">北京房地产律师</a> <a href="#">北京刑事辩护律师</a> <a href="#">北京房地产律师</a> <a href="#">北京债权债务律师</a> <a href="#">北京离婚律师</a> <a href="#">北京房地产律师</a> <a href="#">北京离婚律师</a>
-										<h6 class="clear"></h6>
-									</div>
-								</li>
-							</ul>
+						<div class="pane"  id="lawyerTypeList">
+
+
+							
 						</div>
 					</div>
 				</div>
@@ -191,9 +217,9 @@
 						<li class="icon_1"><a href="" target="_blank">法律咨询</a></li>
 						<li class="icon_2"><a href="" target="_blank">案件委托</a></li>
 						<li class="icon_3"><a href="" target="_blank">专业律师</a></li>
-						<li class="icon_4"><a href="" target="_blank">法律法规</a></li>
+						<li class="icon_4"><a href="" target="_blank">新法速递</a></li>
 						<li class="icon_5"><a href="" target="_blank">经典案例</a></li>
-						<li class="icon_6"><a href="" target="_blank">律师访谈</a></li>
+						<li class="icon_6"><a href="" target="_blank">律师时评</a></li>
 						<h6 class="clear"></h6>
 					</ul>
 				</div>
@@ -336,7 +362,7 @@
 			<div class="clear"></div>
 			<div class="people">
 				<ul>
-					[@cms_content_list count='4' orderBy='4'  titLen='8' channelOption='1' channelId='84']
+					[@cms_content_list count='4' orderBy='4'  titLen='8' channelOption='1' channelId='152']
 						[#list tag_list as a]
 						 <a href="${a.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="226px" height="90px"/></a> 						 
 						[/#list] 
@@ -355,7 +381,7 @@
 							<span>权威专家</span>
 						</h2>
 						<div class="zj_box">
-					[@cms_content_list count='4' orderBy='4'  titLen='8' channelOption='1' channelId='84']
+					[@cms_content_list count='4' orderBy='4'  titLen='8' channelOption='1' channelId='86']
 						[#list tag_list as a]
 							<dl>
 								<a href="${a.goto!'#'}">
@@ -371,11 +397,17 @@
 						</div>
 					</div>
  					<div class="hot">
-						<h2 class="hot_t">
+<!-- 						<h2 class="hot_t">
 							<span>北京热线律师</span>
-						</h2>
+						</h2> -->
 						<div class="hot_pic">
-							<a href="#"><img src="/${res}/lawyer/images/hot_pic.jpg" /></a>
+						[@cms_content_list count='1' orderBy='4'  titLen='8' channelOption='1' channelId='155']
+						[#list tag_list as a]
+							
+								<a href="${a.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="270px" height="115px"/></a>
+													 
+						[/#list] 
+					[/@cms_content_list]
 						</div>
 					</div> 
 				</div>
@@ -408,8 +440,8 @@
 				<div class="iright2">
 					<div class="inews4">
 						<ul class="inews4_t">
-							<li class="hit">律师访谈</li>
-							<li>行业视点</li>
+							<li class="hit">常见问题</li>
+							<li>名家观点</li>
 						</ul>
 						<div class="inews4_con">
 							<ul style="display: block;">
@@ -429,7 +461,7 @@
 						</div>
 					</div>
 					<h2 class="title2">
-						<span>北京婚姻律师</span>
+						<span>民事律师</span>
 					</h2>
 					<ul class="hunyin">
  						 [@cms_content_list count='3' orderBy='4'  titLen='8' channelOption='1' channelId='87']
@@ -460,7 +492,7 @@
 			<div class="clear"></div>
 			<div class="people">
 				<ul>
-					[@cms_content_list count='4' orderBy='4'  titLen='8' channelOption='1' channelId='84']
+					[@cms_content_list count='4' orderBy='4'  titLen='8' channelOption='1' channelId='153']
 						[#list tag_list as a]
 						 <a href="${a.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="226px" height="90px"/></a> 						 
 						[/#list] 
@@ -479,32 +511,34 @@
 							<span>专业团队</span>
 						</h2>
 						<div class="zj_box">
+					[@cms_content_list count='2' orderBy='4'  titLen='8' channelOption='1' channelId='158']
+						[#list tag_list as a]
 							<dl>
-								<a href="#">
+								<a href="${a.goto!'#'}">
 									<dt>
-										<img src="/${res}/lawyer/images/zj.jpg" />
+										<img src="${a.typeImg!site.defImg}" width="125px" height="105px"/>
 									</dt>
-									<dd>易轶主任</dd>
+									<dd>${a.title}</dd>
 								</a>
-							</dl>
-							<dl>
-								<a href="#">
-									<dt>
-										<img src="/${res}/lawyer/images/zj.jpg" />
-									</dt>
-									<dd>易轶主任</dd>
-								</a>
-							</dl>
+							</dl>						 
+						[/#list] 
+					[/@cms_content_list]
 							<h6 class="clear"></h6>
 							<div class="zj_info">2013年9月21日，李莉与王女士签订了一份房屋买卖协议，双方约定王女士将自己名下的一套房屋转让给李莉，李莉一次性付清全部购房款110万元，王女士负责办理房屋过户等手续,李莉支付了全部购房款。同年10月，该小区房价大涨，王女士感觉自己卖亏了，拒不配合办理房屋过户手续</div>
 						</div>
 					</div>
  					<div class="hot">
-						<h2 class="hot_t">
+<!-- 						<h2 class="hot_t">
 							<span>北京热线律师</span>
-						</h2>
+						</h2> -->
 						<div class="hot_pic">
-							<a href="#"><img src="/${res}/lawyer/images/hot_pic.jpg" /></a>
+						[@cms_content_list count='1' orderBy='4'  titLen='8' channelOption='1' channelId='156']
+						[#list tag_list as a]
+							
+								<a href="${a.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="270px" height="115px"/></a>
+													 
+						[/#list] 
+					[/@cms_content_list]
 						</div>
 					</div> 
 				</div>
@@ -558,7 +592,7 @@
 						</div>
 					</div>
 					<h2 class="title2">
-						<span>北京婚姻律师</span>
+						<span>商事律师</span>
 					</h2>
 					<ul class="hunyin">
  						 [@cms_content_list count='3' orderBy='4'  titLen='8' channelOption='1' channelId='87']
@@ -588,7 +622,7 @@
 			<div class="clear"></div>
 			<div class="people">
 				<ul>
-					[@cms_content_list count='4' orderBy='4'  titLen='8' channelOption='1' channelId='84']
+					[@cms_content_list count='4' orderBy='4'  titLen='8' channelOption='1' channelId='154']
 						[#list tag_list as a]
 						 <a href="${a.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="226px" height="90px"/></a> 						 
 						[/#list] 
@@ -607,32 +641,33 @@
 							<span>名师风采</span>
 						</h2>
 						<div class="zj_box">
+					[@cms_content_list count='4' orderBy='4'  titLen='8' channelOption='1' channelId='159']
+						[#list tag_list as a]
 							<dl>
-								<a href="#">
+								<a href="${a.goto!'#'}">
 									<dt>
-										<img src="/${res}/lawyer/images/zj.jpg" />
+										<img src="${a.typeImg!site.defImg}" width="125px" height="105px"/>
 									</dt>
-									<dd>易轶主任</dd>
+									<dd>${a.title}</dd>
 								</a>
-							</dl>
-							<dl>
-								<a href="#">
-									<dt>
-										<img src="/${res}/lawyer/images/zj.jpg" />
-									</dt>
-									<dd>易轶主任</dd>
-								</a>
-							</dl>
+							</dl>						 
+						[/#list] 
+					[/@cms_content_list]
 							<h6 class="clear"></h6>
-							<div class="zj_info">2013年9月21日，李莉与王女士签订了一份房屋买卖协议，双方约定王女士将自己名下的一套房屋转让给李莉，李莉一次性付清全部购房款110万元，王女士负责办理房屋过户等手续,李莉支付了全部购房款。同年10月，该小区房价大涨，王女士感觉自己卖亏了，拒不配合办理房屋过户手续</div>
 						</div>
 					</div>
  					<div class="hot">
-						<h2 class="hot_t">
+<!-- 						<h2 class="hot_t">
 							<span>北京热线律师</span>
-						</h2>
+						</h2> -->
 						<div class="hot_pic">
-							<a href="#"><img src="/${res}/lawyer/images/hot_pic.jpg" /></a>
+						[@cms_content_list count='1' orderBy='4'  titLen='8' channelOption='1' channelId='157']
+						[#list tag_list as a]
+							
+								<a href="${a.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="270px" height="115px"/></a>
+													 
+						[/#list] 
+					[/@cms_content_list]
 						</div>
 					</div> 
 				</div>
@@ -686,7 +721,7 @@
 						</div>
 					</div>
 					<h2 class="title2">
-						<span>北京婚姻律师</span>
+						<span>刑事律师</span>
 					</h2>
 					<ul class="hunyin">
  						 [@cms_content_list count='3' orderBy='4'  titLen='8' channelOption='1' channelId='87']

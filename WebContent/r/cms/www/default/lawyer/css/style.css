@@ -591,7 +591,8 @@ ul, li, dl, dt, dd {
 .nav-icon li a {
 	float: left;
 	margin-top: 4px;
-	padding: 30px 8px 3px 8px;
+	/* padding: 30px 8px 3px 8px; */
+	padding: 30px 6px 3px 6px;
 	color: #7b7b7b;
 	background: url(../images/kc_pub_icon.gif) no-repeat;
 }

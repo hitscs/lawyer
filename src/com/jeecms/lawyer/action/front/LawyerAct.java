@@ -27,6 +27,7 @@ import net.sf.json.JSONArray;
 public class LawyerAct {
 	public static final String INDEX = "tpl.lawyerIndex";
 	public static final String DETAIL = "tpl.lawyerDetail";
+	public static final String LIST = "tpl.lawyerList";
 	@Autowired
 	private LawyerMng lawyerMng;
 	@Autowired
@@ -64,4 +65,11 @@ public class LawyerAct {
 		FrontUtils.frontData(request, model, site);
 		return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", "tpl.lawyerDetail");
 	}
+	@RequestMapping(value = { "/lawyer/list.jspx" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public String list(Integer id, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+		CmsSite site = CmsUtils.getSite(request);
+
+		FrontUtils.frontData(request, model, site);
+		return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", LIST);
+	}	
 }
