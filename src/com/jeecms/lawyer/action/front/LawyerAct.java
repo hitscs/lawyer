@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.jeecms.common.web.ResponseUtils;
 import com.jeecms.core.entity.Area;
 import com.jeecms.core.entity.CmsSite;
 import com.jeecms.core.manager.AreaMng;
@@ -27,7 +29,8 @@ import net.sf.json.JSONArray;
 public class LawyerAct {
 	public static final String INDEX = "tpl.lawyerIndex";
 	public static final String DETAIL = "tpl.lawyerDetail";
-	public static final String LIST = "tpl.lawyerList";
+	public static final String LAWYERLIST = "tpl.lawyerList";
+	public static final String LVSUOLIST = "tpl.lvsuoList";
 	@Autowired
 	private LawyerMng lawyerMng;
 	@Autowired
@@ -38,9 +41,11 @@ public class LawyerAct {
 	public String index(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 
-		List<Area> areaList = areaManager.getList(0);
+		List<Area> areaList = areaManager.getList();
 		List<LawyerType> lawyerTypeList = lawyerTypeManager.getList();
-
+		
+		String areaListJson = JSONArray.fromObject(areaList).toString();
+		model.addAttribute("areaListJson", areaListJson);
 		model.addAttribute("areaList", areaList);
 		model.addAttribute("lawyerTypeList", lawyerTypeList);
 		model.addAttribute("currentMenu", "lawyerIndex");
@@ -65,11 +70,29 @@ public class LawyerAct {
 		FrontUtils.frontData(request, model, site);
 		return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", "tpl.lawyerDetail");
 	}
-	@RequestMapping(value = { "/lawyer/list.jspx" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	public String list(Integer id, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+	@RequestMapping(value = { "/lawyer/lawyerList.jspx" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public String lawyerList(Integer id, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 
 		FrontUtils.frontData(request, model, site);
-		return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", LIST);
+		return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", LAWYERLIST);
+	}
+	@RequestMapping(value = { "/lawyer/lvsuoList.jspx" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public String lvsuoList(Integer id, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+		CmsSite site = CmsUtils.getSite(request);
+
+		FrontUtils.frontData(request, model, site);
+		return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", LVSUOLIST);
+	}	
+	@RequestMapping(value = "/lawyer/area.jspx", method = RequestMethod.POST)
+	public String getArea(Integer pid, HttpServletRequest request, HttpServletResponse response) {
+		if (null == pid)
+			pid = 0;
+		List<Area> list = areaManager.getList(pid);
+
+		String json = JSONArray.fromObject(list).toString();
+		ResponseUtils.renderJson(response, json);
+
+		return null;
 	}	
 }

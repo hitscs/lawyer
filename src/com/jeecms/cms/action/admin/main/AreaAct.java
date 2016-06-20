@@ -31,6 +31,7 @@ public class AreaAct {
 	//@RequiresPermissions("area:v_list")
 	@RequestMapping("/area/v_list.do")
 	public void list(HttpServletRequest request,HttpServletResponse response, Integer pid) {
+		if(pid==null)pid=0;
 		
 		List<Area> list = manager.getList(pid);
 		
