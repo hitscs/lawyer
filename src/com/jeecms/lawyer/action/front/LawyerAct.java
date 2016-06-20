@@ -74,14 +74,18 @@ public class LawyerAct {
 	public String lawyerList(Integer id, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 
+		model.addAttribute("currentMenu", "lawyerIndex");
 		FrontUtils.frontData(request, model, site);
+		FrontUtils.frontPageData(request, model);
 		return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", LAWYERLIST);
 	}
 	@RequestMapping(value = { "/lawyer/lvsuoList.jspx" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
 	public String lvsuoList(Integer id, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 
+		model.addAttribute("currentMenu", "lawyerIndex");
 		FrontUtils.frontData(request, model, site);
+		FrontUtils.frontPageData(request, model);
 		return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", LVSUOLIST);
 	}	
 	@RequestMapping(value = "/lawyer/area.jspx", method = RequestMethod.POST)
