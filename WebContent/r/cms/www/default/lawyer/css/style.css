@@ -2096,7 +2096,7 @@ ul, li, dl, dt, dd {
 	height: 22px;
 	line-height: 25px;
 	padding-left: 10px;
-	padding-right: 10px;
+	/* padding-right: 10px; */
 	color: #515151;
 	cursor: pointer;
 	font-size: 12px;

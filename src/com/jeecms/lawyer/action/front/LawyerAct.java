@@ -40,13 +40,14 @@ public class LawyerAct {
 	private AreaMng areaManager;
 	@Autowired
 	private LawyerTypeMng lawyerTypeManager;
+
 	@RequestMapping(value = { "/lawyer/index.jspx" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
 	public String index(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 
 		List<Area> areaList = areaManager.getList();
 		List<LawyerType> lawyerTypeList = lawyerTypeManager.getList();
-		
+
 		String areaListJson = JSONArray.fromObject(areaList).toString();
 		model.addAttribute("areaListJson", areaListJson);
 		model.addAttribute("areaList", areaList);
@@ -73,10 +74,15 @@ public class LawyerAct {
 		FrontUtils.frontData(request, model, site);
 		return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", "tpl.lawyerDetail");
 	}
-	@RequestMapping(value = { "/lawyer/lawyerList.jspx" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	public String lawyerList(String realname,String professionalField,String goodAtField, Integer groupId,Integer provinceId,Integer cityId,Integer regionId,HttpServletRequest request, HttpServletResponse response, ModelMap model) {
-		CmsSite site = CmsUtils.getSite(request);
 
+	@RequestMapping(value = { "/lawyer/lawyerList.jspx" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public String lawyerList(String realname, String professionalField, String goodAtField, Integer groupId, Integer provinceId, Integer cityId, Integer regionId, HttpServletRequest request,
+			HttpServletResponse response, ModelMap model) {
+		CmsSite site = CmsUtils.getSite(request);
+		if (null != professionalField && !professionalField.trim().equals(""))
+			professionalField = "," + professionalField + ",";
+		if (null != goodAtField && !goodAtField.trim().equals(""))
+			goodAtField = "," + goodAtField + ",";
 		Pagination pagination = lawyerMng.getPageByCondition(site.getId(), provinceId, cityId, regionId, realname, professionalField, goodAtField, groupId, false, false, null, 1, 10);
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("currentMenu", "lawyerIndex");
@@ -84,15 +90,20 @@ public class LawyerAct {
 		FrontUtils.frontPageData(request, model);
 		return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", LAWYERLIST);
 	}
+
 	@RequestMapping(value = { "/lawyer/lvsuoList.jspx" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	public String lvsuoList(CmsUser bean, CmsUserExt ext,Lawyer lawyer, Integer groupId,Integer provinceId_lvsuo,Integer cityId_lvsuo,Integer regionId_lvsuo, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+	public String lvsuoList(String realname, String professionalField, String goodAtField, Integer groupId, Integer provinceId, Integer cityId, Integer regionId, HttpServletRequest request,
+			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 
+		Pagination pagination = lawyerMng.getPageByCondition(site.getId(), provinceId, cityId, regionId, realname, professionalField, goodAtField, groupId, false, false, null, 1, 10);
+		model.addAttribute("pagination", pagination);
 		model.addAttribute("currentMenu", "lawyerIndex");
 		FrontUtils.frontData(request, model, site);
 		FrontUtils.frontPageData(request, model);
 		return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", LVSUOLIST);
-	}	
+	}
+
 	@RequestMapping(value = "/lawyer/area.jspx", method = RequestMethod.POST)
 	public String getArea(Integer pid, HttpServletRequest request, HttpServletResponse response) {
 		if (null == pid)
@@ -103,5 +114,5 @@ public class LawyerAct {
 		ResponseUtils.renderJson(response, json);
 
 		return null;
-	}	
+	}
 }

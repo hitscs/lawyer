@@ -121,7 +121,7 @@
 								<dl>
 									<dt>专业分类：</dt>
 									<dd>
-											<select id="lawyerType" class="droplist" style="z-index: 6;">
+											<select id="professionalField" name="professionalField" class="droplist" style="z-index: 6;">
 											[#list lawyerTypeList as a] 
 											   [#if a.pId==0 ]
 											    <option value="${a.id}">${a.name}</option>
@@ -138,14 +138,14 @@
 								<dl>
 									<dt>地区：</dt>
 									<dd>
-										    <select id="provinceId" class="droplist fl" style="z-index: 5;width: 120px" onchange="loadCity()">
+										    <select id="provinceId" name="provinceId" class="droplist fl" style="z-index: 5;width: 120px" onchange="loadCity()">
 										    
 											[#list areaList as a] 
 											   [#if a.pid==0 ]
 											    <option value="${a.id}">${a.shortName}</option>
 						                    [/#if] [/#list]
 											</select>
-										    <select id="cityId" class="droplist fr" style="z-index: 5;width: 120px">
+										    <select id="cityId" name="cityId" class="droplist fr" style="z-index: 5;width: 120px">
 											[#list areaList as a] 
 											   [#if a.pid==110000 ]
 											    <option value="${a.id}">${a.name}</option>
@@ -157,7 +157,7 @@
 								<dl>
 									<dt>律师姓名：</dt>
 									<dd>
-										<input type="text" class="text" id="realname"/>
+										<input type="text" class="text" id="realname" name="realname"/>
 									</dd>
 								</dl>
 							</div>
