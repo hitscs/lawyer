@@ -54,6 +54,7 @@ public class RegisterAct {
 	public static final String REGISTER_RESULT = "tpl.registerResult";
 	public static final String REGISTER_ACTIVE_SUCCESS = "tpl.registerActiveSuccess";
 	public static final String LOGIN_INPUT = "tpl.loginInput";
+	public static final String REGISTERLAWYER= "tpl.registerLawyer";
 
 	@RequestMapping(value = "/register.jspx", method = RequestMethod.GET)
 	public String input(HttpServletRequest request,
@@ -141,7 +142,92 @@ public class RegisterAct {
 		}
 
 	}
+	@RequestMapping(value = "/registerLawyer.jspx", method = RequestMethod.GET)
+	public String inputLawyer(HttpServletRequest request,
+			HttpServletResponse response, ModelMap model) {
+		CmsSite site = CmsUtils.getSite(request);
+		MemberConfig mcfg = site.getConfig().getMemberConfig();
+		// 没有开启会员功能
+		if (!mcfg.isMemberOn()) {
+			return FrontUtils.showMessage(request, model, "member.memberClose");
+		}
+		// 没有开启会员注册
+		if (!mcfg.isRegisterOn()) {
+			return FrontUtils.showMessage(request, model,
+					"member.registerClose");
+		}
+		List<CmsConfigItem>items=cmsConfigItemMng.getList(site.getConfig().getId(), CmsConfigItem.CATEGORY_REGISTER);
+		FrontUtils.frontData(request, model, site);
+		model.addAttribute("mcfg", mcfg);
+		model.addAttribute("items", items);
+		return FrontUtils.getTplPath(request, site.getSolutionPath(),
+				TPLDIR_MEMBER, REGISTERLAWYER);
+	}
 
+	@RequestMapping(value = "/registerLawyer.jspx", method = RequestMethod.POST)
+	public String submitLawyer(String username, String email, String password,
+			CmsUserExt userExt, String captcha, String nextUrl,
+			HttpServletRequest request, HttpServletResponse response,
+			ModelMap model) throws IOException {
+		CmsSite site = CmsUtils.getSite(request);
+		CmsConfig config = site.getConfig();
+		WebErrors errors = validateSubmit(username, email, password, captcha,
+				site, request, response);
+		boolean disabled=false;
+		if(config.getMemberConfig().isCheckOn()){
+			disabled=true;
+		}
+		if (errors.hasErrors()) {
+			return FrontUtils.showError(request, response, model, errors);
+		}
+		String ip = RequestUtils.getIpAddr(request);
+		Map<String,String>attrs=RequestUtils.getRequestMap(request, "attr_");
+		if (config.getEmailValidate()) {
+			EmailSender sender = configMng.getEmailSender();
+			MessageTemplate msgTpl = configMng.getRegisterMessageTemplate();
+			if (sender == null) {
+				// 邮件服务器没有设置好
+				model.addAttribute("status", 4);
+			} else if (msgTpl == null) {
+				// 邮件模板没有设置好
+				model.addAttribute("status", 5);
+			} else {
+				try {
+					cmsUserMng.registerMember(username, email, password, ip,
+							null,disabled,userExt,attrs, false, sender, msgTpl);
+					model.addAttribute("status", 0);
+				} catch (UnsupportedEncodingException e) {
+					// 发送邮件异常
+					model.addAttribute("status", 100);
+					model.addAttribute("message", e.getMessage());
+					log.error("send email exception.", e);
+				} catch (MessagingException e) {
+					// 发送邮件异常
+					model.addAttribute("status", 101);
+					model.addAttribute("message", e.getMessage());
+					log.error("send email exception.", e);
+				}
+			}
+			log.info("member register success. username={}", username);
+			FrontUtils.frontData(request, model, site);
+			if (!StringUtils.isBlank(nextUrl)) {
+				response.sendRedirect(nextUrl);
+				return null;
+			} else {
+				return FrontUtils.getTplPath(request, site.getSolutionPath(),
+						TPLDIR_MEMBER, REGISTER_RESULT);
+			}
+		} else {
+			cmsUserMng.registerMember(username, email, password, ip, null,null,disabled,userExt,attrs);
+			log.info("member register success. username={}", username);
+			FrontUtils.frontData(request, model, site);
+			FrontUtils.frontPageData(request, model);
+			model.addAttribute("success", true);
+			return FrontUtils.getTplPath(request, site.getSolutionPath(),
+					TPLDIR_MEMBER, LOGIN_INPUT);
+		}
+
+	}
 	@RequestMapping(value = "/active.jspx", method = RequestMethod.GET)
 	public String active(String username, String key,
 			HttpServletRequest request, HttpServletResponse response,
