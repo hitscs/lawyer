@@ -13,6 +13,9 @@ public abstract interface LawyerMng
   public abstract Pagination getPage(String username, String email, Integer siteId,
 			Integer groupId, Boolean disabled, Boolean admin, Integer rank,
 			int pageNo, int pageSize);
+  public abstract Pagination getPageByCondition(Integer siteId,
+			Integer provinceId,Integer cityId,Integer regionId, String realname,String professionalField,String goodAtField, Integer groupId, Boolean disabled, Boolean admin, Integer rank,
+			int pageNo, int pageSize); 
 	public CmsUser registerMember(String username, String email,
 			String password, String ip, Integer groupId,Integer grain,Integer provinceId,Integer cityId,Integer regionId, boolean disabled,CmsUserExt userExt,Lawyer lawyer,Map<String,String>attr);
 

@@ -11,9 +11,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.jeecms.common.page.Pagination;
 import com.jeecms.common.web.ResponseUtils;
 import com.jeecms.core.entity.Area;
 import com.jeecms.core.entity.CmsSite;
+import com.jeecms.core.entity.CmsUser;
+import com.jeecms.core.entity.CmsUserExt;
 import com.jeecms.core.manager.AreaMng;
 import com.jeecms.core.web.WebErrors;
 import com.jeecms.core.web.util.CmsUtils;
@@ -71,16 +74,18 @@ public class LawyerAct {
 		return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", "tpl.lawyerDetail");
 	}
 	@RequestMapping(value = { "/lawyer/lawyerList.jspx" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	public String lawyerList(Integer id, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+	public String lawyerList(String realname,String professionalField,String goodAtField, Integer groupId,Integer provinceId,Integer cityId,Integer regionId,HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 
+		Pagination pagination = lawyerMng.getPageByCondition(site.getId(), provinceId, cityId, regionId, realname, professionalField, goodAtField, groupId, false, false, null, 1, 10);
+		model.addAttribute("pagination", pagination);
 		model.addAttribute("currentMenu", "lawyerIndex");
 		FrontUtils.frontData(request, model, site);
 		FrontUtils.frontPageData(request, model);
 		return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", LAWYERLIST);
 	}
 	@RequestMapping(value = { "/lawyer/lvsuoList.jspx" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	public String lvsuoList(Integer id, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+	public String lvsuoList(CmsUser bean, CmsUserExt ext,Lawyer lawyer, Integer groupId,Integer provinceId_lvsuo,Integer cityId_lvsuo,Integer regionId_lvsuo, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 
 		model.addAttribute("currentMenu", "lawyerIndex");

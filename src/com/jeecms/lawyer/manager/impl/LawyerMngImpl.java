@@ -31,6 +31,14 @@ public class LawyerMngImpl implements LawyerMng {
 		Pagination page = lawyerDao.getPage(username, email, siteId, groupId, disabled, admin, rank, pageNo, pageSize);
 		return page;
 	}
+	  public Pagination getPageByCondition(Integer siteId,
+				Integer provinceId,Integer cityId,Integer regionId, String realname,String professionalField,String goodAtField, Integer groupId, Boolean disabled, Boolean admin, Integer rank,
+				int pageNo, int pageSize){
+			Pagination page = lawyerDao.getPageByCondition(siteId, provinceId, cityId, regionId, realname, professionalField, goodAtField, groupId, disabled, admin, rank, pageNo, pageSize);
+			return page;
+		  
+		  
+	  }
 
 	public CmsUser registerMember(String username, String email, String password, String ip, Integer groupId, Integer grain,Integer provinceId,Integer cityId,Integer regionId, boolean disabled, CmsUserExt userExt, Lawyer lawyer,Map<String, String> attr) {
 		CmsUser user = new CmsUser();

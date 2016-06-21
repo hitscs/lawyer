@@ -12,7 +12,9 @@ public abstract interface LawyerDao
   public abstract Pagination getPage(String username, String email, Integer siteId,
 			Integer groupId, Boolean disabled, Boolean admin, Integer rank,
 			int pageNo, int pageSize);
-  
+  public abstract Pagination getPageByCondition(Integer siteId,
+			Integer provinceId,Integer cityId,Integer regionId, String realname,String professionalField,String goodAtField, Integer groupId, Boolean disabled, Boolean admin, Integer rank,
+			int pageNo, int pageSize); 
   public abstract List<Lawyer> getList(int paramInt, boolean paramBoolean);
   
   public abstract Lawyer findById(Integer paramInteger);

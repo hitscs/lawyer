@@ -2092,7 +2092,15 @@ ul, li, dl, dt, dd {
 .droplist {
 	width: 243px;
 	position: relative;
-	border: 1px solid #c8c8c8;
+	/* border: 1px solid #c8c8c8; */
+	height: 22px;
+	line-height: 25px;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #515151;
+	cursor: pointer;
+	font-size: 12px;
+	margin-right: 1px;
 }
 .droplist p {
 	height: 22px;
