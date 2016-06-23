@@ -51,7 +51,7 @@
 		var html ='';
 		    for (var i = 0; i < data.length; i++) {
 			
-			html=html+'<a href="#">'+data[i].shortName+'</a>';
+			html=html+'<a href="${base}/lawyer/lawyerList.jspx?provinceId='+data[i].id+'">'+data[i].shortName+'</a>';
 			
 
 			}
@@ -72,7 +72,7 @@
 							
 							if(data[j].pId==data[i].id&&m<3){
 								
-								html =html+'<a href="#">'+data[j].name+'</a>';
+								html =html+'<a href="${base}/lawyer/list.jspx">'+data[j].name+'</a>';
 								m=m+1;
 							}
 							
@@ -210,7 +210,11 @@
 					</div>
 				</div>
 				<div class="ipic1">
-					<a href="#"><img src="/${res}/lawyer/images/ipic1.jpg" /></a>
+						 [@cms_content_list count='1' orderBy='4'  titLen='8' channelOption='1' channelId='235']
+						 [#list tag_list as a]
+						 <a href="${a.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="236px" height="112px"/></a> 						 
+						 [/#list] 
+						 [/@cms_content_list]
 				</div>
 				<div class="category_nav">
 					<ul>
@@ -464,7 +468,7 @@
 						<span>民事律师</span>
 					</h2>
 					<ul class="hunyin">
- 						 [@cms_content_list count='3' orderBy='4'  titLen='8' channelOption='1' channelId='87']
+ 						 [@cms_content_list count='3' orderBy='4'  titLen='8' channelOption='1' channelId='238']
 						 [#list tag_list as a]
 						 
 						<li>
@@ -595,7 +599,7 @@
 						<span>商事律师</span>
 					</h2>
 					<ul class="hunyin">
- 						 [@cms_content_list count='3' orderBy='4'  titLen='8' channelOption='1' channelId='87']
+ 						 [@cms_content_list count='3' orderBy='4'  titLen='8' channelOption='1' channelId='239']
 						 [#list tag_list as a]
 						 
 						<li>
@@ -724,7 +728,7 @@
 						<span>刑事律师</span>
 					</h2>
 					<ul class="hunyin">
- 						 [@cms_content_list count='3' orderBy='4'  titLen='8' channelOption='1' channelId='87']
+ 						 [@cms_content_list count='3' orderBy='4'  titLen='8' channelOption='1' channelId='240']
 						 [#list tag_list as a]
 						 
 						<li>
