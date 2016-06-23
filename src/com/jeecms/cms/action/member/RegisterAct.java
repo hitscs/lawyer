@@ -25,12 +25,14 @@ import com.jeecms.common.email.MessageTemplate;
 import com.jeecms.common.web.RequestUtils;
 import com.jeecms.common.web.ResponseUtils;
 import com.jeecms.common.web.session.SessionProvider;
+import com.jeecms.core.entity.Area;
 import com.jeecms.core.entity.CmsConfig;
 import com.jeecms.core.entity.CmsConfigItem;
 import com.jeecms.core.entity.CmsSite;
 import com.jeecms.core.entity.CmsUserExt;
 import com.jeecms.core.entity.MemberConfig;
 import com.jeecms.core.entity.UnifiedUser;
+import com.jeecms.core.manager.AreaMng;
 import com.jeecms.core.manager.AuthenticationMng;
 import com.jeecms.core.manager.CmsConfigItemMng;
 import com.jeecms.core.manager.CmsUserMng;
@@ -39,8 +41,12 @@ import com.jeecms.core.manager.UnifiedUserMng;
 import com.jeecms.core.web.WebErrors;
 import com.jeecms.core.web.util.CmsUtils;
 import com.jeecms.core.web.util.FrontUtils;
+import com.jeecms.lawyer.entity.Lawyer;
+import com.jeecms.lawyer.manager.LawyerMng;
 import com.octo.captcha.service.CaptchaServiceException;
 import com.octo.captcha.service.image.ImageCaptchaService;
+
+import net.sf.json.JSONArray;
 
 /**
  * 前台会员注册Action
@@ -157,16 +163,42 @@ public class RegisterAct {
 					"member.registerClose");
 		}
 		List<CmsConfigItem>items=cmsConfigItemMng.getList(site.getConfig().getId(), CmsConfigItem.CATEGORY_REGISTER);
+		List<Area> areaList = areaManager.getList();
+
+		String areaListJson = JSONArray.fromObject(areaList).toString();
+		model.addAttribute("areaListJson", areaListJson);
+		model.addAttribute("areaList", areaList);
 		FrontUtils.frontData(request, model, site);
 		model.addAttribute("mcfg", mcfg);
 		model.addAttribute("items", items);
+		
 		return FrontUtils.getTplPath(request, site.getSolutionPath(),
 				TPLDIR_MEMBER, REGISTERLAWYER);
 	}
+/**
+ * 律师注册-----未验证信箱（激活）
+ * @param username
+ * @param email
+ * @param password
+ * @param groupId
+ * @param grain
+ * @param provinceId
+ * @param cityId
+ * @param regionId
+ * @param userExt
+ * @param lawyer
+ * @param captcha
+ * @param nextUrl
+ * @param request
+ * @param response
+ * @param model
+ * @return
+ * @throws IOException
+ */
 
 	@RequestMapping(value = "/registerLawyer.jspx", method = RequestMethod.POST)
-	public String submitLawyer(String username, String email, String password,
-			CmsUserExt userExt, String captcha, String nextUrl,
+	public String submitLawyer(String username, String email, String password,Integer groupId,Integer grain,Integer provinceId,Integer cityId,Integer regionId,
+			CmsUserExt userExt, Lawyer lawyer,String captcha, String nextUrl,
 			HttpServletRequest request, HttpServletResponse response,
 			ModelMap model) throws IOException {
 		CmsSite site = CmsUtils.getSite(request);
@@ -182,7 +214,7 @@ public class RegisterAct {
 		}
 		String ip = RequestUtils.getIpAddr(request);
 		Map<String,String>attrs=RequestUtils.getRequestMap(request, "attr_");
-		if (config.getEmailValidate()) {
+/*		if (config.getEmailValidate()) {
 			EmailSender sender = configMng.getEmailSender();
 			MessageTemplate msgTpl = configMng.getRegisterMessageTemplate();
 			if (sender == null) {
@@ -193,8 +225,7 @@ public class RegisterAct {
 				model.addAttribute("status", 5);
 			} else {
 				try {
-					cmsUserMng.registerMember(username, email, password, ip,
-							null,disabled,userExt,attrs, false, sender, msgTpl);
+					lawyerMng.registerMember(username, email, password, ip, groupId, grain, provinceId, cityId, regionId, disabled, userExt, lawyer, attrs);
 					model.addAttribute("status", 0);
 				} catch (UnsupportedEncodingException e) {
 					// 发送邮件异常
@@ -217,15 +248,15 @@ public class RegisterAct {
 				return FrontUtils.getTplPath(request, site.getSolutionPath(),
 						TPLDIR_MEMBER, REGISTER_RESULT);
 			}
-		} else {
-			cmsUserMng.registerMember(username, email, password, ip, null,null,disabled,userExt,attrs);
+		} else {*/
+			lawyerMng.registerMember(username, email, password, ip, groupId, grain, provinceId, cityId, regionId, disabled, userExt, lawyer, attrs);
 			log.info("member register success. username={}", username);
 			FrontUtils.frontData(request, model, site);
 			FrontUtils.frontPageData(request, model);
 			model.addAttribute("success", true);
 			return FrontUtils.getTplPath(request, site.getSolutionPath(),
 					TPLDIR_MEMBER, LOGIN_INPUT);
-		}
+/*		}*/
 
 	}
 	@RequestMapping(value = "/active.jspx", method = RequestMethod.GET)
@@ -369,4 +400,8 @@ public class RegisterAct {
 	private AuthenticationMng authMng;
 	@Autowired
 	private CmsConfigItemMng cmsConfigItemMng;
+	@Autowired
+	private AreaMng areaManager;
+	@Autowired
+	private LawyerMng lawyerMng;
 }
