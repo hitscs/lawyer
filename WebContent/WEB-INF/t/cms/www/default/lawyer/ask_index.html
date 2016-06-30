@@ -12,11 +12,7 @@
 <script src="/${res}/lawyer/js/common.js" type="text/javascript"></script>
 <script type="text/javascript" src="/${res}/lawyer/js/jquery.spinner.js"></script>
 <script type="text/javascript">
-    $(function() {
 
-	$("#d").Spinner();
-
-    });
 </script>
 </head>
 <body>
@@ -66,39 +62,46 @@
 					<img src="/${res}/lawyer/images/tel.jpg" />
 				</h2>
 				<form action="" name="" id="" method="post">
-				<input type="hidden" id="channelId" name="channelId" value=""/>
-				<input type="hidden" id="" name="" value=""/>
-				<input type="hidden" id="" name="" value=""/>
-				<input type="hidden" id="" name="" value=""/>
-				<input type="hidden" id="" name="" value=""/>
-				
-				<div class="consult_a">
-					<div class="consult_a_t">把你的困难告诉律师吧</div>
-					<div class="consult_b">
-						<div class="consult_b_title">
-							<input type="text" id="title"  name="title" required="true" value="点击这里输入问题标题" onfocus="if (value =='点击这里输入问题标题'){value =''}" onblur="if (value ==''){value='点击这里输入问题标题'}" />
+					<input type="hidden" id="channelId" name="channelId" value="" /> <input type="hidden" id="" name="" value="" /> <input type="hidden" id="" name="" value="" /> <input type="hidden" id="" name="" value="" /> <input type="hidden" id="" name="" value="" />
+					<div class="consult_a">
+						<div class="consult_a_t">把你的困难告诉律师吧</div>
+						<div class="consult_b">
+							<div class="consult_b_title">
+								<input type="text" id="title" name="title" required="true" value="点击这里输入问题标题" onfocus="if (value =='点击这里输入问题标题'){value =''}" onblur="if (value ==''){value='点击这里输入问题标题'}" />
+							</div>
+							<h4>
+								<strong>问题分类：</strong>
+								 <select id="professionalField" name="professionalField" class="droplist" style="z-index: 6;">
+								 <option value="">--选择分类--</option>
+								 [#list lawyerTypeList as a] [#if a.pId==0 ]
+									<option value="${a.id}">${a.name}</option>
+									[#list lawyerTypeList as c] 
+									[#if a.id==c.pId]
+									<option value="${c.id}">&nbsp;&nbsp;&nbsp;&nbsp;|--${c.name}</option>
+									[/#if] 
+									[/#list] 
+									[/#if] 
+									[/#list]
+								</select>
+							</h4>
+							<div class="consult_b_con">
+								<textarea name="description"  maxlength="255" onfocus="if (value =='请在此输入所需问题的内容，问题说明越详细，回到问题就会越准确！'){value =''}" onblur="if (value ==''){value='请在此输入所需问题的内容，问题说明越详细，回到问题就会越准确！'}">请在此输入所需问题的内容，问题说明越详细，回到问题就会越准确！</textarea>
+							</div>
 						</div>
-						<h4>
-							<strong>问题分类：</strong><select></select>
-						</h4>
-						<div class="consult_b_con">
-							<textarea onfocus="if (value =='请在此输入所需问题的内容，问题说明越详细，回到问题就会越准确！'){value =''}" onblur="if (value ==''){value='请在此输入所需问题的内容，问题说明越详细，回到问题就会越准确！'}">请在此输入所需问题的内容，问题说明越详细，回到问题就会越准确！</textarea>
-						</div>
-					</div>
-					<div class="consult_c">
-						<dl>
-							<a href="#" class="consult_c_btn">提交问题</a>
-							<dt>
-								<span>手机号码：</span><input type="text" value="手机号码" onfocus="if (value =='手机号码'){value =''}" onblur="if (value ==''){value='手机号码'}" />
-							</dt>
-<!-- 							<dd>
+						<div class="consult_c">
+							<dl>
+								<a href="#" class="consult_c_btn">提交问题</a>
+								<dt>
+									<span>手机号码：</span><input type="text" value="手机号码" onfocus="if (value =='手机号码'){value =''}" onblur="if (value ==''){value='手机号码'}" />
+								</dt>
+								<!-- 							<dd>
 								<span>悬赏：</span>
 								<div id="d" class="Spinner"></div>
 							</dd> -->
-							<h6 class="clear"></h6>
-						</dl>
+								<h6 class="clear"></h6>
+							</dl>
+						</div>
 					</div>
-				</div>
 				</form>
 				<div class="consult_d">
 					<div class="consult_d_t">

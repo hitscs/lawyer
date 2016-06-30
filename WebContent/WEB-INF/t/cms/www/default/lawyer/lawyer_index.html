@@ -122,6 +122,7 @@
 									<dt>专业分类：</dt>
 									<dd>
 											<select id="professionalField" name="professionalField" class="droplist" style="z-index: 6;">
+											<option value="">--选择分类--</option>
 											[#list lawyerTypeList as a] 
 											   [#if a.pId==0 ]
 											    <option value="${a.id}">${a.name}</option>
