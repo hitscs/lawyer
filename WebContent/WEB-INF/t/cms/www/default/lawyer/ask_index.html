@@ -1,0 +1,316 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>法律咨询</title>
+<link type="text/css" rel="stylesheet" href="/${res}/lawyer/css/style.css" />
+<!-- <script src="/${res}/lawyer/js/jquery-1.8.2.min.js" type="text/javascript"></script> -->
+<link type="text/css" rel="stylesheet" href="/${res}/lawyer/css/promotion_index.css" />
+<!-- <script src="/${res}/lawyer/js/js_jquery-1.11.1.min.js" type="text/javascript"></script> -->
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="/${res}/lawyer/js/common.js" type="text/javascript"></script>
+<script type="text/javascript" src="/${res}/lawyer/js/jquery.spinner.js"></script>
+<script type="text/javascript">
+    $(function() {
+
+	$("#d").Spinner();
+
+    });
+</script>
+</head>
+<body>
+	[#include "../lawyer/include/header.html"/] [#include "../lawyer/include/search_csi.html"/] [#include "../lawyer/include/navi.html"/]
+	<div id="wrapper">
+		<div class="imain">
+			<div class="ileft">
+				<div class="tabPanel">
+					<ul class="ileft_a">
+						<li class="hit"><span>按地区找咨询</span></li>
+						<li><span class="fr">按专业找咨询</span></li>
+					</ul>
+					<div class="panes">
+						<div class="pane" style="display: block;">
+							<ul class="pane_a">
+								<li>
+									<h3>北京地区</h3>
+									<div class="pane_list">
+										<a href="#">海淀律师</a> <a href="#">海淀律师</a> <a href="#">海淀律师</a> <a href="#">海淀律师</a> <a href="#">海淀律师</a> <a href="#">海淀律师</a>
+										<h6 class="clear"></h6>
+									</div>
+								</li>
+							</ul>
+							<ul class="pane_b">
+								<li>
+									<h3>热门专业律师</h3>
+									<div class="pane_list">
+										<a href="#">北京离婚律师</a> <a href="#">北京房地产律师</a> <a href="#">北京刑事辩护律师</a> <a href="#">北京房地产律师</a> <a href="#">北京债权债务律师</a> <a href="#">北京离婚律师</a> <a href="#">北京房地产律师</a> <a href="#">北京离婚律师</a>
+										<h6 class="clear"></h6>
+									</div>
+								</li>
+							</ul>
+							<ul class="pane_c">
+								<li>
+									<h3>全国律师</h3>
+									<div class="pane_list" id="areaList">
+										<h6 class="clear"></h6>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="icenter">
+				<h2 class="consult_tel">
+					<img src="/${res}/lawyer/images/tel.jpg" />
+				</h2>
+				<form action="" name="" id="" method="post">
+				<input type="hidden" id="channelId" name="channelId" value=""/>
+				<input type="hidden" id="" name="" value=""/>
+				<input type="hidden" id="" name="" value=""/>
+				<input type="hidden" id="" name="" value=""/>
+				<input type="hidden" id="" name="" value=""/>
+				
+				<div class="consult_a">
+					<div class="consult_a_t">把你的困难告诉律师吧</div>
+					<div class="consult_b">
+						<div class="consult_b_title">
+							<input type="text" id="title"  name="title" required="true" value="点击这里输入问题标题" onfocus="if (value =='点击这里输入问题标题'){value =''}" onblur="if (value ==''){value='点击这里输入问题标题'}" />
+						</div>
+						<h4>
+							<strong>问题分类：</strong><select></select>
+						</h4>
+						<div class="consult_b_con">
+							<textarea onfocus="if (value =='请在此输入所需问题的内容，问题说明越详细，回到问题就会越准确！'){value =''}" onblur="if (value ==''){value='请在此输入所需问题的内容，问题说明越详细，回到问题就会越准确！'}">请在此输入所需问题的内容，问题说明越详细，回到问题就会越准确！</textarea>
+						</div>
+					</div>
+					<div class="consult_c">
+						<dl>
+							<a href="#" class="consult_c_btn">提交问题</a>
+							<dt>
+								<span>手机号码：</span><input type="text" value="手机号码" onfocus="if (value =='手机号码'){value =''}" onblur="if (value ==''){value='手机号码'}" />
+							</dt>
+<!-- 							<dd>
+								<span>悬赏：</span>
+								<div id="d" class="Spinner"></div>
+							</dd> -->
+							<h6 class="clear"></h6>
+						</dl>
+					</div>
+				</div>
+				</form>
+				<div class="consult_d">
+					<div class="consult_d_t">
+						<ul>
+							<li class="hit">最新法律咨询</li>
+							<li>最新本地咨询</li>
+						</ul>
+					</div>
+					<div class="clear"></div>
+					<div class="consult_d_con">
+						<ul style="display: block;">
+							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
+							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
+							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
+							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
+						</ul>
+						<ul>
+							<li><a href="#">最近活动最近活动最近活活</a></li>
+							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
+							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
+							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="iright">
+				<div class="title_t3">
+					<span>咨询之星</span>
+				</div>
+				<div class="star">
+					<div class="star_a">
+						<div class="star_a_l">
+							<img src="/${res}/lawyer/images/75265928562.jpg" />
+						</div>
+						<div class="star_a_r">
+							<h2>马丹洋律师</h2>
+							<h3>139 1093 8880</h3>
+							<p>介绍：最近活动最近活动最近活动最近活动最近活</p>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<ul>
+						<li><a href="#"><strong>李律师：</strong>是上本科大二时当的兵，请问复</a></li>
+						<li><a href="#"><strong>李律师：</strong>是上本科大二时当的兵，请问复</a></li>
+						<li><a href="#"><strong>李律师：</strong>是上本科大二时当的兵，请问复</a></li>
+						<li><a href="#"><strong>李律师：</strong>是上本科大二时当的兵，请问复</a></li>
+					</ul>
+				</div>
+				<div class="title_t3">
+					<span>推荐咨询律师</span>
+				</div>
+				<div class="star">
+					<div class="star_a">
+						<div class="star_a_l">
+							<img src="/${res}/lawyer/images/75265928562.jpg" />
+						</div>
+						<div class="star_a_r">
+							<h2>马丹洋律师</h2>
+							<h3>139 1093 8880</h3>
+							<p>介绍：最近活动最近活动最近活动最近活动最近活</p>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="star_a">
+						<div class="star_a_l">
+							<img src="/${res}/lawyer/images/75265928562.jpg" />
+						</div>
+						<div class="star_a_r">
+							<h2>马丹洋律师</h2>
+							<h3>139 1093 8880</h3>
+							<p>介绍：最近活动最近活动最近活动最近活动最近活</p>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="lawyer_gg">
+				<img src="/${res}/lawyer/images/gg_w.jpg" />
+			</div>
+			<div class="clear h20"></div>
+			<div class="ileft">
+				<div class="title_t3">
+					<span>精彩回答</span>
+				</div>
+				<div class="star">
+					<ul>
+						<li><a href="#">您好！我为了给孩子找工作，交给中间人</a></li>
+						<li><a href="#">您好！我为了给孩子找工作，交给中间人</a></li>
+						<li><a href="#">您好！我为了给孩子找工作，交给中间人</a></li>
+						<li><a href="#">您好！我为了给孩子找工作，交给中间人</a></li>
+						<li><a href="#">您好！我为了给孩子找工作，交给中间人</a></li>
+						<li><a href="#">您好！我为了给孩子找工作，交给中间人</a></li>
+						<li><a href="#">您好！我为了给孩子找工作，交给中间人</a></li>
+						<li><a href="#">您好！我为了给孩子找工作，交给中间人</a></li>
+						<li><a href="#">您好！我为了给孩子找工作，交给中间人</a></li>
+						<li><a href="#">您好！我为了给孩子找工作，交给中间人</a></li>
+						<li><a href="#">您好！我为了给孩子找工作，交给中间人</a></li>
+						<li><a href="#">您好！我为了给孩子找工作，交给中间人</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="icenter">
+				<div class="title_t3">
+					<span>热门咨询</span>
+				</div>
+				<div class="star">
+					<ul>
+						<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请的兵，请问复二时</a></li>
+						<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请的兵，请问复二时</a></li>
+						<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请的兵，请问复二时</a></li>
+						<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请的兵，请问复二时</a></li>
+						<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请的兵，请问复二时</a></li>
+						<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请的兵，请问复二时</a></li>
+						<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请的兵，请问复二时</a></li>
+						<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请的兵，请问复二时</a></li>
+						<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请的兵，请问复二时</a></li>
+						<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请的兵，请问复二时</a></li>
+						<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请的兵，请问复二时</a></li>
+						<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请的兵，请问复二时</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="iright">
+				<div class="title_t3">
+					<span>律师回复排行榜</span>
+				</div>
+				<div class="reply">
+					<div class="reply_box">
+						<a href="#" class="reply_box_btn">免费<br />咨询
+						</a>
+						<div class="reply_l">
+							<div class="reply_pic">
+								<img src="/${res}/lawyer/images/75265928562.jpg" />
+							</div>
+							<div class="reply_r">
+								<h2>
+									<a href="#">马丹洋律师</a>
+								</h2>
+								<h3>
+									解决问题总数：<em>15796</em>
+								</h3>
+								<h4>139 1093 8880</h4>
+							</div>
+						</div>
+					</div>
+					<div class="reply_box">
+						<a href="#" class="reply_box_btn">免费<br />咨询
+						</a>
+						<div class="reply_l">
+							<div class="reply_pic">
+								<img src="/${res}/lawyer/images/75265928562.jpg" />
+							</div>
+							<div class="reply_r">
+								<h2>
+									<a href="#">马丹洋律师</a>
+								</h2>
+								<h3>
+									解决问题总数：<em>15796</em>
+								</h3>
+								<h4>139 1093 8880</h4>
+							</div>
+						</div>
+					</div>
+					<div class="reply_box">
+						<a href="#" class="reply_box_btn">免费<br />咨询
+						</a>
+						<div class="reply_l">
+							<div class="reply_pic">
+								<img src="/${res}/lawyer/images/75265928562.jpg" />
+							</div>
+							<div class="reply_r">
+								<h2>
+									<a href="#">马丹洋律师</a>
+								</h2>
+								<h3>
+									解决问题总数：<em>15796</em>
+								</h3>
+								<h4>139 1093 8880</h4>
+							</div>
+						</div>
+					</div>
+					<div class="reply_box">
+						<a href="#" class="reply_box_btn">免费<br />咨询
+						</a>
+						<div class="reply_l">
+							<div class="reply_pic">
+								<img src="/${res}/lawyer/images/75265928562.jpg" />
+							</div>
+							<div class="reply_r">
+								<h2>
+									<a href="#">马丹洋律师</a>
+								</h2>
+								<h3>
+									解决问题总数：<em>15796</em>
+								</h3>
+								<h4>139 1093 8880</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="clear h20"></div>
+	[#include "../lawyer/include/footer.html"/]
+	<!--[if lte ie 6]>
+<script src="/${res}/lawyer/js/iepng.js" type="text/javascript"></script>
+<script type="text/javascript">
+   EvPNG.fix('div,ul,img,li,input,a,img,p,span');
+</script>
+<![endif]-->
+</body>
+</html>

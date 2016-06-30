@@ -30,10 +30,7 @@ import net.sf.json.JSONArray;
 
 @Controller
 public class AskAct {
-	public static final String INDEX = "tpl.lawyerIndex";
-	public static final String DETAIL = "tpl.lawyerDetail";
-	public static final String LAWYERLIST = "tpl.lawyerList";
-	public static final String LVSUOLIST = "tpl.lvsuoList";
+	public static final String ASK = "tpl.askIndex";
 	@Autowired
 	private LawyerMng lawyerMng;
 	@Autowired
@@ -41,7 +38,7 @@ public class AskAct {
 	@Autowired
 	private LawyerTypeMng lawyerTypeManager;
 
-	@RequestMapping(value = { "/lawyer/index.jspx" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	@RequestMapping(value = { "/lawyer/ask.jspx" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
 	public String index(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 
@@ -52,12 +49,23 @@ public class AskAct {
 		model.addAttribute("areaListJson", areaListJson);
 		model.addAttribute("areaList", areaList);
 		model.addAttribute("lawyerTypeList", lawyerTypeList);
-		model.addAttribute("currentMenu", "lawyerIndex");
+		model.addAttribute("currentMenu", "askIndex");
 		FrontUtils.frontData(request, model, site);
 		FrontUtils.frontPageData(request, model);
-		return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", INDEX);
+		return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", ASK);
 	}
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+/*
 	@RequestMapping(value = { "/lawyer/detail.jspx" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
 	public String detail(Integer id, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
@@ -73,8 +81,8 @@ public class AskAct {
 		model.addAttribute("lawyer", lawyer);
 		FrontUtils.frontData(request, model, site);
 		return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", "tpl.lawyerDetail");
-	}
-
+	}*/
+/*
 	@RequestMapping(value = { "/lawyer/lawyerList.jspx" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
 	public String lawyerList(String realname, String professionalField, String goodAtField, Integer groupId, Integer provinceId, Integer cityId, Integer regionId, HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
@@ -114,5 +122,5 @@ public class AskAct {
 		ResponseUtils.renderJson(response, json);
 
 		return null;
-	}
+	}*/
 }
