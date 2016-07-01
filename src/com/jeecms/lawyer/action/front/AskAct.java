@@ -9,30 +9,41 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.jeecms.common.page.Pagination;
-import com.jeecms.common.web.ResponseUtils;
+import com.jeecms.cms.entity.main.Channel;
+import com.jeecms.cms.entity.main.CmsModel;
+import com.jeecms.cms.entity.main.Content;
+import com.jeecms.cms.entity.main.ContentExt;
+import com.jeecms.cms.entity.main.ContentTxt;
+import com.jeecms.cms.entity.main.ContentType;
+import com.jeecms.cms.manager.main.ChannelMng;
+import com.jeecms.cms.manager.main.CmsModelMng;
+import com.jeecms.cms.manager.main.ContentMng;
+import com.jeecms.cms.manager.main.ContentTypeMng;
+import com.jeecms.common.upload.FileRepository;
+import com.jeecms.common.util.StrUtils;
+import com.jeecms.common.web.RequestUtils;
+import com.jeecms.common.web.session.SessionProvider;
 import com.jeecms.core.entity.Area;
 import com.jeecms.core.entity.CmsSite;
 import com.jeecms.core.entity.CmsUser;
-import com.jeecms.core.entity.CmsUserExt;
+import com.jeecms.core.entity.MemberConfig;
 import com.jeecms.core.manager.AreaMng;
 import com.jeecms.core.web.WebErrors;
 import com.jeecms.core.web.util.CmsUtils;
 import com.jeecms.core.web.util.FrontUtils;
-import com.jeecms.lawyer.entity.Lawyer;
 import com.jeecms.lawyer.entity.LawyerType;
 import com.jeecms.lawyer.manager.LawyerMng;
 import com.jeecms.lawyer.manager.LawyerTypeMng;
+import com.octo.captcha.service.CaptchaServiceException;
+import com.octo.captcha.service.image.ImageCaptchaService;
 
 import net.sf.json.JSONArray;
 
 @Controller
 public class AskAct {
 	public static final String ASK = "tpl.askIndex";
-	@Autowired
-	private LawyerMng lawyerMng;
+
 	@Autowired
 	private AreaMng areaManager;
 	@Autowired
@@ -56,8 +67,72 @@ public class AskAct {
 	}
 	
 	
-	
-	
+	@RequestMapping(value = "/lawyer/ask_save.jspx")
+	public String save(String title, String author, String description,
+			String txt, String tagStr, Integer channelId, Integer modelId,
+			String captcha,String mediaPath,String mediaType,
+			String[] attachmentPaths, String[] attachmentNames,
+			String[] attachmentFilenames, String[] picPaths, String[] picDescs,
+			String nextUrl, HttpServletRequest request,
+			HttpServletResponse response, ModelMap model) {
+		CmsSite site = CmsUtils.getSite(request);
+		CmsUser user = CmsUtils.getUser(request);
+		FrontUtils.frontData(request, model, site);
+		MemberConfig mcfg = site.getConfig().getMemberConfig();
+		// 没有开启会员功能
+		if (!mcfg.isMemberOn()) {
+			return FrontUtils.showMessage(request, model, "member.memberClose");
+		}
+		if (user == null) {
+			return FrontUtils.showLogin(request, model, site);
+		}
+		WebErrors errors = validateSave(title, author, description, txt,
+				tagStr, channelId, site, user, captcha, request, response);
+		if (errors.hasErrors()) {
+			return FrontUtils.showError(request, response, model, errors);
+		}
+
+		Content c = new Content();
+		c.setSite(site);
+		CmsModel defaultModel=cmsModelMng.getDefModel();
+		if(modelId!=null){
+			CmsModel m=cmsModelMng.findById(modelId);
+			if(m!=null){
+				c.setModel(m);
+			}else{
+				c.setModel(defaultModel);
+			}
+		}else{
+			c.setModel(defaultModel);
+		}
+		
+		ContentExt ext = new ContentExt();
+		ext.setTitle(title);
+		ext.setAuthor(author);
+		ext.setDescription(description);
+		ext.setMediaPath(mediaPath);
+		ext.setMediaType(mediaType);
+		
+		ContentTxt t = new ContentTxt();
+		t.setTxt(txt);
+		ContentType type = contentTypeMng.getDef();
+		if (type == null) {
+			throw new RuntimeException("Default ContentType not found.");
+		}
+		Integer typeId = type.getId();
+		String[] tagArr = StrUtils.splitAndTrim(tagStr, ",", null);
+		c.setAttr(RequestUtils.getRequestMap(request, "attr_"));
+		c = contentMng.save(c, ext, t, null, null, null, tagArr, attachmentPaths,attachmentNames, attachmentFilenames
+				,picPaths,picDescs,channelId, typeId, null,true, user, true);
+		//return FrontUtils.showSuccess(request, model, nextUrl);
+		
+		model.addAttribute("currentMenu", "askIndex");
+		FrontUtils.frontData(request, model, site);
+		FrontUtils.frontPageData(request, model);
+		return "redirect:ask.jspx";
+		//return "redirect:/comment.jspx?contentId="+c.getId();
+		//return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", ASK);
+	}	
 	
 	
 	
@@ -123,4 +198,73 @@ public class AskAct {
 
 		return null;
 	}*/
+	private WebErrors validateSave(String title, String author,
+			String description, String txt, String tagStr, Integer channelId,
+			CmsSite site, CmsUser user, String captcha,
+			HttpServletRequest request, HttpServletResponse response) {
+		WebErrors errors = WebErrors.create(request);
+		//先不验证验证码
+/*		try {
+			if (!imageCaptchaService.validateResponseForID(session
+					.getSessionId(request, response), captcha)) {
+				errors.addErrorCode("error.invalidCaptcha");
+				return errors;
+			}
+		} catch (CaptchaServiceException e) {
+			errors.addErrorCode("error.exceptionCaptcha");
+			return errors;
+		}*/
+		if (errors.ifBlank(title, "title", 150)) {
+			return errors;
+		}
+		if (errors.ifMaxLength(author, "author", 100)) {
+			return errors;
+		}
+		if (errors.ifMaxLength(description, "description", 255)) {
+			return errors;
+		}
+		
+		if (errors.ifMaxLength(tagStr, "tagStr", 255)) {
+			return errors;
+		}
+		if (errors.ifNull(channelId, "channelId")) {
+			return errors;
+		}
+		if (vldChannel(errors, site, user, channelId)) {
+			return errors;
+		}
+		return errors;
+	}
+	private boolean vldChannel(WebErrors errors, CmsSite site, CmsUser user,
+			Integer channelId) {
+		Channel channel = channelMng.findById(channelId);
+		if (errors.ifNotExist(channel, Channel.class, channelId)) {
+			return true;
+		}
+		if (!channel.getSite().getId().equals(site.getId())) {
+			errors.notInSite(Channel.class, channelId);
+			return true;
+		}
+		if (!channel.getContriGroups().contains(user.getGroup())) {
+			errors.noPermission(Channel.class, channelId);
+			return true;
+		}
+		return false;
+	}
+	
+	
+	@Autowired
+	protected ContentMng contentMng;
+	@Autowired
+	protected ContentTypeMng contentTypeMng;
+	@Autowired
+	protected ChannelMng channelMng;
+	@Autowired
+	protected CmsModelMng cmsModelMng;
+	@Autowired
+	protected SessionProvider session;
+	@Autowired
+	protected FileRepository fileRepository;
+	@Autowired
+	protected ImageCaptchaService imageCaptchaService;
 }

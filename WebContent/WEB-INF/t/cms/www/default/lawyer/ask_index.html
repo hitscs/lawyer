@@ -12,7 +12,7 @@
 <script src="/${res}/lawyer/js/common.js" type="text/javascript"></script>
 <script type="text/javascript" src="/${res}/lawyer/js/jquery.spinner.js"></script>
 <script type="text/javascript">
-
+$("#jvForm").validate();
 </script>
 </head>
 <body>
@@ -61,8 +61,12 @@
 				<h2 class="consult_tel">
 					<img src="/${res}/lawyer/images/tel.jpg" />
 				</h2>
-				<form action="" name="" id="" method="post">
-					<input type="hidden" id="channelId" name="channelId" value="" /> <input type="hidden" id="" name="" value="" /> <input type="hidden" id="" name="" value="" /> <input type="hidden" id="" name="" value="" /> <input type="hidden" id="" name="" value="" />
+				<form action="ask_save.jspx" name="jvForm" id="jvForm">
+					<input type="hidden" id="channelId" name="channelId" value="79" /> 
+					<input type="hidden" id="modelId" name="modelId" value="12" /> 
+<!-- 					<input type="hidden" id="" name="" value="" /> 
+					<input type="hidden" id="" name="" value="" /> 
+					<input type="hidden" id="" name="" value="" /> -->
 					<div class="consult_a">
 						<div class="consult_a_t">把你的困难告诉律师吧</div>
 						<div class="consult_b">
@@ -71,7 +75,7 @@
 							</div>
 							<h4>
 								<strong>问题分类：</strong>
-								 <select id="professionalField" name="professionalField" class="droplist" style="z-index: 6;">
+								 <select id="attr_askType" name="attr_askType" class="droplist" style="z-index: 6;">
 								 <option value="">--选择分类--</option>
 								 [#list lawyerTypeList as a] [#if a.pId==0 ]
 									<option value="${a.id}">${a.name}</option>
@@ -85,19 +89,18 @@
 								</select>
 							</h4>
 							<div class="consult_b_con">
-								<textarea name="description"  maxlength="255" onfocus="if (value =='请在此输入所需问题的内容，问题说明越详细，回到问题就会越准确！'){value =''}" onblur="if (value ==''){value='请在此输入所需问题的内容，问题说明越详细，回到问题就会越准确！'}">请在此输入所需问题的内容，问题说明越详细，回到问题就会越准确！</textarea>
+								<textarea id="txt" name="txt"  required="true"  onfocus="if (value =='请在此输入所需问题的内容，问题说明越详细，回到问题就会越准确！'){value =''}" onblur="if (value ==''){value='请在此输入所需问题的内容，问题说明越详细，回到问题就会越准确！'}">请在此输入所需问题的内容，问题说明越详细，回到问题就会越准确！</textarea>
 							</div>
 						</div>
 						<div class="consult_c">
 							<dl>
-								<a href="#" class="consult_c_btn">提交问题</a>
+								<input type="submit" value="提交问题" class="consult_c_btn"/>
 								<dt>
-									<span>手机号码：</span><input type="text" value="手机号码" onfocus="if (value =='手机号码'){value =''}" onblur="if (value ==''){value='手机号码'}" />
-								</dt>
-								<!-- 							<dd>
-								<span>悬赏：</span>
-								<div id="d" class="Spinner"></div>
-							</dd> -->
+									<span>手机号码：</span><input type="text" id="attr_telephone" name="attr_telephone" value="手机号码" required="true" onfocus="if (value =='手机号码'){value =''}" onblur="if (value ==''){value='手机号码'}" />
+<!-- 																<span>验证码：</span><input type="text" name="captcha" maxlength="20" class="required"/> <img src="${base}/captcha.svl" onclick="this.src='${base}/captcha.svl?d='+new Date()*1" width="100" height="35"/></div>
+								
+ -->								</dt>
+
 								<h6 class="clear"></h6>
 							</dl>
 						</div>
@@ -107,23 +110,24 @@
 					<div class="consult_d_t">
 						<ul>
 							<li class="hit">最新法律咨询</li>
-							<li>最新本地咨询</li>
+							<!-- <li>最新本地咨询</li> -->
 						</ul>
 					</div>
 					<div class="clear"></div>
 					<div class="consult_d_con">
 						<ul style="display: block;">
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
+						[@cms_content_list count='4' orderBy='4'  titLen='18' channelOption='1' channelId='79']
+						 [#list tag_list as a]
+							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li>
+						 [/#list] 
+						 [/@cms_content_list]
 						</ul>
-						<ul>
+<!-- 						<ul>
 							<li><a href="#">最近活动最近活动最近活活</a></li>
 							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
 							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
 							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
-						</ul>
+						</ul> -->
 					</div>
 				</div>
 			</div>
