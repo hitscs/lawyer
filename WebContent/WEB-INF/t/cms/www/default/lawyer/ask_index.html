@@ -12,7 +12,7 @@
 <script src="/${res}/lawyer/js/common.js" type="text/javascript"></script>
 <script type="text/javascript" src="/${res}/lawyer/js/jquery.spinner.js"></script>
 <script type="text/javascript">
-$("#jvForm").validate();
+//$("#jvForm").validate();
 </script>
 </head>
 <body>
@@ -61,7 +61,7 @@ $("#jvForm").validate();
 				<h2 class="consult_tel">
 					<img src="/${res}/lawyer/images/tel.jpg" />
 				</h2>
-				<form action="ask_save.jspx" name="jvForm" id="jvForm">
+				<form action="ask_save.jspx" name="form" id="form">
 					<input type="hidden" id="channelId" name="channelId" value="79" /> 
 					<input type="hidden" id="modelId" name="modelId" value="12" /> 
 <!-- 					<input type="hidden" id="" name="" value="" /> 
@@ -193,18 +193,11 @@ $("#jvForm").validate();
 				</div>
 				<div class="star">
 					<ul>
-						<li><a href="#">您好！我为了给孩子找工作，交给中间人</a></li>
-						<li><a href="#">您好！我为了给孩子找工作，交给中间人</a></li>
-						<li><a href="#">您好！我为了给孩子找工作，交给中间人</a></li>
-						<li><a href="#">您好！我为了给孩子找工作，交给中间人</a></li>
-						<li><a href="#">您好！我为了给孩子找工作，交给中间人</a></li>
-						<li><a href="#">您好！我为了给孩子找工作，交给中间人</a></li>
-						<li><a href="#">您好！我为了给孩子找工作，交给中间人</a></li>
-						<li><a href="#">您好！我为了给孩子找工作，交给中间人</a></li>
-						<li><a href="#">您好！我为了给孩子找工作，交给中间人</a></li>
-						<li><a href="#">您好！我为了给孩子找工作，交给中间人</a></li>
-						<li><a href="#">您好！我为了给孩子找工作，交给中间人</a></li>
-						<li><a href="#">您好！我为了给孩子找工作，交给中间人</a></li>
+						[@cms_content_list count='4' orderBy='4'  titLen='18' channelOption='1' channelId='79']
+						 [#list tag_list as a]
+							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li>
+						 [/#list] 
+						 [/@cms_content_list]
 					</ul>
 				</div>
 			</div>
@@ -214,18 +207,11 @@ $("#jvForm").validate();
 				</div>
 				<div class="star">
 					<ul>
-						<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请的兵，请问复二时</a></li>
-						<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请的兵，请问复二时</a></li>
-						<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请的兵，请问复二时</a></li>
-						<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请的兵，请问复二时</a></li>
-						<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请的兵，请问复二时</a></li>
-						<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请的兵，请问复二时</a></li>
-						<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请的兵，请问复二时</a></li>
-						<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请的兵，请问复二时</a></li>
-						<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请的兵，请问复二时</a></li>
-						<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请的兵，请问复二时</a></li>
-						<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请的兵，请问复二时</a></li>
-						<li><a href="#">李律师：是上本科大二时当的兵，请问复二时当的兵，请的兵，请问复二时</a></li>
+						[@cms_content_list count='4' orderBy='4'  titLen='18' channelOption='1' channelId='79']
+						 [#list tag_list as a]
+							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li>
+						 [/#list] 
+						 [/@cms_content_list]
 					</ul>
 				</div>
 			</div>

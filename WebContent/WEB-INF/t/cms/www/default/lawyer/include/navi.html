@@ -10,9 +10,12 @@
 			</dd>	
 			<dd [#if currentMenu??&&currentMenu="askIndex"] class="current"[/#if]>
 				<a href="${base}/lawyer/ask.jspx" target="_self" >法律咨询</a>
-			</dd>					
+			</dd>
+			<dd [#if currentMenu??&&currentMenu="entrustIndex"] class="current"[/#if]>
+				<a href="${base}/lawyer/entrust.jspx" target="_self" >案件委托</a>
+			</dd>									
 			        [#list tag_list as c]
-        [#if c_index<10&&c_index>1]
+        [#if c_index<10&&c_index>2]
         <dd [#if channel??&&channel.id==c.id] class="current" [/#if]>
         <a href="${c.url}"  target="_self" >${c.name}</a>
         </dd>

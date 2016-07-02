@@ -9,4 +9,5 @@
 	<bean id="lawyerFrontAct" class="com.jeecms.lawyer.action.front.LawyerAct"/>
 	<bean id="lawyerFrontIndexAct" class="com.jeecms.lawyer.action.front.IndexAct"/>
 	<bean id="askAct" class="com.jeecms.lawyer.action.front.AskAct"/>
+	<bean id="entrustAct" class="com.jeecms.lawyer.action.front.EntrustAct"/>
 </beans>
