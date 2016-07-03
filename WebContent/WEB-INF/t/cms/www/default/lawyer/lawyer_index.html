@@ -99,7 +99,7 @@
 							<ul>
 						 [@cms_content_list count='4' orderBy='4'  titLen='18' channelOption='1' channelId='160']
 						 [#list tag_list as a]
-							<li><a href="${a.goto!'#'}" target="_blank"> <img src="${a.typeImg!site.defImg}" width="470px" height="140px"/> </a></li>
+							<li><a href="${a.attr.goto!'#'}" target="_blank"> <img src="${a.typeImg!site.defImg}" width="470px" height="140px"/> </a></li>
 						 [/#list] 
 						 [/@cms_content_list]
 							</ul>

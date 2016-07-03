@@ -1,9 +1,13 @@
 <div class="toolbar">
 	<div class="toolbar-inner">
 		<a class="logo" target="_blank" href="#"><!-- <img width="141" height="50" alt="" src="/${res}/img/member/logo.gif" /> --></a>
-		[@cms_channel_list]<a class="index" target="_blank" href="${base}/">首页</a>
+		[@cms_channel_list]
+		<a class="index" target="_blank" href="${base}/">首页</a>
+		<a href="${base}/lawyer/index.jspx" target="_self" >专业律师</a>
+		<a href="${base}/lawyer/ask.jspx" target="_self" >法律咨询</a>
+		<a href="${base}/lawyer/entrust.jspx" target="_self" >案件委托</a>
 		[#list tag_list as c]
-		[#if c_index<8]
+		[#if c_index<10&&c_index>2]
 		<a target="_blank" href="${c.url}">${c.name}</a>
 		[/#if]
 		[/#list]<!-- <a target="_blank" href="/guestbook.jspx">留言板</a> -->

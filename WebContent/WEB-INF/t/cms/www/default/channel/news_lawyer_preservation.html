@@ -43,13 +43,13 @@
 					[@cms_content_list count='3' orderBy='4' titLen='8' channelOption='1' channelId='124'] [#list tag_list as a]
 					<dl>
 						<dt>
-							<a href="${a.goto!'#'}" target="_blank"><img src="${a.typeImg!site.defImg}" /></a>
+							<a href="${a.attr.goto!'#'}" target="_blank"><img src="${a.typeImg!site.defImg}" /></a>
 						</dt>
 						<dd>
 							<h2>
-								<a href="${a.goto!'#'}">[@text_cut s=a.title len=titLen /]</a>
+								<a href="${a.attr.goto!'#'}">[@text_cut s=a.title len=titLen /]</a>
 							</h2>
-							<h3>${a.telephone!'400-888-8340'}</h3>
+							<h3>${a.attr.telephone!'400-888-8340'}</h3>
 						</dd>
 					</dl>
 					[/#list] [/@cms_content_list]
@@ -70,7 +70,7 @@
 				<div class="hzjm">
 						 [@cms_content_list count='1' orderBy='4'  titLen='8' channelOption='1' channelId='125']
 						 [#list tag_list as a]
-						 <a href="${a.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="325px" height="154px"/></a> 						 
+						 <a href="${a.attr.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="325px" height="154px"/></a> 						 
 						 [/#list] 
 						 [/@cms_content_list]
 				</div>

@@ -149,13 +149,13 @@
  					[@cms_content_list count='3' orderBy='4' titLen='8' channelOption='1' channelId='102'] [#list tag_list as a]
 					<dl>
 						<dt>
-							<a href="${a.goto!'#'}" target="_blank"><img src="${a.typeImg!site.defImg}" width="110px" height="82px"/></a>
+							<a href="${a.attr.goto!'#'}" target="_blank"><img src="${a.typeImg!site.defImg}" width="110px" height="82px"/></a>
 						</dt>
 						<dd>
 							<h2>
-								<a href="${a.goto!'#'}">[@text_cut s=a.title len=titLen /]</a>
+								<a href="${a.attr.goto!'#'}">[@text_cut s=a.title len=titLen /]</a>
 							</h2>
-							<h3>${a.telephone!'400-888-8340'}</h3>
+							<h3>${a.attr.telephone!'400-888-8340'}</h3>
 						</dd>
 					</dl>
 					[/#list] [/@cms_content_list]           
@@ -197,9 +197,9 @@
 						 
 						 
 					<li>
-                        <h2><a href="${a.goto!'#'}" target="_blank"><img width="120" height="120" src="${a.typeImg!site.defImg}" /></a></h2>
-                        <p><a target="_blank" href="${a.goto!'#'}">[@text_cut s=a.title len=titLen /]</a></p>
-                        <span>${a.telephone!'400-888-8340'}</span>
+                        <h2><a href="${a.attr.goto!'#'}" target="_blank"><img width="120" height="120" src="${a.typeImg!site.defImg}" /></a></h2>
+                        <p><a target="_blank" href="${a.attr.goto!'#'}">[@text_cut s=a.title len=titLen /]</a></p>
+                        <span>${a.attr.telephone!'400-888-8340'}</span>
                     </li>
 						 
 						 [/#list] 

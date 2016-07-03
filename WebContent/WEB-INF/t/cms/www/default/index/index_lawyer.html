@@ -104,22 +104,13 @@
 						<div class="pane" style="display: block;">
 							<ul class="pane_a">
 								<li>
-									<h3>热点地区地区</h3>
+									<h3>热点地区</h3>
 									<div class="pane_list">
-										<a href="#">北京</a> <a href="#">上海</a> <a href="#">天津</a> <a href="#">广东</a> <a href="#">福建</a> <a href="#">河北</a><a href="#">山东</a><a href="#">浙江</a><a href="#">黑龙江</a><a href="#">湖南</a><a href="#">辽宁</a>
+										<a href="#">北京</a> <a href="#">上海</a> <a href="#">天津</a> <a href="#">重庆</a> <a href="#">广州</a> <a href="#">深圳</a><a href="#">武汉</a><a href="#">杭州</a><a href="#">南京</a><a href="#">沈阳</a><a href="#">成都</a><a href="#">济南</a>
 										<h6 class="clear"></h6>
 									</div>
 								</li>
 							</ul>
-<!-- 							<ul class="pane_b">
-								<li>
-									<h3>热门专业律师</h3>
-									<div class="pane_list">
-										<a href="#">北京离婚律师</a> <a href="#">北京房地产律师</a> <a href="#">北京刑事辩护律师</a> <a href="#">北京房地产律师</a> <a href="#">北京债权债务律师</a> <a href="#">北京离婚律师</a> <a href="#">北京房地产律师</a> <a href="#">北京离婚律师</a>
-										<h6 class="clear"></h6>
-									</div>
-								</li>
-							</ul> -->
 							<ul class="pane_c">
 								<li>
 									<h3>全国律师</h3>
@@ -143,7 +134,7 @@
 					<ul class="51buypic">
 						 [@cms_content_list count='5' orderBy='4'  titLen='18' channelOption='1' channelId='143']
 						 [#list tag_list as a]
-							<li><a href="${a.goto!'#'}" target="_blank"> <img src="${a.typeImg!site.defImg}"  /> </a></li>
+							<li><a href="${a.attr.goto!'#'}" target="_blank"> <img src="${a.typeImg!site.defImg}"  /> </a></li>
 						 [/#list] 
 						 [/@cms_content_list]						
 					</ul>
@@ -172,13 +163,13 @@
 						 
 						<dl>
 							<dt>
-								<a href="${a.goto!'#'}" target="_blank"><img src="${a.typeImg!site.defImg}" /></a>
+								<a href="${a.attr.goto!'#'}" target="_blank"><img src="${a.typeImg!site.defImg}" /></a>
 							</dt>
 							<dd>
 								<h2>
-									<a href="${a.goto!'#'}">[@text_cut s=a.title len=titLen /]</a>
+									<a href="${a.attr.goto!'#'}">[@text_cut s=a.title len=titLen /]</a>
 								</h2>
-								<h3>${a.telephone!'400-888-8340'}</h3>
+								<h3>${a.attr.telephone!'400-888-8340'}</h3>
 							</dd>
 						</dl>						 
 						 [/#list] 
@@ -213,15 +204,15 @@
 				<div class="ipic1">
 						 [@cms_content_list count='1' orderBy='4'  titLen='8' channelOption='1' channelId='235']
 						 [#list tag_list as a]
-						 <a href="${a.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="236px" height="112px"/></a> 						 
+						 <a href="${a.attr.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="236px" height="112px"/></a> 						 
 						 [/#list] 
 						 [/@cms_content_list]
 				</div>
 				<div class="category_nav">
 					<ul>
-						<li class="icon_1"><a href="" target="_blank">法律咨询</a></li>
-						<li class="icon_2"><a href="" target="_blank">案件委托</a></li>
-						<li class="icon_3"><a href="" target="_blank">专业律师</a></li>
+						<li class="icon_1"><a href="${base}/lawyer/ask.jspx" target="_blank">法律咨询</a></li>
+						<li class="icon_2"><a href="${base}/lawyer/entrust.jspx" target="_blank">案件委托</a></li>
+						<li class="icon_3"><a href="${base}/lawyer/index.jspx" target="_blank">专业律师</a></li>
 						<li class="icon_4"><a href="" target="_blank">新法速递</a></li>
 						<li class="icon_5"><a href="" target="_blank">经典案例</a></li>
 						<li class="icon_6"><a href="" target="_blank">律师时评</a></li>
@@ -238,7 +229,7 @@
 					<div class="jbls_con">
 						 [@cms_content_list count='3' orderBy='4'  titLen='8' channelOption='1' channelId='84']
 						 [#list tag_list as a]
-						 <a href="${a.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="270px" height="80px"/></a> 						 
+						 <a href="${a.attr.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="270px" height="80px"/></a> 						 
 						 [/#list] 
 						 [/@cms_content_list]
 					</div>
@@ -369,7 +360,7 @@
 				<ul>
 					[@cms_content_list count='4' orderBy='4'  titLen='8' channelOption='1' channelId='152']
 						[#list tag_list as a]
-						 <a href="${a.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="226px" height="90px"/></a> 						 
+						 <li><a href="${a.attr.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="226px" height="90px"/></a></li> 						 
 						[/#list] 
 					[/@cms_content_list]
 					<h6 class="clear"></h6>
@@ -389,7 +380,7 @@
 					[@cms_content_list count='4' orderBy='4'  titLen='8' channelOption='1' channelId='86']
 						[#list tag_list as a]
 							<dl>
-								<a href="${a.goto!'#'}">
+								<a href="${a.attr.goto!'#'}">
 									<dt>
 										<img src="${a.typeImg!site.defImg}" width="125px" height="105px"/>
 									</dt>
@@ -409,7 +400,7 @@
 						[@cms_content_list count='1' orderBy='4'  titLen='8' channelOption='1' channelId='155']
 						[#list tag_list as a]
 							
-								<a href="${a.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="270px" height="115px"/></a>
+								<a href="${a.attr.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="270px" height="115px"/></a>
 													 
 						[/#list] 
 					[/@cms_content_list]
@@ -469,20 +460,20 @@
 						<span>民事律师</span>
 					</h2>
 					<ul class="hunyin">
- 						 [@cms_content_list count='3' orderBy='4'  titLen='8' channelOption='1' channelId='238']
+ 						 [@cms_content_list count='8' orderBy='4'  titLen='8' channelOption='1' channelId='238']
 						 [#list tag_list as a]
 						 
 						<li>
 							<div class="h_people">
 								<p class="img">
-									<a href="${a.goto!'#'}" target="_blank"><img src="${a.typeImg!site.defImg}" width="65px" height="80px"/></a>
+									<a href="${a.attr.goto!'#'}" target="_blank"><img src="${a.typeImg!site.defImg}" width="65px" height="80px"/></a>
 								</p>
 							</div>
 							<div class="name">
-								<a href="${a.goto!'#'}" target="_blank">[@text_cut s=a.title len=titLen /]</a>
+								<a href="${a.attr.goto!'#'}" target="_blank">[@text_cut s=a.title len=titLen /]</a>
 							</div>
 							<div class="advisory">
-								<a href="${a.goto!'#'}" target="_blank">咨询律师</a>
+								<a href="${a.attr.goto!'#'}" target="_blank">咨询律师</a>
 							</div>
 						</li>						 
 						 
@@ -495,11 +486,11 @@
 				<div class="clear"></div>
 			</div>
 			<div class="clear"></div>
-			<div class="people">
+			<div class="people" style="margin-top: 15px">
 				<ul>
 					[@cms_content_list count='4' orderBy='4'  titLen='8' channelOption='1' channelId='153']
 						[#list tag_list as a]
-						 <a href="${a.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="226px" height="90px"/></a> 						 
+						 <li><a href="${a.attr.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="226px" height="90px"/></a></li> 						 
 						[/#list] 
 					[/@cms_content_list]
 					<h6 class="clear"></h6>
@@ -519,7 +510,7 @@
 					[@cms_content_list count='2' orderBy='4'  titLen='8' channelOption='1' channelId='158']
 						[#list tag_list as a]
 							<dl>
-								<a href="${a.goto!'#'}">
+								<a href="${a.attr.goto!'#'}">
 									<dt>
 										<img src="${a.typeImg!site.defImg}" width="125px" height="105px"/>
 									</dt>
@@ -540,7 +531,7 @@
 						[@cms_content_list count='1' orderBy='4'  titLen='8' channelOption='1' channelId='156']
 						[#list tag_list as a]
 							
-								<a href="${a.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="270px" height="115px"/></a>
+								<a href="${a.attr.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="270px" height="115px"/></a>
 													 
 						[/#list] 
 					[/@cms_content_list]
@@ -600,20 +591,20 @@
 						<span>商事律师</span>
 					</h2>
 					<ul class="hunyin">
- 						 [@cms_content_list count='3' orderBy='4'  titLen='8' channelOption='1' channelId='239']
+ 						 [@cms_content_list count='8' orderBy='4'  titLen='8' channelOption='1' channelId='239']
 						 [#list tag_list as a]
 						 
 						<li>
 							<div class="h_people">
 								<p class="img">
-									<a href="${a.goto!'#'}" target="_blank"><img src="${a.typeImg!site.defImg}" width="65px" height="80px"/></a>
+									<a href="${a.attr.goto!'#'}" target="_blank"><img src="${a.typeImg!site.defImg}" width="65px" height="80px"/></a>
 								</p>
 							</div>
 							<div class="name">
-								<a href="${a.goto!'#'}" target="_blank">[@text_cut s=a.title len=titLen /]</a>
+								<a href="${a.attr.goto!'#'}" target="_blank">[@text_cut s=a.title len=titLen /]</a>
 							</div>
 							<div class="advisory">
-								<a href="${a.goto!'#'}" target="_blank">咨询律师</a>
+								<a href="${a.attr.goto!'#'}" target="_blank">咨询律师</a>
 							</div>
 						</li>						 
 						 
@@ -625,11 +616,11 @@
 				<div class="clear"></div>
 			</div>
 			<div class="clear"></div>
-			<div class="people">
+			<div class="people" style="margin-top: 15px">
 				<ul>
 					[@cms_content_list count='4' orderBy='4'  titLen='8' channelOption='1' channelId='154']
 						[#list tag_list as a]
-						 <a href="${a.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="226px" height="90px"/></a> 						 
+						 <li><a href="${a.attr.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="226px" height="90px"/></a></li> 						 
 						[/#list] 
 					[/@cms_content_list]
 					<h6 class="clear"></h6>
@@ -649,7 +640,7 @@
 					[@cms_content_list count='4' orderBy='4'  titLen='8' channelOption='1' channelId='159']
 						[#list tag_list as a]
 							<dl>
-								<a href="${a.goto!'#'}">
+								<a href="${a.attr.goto!'#'}">
 									<dt>
 										<img src="${a.typeImg!site.defImg}" width="125px" height="105px"/>
 									</dt>
@@ -669,7 +660,7 @@
 						[@cms_content_list count='1' orderBy='4'  titLen='8' channelOption='1' channelId='157']
 						[#list tag_list as a]
 							
-								<a href="${a.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="270px" height="115px"/></a>
+								<a href="${a.attr.goto!'#'}"><img src="${a.typeImg!site.defImg}" width="270px" height="115px"/></a>
 													 
 						[/#list] 
 					[/@cms_content_list]
@@ -729,20 +720,20 @@
 						<span>刑事律师</span>
 					</h2>
 					<ul class="hunyin">
- 						 [@cms_content_list count='3' orderBy='4'  titLen='8' channelOption='1' channelId='240']
+ 						 [@cms_content_list count='8' orderBy='4'  titLen='8' channelOption='1' channelId='240']
 						 [#list tag_list as a]
 						 
 						<li>
 							<div class="h_people">
 								<p class="img">
-									<a href="${a.goto!'#'}" target="_blank"><img src="${a.typeImg!site.defImg}" width="65px" height="80px"/></a>
+									<a href="${a.attr.goto!'#'}" target="_blank"><img src="${a.typeImg!site.defImg}" width="65px" height="80px"/></a>
 								</p>
 							</div>
 							<div class="name">
-								<a href="${a.goto!'#'}" target="_blank">[@text_cut s=a.title len=titLen /]</a>
+								<a href="${a.attr.goto!'#'}" target="_blank">[@text_cut s=a.title len=titLen /]</a>
 							</div>
 							<div class="advisory">
-								<a href="${a.goto!'#'}" target="_blank">咨询律师</a>
+								<a href="${a.attr.goto!'#'}" target="_blank">咨询律师</a>
 							</div>
 						</li>						 
 						 

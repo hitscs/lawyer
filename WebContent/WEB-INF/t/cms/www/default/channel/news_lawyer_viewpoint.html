@@ -21,7 +21,7 @@
                 <ul class="slides">
                     [@cms_content_list count='5' orderBy='4'  titLen='18' channelOption='1' channelId='140']
 						 [#list tag_list as a]
-							<li><a href="${a.goto!'#'}" target="_blank"> <img src="${a.typeImg!site.defImg}" width="663px" height="248px"/> </a></li>
+							<li><a href="${a.attr.goto!'#'}" target="_blank"> <img src="${a.typeImg!site.defImg}" width="663px" height="248px"/> </a></li>
 						 [/#list] 
 					[/@cms_content_list]	
                 </ul>
@@ -81,11 +81,11 @@
 						[#list tag_list as a]
 							<dl>
 								<dt>
-									<a href="${a.goto!'#'}">
+									<a href="${a.attr.goto!'#'}">
 									<img src="${a.typeImg!site.defImg}" width="125px" height="105px"/>
 									</a>
 								</dt>
-								<dd><h2><a href="${a.goto!'#'}">${a.title}</a></h2></dd>
+								<dd><h2><a href="${a.attr.goto!'#'}">${a.title}</a></h2></dd>
 								
 							</dl>						 
 						[/#list] 

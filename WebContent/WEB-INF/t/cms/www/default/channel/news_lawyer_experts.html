@@ -58,8 +58,8 @@
 						 
 						 
 					<li>
-                        <h2><a href="${a.goto!'#'}" target="_blank"><img width="150" height="150" src="${a.typeImg!site.defImg}" /></a></h2>
-                        <p><a target="_blank" href="${a.goto!'#'}">[@text_cut s=a.title len=titLen /]</a></p>
+                        <h2><a href="${a.attr.goto!'#'}" target="_blank"><img width="150" height="150" src="${a.typeImg!site.defImg}" /></a></h2>
+                        <p><a target="_blank" href="${a.attr.goto!'#'}">[@text_cut s=a.title len=titLen /]</a></p>
                     </li>
 						 
 						 [/#list] 
@@ -94,13 +94,13 @@
 						 
 						<dl>
 							<dt>
-								<a href="${a.goto!'#'}" target="_blank"><img src="${a.typeImg!site.defImg}" width="58px" height="58px"/></a>
+								<a href="${a.attr.goto!'#'}" target="_blank"><img src="${a.typeImg!site.defImg}" width="58px" height="58px"/></a>
 							</dt>
 							<dd>
 								<h2>
-									<a href="${a.goto!'#'}">[@text_cut s=a.title len=titLen /]</a>
+									<a href="${a.attr.goto!'#'}">[@text_cut s=a.title len=titLen /]</a>
 								</h2>
-								<h3>${a.telephone!'400-888-8340'}</h3>
+								<h3>${a.attr.telephone!'400-888-8340'}</h3>
 							</dd>
 						</dl>						 
 						 [/#list] 

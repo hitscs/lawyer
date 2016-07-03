@@ -36,11 +36,11 @@ function qkeypress(){
     <div class="search_box">
       <div class="search">
         <form action="${base}/search.jspx" target="_blank" id="searchForm">
-<!--           <div id="pt1" class="select"> <a id="s0">综合</a>
-            <div style="display:none;" id="pt2" class="part">
+          <div id="pt1" class="select">站内搜索<!--  <a id="s0">综合</a> -->
+<!--             <div style="display:none;" id="pt2" class="part">
               <p> <a id="s1">咨询</a> <a id="s2">知识</a> <a id="s3">律师</a> <a id="s4">法规</a> <a id="s5">律所</a> <a id="s6">案例</a> <a id="s7">文集</a> </p>
-            </div>
-          </div> -->
+            </div> -->
+          </div> 
           <input name="q" value="${oldq!'请输入关键词'}" type="text" onfocus="if(this.value=='请输入关键词')this.value=''"  onkeypress="qkeypress()" onblur="if(this.value=='')this.value='请输入关键词'"  maxlength="50" autocomplete="off" class="enter">
           <input id="catid" name="catid" type="hidden" value="7">
           <input class="sb" name="Input" type="submit" value="马上搜索">

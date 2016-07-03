@@ -129,7 +129,7 @@ public class EntrustAct {
 		model.addAttribute("currentMenu", "askIndex");
 		FrontUtils.frontData(request, model, site);
 		FrontUtils.frontPageData(request, model);
-		return "redirect:ask.jspx";
+		return "redirect:entrust.jspx";
 		//return "redirect:/comment.jspx?contentId="+c.getId();
 		//return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", ASK);
 	}	
