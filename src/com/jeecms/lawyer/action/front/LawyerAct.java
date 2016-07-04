@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -76,14 +77,56 @@ public class LawyerAct {
 	}
 
 	@RequestMapping(value = { "/lawyer/lawyerList.jspx" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	public String lawyerList(String realname, String professionalField, String goodAtField, Integer groupId, Integer provinceId, Integer cityId, Integer regionId, HttpServletRequest request,
+	public String lawyerList(String realname, String professionalField, String goodAtField, String professionalFieldF, String goodAtFieldF,Integer groupId, Integer provinceId, Integer cityId, Integer regionId, HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
+		String professionalFieldS="";//用来查询的变量
+		String goodAtFieldS="";//用来查询的变量
+		String professionalFieldF1="";//过渡变量
+		String goodAtFieldF1="";//过渡变量
+		//一级为空二级不会空的话，通过二级查找到一级
+		if(StringUtils.isBlank(professionalFieldF)&&!StringUtils.isBlank(professionalField)){
+			professionalFieldF=lawyerTypeManager.findById(Integer.parseInt(professionalField)).getpId().toString();
+			
+		}
+		if(StringUtils.isBlank(goodAtFieldF)&&!StringUtils.isBlank(goodAtField)){
+			goodAtFieldF=lawyerTypeManager.findById(Integer.parseInt(goodAtField)).getpId().toString();
+			
+		}		
+		
+		
+		//goodAtFieldF与professionalFieldF是在筛选的时候作为一级分类的参数。查询还是靠二级分类
+		if (null != professionalFieldF && !professionalFieldF.trim().equals(""))
+			professionalFieldF1 = "," + professionalFieldF + ",";
+		if (null != goodAtFieldF && !goodAtFieldF.trim().equals(""))
+			goodAtFieldF1 = "," + goodAtFieldF + ",";
 		if (null != professionalField && !professionalField.trim().equals(""))
-			professionalField = "," + professionalField + ",";
+			professionalFieldS = "," + professionalField + ",";
+		else professionalFieldS=professionalFieldF1;
 		if (null != goodAtField && !goodAtField.trim().equals(""))
-			goodAtField = "," + goodAtField + ",";
-		Pagination pagination = lawyerMng.getPageByCondition(site.getId(), provinceId, cityId, regionId, realname, professionalField, goodAtField, groupId, false, false, null, 1, 10);
+			goodAtFieldS = "," + goodAtField + ",";
+		else goodAtFieldS=goodAtFieldF1;
+		
+		Pagination pagination = lawyerMng.getPageByCondition(site.getId(), provinceId, cityId, regionId, realname, professionalFieldS, goodAtFieldS, groupId, false, false, null, 1, 10);
+		List<Area> provinceList = areaManager.getList(0);
+		List<Area> cityList = null;
+		if(null!=provinceId){
+			cityList = areaManager.getList(provinceId);
+		}
+		
+		List<LawyerType> lawyerTypeList = lawyerTypeManager.getList();
+
+		model.addAttribute("provinceList", provinceList);
+		model.addAttribute("cityList", cityList);
+		model.addAttribute("lawyerTypeList", lawyerTypeList);
+		model.addAttribute("provinceId", provinceId);
+		model.addAttribute("cityId", cityId);
+		model.addAttribute("regionId", regionId);
+		model.addAttribute("professionalField", professionalField);
+		model.addAttribute("goodAtField", goodAtField);
+		model.addAttribute("professionalFieldF", professionalFieldF);
+		model.addAttribute("goodAtFieldF", goodAtFieldF);
+		
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("currentMenu", "lawyerIndex");
 		FrontUtils.frontData(request, model, site);
