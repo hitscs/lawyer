@@ -67,9 +67,24 @@ public class LawyerMngImpl implements LawyerMng {
 			attrOrig.clear();
 			attrOrig.putAll(attr);
 		}
-		cmsUserExtMng.update(ext, entity);
+		ext=cmsUserExtMng.update(ext, entity);
 		unifiedUserMng.update(id, password, email);
-		lawyerDao.update(lawyer,entity);
+		
+		Lawyer l=lawyerDao.findById(id);
+		
+		if (l == null) {
+			l = lawyerDao.save(lawyer,entity);
+
+		} else {
+			Updater<Lawyer> updater = new Updater<Lawyer>(l);
+			//updater.include("gender");
+			//updater.include("birthday");
+			l = lawyerDao.updateByUpdater(updater);
+
+		}
+		entity.getUserExtSet().add(ext);
+		entity.getLawyerSet().add(l);
+		
 		return entity;
 	}
 

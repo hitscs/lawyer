@@ -1,5 +1,6 @@
 package com.jeecms.lawyer.action.front;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -107,7 +108,42 @@ public class LawyerAct {
 			goodAtFieldS = "," + goodAtField + ",";
 		else goodAtFieldS=goodAtFieldF1;
 		
-		Pagination pagination = lawyerMng.getPageByCondition(site.getId(), provinceId, cityId, regionId, realname, professionalFieldS, goodAtFieldS, groupId, false, false, null, 1, 10);
+		Pagination pagination = lawyerMng.getPageByCondition(site.getId(), provinceId, cityId, regionId, realname, professionalFieldS, goodAtFieldS, 3, false, false, null, 1, 10);
+		//把取得的律师专业和特长由id转换为名称
+		if(pagination.getTotalCount()>0){
+			List<Object[]> list=new ArrayList<Object[]>();
+			for(int i=0;i<pagination.getTotalCount();i++){
+				Object[] obj=(Object[]) pagination.getList().get(i);
+				Lawyer lawyer =	(Lawyer) obj[2];
+				String professionalFieldString=lawyer.getProfessionalField();
+				//String goodAtFieldString=lawyer.getGoodAtField();
+				if(professionalFieldString!=null&&!professionalFieldString.equals("")){
+					professionalFieldString=professionalFieldString.substring(1, professionalFieldString.length()-1);
+					String[] pArray =professionalFieldString.split(",");
+					String pString="";
+					for(int j=0;j<pArray.length;j++){
+						LawyerType lawyerType = lawyerTypeManager.findById(Integer.parseInt(pArray[j]));
+						pString=pString+lawyerType.getName()+",";
+						
+					}
+					professionalFieldString=pString.substring(0, pString.length()-1);
+				}
+				lawyer.setProfessionalField(professionalFieldString);
+				obj[2]=lawyer;
+				list.add(obj);
+				
+			}
+			
+			pagination.setList(list);
+			
+			
+			
+			
+			
+			
+		}
+		
+		
 		List<Area> provinceList = areaManager.getList(0);
 		List<Area> cityList = null;
 		if(null!=provinceId){
@@ -126,7 +162,6 @@ public class LawyerAct {
 		model.addAttribute("goodAtField", goodAtField);
 		model.addAttribute("professionalFieldF", professionalFieldF);
 		model.addAttribute("goodAtFieldF", goodAtFieldF);
-		
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("currentMenu", "lawyerIndex");
 		FrontUtils.frontData(request, model, site);

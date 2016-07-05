@@ -12,9 +12,20 @@
 <script src="/${res}/lawyer/js/common.js" type="text/javascript"></script>
 <link type="text/css" rel="stylesheet" href="/${res}/lawyer/css/select.css" />
 <script type="text/javascript">
-    function searchLawyer(){
+    function searchLawyer(type,value){
 	
-    	$("#searchLawyerForm").submit();
+	if(type=="provinceId") {
+	    $("#provinceId").val(value);
+	    $("#cityId").val("");
+	}
+	if(type=="cityId") $("#cityId").val(value);
+	if(type=="professionalFieldF"){
+	    $("#professionalFieldF").val(value);
+	    $("#professionalField").val("");
+	}
+	if(type=="professionalField") $("#professionalField").val(value);
+	
+    $("#searchLawyerForm").submit();
     }
 </script>
 </head>
@@ -23,21 +34,21 @@
 	<div id="wrapper" style="margin-top: 0;">
 		<div class="main">
 		<form action="${base}/lawyer/lawyerList.jspx" id="searchLawyerForm" >
-		<input type="hidden" name="provinceId" id="provinceId" value="${provinceId}" />
-		<input type="hidden" name="cityId" id="cityId" value="${cityId}" />
-		<input type="hidden" name="professionalFieldF" id="professionalFieldF" value="${professionalFieldF}" />
-		<input type="hidden" name="professionalField" id="professionalField" value="${professionalField}" />
+		<input type="hidden" name="provinceId" id="provinceId" value="${provinceId!}" />
+		<input type="hidden" name="cityId" id="cityId" value="${cityId!}" />
+		<input type="hidden" name="professionalFieldF" id="professionalFieldF" value="${professionalFieldF!}" />
+		<input type="hidden" name="professionalField" id="professionalField" value="${professionalField!}" />
 			<div class="selectNumberScreen">
 				<ul class="selectT">
 					<li class="select-list">
 						<dl id="select1">
 							<dt>所在省份：</dt>
-							<dd class="select-all selected">
-								<a href="#" onclick="searchLawyer()">全部</a>
+							<dd [#if provinceId??]class="select-all" [#else] class="select-all selected"[/#if] >
+								<a href="#" onclick="searchLawyer('provinceId','')">全部</a>
 							</dd>
 							[#list provinceList as a]
-							<dd>
-								<a href="#">${a.shortName}</a>
+							<dd [#if provinceId?? && provinceId?number==a.id ]class="selected" [/#if]>
+								<a href="#" onclick="searchLawyer('provinceId',${a.id})">${a.shortName}</a>
 							</dd>
 							[/#list]
 						</dl>
@@ -45,12 +56,12 @@
 					<li class="select-list">
 						<dl id="select2">
 							<dt>所在城市：</dt>
-							<dd class="select-all selected">
-								<a href="#">全部</a>
+							<dd [#if cityId??]class="select-all" [#else] class="select-all selected"[/#if]>
+								<a href="#" onclick="searchLawyer('cityId','')">全部</a>
 							</dd>
 							[#list cityList as a]
-							<dd>
-								<a href="#">${a.name}</a>
+							<dd [#if cityId?? && cityId?number==a.id ]class="selected" [/#if]>
+								<a href="#" onclick="searchLawyer('cityId',${a.id})">${a.name}</a>
 							</dd>
 							[/#list]
 						</dl>
@@ -58,25 +69,25 @@
 					<li class="select-list">
 						<dl id="select3">
 							<dt>所属专长：</dt>
-							<dd class="select-all selected">
-								<a href="#">全部</a>
+							<dd [#if professionalFieldF?? && professionalFieldF!=""]class="select-all" [#else] class="select-all selected"[/#if]>
+								<a href="#" onclick="searchLawyer('professionalFieldF','')">全部</a>
 							</dd>
 							[#list lawyerTypeList as a] [#if a.pId==0 ]
-							<dd>
-								<a href="#">${a.name}</a>
+							<dd [#if professionalFieldF?? &&professionalFieldF!=""&& professionalFieldF?number==a.id ]class="selected" [/#if]>
+								<a href="#" onclick="searchLawyer('professionalFieldF',${a.id})">${a.name}</a>
 							</dd>
 							[/#if] [/#list]
 						</dl>
 					</li>
-					</li> [#if professionalFieldF?? ]
+					</li> [#if professionalFieldF?? &&professionalFieldF!=""]
 					<li class="select-list">
 						<dl id="select4">
 							<dt></dt>
 							<dd style="margin-left: 50px"></dd>
 							
-							[#list lawyerTypeList as a] [#if a.pId==professionalFieldF ]
-							<dd>
-								<a href="#" >${a.name}</a>
+							[#list lawyerTypeList as a] [#if a.pId==professionalFieldF?number ]
+							<dd [#if professionalField?? && professionalField!=""&& professionalField?number==a.id ]class="selected" [/#if]>
+								<a href="#" onclick="searchLawyer('professionalField',${a.id})">${a.name}</a>
 							</dd>
 							[/#if] [/#list]
 						</dl>
@@ -95,15 +106,24 @@
 				<div class="lawyer_ul">
 					<ul>
 						[#if pagination.list?size gt 0] [#list pagination.list as c]
-						<li><a class="pic" href=""><img src="/${res}/lawyer/images/2012021714440438.jpg"></a>
+						<li><a class="pic" href="">
+          	   [#if c[1].userImg??]
+	          	   	[#if c[1].userImg!=""]
+	               		<img src="${c[1].userImg!}" />
+	               [#else]
+	               		<img src="/${res}/img/member/member-phtot.gif"/>
+	               	 [/#if]
+               [#else]
+               <img src="/${res}/img/member/member-phtot.gif"/>
+               [/#if]</a>
 							<div class="box">
 								<div class="name_ph">
-									<a href="" class="name">吴继成律师</a> <span class="ph">181 4567 0089</span>
+									<a href="" class="name">${c[1].realname}律师</a> <span class="ph">${c[1].mobile}</span>
 								</div>
 								<div class="line">
-									<p>执业证号：10000000000</p>
-									<p>执业机构：北京易准律师事务所</p>
-									<p>擅长领域：继承、离婚、合同法、常年法律顾问</p>
+									<p>执业证号：${c[2].certificateNumber}</p>
+									<p>执业机构：${c[2].company}</p>
+									<p>擅长领域：${c[2].professionalField}</p>
 								</div>
 							</div> <a class="lawyer_ul_btn" href="" target="_blank">点击咨询<em></em></a></li> [/#list] [/#if]
 					</ul>
@@ -115,8 +135,11 @@
 					<span>律师快速查找</span>
 				</div>
 				<div class="lawyer_find">
-					<a href="#">海淀律师</a><a href="#">海淀律师</a><a href="#">海淀律师</a><a href="#">海淀律师</a><a href="#">海淀律师</a><a href="#">海淀律师</a><a href="#">海淀律师</a><a href="#">海淀律师</a><a href="#">海淀律师</a><a href="#">海淀律师</a><a href="#">海淀律师</a><a href="#">海淀律师</a><a href="#">海淀律师</a><a href="#">海淀律师</a><a href="#">海淀律师</a><a
-						href="#">海淀律师</a><a href="#">海淀律师</a><a href="#">海淀律师</a><a href="#">海淀律师</a><a href="#">海淀律师</a><a href="#">海淀律师</a><a href="#">海淀律师</a><a href="#">海淀律师</a><a href="#">海淀律师</a><a href="#">海淀律师</a><a href="#">海淀律师</a><a href="#">海淀律师</a>
+							[#list provinceList as a]
+							<dd [#if provinceId?? && provinceId?number==a.id ]class="selected" [/#if]>
+								<a href="#" onclick="searchLawyer('provinceId',${a.id})">${a.shortName}</a>
+							</dd>
+							[/#list]
 					<h6 class="clear"></h6>
 				</div>
 				<div class="hzjm">
