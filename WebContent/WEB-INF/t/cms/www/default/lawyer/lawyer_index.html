@@ -2,60 +2,76 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-	<title>专业律师</title>
-	<link type="text/css" rel="stylesheet" href="/${res}/lawyer/css/style.css" />
-	<script src="/${res}/lawyer/js/jquery-1.8.2.min.js" type="text/javascript"></script>
-    <link type="text/css" rel="stylesheet" href="/${res}/lawyer/css/promotion_index.css" />
-    <script src="/${res}/lawyer/js/js_jquery-1.11.1.min.js" type="text/javascript"></script>
-    <script src="/${res}/lawyer/js/common.js" type="text/javascript"></script>
-    <script type="text/javascript" charset="utf-8" src="/${res}/lawyer/js/lrscroll.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>专业律师</title>
+<link type="text/css" rel="stylesheet"
+	href="/${res}/lawyer/css/style.css" />
+<script src="/${res}/lawyer/js/jquery-1.8.2.min.js"
+	type="text/javascript"></script>
+<link type="text/css" rel="stylesheet"
+	href="/${res}/lawyer/css/promotion_index.css" />
+<script src="/${res}/lawyer/js/js_jquery-1.11.1.min.js"
+	type="text/javascript"></script>
+<script src="/${res}/lawyer/js/common.js" type="text/javascript"></script>
+<script type="text/javascript" charset="utf-8"
+	src="/${res}/lawyer/js/lrscroll.js"></script>
 <script type="text/javascript">
+	/** 
+	 * 加载市 
+	 * 
+	 */
+	function loadCity() {
+		var data = $
+		{
+			areaListJson
+		}
+		;
+		var provinceId = $("#provinceId").val();
 
-     /** 
-     * 加载市 
-     * 
-     */
-    function loadCity() {
-	var data=${areaListJson};
-	var provinceId = $("#provinceId").val();
+		var html = "";
+		for (var i = 0; i < data.length; i++) {
 
-	var html ="";
-		    for (var i = 0; i < data.length; i++) {
-			
-			    if(data[i].pid==provinceId){
-			    html=html+"<option value='" + data[i].id + "'>"+ data[i].name + "</option>";
-			    }
+			if (data[i].pid == provinceId) {
+				html = html + "<option value='" + data[i].id + "'>"
+						+ data[i].name + "</option>";
 			}
-		    $("#cityId").html(html);	    
-    }
-    /** 
-     * 加载市 
-     * 
-     */
-    function loadCity_lvsuo() {
-	var data=${areaListJson};
-	var provinceId = $("#provinceId_lvsuo").val();
+		}
+		$("#cityId").html(html);
+	}
+	/** 
+	 * 加载市 
+	 * 
+	 */
+	function loadCity_lvsuo() {
+		var data = $
+		{
+			areaListJson
+		}
+		;
+		var provinceId = $("#provinceId_lvsuo").val();
 
-	var html ="";
-		    for (var i = 0; i < data.length; i++) {
-			
-			    if(data[i].pid==provinceId){
-			    html=html+"<option value='" + data[i].id + "'>"+ data[i].name + "</option>";
-			    }
+		var html = "";
+		for (var i = 0; i < data.length; i++) {
+
+			if (data[i].pid == provinceId) {
+				html = html + "<option value='" + data[i].id + "'>"
+						+ data[i].name + "</option>";
 			}
-		    $("#cityId_lvsuo").html(html);	    
-    }    
-    function searchLawyer(){
-    	$("#searchLawyerForm").submit();
-    }
-    function searchLvsuo(){
-    	$("#searchLvsuoForm").submit();
-    }
+		}
+		$("#cityId_lvsuo").html(html);
+	}
+	function searchLawyer() {
+		$("#searchLawyerForm").submit();
+	}
+	function searchLvsuo() {
+		$("#searchLvsuoForm").submit();
+	}
 </script>
 </head>
 <body>
-	[#include "../lawyer/include/header.html"/] [#include "../lawyer/include/search_csi.html"/] [#include "../lawyer/include/navi.html"/]
+	[#include "../lawyer/include/header.html"/] [#include
+	"../lawyer/include/search_csi.html"/] [#include
+	"../lawyer/include/navi.html"/]
 	<div id="wrapper">
 		<div class="main">
 			<div class="lawyer_l">
@@ -69,7 +85,9 @@
 							<li>
 								<h3>${a.name}</h3>
 								<div class="lawyer_menu_list">
-									[#assign rowNum=0] [#list lawyerTypeList as c] [#if a.id==c.pId&&rowNum<6 ] [#assign rowNum=rowNum+1] <a href="#">${c.name}</a> [/#if] [/#list]
+									[#assign rowNum=0] [#list lawyerTypeList as c] [#if
+									a.id==c.pId&&rowNum<6 ] [#assign rowNum=rowNum+1] <a href="${base}/lawyer/lawyerList.jspx?professionalField=${c.id}">${c.name}</a>
+									[/#if] [/#list]
 									<h6 class="clear"></h6>
 								</div> <!-- <span>名誉/肖像/人身权</span> -->
 							</li>
@@ -81,146 +99,122 @@
 					<div class="lawyer_ban">
 						<div class="lawyer_ban_pic">
 							<ul>
-						 [@cms_content_list count='4' orderBy='4'  titLen='18' channelOption='1' channelId='160']
-						 [#list tag_list as a]
-							<li><a href="${a.attr.goto!'#'}" target="_blank"> <img src="${a.typeImg!site.defImg}" width="470px" height="140px"/> </a></li>
-						 [/#list] 
-						 [/@cms_content_list]
+								[@cms_content_list count='4' orderBy='4' titLen='18'
+								channelOption='1' channelId='160'] [#list tag_list as a]
+								<li><a href="${a.attr.goto!'#'}" target="_blank"> <img
+										src="${a.typeImg!site.defImg}" width="470px" height="140px" />
+								</a></li> [/#list] [/@cms_content_list]
 							</ul>
 						</div>
 						<ul class="lawyer_ban_tab">
-						 [@cms_content_list count='4' orderBy='4'  titLen='18' channelOption='1' channelId='160']
-						 [#list tag_list as a]
-                              <li><a>${a.title}</a></li>
-  						 [/#list] 
-						 [/@cms_content_list]
+							[@cms_content_list count='4' orderBy='4' titLen='18'
+							channelOption='1' channelId='160'] [#list tag_list as a]
+							<li><a>${a.title}</a></li> [/#list] [/@cms_content_list]
 						</ul>
 					</div>
 					<div class="lawyer_search">
 						<h2 class="lawyer_t">律师搜索</h2>
-						
-						<div class="lawyer_search_box">
-						<form action="${base}/lawyer/lawyerList.jspx" id="searchLawyerForm">
-							<div class="search_box_l">
-								<dl>
-									<dt>专业分类：</dt>
-									<dd>
-											<select id="professionalField" name="professionalField" class="droplist" style="z-index: 6;">
-											<option value="">--选择分类--</option>
-											[#list lawyerTypeList as a] 
-											   [#if a.pId==0 ]
-											    <option value="${a.id}">${a.name}</option>
-						                        [#list lawyerTypeList as c] 
-						                           [#if a.id==c.pId] 
-						                           <option value="${c.id}">&nbsp;&nbsp;&nbsp;&nbsp;|--${c.name}</option>
-						                        [/#if] 
-						                        [/#list]
 
-						                    [/#if] [/#list]
+						<div class="lawyer_search_box">
+							<form action="${base}/lawyer/lawyerList.jspx"
+								id="searchLawyerForm">
+								<div class="search_box_l">
+									<dl>
+										<dt>专业分类：</dt>
+										<dd>
+											<select id="professionalField" name="professionalField"
+												class="droplist" style="z-index: 6;">
+												<option value="">--选择分类--</option> [#list lawyerTypeList as
+												a] [#if a.pId==0 ]
+												<option value="${a.id}">${a.name}</option> [#list
+												lawyerTypeList as c] [#if a.id==c.pId]
+												<option value="${c.id}">&nbsp;&nbsp;&nbsp;&nbsp;|--${c.name}</option>
+												[/#if] [/#list] [/#if] [/#list]
 											</select>
-									</dd>
-								</dl>
-								<dl>
-									<dt>地区：</dt>
-									<dd>
-										    <select id="provinceId" name="provinceId" class="droplist fl" style="z-index: 5;width: 120px" onchange="loadCity()">
-										    
-											[#list areaList as a] 
-											   [#if a.pid==0 ]
-											    <option value="${a.id}">${a.shortName}</option>
-						                    [/#if] [/#list]
+										</dd>
+									</dl>
+									<dl>
+										<dt>地区：</dt>
+										<dd>
+											<select id="provinceId" name="provinceId" class="droplist fl"
+												style="z-index: 5; width: 120px" onchange="loadCity()">
+
+												[#list areaList as a] [#if a.pid==0 ]
+												<option value="${a.id}">${a.shortName}</option> [/#if]
+												[/#list]
+											</select> <select id="cityId" name="cityId" class="droplist fr"
+												style="z-index: 5; width: 120px"> [#list areaList
+												as a] [#if a.pid==110000 ]
+												<option value="${a.id}">${a.name}</option> [/#if] [/#list]
 											</select>
-										    <select id="cityId" name="cityId" class="droplist fr" style="z-index: 5;width: 120px">
-											[#list areaList as a] 
-											   [#if a.pid==110000 ]
-											    <option value="${a.id}">${a.name}</option>
-						                    [/#if] [/#list]
-											</select>
-										<h6 class="clear"></h6>
-									</dd>
-								</dl>
-								<dl>
-									<dt>律师姓名：</dt>
-									<dd>
-										<input type="text" class="text" id="realname" name="realname"/>
-									</dd>
-								</dl>
-							</div>
+											<h6 class="clear"></h6>
+										</dd>
+									</dl>
+									<dl>
+										<dt>律师姓名：</dt>
+										<dd>
+											<input type="text" class="text" id="realname" name="realname" />
+										</dd>
+									</dl>
+								</div>
 							</form>
 							<div class="search_box_r">
 								<a href="#" class="search_btn" onclick="searchLawyer()">立即搜索</a>
 							</div>
 							<div class="clear"></div>
 						</div>
-						
+
 						<h2 class="lawyer_t">律所搜索</h2>
 						<div class="lawyer_search_box">
-						<form action="${base}/lawyer/lvsuoList.jspx" id="searchLvsuoForm">
-							<div class="search_box_l">
-								<dl>
-									<dt>地区：</dt>
-									<dd>
-										    <select id="provinceId_lvsuo" class="droplist fl" style="z-index: 5;width: 120px" onchange="loadCity_lvsuo()">
-										    
-											[#list areaList as a] 
-											   [#if a.pid==0 ]
-											    <option value="${a.id}">${a.shortName}</option>
-						                    [/#if] [/#list]
+							<form action="${base}/lawyer/lvsuoList.jspx" id="searchLvsuoForm">
+								<div class="search_box_l">
+									<dl>
+										<dt>地区：</dt>
+										<dd>
+											<select id="provinceId_lvsuo" class="droplist fl"
+												style="z-index: 5; width: 120px" onchange="loadCity_lvsuo()">
+
+												[#list areaList as a] [#if a.pid==0 ]
+												<option value="${a.id}">${a.shortName}</option> [/#if]
+												[/#list]
+											</select> <select id="cityId_lvsuo" class="droplist fr"
+												style="z-index: 5; width: 120px"> [#list areaList
+												as a] [#if a.pid==110000 ]
+												<option value="${a.id}">${a.name}</option> [/#if] [/#list]
 											</select>
-										    <select id="cityId_lvsuo" class="droplist fr" style="z-index: 5;width: 120px">
-											[#list areaList as a] 
-											   [#if a.pid==110000 ]
-											    <option value="${a.id}">${a.name}</option>
-						                    [/#if] [/#list]
-											</select>
-										<h6 class="clear"></h6>
-									</dd>
-								</dl>
-								<dl>
-									<dt>律所名称：</dt>
-									<dd>
-										<input type="text" class="text" id="realname"/>
-									</dd>
-								</dl>
-							</div>
+											<h6 class="clear"></h6>
+										</dd>
+									</dl>
+									<dl>
+										<dt>律所名称：</dt>
+										<dd>
+											<input type="text" class="text" id="realname" />
+										</dd>
+									</dl>
+								</div>
 							</form>
 							<div class="search_box_r">
 								<a href="#" class="search_btn" onclick="searchLvsuo()">立即搜索</a>
 							</div>
 							<div class="clear"></div>
 						</div>
-						
+
 						<div id="featureContainer">
 							<div id="feature">
 								<a class="prev" href="javascript:void();">Previous</a>
 								<div id="block">
 									<div id="botton-scroll">
 										<ul class="featureUL">
-											<li class="featureBox">
+										
+						 [@cms_content_list count='10' orderBy='4'  titLen='18' channelOption='1' channelId='92']
+						 [#list tag_list as a]
+						 					<li class="featureBox">
 												<div class="box">
-													<a href="#"><img src="/${res}/lawyer/images/ad_ma1.jpg" /></a>
+													<a href="${a.attr.goto!'#'}" target="_blank"><img src="${a.typeImg!site.defImg}" /></a>
 												</div>
 											</li>
-											<li class="featureBox">
-												<div class="box">
-													<a href="#"><img src="/${res}/lawyer/images/ad_ma1.jpg" /></a>
-												</div>
-											</li>
-											<li class="featureBox">
-												<div class="box">
-													<a href="#"><img src="/${res}/lawyer/images/ad_ma1.jpg" /></a>
-												</div>
-											</li>
-											<li class="featureBox">
-												<div class="box">
-													<a href="#"><img src="/${res}/lawyer/images/ad_ma1.jpg" /></a>
-												</div>
-											</li>
-											<li class="featureBox">
-												<div class="box">
-													<a href="#"><img src="/${res}/lawyer/images/ad_ma1.jpg" /></a>
-												</div>
-											</li>
+						 [/#list] 
+						 [/@cms_content_list]										
 										</ul>
 									</div>
 								</div>
@@ -244,11 +238,10 @@
 						<span>聘请律师指南</span>
 					</div>
 					<ul>
-						<li><a href="#">李律师：是上本科大二时当的兵，请问复</a></li>
-						<li><a href="#">李律师：是上本科大二时当的兵，请问复</a></li>
-						<li><a href="#">李律师：是上本科大二时当的兵，请问复</a></li>
-						<li><a href="#">李律师：是上本科大二时当的兵，请问复</a></li>
-						<li><a href="#">李律师：是上本科大二时当的兵，请问复</a></li>
+						[@cms_content_list count='9' titLen='24' orderBy='7'
+						channelOption='1' channelId='80'] [#list tag_list as a]
+						<li><a href="${a.url}" title="${a.title}" target="_blank">[@text_cut
+								s=a.title len=titLen /] </a></li> [/#list] [/@cms_content_list]
 					</ul>
 				</div>
 				<div class="lawyer_gg">
@@ -259,11 +252,10 @@
 						<span>收费标准</span>
 					</div>
 					<ul>
-						<li><a href="#">李律师：是上本科大二时当的兵，请问复</a></li>
-						<li><a href="#">李律师：是上本科大二时当的兵，请问复</a></li>
-						<li><a href="#">李律师：是上本科大二时当的兵，请问复</a></li>
-						<li><a href="#">李律师：是上本科大二时当的兵，请问复</a></li>
-						<li><a href="#">李律师：是上本科大二时当的兵，请问复</a></li>
+						[@cms_content_list count='9' titLen='24' orderBy='7'
+						channelOption='1' channelId='96'] [#list tag_list as a]
+						<li><a href="${a.url}" title="${a.title}" target="_blank">[@text_cut
+								s=a.title len=titLen /] </a></li> [/#list] [/@cms_content_list]
 					</ul>
 				</div>
 			</div>
@@ -272,1141 +264,559 @@
 				<div class="lawyer_box">
 					<div class="lawyer_box_t">
 						<ul>
-							<li class="hit">婚姻</li>
-							<li>劳动工伤</li>
-							<li>合同</li>
+							<li class="hit">合同纠纷</li>
 							<li>债权债务</li>
+							<li>婚姻家庭</li>
+							<li>劳动纠纷</li>
 						</ul>
 					</div>
 					<div class="lawyer_con">
 						<div class="lawyer_con_tab" style="display: block;">
+							[@cms_content_list count='4' titLen='24' orderBy='7' channelOption='1' channelId='268'] 
+							[#list tag_list as a]
 							<div class="lawyer_info">
 								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
+									<a href="${a.attr.goto!'#'}"> 
+								[#if a.typeImg??] 
+									[#if a.typeImg!=""] 
+									<img src="${a.typeImg!}" /> 
+									[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+									[/#if] 
+								[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+								[/#if] 
+									<img src="${a.typeImg}" alt="" />
+									</a>
 								</div>
 								<div class="info_r">
 									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
+										<a href="${a.attr.goto!'#'}" target="_blank">${a.title}</a>
 									</p>
-									<p class="firm">北京中本律师事务所</p>
+									<p class="firm">${a.attr.company!}</p>
 									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
+										免费咨询电话：<em>${a.attr.telephone!'400-888-8340'}</em>
 									</p>
 									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
+										简介：[@text_cut s=a.attr.description len=titLen /]<a href="${a.attr.goto!'#'}" target="_blank">详细简介&gt;&gt;</a>
 									</p>
 									<p class="adv">
-										<a href="#">咨询律师</a>
+										<a href="${a.attr.goto!'#'}">咨询律师</a>
 									</p>
 								</div>
 								<h6 class="clear"></h6>
 							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
+							[/#list] 
+							[/@cms_content_list]
 							<div class="clear"></div>
 						</div>
 						<div class="lawyer_con_tab">
+							[@cms_content_list count='4' titLen='24' orderBy='7' channelOption='1' channelId='269'] 
+							[#list tag_list as a]
 							<div class="lawyer_info">
 								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
+									<a href="${a.attr.goto!'#'}"> 
+								[#if a.typeImg??] 
+									[#if a.typeImg!=""] 
+									<img src="${a.typeImg!}" /> 
+									[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+									[/#if] 
+								[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+								[/#if] 
+									<img src="${a.typeImg}" alt="" />
+									</a>
 								</div>
 								<div class="info_r">
 									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
+										<a href="${a.attr.goto!'#'}" target="_blank">${a.title}</a>
 									</p>
-									<p class="firm">北京中本律师事务所</p>
+									<p class="firm">${a.attr.company!}</p>
 									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
+										免费咨询电话：<em>${a.attr.telephone!'400-888-8340'}</em>
 									</p>
 									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
+										简介：[@text_cut s=a.attr.description len=titLen /]<a href="${a.attr.goto!'#'}" target="_blank">详细简介&gt;&gt;</a>
 									</p>
 									<p class="adv">
-										<a href="#">咨询律师</a>
+										<a href="${a.attr.goto!'#'}">咨询律师</a>
 									</p>
 								</div>
 								<h6 class="clear"></h6>
 							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
+							[/#list] 
+							[/@cms_content_list]
+
 							<div class="clear"></div>
 						</div>
 						<div class="lawyer_con_tab">
+							[@cms_content_list count='4' titLen='24' orderBy='7' channelOption='1' channelId='270'] 
+							[#list tag_list as a]
 							<div class="lawyer_info">
 								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
+									<a href="${a.attr.goto!'#'}"> 
+								[#if a.typeImg??] 
+									[#if a.typeImg!=""] 
+									<img src="${a.typeImg!}" /> 
+									[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+									[/#if] 
+								[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+								[/#if] 
+									<img src="${a.typeImg}" alt="" />
+									</a>
 								</div>
 								<div class="info_r">
 									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
+										<a href="${a.attr.goto!'#'}" target="_blank">${a.title}</a>
 									</p>
-									<p class="firm">北京中本律师事务所</p>
+									<p class="firm">${a.attr.company!}</p>
 									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
+										免费咨询电话：<em>${a.attr.telephone!'400-888-8340'}</em>
 									</p>
 									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
+										简介：[@text_cut s=a.attr.description len=titLen /]<a href="${a.attr.goto!'#'}" target="_blank">详细简介&gt;&gt;</a>
 									</p>
 									<p class="adv">
-										<a href="#">咨询律师</a>
+										<a href="${a.attr.goto!'#'}">咨询律师</a>
 									</p>
 								</div>
 								<h6 class="clear"></h6>
 							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
+							[/#list] 
+							[/@cms_content_list]
 							<div class="clear"></div>
 						</div>
 						<div class="lawyer_con_tab">
+							[@cms_content_list count='4' titLen='24' orderBy='7' channelOption='1' channelId='271'] 
+							[#list tag_list as a]
 							<div class="lawyer_info">
 								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
+									<a href="${a.attr.goto!'#'}"> 
+								[#if a.typeImg??] 
+									[#if a.typeImg!=""] 
+									<img src="${a.typeImg!}" /> 
+									[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+									[/#if] 
+								[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+								[/#if] 
+									<img src="${a.typeImg}" alt="" />
+									</a>
 								</div>
 								<div class="info_r">
 									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
+										<a href="${a.attr.goto!'#'}" target="_blank">${a.title}</a>
 									</p>
-									<p class="firm">北京中本律师事务所</p>
+									<p class="firm">${a.attr.company!}</p>
 									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
+										免费咨询电话：<em>${a.attr.telephone!'400-888-8340'}</em>
 									</p>
 									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
+										简介：[@text_cut s=a.attr.description len=titLen /]<a href="${a.attr.goto!'#'}" target="_blank">详细简介&gt;&gt;</a>
 									</p>
 									<p class="adv">
-										<a href="#">咨询律师</a>
+										<a href="${a.attr.goto!'#'}">咨询律师</a>
 									</p>
 								</div>
 								<h6 class="clear"></h6>
 							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
+							[/#list] 
+							[/@cms_content_list]
+
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div>
 				<div class="lawyer_people">
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
+						[@cms_content_list count='10' orderBy='4'  titLen='8' channelOption='1' channelId='280']
+						 [#list tag_list as a]
+						 
+						<dl>
+							<dt>
+								<a href="${a.attr.goto!'#'}" target="_blank"><img src="${a.title!}" /></a>
+							</dt>
+							<dd>
+							    <a href="${a.attr.goto!'#'}">免费咨询</a>
+							</dd>
+						</dl>						 
+						 [/#list] 
+						 [/@cms_content_list]
 					<h6 class="clear"></h6>
 				</div>
 				<div class="lawyer_box">
 					<div class="lawyer_box_t">
 						<ul>
-							<li class="hit">婚姻</li>
-							<li>劳动工伤</li>
-							<li>合同</li>
-							<li>债权债务</li>
+							<li class="hit">房产纠纷</li>
+							<li>工程建筑</li>
+							<li>知识产权</li>
+							<li>金融证券</li>
 						</ul>
 					</div>
 					<div class="lawyer_con">
 						<div class="lawyer_con_tab" style="display: block;">
+							[@cms_content_list count='4' titLen='24' orderBy='7' channelOption='1' channelId='272'] 
+							[#list tag_list as a]
 							<div class="lawyer_info">
 								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
+									<a href="${a.attr.goto!'#'}"> 
+								[#if a.typeImg??] 
+									[#if a.typeImg!=""] 
+									<img src="${a.typeImg!}" /> 
+									[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+									[/#if] 
+								[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+								[/#if] 
+									<img src="${a.typeImg}" alt="" />
+									</a>
 								</div>
 								<div class="info_r">
 									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
+										<a href="${a.attr.goto!'#'}" target="_blank">${a.title}</a>
 									</p>
-									<p class="firm">北京中本律师事务所</p>
+									<p class="firm">${a.attr.company!}</p>
 									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
+										免费咨询电话：<em>${a.attr.telephone!'400-888-8340'}</em>
 									</p>
 									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
+										简介：[@text_cut s=a.attr.description len=titLen /]<a href="${a.attr.goto!'#'}" target="_blank">详细简介&gt;&gt;</a>
 									</p>
 									<p class="adv">
-										<a href="#">咨询律师</a>
+										<a href="${a.attr.goto!'#'}">咨询律师</a>
 									</p>
 								</div>
 								<h6 class="clear"></h6>
 							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
+							[/#list] 
+							[/@cms_content_list]
 							<div class="clear"></div>
 						</div>
 						<div class="lawyer_con_tab">
+							[@cms_content_list count='4' titLen='24' orderBy='7' channelOption='1' channelId='273'] 
+							[#list tag_list as a]
 							<div class="lawyer_info">
 								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
+									<a href="${a.attr.goto!'#'}"> 
+								[#if a.typeImg??] 
+									[#if a.typeImg!=""] 
+									<img src="${a.typeImg!}" /> 
+									[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+									[/#if] 
+								[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+								[/#if] 
+									<img src="${a.typeImg}" alt="" />
+									</a>
 								</div>
 								<div class="info_r">
 									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
+										<a href="${a.attr.goto!'#'}" target="_blank">${a.title}</a>
 									</p>
-									<p class="firm">北京中本律师事务所</p>
+									<p class="firm">${a.attr.company!}</p>
 									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
+										免费咨询电话：<em>${a.attr.telephone!'400-888-8340'}</em>
 									</p>
 									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
+										简介：[@text_cut s=a.attr.description len=titLen /]<a href="${a.attr.goto!'#'}" target="_blank">详细简介&gt;&gt;</a>
 									</p>
 									<p class="adv">
-										<a href="#">咨询律师</a>
+										<a href="${a.attr.goto!'#'}">咨询律师</a>
 									</p>
 								</div>
 								<h6 class="clear"></h6>
 							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
+							[/#list] 
+							[/@cms_content_list]
+
 							<div class="clear"></div>
 						</div>
 						<div class="lawyer_con_tab">
+							[@cms_content_list count='4' titLen='24' orderBy='7' channelOption='1' channelId='274'] 
+							[#list tag_list as a]
 							<div class="lawyer_info">
 								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
+									<a href="${a.attr.goto!'#'}"> 
+								[#if a.typeImg??] 
+									[#if a.typeImg!=""] 
+									<img src="${a.typeImg!}" /> 
+									[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+									[/#if] 
+								[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+								[/#if] 
+									<img src="${a.typeImg}" alt="" />
+									</a>
 								</div>
 								<div class="info_r">
 									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
+										<a href="${a.attr.goto!'#'}" target="_blank">${a.title}</a>
 									</p>
-									<p class="firm">北京中本律师事务所</p>
+									<p class="firm">${a.attr.company!}</p>
 									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
+										免费咨询电话：<em>${a.attr.telephone!'400-888-8340'}</em>
 									</p>
 									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
+										简介：[@text_cut s=a.attr.description len=titLen /]<a href="${a.attr.goto!'#'}" target="_blank">详细简介&gt;&gt;</a>
 									</p>
 									<p class="adv">
-										<a href="#">咨询律师</a>
+										<a href="${a.attr.goto!'#'}">咨询律师</a>
 									</p>
 								</div>
 								<h6 class="clear"></h6>
 							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
+							[/#list] 
+							[/@cms_content_list]
 							<div class="clear"></div>
 						</div>
 						<div class="lawyer_con_tab">
+							[@cms_content_list count='4' titLen='24' orderBy='7' channelOption='1' channelId='275'] 
+							[#list tag_list as a]
 							<div class="lawyer_info">
 								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
+									<a href="${a.attr.goto!'#'}"> 
+								[#if a.typeImg??] 
+									[#if a.typeImg!=""] 
+									<img src="${a.typeImg!}" /> 
+									[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+									[/#if] 
+								[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+								[/#if] 
+									<img src="${a.typeImg}" alt="" />
+									</a>
 								</div>
 								<div class="info_r">
 									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
+										<a href="${a.attr.goto!'#'}" target="_blank">${a.title}</a>
 									</p>
-									<p class="firm">北京中本律师事务所</p>
+									<p class="firm">${a.attr.company!}</p>
 									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
+										免费咨询电话：<em>${a.attr.telephone!'400-888-8340'}</em>
 									</p>
 									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
+										简介：[@text_cut s=a.attr.description len=titLen /]<a href="${a.attr.goto!'#'}" target="_blank">详细简介&gt;&gt;</a>
 									</p>
 									<p class="adv">
-										<a href="#">咨询律师</a>
+										<a href="${a.attr.goto!'#'}">咨询律师</a>
 									</p>
 								</div>
 								<h6 class="clear"></h6>
 							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
+							[/#list] 
+							[/@cms_content_list]
+
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div>
 				<div class="lawyer_people">
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
+						[@cms_content_list count='10' orderBy='4'  titLen='8' channelOption='1' channelId='281']
+						 [#list tag_list as a]
+						 
+						<dl>
+							<dt>
+								<a href="${a.attr.goto!'#'}" target="_blank"><img src="${a.title!}" /></a>
+							</dt>
+							<dd>
+							    <a href="${a.attr.goto!'#'}">免费咨询</a>
+							</dd>
+						</dl>						 
+						 [/#list] 
+						 [/@cms_content_list]
 					<h6 class="clear"></h6>
 				</div>
 				<div class="lawyer_box">
 					<div class="lawyer_box_t">
 						<ul>
-							<li class="hit">婚姻</li>
-							<li>劳动工伤</li>
-							<li>合同</li>
-							<li>债权债务</li>
+							<li class="hit">刑事辩护</li>
+							<li>行政诉讼</li>
+							<li>公司并购</li>
+							<li>破产解散</li>
 						</ul>
 					</div>
 					<div class="lawyer_con">
 						<div class="lawyer_con_tab" style="display: block;">
+							[@cms_content_list count='4' titLen='24' orderBy='7' channelOption='1' channelId='276'] 
+							[#list tag_list as a]
 							<div class="lawyer_info">
 								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
+									<a href="${a.attr.goto!'#'}"> 
+								[#if a.typeImg??] 
+									[#if a.typeImg!=""] 
+									<img src="${a.typeImg!}" /> 
+									[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+									[/#if] 
+								[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+								[/#if] 
+									<img src="${a.typeImg}" alt="" />
+									</a>
 								</div>
 								<div class="info_r">
 									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
+										<a href="${a.attr.goto!'#'}" target="_blank">${a.title}</a>
 									</p>
-									<p class="firm">北京中本律师事务所</p>
+									<p class="firm">${a.attr.company!}</p>
 									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
+										免费咨询电话：<em>${a.attr.telephone!'400-888-8340'}</em>
 									</p>
 									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
+										简介：[@text_cut s=a.attr.description len=titLen /]<a href="${a.attr.goto!'#'}" target="_blank">详细简介&gt;&gt;</a>
 									</p>
 									<p class="adv">
-										<a href="#">咨询律师</a>
+										<a href="${a.attr.goto!'#'}">咨询律师</a>
 									</p>
 								</div>
 								<h6 class="clear"></h6>
 							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
+							[/#list] 
+							[/@cms_content_list]
 							<div class="clear"></div>
 						</div>
 						<div class="lawyer_con_tab">
+							[@cms_content_list count='4' titLen='24' orderBy='7' channelOption='1' channelId='277'] 
+							[#list tag_list as a]
 							<div class="lawyer_info">
 								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
+									<a href="${a.attr.goto!'#'}"> 
+								[#if a.typeImg??] 
+									[#if a.typeImg!=""] 
+									<img src="${a.typeImg!}" /> 
+									[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+									[/#if] 
+								[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+								[/#if] 
+									<img src="${a.typeImg}" alt="" />
+									</a>
 								</div>
 								<div class="info_r">
 									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
+										<a href="${a.attr.goto!'#'}" target="_blank">${a.title}</a>
 									</p>
-									<p class="firm">北京中本律师事务所</p>
+									<p class="firm">${a.attr.company!}</p>
 									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
+										免费咨询电话：<em>${a.attr.telephone!'400-888-8340'}</em>
 									</p>
 									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
+										简介：[@text_cut s=a.attr.description len=titLen /]<a href="${a.attr.goto!'#'}" target="_blank">详细简介&gt;&gt;</a>
 									</p>
 									<p class="adv">
-										<a href="#">咨询律师</a>
+										<a href="${a.attr.goto!'#'}">咨询律师</a>
 									</p>
 								</div>
 								<h6 class="clear"></h6>
 							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
+							[/#list] 
+							[/@cms_content_list]
+
 							<div class="clear"></div>
 						</div>
 						<div class="lawyer_con_tab">
+							[@cms_content_list count='4' titLen='24' orderBy='7' channelOption='1' channelId='278'] 
+							[#list tag_list as a]
 							<div class="lawyer_info">
 								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
+									<a href="${a.attr.goto!'#'}"> 
+								[#if a.typeImg??] 
+									[#if a.typeImg!=""] 
+									<img src="${a.typeImg!}" /> 
+									[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+									[/#if] 
+								[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+								[/#if] 
+									<img src="${a.typeImg}" alt="" />
+									</a>
 								</div>
 								<div class="info_r">
 									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
+										<a href="${a.attr.goto!'#'}" target="_blank">${a.title}</a>
 									</p>
-									<p class="firm">北京中本律师事务所</p>
+									<p class="firm">${a.attr.company!}</p>
 									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
+										免费咨询电话：<em>${a.attr.telephone!'400-888-8340'}</em>
 									</p>
 									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
+										简介：[@text_cut s=a.attr.description len=titLen /]<a href="${a.attr.goto!'#'}" target="_blank">详细简介&gt;&gt;</a>
 									</p>
 									<p class="adv">
-										<a href="#">咨询律师</a>
+										<a href="${a.attr.goto!'#'}">咨询律师</a>
 									</p>
 								</div>
 								<h6 class="clear"></h6>
 							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
+							[/#list] 
+							[/@cms_content_list]
 							<div class="clear"></div>
 						</div>
 						<div class="lawyer_con_tab">
+							[@cms_content_list count='4' titLen='24' orderBy='7' channelOption='1' channelId='279'] 
+							[#list tag_list as a]
 							<div class="lawyer_info">
 								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
+									<a href="${a.attr.goto!'#'}"> 
+								[#if a.typeImg??] 
+									[#if a.typeImg!=""] 
+									<img src="${a.typeImg!}" /> 
+									[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+									[/#if] 
+								[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+								[/#if] 
+									<img src="${a.typeImg}" alt="" />
+									</a>
 								</div>
 								<div class="info_r">
 									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
+										<a href="${a.attr.goto!'#'}" target="_blank">${a.title}</a>
 									</p>
-									<p class="firm">北京中本律师事务所</p>
+									<p class="firm">${a.attr.company!}</p>
 									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
+										免费咨询电话：<em>${a.attr.telephone!'400-888-8340'}</em>
 									</p>
 									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
+										简介：[@text_cut s=a.attr.description len=titLen /]<a href="${a.attr.goto!'#'}" target="_blank">详细简介&gt;&gt;</a>
 									</p>
 									<p class="adv">
-										<a href="#">咨询律师</a>
+										<a href="${a.attr.goto!'#'}">咨询律师</a>
 									</p>
 								</div>
 								<h6 class="clear"></h6>
 							</div>
-							<div class="lawyer_info">
-								<div class="info_l">
-									<a href="#"><img src="/${res}/lawyer/images/752752.jpg" alt="" /></a>
-								</div>
-								<div class="info_r">
-									<p class="name">
-										<a href="http://www.lawtime.cn/lawyer/lll113377886113382980?from=product" target="_blank">王琦</a>
-									</p>
-									<p class="firm">北京中本律师事务所</p>
-									<p class="phone">
-										免费咨询电话：<em>13910290030</em>
-									</p>
-									<p class="description">
-										简介：汪游律师本科毕业于中国传媒大学,并在美国...<a href="#" target="_blank">详细简介&gt;&gt;</a>
-									</p>
-									<p class="adv">
-										<a href="#">咨询律师</a>
-									</p>
-								</div>
-								<h6 class="clear"></h6>
-							</div>
+							[/#list] 
+							[/@cms_content_list]
+
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div>
 				<div class="lawyer_people">
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="#">杨洪波</a>
-						</dt>
-						<dd>
-							<a href="#">免费咨询</a>
-						</dd>
-					</dl>
+						[@cms_content_list count='10' orderBy='4'  titLen='8' channelOption='1' channelId='282']
+						 [#list tag_list as a]
+						 
+						<dl>
+							<dt>
+								<a href="${a.attr.goto!'#'}" target="_blank"><img src="${a.title!}" /></a>
+							</dt>
+							<dd>
+							    <a href="${a.attr.goto!'#'}">免费咨询</a>
+							</dd>
+						</dl>						 
+						 [/#list] 
+						 [/@cms_content_list]
 					<h6 class="clear"></h6>
 				</div>
 			</div>
@@ -1414,33 +824,32 @@
 				<div class="lawyer_news">
 					<div class="lawyer_tt">
 						<ul>
-							<li class="hit">婚姻</li>
+							<li class="hit">合同纠纷</li>
 							<li>债权债务</li>
 						</ul>
 					</div>
 					<div class="lawyer_news_con">
 						<ul style="display: block;">
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
+							[@cms_content_list count='6' titLen='14' orderBy='7' channelOption='1' channelId='284'] 
+							[#list tag_list as a]
+							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
+							[/#list] 
+							[/@cms_content_list]
 						</ul>
 						<ul>
-							<li><a href="#">最近活动最近活动最近活活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
+							[@cms_content_list count='6' titLen='14' orderBy='7' channelOption='1' channelId='285'] 
+							[#list tag_list as a]
+							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
+							[/#list] 
+							[/@cms_content_list]
 						</ul>
 					</div>
 				</div>
 				<div class="lawyer_news">
 					<div class="lawyer_tt">
 						<ul>
-							<li class="hit">合同</li>
-							<li>债权债务</li>
+							<li class="hit">婚姻家庭</li>
+							<li>劳动纠纷</li>
 						</ul>
 					</div>
 					<div class="lawyer_gg" style="margin-bottom: 5px;">
@@ -1448,19 +857,18 @@
 					</div>
 					<div class="lawyer_news_con">
 						<ul style="display: block;">
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
+							[@cms_content_list count='6' titLen='14' orderBy='7' channelOption='1' channelId='286'] 
+							[#list tag_list as a]
+							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
+							[/#list] 
+							[/@cms_content_list]
 						</ul>
 						<ul>
-							<li><a href="#">最近活动最近活动最近活活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
+							[@cms_content_list count='6' titLen='14' orderBy='7' channelOption='1' channelId='287'] 
+							[#list tag_list as a]
+							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
+							[/#list] 
+							[/@cms_content_list]
 						</ul>
 					</div>
 				</div>
@@ -1468,87 +876,32 @@
 				<div class="lawyer_news">
 					<div class="lawyer_tt">
 						<ul>
-							<li class="hit">房地产</li>
-							<li>交通事故</li>
+							<li class="hit">房产纠纷</li>
+							<li>工程建筑</li>
 						</ul>
 					</div>
 					<div class="lawyer_news_con">
 						<ul style="display: block;">
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
+							[@cms_content_list count='6' titLen='14' orderBy='7' channelOption='1' channelId='288'] 
+							[#list tag_list as a]
+							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
+							[/#list] 
+							[/@cms_content_list]
 						</ul>
 						<ul>
-							<li><a href="#">最近活动最近活动最近活活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
+							[@cms_content_list count='6' titLen='14' orderBy='7' channelOption='1' channelId='289'] 
+							[#list tag_list as a]
+							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
+							[/#list] 
+							[/@cms_content_list]
 						</ul>
 					</div>
 				</div>
-				<div class="lawyer_news">
-					<div class="lawyer_tt">
-						<ul>
-							<li class="hit">公司</li>
-							<li>刑事</li>
-						</ul>
-					</div>
-					<div class="lawyer_gg" style="margin-bottom: 5px;">
-						<img src="/${res}/lawyer/images/gg_e.jpg" />
-					</div>
-					<div class="lawyer_news_con">
-						<ul style="display: block;">
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-						</ul>
-						<ul>
-							<li><a href="#">最近活动最近活动最近活活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="h10"></div>
 				<div class="lawyer_news">
 					<div class="lawyer_tt">
 						<ul>
 							<li class="hit">知识产权</li>
-							<li>行政</li>
-						</ul>
-					</div>
-					<div class="lawyer_news_con">
-						<ul style="display: block;">
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-						</ul>
-						<ul>
-							<li><a href="#">最近活动最近活动最近活活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="lawyer_news">
-					<div class="lawyer_tt">
-						<ul>
-							<li class="hit">医疗事故</li>
-							<li>国际贸易</li>
+							<li>金融证券</li>
 						</ul>
 					</div>
 					<div class="lawyer_gg" style="margin-bottom: 5px;">
@@ -1556,20 +909,69 @@
 					</div>
 					<div class="lawyer_news_con">
 						<ul style="display: block;">
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活动最近活动活动最近活</a></li>
+							[@cms_content_list count='6' titLen='14' orderBy='7' channelOption='1' channelId='290'] 
+							[#list tag_list as a]
+							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
+							[/#list] 
+							[/@cms_content_list]
 						</ul>
 						<ul>
-							<li><a href="#">最近活动最近活动最近活活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
-							<li><a href="#">最近活动最近活动最近活动活动最近活</a></li>
+							[@cms_content_list count='6' titLen='14' orderBy='7' channelOption='1' channelId='291'] 
+							[#list tag_list as a]
+							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
+							[/#list] 
+							[/@cms_content_list]
 						</ul>
+					</div>
+				</div>
+				<div class="h10"></div>
+				<div class="lawyer_news">
+					<div class="lawyer_tt">
+						<ul>
+							<li class="hit">刑事辩护</li>
+							<li>行政诉讼</li>
+						</ul>
+					</div>
+					<div class="lawyer_news_con">
+						<ul style="display: block;">
+							[@cms_content_list count='6' titLen='14' orderBy='7' channelOption='1' channelId='292'] 
+							[#list tag_list as a]
+							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
+							[/#list] 
+							[/@cms_content_list]
+						</ul>
+						<ul>
+							[@cms_content_list count='6' titLen='14' orderBy='7' channelOption='1' channelId='293'] 
+							[#list tag_list as a]
+							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
+							[/#list] 
+							[/@cms_content_list]
+						</ul>
+					</div>
+				</div>
+				<div class="lawyer_news">
+					<div class="lawyer_tt">
+						<ul>
+							<li class="hit">公司并购</li>
+							<li>破产解散</li>
+						</ul>
+					</div>
+					<div class="lawyer_gg" style="margin-bottom: 5px;">
+						<img src="/${res}/lawyer/images/gg_e.jpg" />
+					</div>
+					<div class="lawyer_news_con">
+						<ul style="display: block;">
+							[@cms_content_list count='6' titLen='14' orderBy='7' channelOption='1' channelId='294'] 
+							[#list tag_list as a]
+							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
+							[/#list] 
+							[/@cms_content_list]						</ul>
+						<ul>
+							[@cms_content_list count='6' titLen='14' orderBy='7' channelOption='1' channelId='295'] 
+							[#list tag_list as a]
+							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
+							[/#list] 
+							[/@cms_content_list]						</ul>
 					</div>
 				</div>
 			</div>
@@ -1578,8 +980,11 @@
 				<span>律师导航</span>
 			</div>
 			<div class="navigation">
-				<a href="#">北京专业律师</a><a href="#">北京专业律师</a><a href="#">北京专业律师</a><a href="#">北京专业律师</a><a href="#">北京专业律师</a><a href="#">北京专业律师</a><a href="#">北京专业律师</a><a href="#">北京专业律师</a><a href="#">北京专业律师</a><a href="#">北京专业律师</a><a href="#">北京专业律师</a><a href="#">北京专业律师</a><a href="#">北京专业律师</a><a
-					href="#">北京专业律师</a><a href="#">北京专业律师</a><a href="#">北京专业律师</a><a href="#">北京专业律师</a><a href="#">北京专业律师</a>
+				[#list areaList as a] 
+				[#if a.pid==0 ]
+				<a href="${base}/lawyer/lawyerList.jspx?provinceId=${a.id}">${a.shortName}专业律师</a>
+				[/#if]
+				[/#list]
 				<h6 class="clear"></h6>
 			</div>
 		</div>

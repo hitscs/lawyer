@@ -1,6 +1,6 @@
 /* *{margin:0;padding:0;list-style-type:none;}
 a,img{border:0;} */
-.selectNumberScreen{ width:988px; height:240px; /* margin:20px auto; */}
+.selectNumberScreen{ width:988px; height:auto; /* margin:20px auto; */}
 /* select */
 .selectT{padding:5px 10px;border:#ddd 1px solid;border-radius:4px;width:100%;margin:1% auto;font-size:12px}
 .selectT li{list-style:none;padding:10px 0 5px 100px}
