@@ -70,8 +70,12 @@
 <td class="pn-fcontent" width="88%" colspan="3">
 <select id="provinceId" name="provinceId" onchange="loadCity()">
 <#list areaList as c> 
+<#if c.id==cmsMember.province.id >
+<option value="${c.id}" selected="selected">${c.shortName}</option>
+<#else>
+<option value="${c.id}" >${c.shortName}</option>
+</#if> 
 
-<option value="${c.id}" <#if c.id==cmsMember.province.id > selected="selected"</#if> >${c.shortName}</option>
 
 </#list>
 </select>
@@ -158,12 +162,13 @@
 				}
 			}
 		};
-		var zNodes =${allLawyerType};
+		var gNodes =${gLawyerType};
+		var pNodes =${pLawyerType};
 		$(document).ready(function(){
-			ztree =$.fn.zTree.init($("#tree"), setting, zNodes);
+			ztree =$.fn.zTree.init($("#tree"), setting, pNodes);
 		});
 		$(document).ready(function(){
-			ztree1 =$.fn.zTree.init($("#tree1"), setting, zNodes);
+			ztree1 =$.fn.zTree.init($("#tree1"), setting, gNodes);
 		});
 
 function submitNodes(){
@@ -179,11 +184,9 @@ function submitNodes(){
 	for(var i=0;i<nodes1.length;i++){
 		    str1 += nodes1[i].id+ ",";
 	}
-
-
-	$("#professionalField").val(str);
+	$("#professionalField").val(","+str);
 	
-	$("#goodAtField").val(str1);
+	$("#goodAtField").val(","+str1);//前后都加逗号方便like搜索
 }
 </script>
 </body>

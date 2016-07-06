@@ -12,6 +12,7 @@ import com.jeecms.common.page.Pagination;
 import com.jeecms.core.entity.CmsUser;
 import com.jeecms.core.entity.CmsUserExt;
 import com.jeecms.core.manager.AreaMng;
+import com.jeecms.core.manager.CmsGroupMng;
 import com.jeecms.core.manager.CmsUserExtMng;
 import com.jeecms.core.manager.CmsUserMng;
 import com.jeecms.core.manager.UnifiedUserMng;
@@ -60,12 +61,23 @@ public class LawyerMngImpl implements LawyerMng {
 		if (isDisabled != null) {
 			entity.setDisabled(isDisabled);
 		}
-		
+		if (groupId != null) {
+			entity.setGroup(cmsGroupMng.findById(groupId));
+		}		
 		// 更新属性表
 		if (attr != null) {
 			Map<String, String> attrOrig = entity.getAttr();
 			attrOrig.clear();
 			attrOrig.putAll(attr);
+		}
+		if(provinceId!=null){
+			ext.setProvince(areaMng.findById(provinceId));
+		}
+		if(cityId!=null){
+			ext.setCity(areaMng.findById(cityId));
+		}
+		if(regionId!=null){
+			ext.setRegion(areaMng.findById(regionId));
 		}
 		ext=cmsUserExtMng.update(ext, entity);
 		unifiedUserMng.update(id, password, email);
@@ -76,9 +88,9 @@ public class LawyerMngImpl implements LawyerMng {
 			l = lawyerDao.save(lawyer,entity);
 
 		} else {
-			Updater<Lawyer> updater = new Updater<Lawyer>(l);
-			//updater.include("gender");
-			//updater.include("birthday");
+			Updater<Lawyer> updater = new Updater<Lawyer>(lawyer);
+			
+
 			l = lawyerDao.updateByUpdater(updater);
 
 		}
@@ -154,8 +166,8 @@ public class LawyerMngImpl implements LawyerMng {
 	private CmsUserExtMng cmsUserExtMng;
 	@Autowired
 	private AreaMng areaMng;
-
-
+	@Autowired
+	private CmsGroupMng cmsGroupMng;
 
 	@Autowired
 	public void setCmsUserMng(CmsUserMng cmsUserMng) {

@@ -56,8 +56,13 @@ function optPriority() {
 	<@p.column code="cmsGroup.needCheck" align="center"><#if cmsGroup.needCheck><@s.m "global.true"/><#else><@s.m "global.false"/></#if></@p.column><#t/>
 	<@p.column code="cmsGroup.needCaptcha" align="center"><#if cmsGroup.needCaptcha><@s.m "global.true"/><#else><@s.m "global.false"/></#if></@p.column><#t/>
 	<@p.column code="global.operate" align="center">
-		<a href="v_edit.do?id=${cmsGroup.id}&pageNo=${pageNo!}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
-		<a href="o_delete.do?ids=${cmsGroup.id}&pageNo=${pageNo!}" onclick="if(!$.confirmToUrl(this.href)) {return false;}" class="pn-opt"><@s.m "global.delete"/></a><#t/>
+		<a href="v_edit.do?id=${cmsGroup.id}&pageNo=${pageNo!}" class="pn-opt"><@s.m "global.edit"/></a>
+		<#if  cmsGroup.id!=1&&cmsGroup.id!=2&&cmsGroup.id!=3&&cmsGroup.id!=4>
+		 | <#rt/>
+		
+		<a href="o_delete.do?ids=${cmsGroup.id}&pageNo=${pageNo!}" onclick="if(!$.confirmToUrl(this.href)) {return false;}" class="pn-opt"><@s.m "global.delete"/></a>
+		</#if>
+		<#t/>
 	</@p.column><#t/>
 </@p.table>
 <div style="background:url(${base}/res/common/img/theme/boxTitleBG.jpg) repeat-x; height:20px; overflow:hidden;">

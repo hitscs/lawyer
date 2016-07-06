@@ -135,12 +135,6 @@ public class LawyerAct {
 			}
 			
 			pagination.setList(list);
-			
-			
-			
-			
-			
-			
 		}
 		
 		
