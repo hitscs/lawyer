@@ -51,7 +51,11 @@ function optPriority() {
 		<input type="hidden" name="wids" value="${cmsGroup.id}"/>
 	</@p.column><#t/>
 	<@p.column code="cmsGroup.regDef" align="center">
-		<input type="radio" name="regDefId" value="${cmsGroup.id}"<#if cmsGroup.regDef> checked="checked"</#if>/>
+	<#if cmsGroup.regDef> 
+		<input type="radio" name="regDefId" value="${cmsGroup.id}"checked="checked"/>
+	<#else>
+		<input type="radio" name="regDefId" value="${cmsGroup.id}"/>
+	</#if>
 	</@p.column><#t/>
 	<@p.column code="cmsGroup.needCheck" align="center"><#if cmsGroup.needCheck><@s.m "global.true"/><#else><@s.m "global.false"/></#if></@p.column><#t/>
 	<@p.column code="cmsGroup.needCaptcha" align="center"><#if cmsGroup.needCaptcha><@s.m "global.true"/><#else><@s.m "global.false"/></#if></@p.column><#t/>
