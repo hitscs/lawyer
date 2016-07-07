@@ -8,10 +8,30 @@
 <script src="${resSys}/front.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="../../${res}/css/member.css" />
 <script src="${base}/thirdparty/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+<link rel="stylesheet" href="${base}/res/ztree/css/ztree.css" type="text/css" />
+<script type="text/javascript" src="${base}/res/ztree/js/jquery.ztree.all-3.5.min.js"></script>
 <script type="text/javascript">
 $(function() {
 	$("#jvForm").validate();
 });
+/** 
+ * 加载市 
+ * 
+ */
+function loadCity() {
+	var data = ${cityListJson};
+	var provinceId = $("#provinceId").val();
+
+	var html = "";
+	for (var i = 0; i < data.length; i++) {
+
+		if (data[i].pid == provinceId) {
+			html = html + "<option value='" + data[i].id + "'>"
+					+ data[i].name + "</option>";
+		}
+	}
+	$("#cityId").html(html);
+}
 </script>
 </head>
 
@@ -27,7 +47,9 @@ $(function() {
 		 </div>
         <div class="mc_content">   
              [#include "image_upload.html"/]
-   <form id="jvForm" action="profile.jspx" method="post">
+   <form id="jvForm" action="lawyerProfile.jspx" method="post">
+   <input type="hidden"  id="professionalField" name="professionalField" value=""/>
+   <input type="hidden"  id="goodAtField" name="goodAtField" value=""/>
      <table width="98%" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="#C8DCF0" style="margin:5px;">
        <tr>
          <td width="150" height="25" align="right" bgcolor="#f6fbff">真实姓名：</td>
@@ -49,7 +71,29 @@ $(function() {
        </tr>  
        <tr>
          <td height="25" align="right" bgcolor="#f6fbff">来自：</td>
-         <td bgcolor="#FFFFFF"><input type="text" name="comefrom" value="${user.comefrom!?html}" maxlength="150"/></td>
+         <td bgcolor="#FFFFFF">											
+         <select id="provinceId" name="provinceId" onchange="loadCity()">
+
+												[#list areaList as a] 
+												[#if a.pid==0 ]
+												[#if ext.province?? && a.id==ext.province.id ]
+												<option value="${a.id}" selected="selected">${a.shortName}</option>
+												[#else]
+												<option value="${a.id}">${a.shortName}</option>
+												[/#if]
+												
+												[/#if]
+												[/#list]
+											</select> 
+											<select id="cityId" name="cityId">
+												[#list cityList as a] 
+												[#if ext.city?? && a.id==ext.city.id ]
+												<option value="${a.id}" selected="selected">${a.name}</option>
+												[#else]
+												<option value="${a.id}">${a.name}</option>
+												
+												[/#if] [/#list]
+											</select></td>
        </tr>
        <tr>
          <td height="25" align="right" bgcolor="#f6fbff">QQ：</td>
@@ -64,10 +108,41 @@ $(function() {
          <td height="25" align="right" bgcolor="#f6fbff">手机：</td>
          <td bgcolor="#FFFFFF"><input type="text" name="mobile" value="${user.mobile!?html}" maxlength="50"/></td>
        </tr> 
+       <tr>
+         <td height="25" align="right" bgcolor="#f6fbff">执业机构：</td>
+         <td bgcolor="#FFFFFF"><input type="text"  name="company" [#if lawyer??] value="${lawyer.company!}" [/#if] maxlength="50"/></td>
+       </tr> 
+       <tr>
+         <td height="25" align="right" bgcolor="#f6fbff">执业证号：</td>
+         <td bgcolor="#FFFFFF"><input type="text" name="certificateNumber" [#if lawyer??] value="${lawyer.certificateNumber!}" [/#if] maxlength="50"/></td>
+       </tr> 
+      
 		<tr>
          <td height="25" align="right" bgcolor="#f6fbff">个性签名：</td>
          <td bgcolor="#FFFFFF"><input type="text" name="userSignature" value="${user.userSignature!?html}" maxlength="100"/></td>
        </tr>
+<tr>
+<td height="25" align="right" bgcolor="#f6fbff">专业领域：</td>
+<td bgcolor="#FFFFFF">
+<div class="content_wrap">
+	<div class="zTreeDemoBackground left">
+		<ul id="tree" class="ztree"></ul>
+	</div>
+</div>
+
+</td>
+</tr>       
+       <tr>
+<td height="25" align="right" bgcolor="#f6fbff">擅长领域：</td>
+<td bgcolor="#FFFFFF">
+<div class="content_wrap">
+	<div class="zTreeDemoBackground left">
+		<ul id="tree1" class="ztree"></ul>
+	</div>
+</div>
+
+</td>
+</tr>       
        <tr>
          <td height="25" align="right" bgcolor="#f6fbff">头像：</td>
          <td bgcolor="#FFFFFF">
@@ -93,7 +168,7 @@ $(function() {
        <tr>
          <td height="25" colspan="2" align="center" bgcolor="#f6fbff">
 		    <input type="hidden" name="nextUrl" value="profile.jspx"/>
-	        <input type="submit" value="提交" class="member_button"/> &nbsp; <input type="reset" value="重置" class="member_button"/>
+	        <input type="submit" value="提交" class="member_button" onclick="submitNodes()"/> &nbsp; <input type="reset" value="重置" class="member_button"/>
 		 </td>
          </tr>
      </table>
@@ -102,5 +177,44 @@ $(function() {
   </div>
      <div style="clear:both"></div>
 </div>
+	<script type="text/javascript">
+
+		var setting = {
+			check: {
+				enable: true
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			}
+		};
+		var gNodes =${gLawyerType};
+		var pNodes =${pLawyerType};
+		$(document).ready(function(){
+			ztree =$.fn.zTree.init($("#tree"), setting, pNodes);
+		});
+		$(document).ready(function(){
+			ztree1 =$.fn.zTree.init($("#tree1"), setting, gNodes);
+		});
+
+function submitNodes(){
+	var nodes = ztree.getCheckedNodes(true);
+	var str = "";
+	for(var i=0;i<nodes.length;i++){
+		    str += nodes[i].id+ ",";
+		
+	}
+
+	var nodes1 = ztree1.getCheckedNodes(true);
+	var str1 = "";
+	for(var i=0;i<nodes1.length;i++){
+		    str1 += nodes1[i].id+ ",";
+	}
+	$("#professionalField").val(","+str);
+	
+	$("#goodAtField").val(","+str1);//前后都加逗号方便like搜索
+}
+</script>
 </body>
 </html>

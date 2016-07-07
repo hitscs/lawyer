@@ -66,7 +66,22 @@
                  <td height="25" bgcolor="#f6fbff" align="right">手机：</td>
                  <td bgcolor="#FFFFFF">${user.moble!}</td>
                </tr>
-
+               <tr>
+                 <td height="25" bgcolor="#f6fbff" align="right">执业机构：</td>
+                 <td bgcolor="#FFFFFF">[#if lawyer??]${lawyer.company!}[/#if]</td>
+               </tr>
+               <tr>
+                 <td height="25" bgcolor="#f6fbff" align="right">执业证号：</td>
+                 <td bgcolor="#FFFFFF">[#if lawyer??]${lawyer.certificateNumber!}[/#if]</td>
+               </tr> 
+               <tr>
+                 <td height="25" bgcolor="#f6fbff" align="right">专业领域：</td>
+                 <td bgcolor="#FFFFFF">[#if lawyer??]${professionalField!}[/#if]</td>
+               </tr> 
+               <tr>
+                 <td height="25" bgcolor="#f6fbff" align="right">擅长领域：</td>
+                 <td bgcolor="#FFFFFF">${goodAtField!}</td>
+               </tr>                                             
                <tr>
                  <td height="25" bgcolor="#FFFFFF" align="center" colspan="2">
                  <input type="button" value="修 改" onclick="window.location.href='profile.jspx'" class="member_button"></td>

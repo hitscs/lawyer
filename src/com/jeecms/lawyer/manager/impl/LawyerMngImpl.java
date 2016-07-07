@@ -79,10 +79,11 @@ public class LawyerMngImpl implements LawyerMng {
 		if(regionId!=null){
 			ext.setRegion(areaMng.findById(regionId));
 		}
+		ext.setId(id);
 		ext=cmsUserExtMng.update(ext, entity);
 		unifiedUserMng.update(id, password, email);
 		
-		Lawyer l=lawyerDao.findById(id);
+/*		Lawyer l=lawyerDao.findById(id);
 		
 		if (l == null) {
 			l = lawyerDao.save(lawyer,entity);
@@ -93,13 +94,28 @@ public class LawyerMngImpl implements LawyerMng {
 
 			l = lawyerDao.updateByUpdater(updater);
 
-		}
+		}*/
+		lawyer.setId(id);
+		Lawyer l=update(lawyer,entity);
 		entity.getUserExtSet().add(ext);
 		entity.getLawyerSet().add(l);
 		
 		return entity;
 	}
+	public Lawyer update(Lawyer lawyer, CmsUser user) {
+		Lawyer l=lawyerDao.findById(user.getId());
+		
+		if (l == null) {
+			l = lawyerDao.save(lawyer,user);
+			return l;
 
+		} else {
+			Updater<Lawyer> updater = new Updater<Lawyer>(lawyer);
+			lawyer = lawyerDao.updateByUpdater(updater);
+			return lawyer;
+
+		}
+	}
 /*	public CmsUser registerMember(String username, String email, String password, String ip, Integer groupId, boolean disabled, CmsUserExt userExt, Map<String, String> attr, Boolean activation,
 			EmailSender sender, MessageTemplate msgTpl) throws UnsupportedEncodingException, MessagingException {
 		UnifiedUser unifiedUser = unifiedUserMng.save(username, email, password, ip, activation, sender, msgTpl);

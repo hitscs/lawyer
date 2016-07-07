@@ -81,6 +81,41 @@ public class MemberAct {
 		}
 		CmsUserExt ext=cmsUserExtMng.findById(user.getId());
 		Lawyer lawyer=lawyerMng.findById(user.getId());
+		String goodAtField = "";
+		String professionalField = "";
+
+		if (null != lawyer && StringUtils.isNotBlank(lawyer.getGoodAtField())) {
+			goodAtField = lawyer.getGoodAtField().substring(1, lawyer.getGoodAtField().length() - 1);
+		}
+
+		if (null != lawyer && StringUtils.isNotBlank(lawyer.getProfessionalField())) {
+			professionalField = lawyer.getProfessionalField().substring(1, lawyer.getProfessionalField().length() - 1);
+		}
+		if(professionalField!=null&&!professionalField.equals("")){
+			String[] pArray =professionalField.split(",");
+			String pString="";
+			for(int j=0;j<pArray.length;j++){
+				LawyerType lawyerType = lawyerTypeManager.findById(Integer.parseInt(pArray[j]));
+				pString=pString+lawyerType.getName()+",";
+				
+			}
+			professionalField=pString.substring(0, pString.length()-1);
+		}		
+		
+		if(goodAtField!=null&&!goodAtField.equals("")){
+			String[] gArray =goodAtField.split(",");
+			String gString="";
+			for(int j=0;j<gArray.length;j++){
+				LawyerType lawyerType = lawyerTypeManager.findById(Integer.parseInt(gArray[j]));
+				gString=gString+lawyerType.getName()+",";
+				
+			}
+			goodAtField=gString.substring(0, gString.length()-1);
+		}		
+		
+		
+		model.addAttribute("goodAtField", goodAtField);
+		model.addAttribute("professionalField", professionalField);
 		model.addAttribute("ext", ext);
 		model.addAttribute("lawyer", lawyer);
 		if(user.getGroup().getId()==3){
@@ -190,13 +225,9 @@ public class MemberAct {
 			
 		}
 		
-		
-		
-		
-		
-		
-		
 		String cityListJson = JSONArray.fromObject(areaListJson).toString();
+		
+
 		
 		model.addAttribute("cityListJson", cityListJson);
 		model.addAttribute("ext", ext);
@@ -273,7 +304,40 @@ public class MemberAct {
 		log.info("update CmsUserExt success. id={}", user.getId());
 		return FrontUtils.showSuccess(request, model, nextUrl);
 	}
-
+	/**
+	 * 律师个人资料提交
+	 * 
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/member/lawyerProfile.jspx", method = RequestMethod.POST)
+	public String lawyerProfileSubmit(CmsUserExt ext,  Lawyer lawyer,String nextUrl,Integer provinceId, Integer cityId, Integer regionId,
+			HttpServletRequest request, HttpServletResponse response,
+			ModelMap model) throws IOException {
+		CmsSite site = CmsUtils.getSite(request);
+		CmsUser user = CmsUtils.getUser(request);
+		FrontUtils.frontData(request, model, site);
+		MemberConfig mcfg = site.getConfig().getMemberConfig();
+		// 没有开启会员功能
+		if (!mcfg.isMemberOn()) {
+			return FrontUtils.showMessage(request, model, "member.memberClose");
+		}
+		if (user == null) {
+			return FrontUtils.showLogin(request, model, site);
+		}
+		if(provinceId!=null) ext.setProvince(areaManager.findById(provinceId));
+		if(cityId!=null) ext.setCity(areaManager.findById(cityId));
+		if(regionId!=null) ext.setRegion(areaManager.findById(regionId));
+		ext.setId(user.getId());
+		cmsUserExtMng.update(ext, user);
+		lawyer.setId(user.getId());
+		lawyerMng.update(lawyer, user);
+		log.info("update Lawyer success. id={}", user.getId());
+		return FrontUtils.showSuccess(request, model, nextUrl);
+	}
 	/**
 	 * 密码修改输入页
 	 * 

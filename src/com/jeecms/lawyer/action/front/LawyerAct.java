@@ -1,5 +1,6 @@
 package com.jeecms.lawyer.action.front;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import com.jeecms.core.entity.Area;
 import com.jeecms.core.entity.CmsSite;
 import com.jeecms.core.entity.CmsUser;
 import com.jeecms.core.entity.CmsUserExt;
+import com.jeecms.core.entity.MemberConfig;
 import com.jeecms.core.manager.AreaMng;
 import com.jeecms.core.web.WebErrors;
 import com.jeecms.core.web.util.CmsUtils;

@@ -22,6 +22,7 @@ public abstract interface LawyerMng
 	public CmsUser updateMember(Integer id, String email, String password,
 			Boolean isDisabled,Integer provinceId,Integer cityId,Integer regionId, CmsUserExt ext,Lawyer lawyer, Integer groupId,Integer grain,Map<String,String>attr) ;
 
+	public Lawyer update(Lawyer lawyer, CmsUser user);
 /*	public CmsUser registerMember(String username, String email,
 			String password, String ip, Integer groupId, boolean disabled,CmsUserExt userExt,Map<String,String>attr, Boolean activation , EmailSender sender, MessageTemplate msgTpl)throws UnsupportedEncodingException, MessagingException ;
 */ 
