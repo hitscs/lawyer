@@ -3,10 +3,15 @@ package com.jeecms.cms.action.member;
 import static com.jeecms.cms.Constants.TPLDIR_MEMBER;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +21,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.jeecms.common.web.ResponseUtils;
+import com.jeecms.core.entity.Area;
 import com.jeecms.core.entity.CmsSite;
 import com.jeecms.core.entity.CmsUser;
 import com.jeecms.core.entity.CmsUserExt;
 import com.jeecms.core.entity.MemberConfig;
+import com.jeecms.core.manager.AreaMng;
 import com.jeecms.core.manager.CmsUserExtMng;
 import com.jeecms.core.manager.CmsUserMng;
 import com.jeecms.core.web.WebErrors;
 import com.jeecms.core.web.util.CmsUtils;
 import com.jeecms.core.web.util.FrontUtils;
+import com.jeecms.lawyer.entity.Lawyer;
+import com.jeecms.lawyer.entity.LawyerType;
+import com.jeecms.lawyer.manager.LawyerMng;
+import com.jeecms.lawyer.manager.LawyerTypeMng;
+
+import net.sf.json.JSONArray;
 
 /**
  * 会员中心Action
@@ -34,7 +47,11 @@ public class MemberAct {
 	private static final Logger log = LoggerFactory.getLogger(MemberAct.class);
 
 	public static final String MEMBER_CENTER = "tpl.memberCenter";
+	public static final String LAWYER_CENTER = "tpl.lawyerCenter";
+	public static final String LVSUO_CENTER = "tpl.lvsuoCenter";
 	public static final String MEMBER_PROFILE = "tpl.memberProfile";
+	public static final String LAWYER_PROFILE = "tpl.lawyerProfile";
+	public static final String LVSUO_PROFILE = "tpl.lvsuoProfile";
 	public static final String MEMBER_PORTRAIT = "tpl.memberPortrait";
 	public static final String MEMBER_PASSWORD = "tpl.memberPassword";
 
@@ -62,6 +79,18 @@ public class MemberAct {
 		if (user == null) {
 			return FrontUtils.showLogin(request, model, site);
 		}
+		CmsUserExt ext=cmsUserExtMng.findById(user.getId());
+		Lawyer lawyer=lawyerMng.findById(user.getId());
+		model.addAttribute("ext", ext);
+		model.addAttribute("lawyer", lawyer);
+		if(user.getGroup().getId()==3){
+			return FrontUtils.getTplPath(request, site.getSolutionPath(),
+					TPLDIR_MEMBER, LAWYER_CENTER);
+		}
+		if(user.getGroup().getId()==4){
+			return FrontUtils.getTplPath(request, site.getSolutionPath(),
+					TPLDIR_MEMBER, LVSUO_CENTER);
+		}
 		return FrontUtils.getTplPath(request, site.getSolutionPath(),
 				TPLDIR_MEMBER, MEMBER_CENTER);
 	}
@@ -87,6 +116,102 @@ public class MemberAct {
 		}
 		if (user == null) {
 			return FrontUtils.showLogin(request, model, site);
+		}
+		CmsUserExt ext=cmsUserExtMng.findById(user.getId());
+		Lawyer lawyer=lawyerMng.findById(user.getId());
+		List<Area> areaList = areaManager.getList();
+		List<Area> cityList =areaManager.getList(110000);
+		if(null!=ext&&ext.getProvince()!=null){
+			cityList=areaManager.getList(ext.getProvince().getId());
+		}
+		List<LawyerType> list = lawyerTypeManager.getList();
+		String goodAtField = "";
+		String professionalField = "";
+
+		if (null != lawyer && StringUtils.isNotBlank(lawyer.getGoodAtField())) {
+			goodAtField = lawyer.getGoodAtField().substring(1, lawyer.getGoodAtField().length() - 1);
+		}
+
+		if (null != lawyer && StringUtils.isNotBlank(lawyer.getProfessionalField())) {
+			professionalField = lawyer.getProfessionalField().substring(1, lawyer.getProfessionalField().length() - 1);
+		}
+		String[] goodAtFieldArray = goodAtField.split(",");
+		String[] professionalFieldArray = professionalField.split(",");
+		List gList = new ArrayList();
+		List pList = new ArrayList();
+
+		for (int i = 0; i < list.size(); i++) {
+			Map map = new HashMap();
+			map.put("id", list.get(i).getId());
+			map.put("pId", list.get(i).getpId());
+			map.put("name", list.get(i).getName());
+			map.put("level", list.get(i).getLevel());
+			for (int j = 0; j < goodAtFieldArray.length; j++) {
+
+				if (goodAtFieldArray[j].equals(list.get(i).getId().toString())) {
+					map.put("checked", true);
+				}
+			}
+
+			gList.add(map);
+
+		}
+
+		for (int i = 0; i < list.size(); i++) {
+			Map map = new HashMap();
+			map.put("id", list.get(i).getId());
+			map.put("pId", list.get(i).getpId());
+			map.put("name", list.get(i).getName());
+			map.put("level", list.get(i).getLevel());
+			for (int j = 0; j < professionalFieldArray.length; j++) {
+
+				if (professionalFieldArray[j].equals(list.get(i).getId().toString())) {
+					map.put("checked", true);
+				}
+			}
+			pList.add(map);
+
+		}
+
+		String gJson = JSONArray.fromObject(gList).toString();
+		String pJson = JSONArray.fromObject(pList).toString();
+		
+		List areaListJson= new ArrayList();
+		
+		for(int i=0;i<areaList.size();i++){
+			if( areaList.get(i).getPid()!=0){
+			Map map=new HashMap();
+			map.put("id", areaList.get(i).getId());
+			map.put("pid", areaList.get(i).getPid());
+			map.put("name", areaList.get(i).getName());
+			areaListJson.add(map);
+			}
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		String cityListJson = JSONArray.fromObject(areaListJson).toString();
+		
+		model.addAttribute("cityListJson", cityListJson);
+		model.addAttribute("ext", ext);
+		model.addAttribute("lawyer", lawyer);
+		model.addAttribute("areaList", areaList);
+		model.addAttribute("cityList", cityList);
+		model.addAttribute("gLawyerType", gJson);
+		model.addAttribute("pLawyerType", pJson);
+		if(user.getGroup().getId()==3){
+			return FrontUtils.getTplPath(request, site.getSolutionPath(),
+					TPLDIR_MEMBER, LAWYER_PROFILE);
+		}
+		if(user.getGroup().getId()==4){
+			return FrontUtils.getTplPath(request, site.getSolutionPath(),
+					TPLDIR_MEMBER, LVSUO_PROFILE);
 		}
 		return FrontUtils.getTplPath(request, site.getSolutionPath(),
 				TPLDIR_MEMBER, MEMBER_PROFILE);
@@ -126,7 +251,7 @@ public class MemberAct {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/member/profile.jspx", method = RequestMethod.POST)
-	public String profileSubmit(CmsUserExt ext, String nextUrl,
+	public String profileSubmit(CmsUserExt ext, String nextUrl,Integer provinceId, Integer cityId, Integer regionId,
 			HttpServletRequest request, HttpServletResponse response,
 			ModelMap model) throws IOException {
 		CmsSite site = CmsUtils.getSite(request);
@@ -140,6 +265,9 @@ public class MemberAct {
 		if (user == null) {
 			return FrontUtils.showLogin(request, model, site);
 		}
+		if(provinceId!=null) ext.setProvince(areaManager.findById(provinceId));
+		if(cityId!=null) ext.setCity(areaManager.findById(cityId));
+		if(regionId!=null) ext.setRegion(areaManager.findById(regionId));
 		ext.setId(user.getId());
 		cmsUserExtMng.update(ext, user);
 		log.info("update CmsUserExt success. id={}", user.getId());
@@ -252,4 +380,10 @@ public class MemberAct {
 	private CmsUserMng cmsUserMng;
 	@Autowired
 	private CmsUserExtMng cmsUserExtMng;
+	@Autowired
+	private LawyerMng lawyerMng;
+	@Autowired
+	private AreaMng areaManager;
+	@Autowired
+	private LawyerTypeMng lawyerTypeManager;
 }

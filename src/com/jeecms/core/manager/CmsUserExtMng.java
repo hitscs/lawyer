@@ -7,4 +7,6 @@ public interface CmsUserExtMng {
 	public CmsUserExt save(CmsUserExt ext, CmsUser user);
 
 	public CmsUserExt update(CmsUserExt ext, CmsUser user);
+	
+	public CmsUserExt findById(Integer id);
 }

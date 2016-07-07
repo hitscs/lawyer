@@ -12,24 +12,6 @@
 $(function() {
 	$("#jvForm").validate();
 });
-/** 
- * 加载市 
- * 
- */
-function loadCity() {
-	var data = ${cityListJson};
-	var provinceId = $("#provinceId").val();
-
-	var html = "";
-	for (var i = 0; i < data.length; i++) {
-
-		if (data[i].pid == provinceId) {
-			html = html + "<option value='" + data[i].id + "'>"
-					+ data[i].name + "</option>";
-		}
-	}
-	$("#cityId").html(html);
-}
 </script>
 </head>
 
@@ -51,45 +33,23 @@ function loadCity() {
          <td width="150" height="25" align="right" bgcolor="#f6fbff">真实姓名：</td>
          <td bgcolor="#FFFFFF"><input type="text" name="realname" value="${user.realname!?html}" maxlength="100"/> </td>
        </tr>
-       <tr>
+<!--        <tr>
          <td height="25" align="right" bgcolor="#f6fbff">性别：</td>
 		 <td bgcolor="#FFFFFF">
          [@p.radio name="gender" value=user.gender list={"true":"男","false":"女","":"保密"}/]
 		 </td>
-       </tr>
-       <tr>
+       </tr> -->
+<!--        <tr>
          <td height="25" align="right" bgcolor="#f6fbff">出生日期：</td>
          <td bgcolor="#FFFFFF"><input type="text" name="birthday" value="${(user.birthday?string('yyyy-MM-dd'))!}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate"/></td>
-       </tr>
+       </tr> -->
        <tr>
-         <td height="25" align="right" bgcolor="#f6fbff">自我介绍：</td>
+         <td height="25" align="right" bgcolor="#f6fbff">律所介绍：</td>
          <td bgcolor="#FFFFFF"><input type="text" name="intro" value="${user.intro!?html}" maxlength="255"/></td>
        </tr>  
        <tr>
-         <td height="25" align="right" bgcolor="#f6fbff">来自：</td>
-         <td bgcolor="#FFFFFF">											
-         <select id="provinceId" name="provinceId" onchange="loadCity()">
-
-												[#list areaList as a] 
-												[#if a.pid==0 ]
-												[#if ext.province?? && a.id==ext.province.id ]
-												<option value="${a.id}" selected="selected">${a.shortName}</option>
-												[#else]
-												<option value="${a.id}">${a.shortName}</option>
-												[/#if]
-												
-												[/#if]
-												[/#list]
-											</select> 
-											<select id="cityId" name="cityId">
-												[#list cityList as a] 
-												[#if ext.city?? && a.id==ext.city.id ]
-												<option value="${a.id}" selected="selected">${a.name}</option>
-												[#else]
-												<option value="${a.id}">${a.name}</option>
-												
-												[/#if] [/#list]
-											</select></td>
+         <td height="25" align="right" bgcolor="#f6fbff">所在地：</td>
+         <td bgcolor="#FFFFFF"><input type="text" name="comefrom" value="${user.comefrom!?html}" maxlength="150"/></td>
        </tr>
        <tr>
          <td height="25" align="right" bgcolor="#f6fbff">QQ：</td>

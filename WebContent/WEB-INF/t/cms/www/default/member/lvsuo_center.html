@@ -34,27 +34,25 @@
                  <td bgcolor="#FFFFFF">${user.email!}</td>
                </tr>
                <tr>
-                 <td height="25" bgcolor="#f6fbff" align="right">真实姓名：</td>
+                 <td height="25" bgcolor="#f6fbff" align="right">律所名称：</td>
                  <td bgcolor="#FFFFFF">${user.realname!}</td>
                </tr>
-               <tr>
+<!--                <tr>
                  <td height="25" bgcolor="#f6fbff" align="right">性别：</td>
                  <td bgcolor="#FFFFFF">[#if user.gender??]${user.gender?string('男','女')}[#else]保密[/#if]</td>
-               </tr>
-               <tr>
+               </tr> -->
+<!--                <tr>
                  <td height="25" bgcolor="#f6fbff" align="right">出生日期：</td>
                  <td bgcolor="#FFFFFF">${(user.birthday?string('yyyy-MM-dd'))!}</td>
-               </tr>
+               </tr> -->
                <tr>
-                 <td height="25" bgcolor="#f6fbff" align="right">自我介绍：</td>
+                 <td height="25" bgcolor="#f6fbff" align="right">律所介绍：</td>
                  <td bgcolor="#FFFFFF">${user.intro!}</td>
                </tr>
-               
                <tr>
-                 <td height="25" bgcolor="#f6fbff" align="right">来自：</td>
+                 <td height="25" bgcolor="#f6fbff" align="right">所在地：</td>
                  <td bgcolor="#FFFFFF">[#if ext.province??] ${ext.province.name!}[/#if][#if ext.city??]-- ${ext.city.name!}[/#if]</td>
                </tr>
-               
                <tr>
                  <td height="25" bgcolor="#f6fbff" align="right">QQ：</td>
                  <td bgcolor="#FFFFFF">${user.qq!}</td>

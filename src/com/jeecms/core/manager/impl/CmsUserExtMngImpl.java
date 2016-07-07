@@ -35,7 +35,10 @@ public class CmsUserExtMngImpl implements CmsUserExtMng {
 			return ext;
 		}
 	}
-
+	public CmsUserExt findById(Integer id){
+		return dao.findById(id);
+	}
+	
 	private CmsUserExtDao dao;
 
 	@Autowired
