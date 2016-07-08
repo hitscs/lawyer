@@ -59,6 +59,39 @@ public class ContributeAct extends AbstractContentMemberAct {
 		return super.list(queryTitle, modelId, queryChannelId, CONTRIBUTE_LIST,
 				pageNo, request, model);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	/**
 	 * 会员投稿添加
