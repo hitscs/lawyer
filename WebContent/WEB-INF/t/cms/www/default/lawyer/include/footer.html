@@ -12,48 +12,33 @@
 				<div class="fwrap_l">
 					<dl class="fwl">
 						<dt>发布咨询帮助</dt>
+							[@cms_content_list count='4' orderBy='4'  titLen='18' channelOption='1' channelId='309']
+						 [#list tag_list as a]
 						<dd>
-							<a href="" target="_blank">如何进行法律咨询</a>
+							<a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a>
 						</dd>
-						<dd>
-							<a href="" target="_blank">如何更快获满意答复</a>
-						</dd>
-						<dd>
-							<a href="" target="_blank">如何查看/补充咨询</a>
-						</dd>
-						<dd>
-							<a href="" target="_blank">如何采纳为最佳答案</a>
-						</dd>
+						 [/#list] 
+						 [/@cms_content_list]						
 					</dl>
 					<dl class="fwc">
 						<dt>发布咨询帮助</dt>
+							[@cms_content_list count='4' orderBy='4'  titLen='18' channelOption='1' channelId='310']
+						 [#list tag_list as a]
 						<dd>
-							<a href="" target="_blank">如何进行法律咨询</a>
+							<a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a>
 						</dd>
-						<dd>
-							<a href="" target="_blank">如何更快获满意答复</a>
-						</dd>
-						<dd>
-							<a href="" target="_blank">如何查看/补充咨询</a>
-						</dd>
-						<dd>
-							<a href="" target="_blank">如何采纳为最佳答案</a>
-						</dd>
+						 [/#list] 
+						 [/@cms_content_list]	
 					</dl>
 					<dl class="fwr">
 						<dt>发布咨询帮助</dt>
+							[@cms_content_list count='4' orderBy='4'  titLen='18' channelOption='1' channelId='311']
+						 [#list tag_list as a]
 						<dd>
-							<a href="" target="_blank">如何进行法律咨询</a>
+							<a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a>
 						</dd>
-						<dd>
-							<a href="" target="_blank">如何更快获满意答复</a>
-						</dd>
-						<dd>
-							<a href="" target="_blank">如何查看/补充咨询</a>
-						</dd>
-						<dd>
-							<a href="" target="_blank">如何采纳为最佳答案</a>
-						</dd>
+						 [/#list] 
+						 [/@cms_content_list]	
 					</dl>
 					<h6 class="clear"></h6>
 				</div>
@@ -67,48 +52,33 @@
 				<div class="fwrap_l">
 					<dl class="fwl">
 						<dt>发布咨询帮助</dt>
+							[@cms_content_list count='4' orderBy='4'  titLen='18' channelOption='1' channelId='312']
+						 [#list tag_list as a]
 						<dd>
-							<a href="" target="_blank">如何进行法律咨询</a>
+							<a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a>
 						</dd>
-						<dd>
-							<a href="" target="_blank">如何更快获满意答复</a>
-						</dd>
-						<dd>
-							<a href="" target="_blank">如何查看/补充咨询</a>
-						</dd>
-						<dd>
-							<a href="" target="_blank">如何采纳为最佳答案</a>
-						</dd>
+						 [/#list] 
+						 [/@cms_content_list]	
 					</dl>
 					<dl class="fwc">
 						<dt>发布咨询帮助</dt>
+							[@cms_content_list count='4' orderBy='4'  titLen='18' channelOption='1' channelId='313']
+						 [#list tag_list as a]
 						<dd>
-							<a href="" target="_blank">如何进行法律咨询</a>
+							<a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a>
 						</dd>
-						<dd>
-							<a href="" target="_blank">如何更快获满意答复</a>
-						</dd>
-						<dd>
-							<a href="" target="_blank">如何查看/补充咨询</a>
-						</dd>
-						<dd>
-							<a href="" target="_blank">如何采纳为最佳答案</a>
-						</dd>
+						 [/#list] 
+						 [/@cms_content_list]
 					</dl>
 					<dl class="fwr">
 						<dt>发布咨询帮助</dt>
+							[@cms_content_list count='4' orderBy='4'  titLen='18' channelOption='1' channelId='314']
+						 [#list tag_list as a]
 						<dd>
-							<a href="" target="_blank">如何进行法律咨询</a>
+							<a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a>
 						</dd>
-						<dd>
-							<a href="" target="_blank">如何更快获满意答复</a>
-						</dd>
-						<dd>
-							<a href="" target="_blank">如何查看/补充咨询</a>
-						</dd>
-						<dd>
-							<a href="" target="_blank">如何采纳为最佳答案</a>
-						</dd>
+						 [/#list] 
+						 [/@cms_content_list]
 					</dl>
 					<h6 class="clear"></h6>
 				</div>
@@ -118,5 +88,39 @@
 	</div>
 </div>
 <div id="ifooter">
-	<a href="#">返回首页</a>|<a href="#">关于我们</a>|<a href="#">发展历程</a>|<a href="#">律师加盟指南</a>|<a href="#">市场合作</a>|<a href="#">联系我们</a>|<a href="#">网站地图</a>|<a href="#">rss订阅</a>|<a href="#">诚聘英才</a><br /> 律之家 版权所有 2005-2016 粤ICP备10231287号-5 增值电信业务经营许可证(ICP证)粤B2-20100586
+	<a href="${site.url!}">返回首页</a>
+							[@cms_content_list count='1' orderBy='4'  titLen='18' channelOption='1' channelId='301']
+						 [#list tag_list as a]
+							|<a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a>
+						 [/#list] 
+						 [/@cms_content_list]
+						 							[@cms_content_list count='1' orderBy='4'  titLen='18' channelOption='1' channelId='302']
+						 [#list tag_list as a]
+							|<a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a>
+						 [/#list] 
+						 [/@cms_content_list]
+						 							[@cms_content_list count='1' orderBy='4'  titLen='18' channelOption='1' channelId='303']
+						 [#list tag_list as a]
+							|<a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a>
+						 [/#list] 
+						 [/@cms_content_list]
+						 							[@cms_content_list count='1' orderBy='4'  titLen='18' channelOption='1' channelId='304']
+						 [#list tag_list as a]
+							|<a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a>
+						 [/#list] 
+						 [/@cms_content_list]
+						 							[@cms_content_list count='1' orderBy='4'  titLen='18' channelOption='1' channelId='305']
+						 [#list tag_list as a]
+							|<a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a>
+						 [/#list] 
+						 [/@cms_content_list]
+						 							[@cms_content_list count='1' orderBy='4'  titLen='18' channelOption='1' channelId='306']
+						 [#list tag_list as a]
+							|<a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a>
+						 [/#list] 
+						 [/@cms_content_list]
+
+	|<a href="#">诚聘英才</a>
+	
+	<br /> 律之家 版权所有 2005-2016 粤ICP备10231287号-5 增值电信业务经营许可证(ICP证)粤B2-20100586
 </div>

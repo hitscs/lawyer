@@ -16,48 +16,50 @@
 [#include "../lawyer/include/navi.html"/]
 <div id="wrapper">
 	<div class="main">
-    	<div class="title_t"><span>法律文本</span></div>
- 		<div class="downlist">
-        	<div>	
-            	<h2><img src="" /></h2>
-                <h3><a href="#">点击下载</a><span>文本1</span></h3>
+		<div>
+        	<div class="title" style="margin-top:0;"><h2>刑事法类</h2></div>
+        	<div class="special fl">
+            <div class="title_t"><span>法律法规</span></div>
+                <ul>
+                			[@cms_content_list count='9' titLen='24' orderBy='7' channelOption='1' channelId='256'] 
+							[#list tag_list as a]
+							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
+							[/#list] 
+							[/@cms_content_list]
+                </ul>
             </div>
-        	<div>	
-            	<h2><img src="" /></h2>
-                <h3><a href="#">点击下载</a><span>文本1</span></h3>
+            <div class="special fl">
+            <div class="title_t"><span>司法案例</span></div>
+                <ul>
+                			[@cms_content_list count='9' titLen='24' orderBy='7' channelOption='1' channelId='257'] 
+							[#list tag_list as a]
+							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
+							[/#list] 
+							[/@cms_content_list]
+                </ul>
             </div>
-        	<div>	
-            	<h2><img src="" /></h2>
-                <h3><a href="#">点击下载</a><span>文本1</span></h3>
+            <div class="special fl">
+            <div class="title_t"><span>司法案例</span></div>
+                <ul>
+                			[@cms_content_list count='9' titLen='24' orderBy='7' channelOption='1' channelId='257'] 
+							[#list tag_list as a]
+							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
+							[/#list] 
+							[/@cms_content_list]
+                </ul>
             </div>
-        	<div>	
-            	<h2><img src="" /></h2>
-                <h3><a href="#">点击下载</a><span>文本1</span></h3>
-            </div>
-            <h6 class="clear"></h6>
+            <div class="special fl">
+            <div class="title_t"><span>司法案例</span></div>
+                <ul>
+                			[@cms_content_list count='9' titLen='24' orderBy='7' channelOption='1' channelId='257'] 
+							[#list tag_list as a]
+							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li> 
+							[/#list] 
+							[/@cms_content_list]
+                </ul>
+            </div>                        
+            <div class="clear"></div>
         </div>
-        <div class="clear h10"></div>
-    	<div class="title_t"><span>起诉书范本</span></div>
- 		<div class="downlist">
-        	<div>	
-            	<h2><img src="" /></h2>
-                <h3><a href="#">点击下载</a><span>文本1</span></h3>
-            </div>
-        	<div>	
-            	<h2><img src="" /></h2>
-                <h3><a href="#">点击下载</a><span>文本1</span></h3>
-            </div>
-        	<div>	
-            	<h2><img src="" /></h2>
-                <h3><a href="#">点击下载</a><span>文本1</span></h3>
-            </div>
-        	<div>	
-            	<h2><img src="" /></h2>
-                <h3><a href="#">点击下载</a><span>文本1</span></h3>
-            </div>
-            <h6 class="clear"></h6>
-        </div>
-        <div class="clear"></div>
 
 	</div>
 </div>
