@@ -98,7 +98,9 @@ public class ContentMngImpl implements ContentMng, ChannelDeleteChecker {
 	public Pagination getPageForMember(String title, Integer channelId,Integer siteId,Integer modelId, Integer memberId, int pageNo, int pageSize) {
 		return dao.getPage(title, null,memberId,memberId, false, false,ContentStatus.all, null, siteId,modelId,  channelId, 0, pageNo,pageSize);
 	}
-	
+	public Pagination getPageForMe(String title, Integer channelId,Integer siteId,Integer modelId, Integer toUserId, int pageNo, int pageSize) {
+		return dao.getPageToMe(title, null,toUserId, false, false,ContentStatus.all, null, siteId,modelId,  channelId, 0, pageNo,pageSize);
+	}	
 	@Transactional(readOnly = true)
 	public Content getSide(Integer id, Integer siteId, Integer channelId,
 			boolean next) {

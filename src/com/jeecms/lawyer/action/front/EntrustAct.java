@@ -29,6 +29,7 @@ import com.jeecms.core.entity.CmsSite;
 import com.jeecms.core.entity.CmsUser;
 import com.jeecms.core.entity.MemberConfig;
 import com.jeecms.core.manager.AreaMng;
+import com.jeecms.core.manager.CmsUserMng;
 import com.jeecms.core.web.WebErrors;
 import com.jeecms.core.web.util.CmsUtils;
 import com.jeecms.core.web.util.FrontUtils;
@@ -68,7 +69,7 @@ public class EntrustAct {
 	
 	
 	@RequestMapping(value = "/lawyer/entrust_save.jspx")
-	public String save(String title, String author, String description,
+	public String save(String title, String author, String description,Integer toUserId,
 			String txt, String tagStr, Integer channelId, Integer modelId,
 			String captcha,String mediaPath,String mediaType,
 			String[] attachmentPaths, String[] attachmentNames,
@@ -94,6 +95,11 @@ public class EntrustAct {
 
 		Content c = new Content();
 		c.setSite(site);
+		if(null!=toUserId){
+			CmsUser toUser =cmsUserMng.findById(toUserId);
+			c.setToUser(toUser);
+		}
+		
 		CmsModel defaultModel=cmsModelMng.getDefModel();
 		if(modelId!=null){
 			CmsModel m=cmsModelMng.findById(modelId);
@@ -252,7 +258,9 @@ public class EntrustAct {
 		return false;
 	}
 	
-	
+	@Autowired		
+	private CmsUserMng cmsUserMng;
+
 	@Autowired
 	protected ContentMng contentMng;
 	@Autowired

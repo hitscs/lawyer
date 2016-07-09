@@ -105,6 +105,7 @@ public abstract class BaseContent  implements Serializable {
 	private com.jeecms.cms.entity.main.ContentType type;
 	private com.jeecms.core.entity.CmsSite site;
 	private com.jeecms.core.entity.CmsUser user;
+	private com.jeecms.core.entity.CmsUser toUser;
 	private com.jeecms.cms.entity.main.Channel channel;
 	private com.jeecms.cms.entity.main.CmsModel model;
 
@@ -410,6 +411,20 @@ public abstract class BaseContent  implements Serializable {
 		this.user = user;
 	}
 
+
+	/**
+	 * @return the toUser
+	 */
+	public com.jeecms.core.entity.CmsUser getToUser() {
+		return toUser;
+	}
+
+	/**
+	 * @param toUser the toUser to set
+	 */
+	public void setToUser(com.jeecms.core.entity.CmsUser toUser) {
+		this.toUser = toUser;
+	}
 
 	/**
 	 * Return the value associated with the column: channel_id

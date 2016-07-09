@@ -61,11 +61,49 @@ public class ContributeAct extends AbstractContentMemberAct {
 	}
 	
 	
+	/**
+	 * 律师查看全部咨询
+	 * 
+	 * @param title
+	 *            文章标题
+	 * @param channelId
+	 *            栏目ID
+	 * @param pageNo
+	 *            页码
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/member/askAll_list.jspx")
+	public String askAllList(String queryTitle, Integer modelId,
+			Integer queryChannelId, Integer pageNo, HttpServletRequest request,
+			ModelMap model) {
+		return super.askAllList(queryTitle, modelId, queryChannelId, CONTRIBUTE_LIST,
+				pageNo, request, model);
+	}	
 	
 	
 	
-	
-	
+	/**
+	 * 律师查看一对一咨询
+	 * 
+	 * @param title
+	 *            文章标题
+	 * @param channelId
+	 *            栏目ID
+	 * @param pageNo
+	 *            页码
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/member/askMe_list.jspx")
+	public String askMeList(String queryTitle, Integer modelId,
+			Integer queryChannelId, Integer pageNo, HttpServletRequest request,
+			ModelMap model) {
+		return super.askMeList(queryTitle, modelId, queryChannelId, CONTRIBUTE_LIST,
+				pageNo, request, model);
+	}	
 	
 	
 	

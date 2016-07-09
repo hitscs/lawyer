@@ -20,6 +20,7 @@
 		<many-to-one name="type" column="type_id" class="ContentType" not-null="false"></many-to-one>
 		<many-to-one name="site" column="site_id" class="com.jeecms.core.entity.CmsSite" not-null="true"></many-to-one>
 		<many-to-one name="user" column="user_id" class="com.jeecms.core.entity.CmsUser" not-null="false"></many-to-one>
+		<many-to-one name="toUser" column="touser_id" class="com.jeecms.core.entity.CmsUser" not-null="false"></many-to-one>
 		<many-to-one name="channel" column="channel_id" class="Channel" not-null="false"></many-to-one>
 		<many-to-one name="model" column="model_id" class="CmsModel" not-null="false"></many-to-one>
 		<set name="channels" table="jc_content_channel">
