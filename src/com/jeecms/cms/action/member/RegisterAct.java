@@ -76,7 +76,13 @@ public class RegisterAct {
 			return FrontUtils.showMessage(request, model,
 					"member.registerClose");
 		}
+		
 		List<CmsConfigItem>items=cmsConfigItemMng.getList(site.getConfig().getId(), CmsConfigItem.CATEGORY_REGISTER);
+		List<Area> areaList = areaManager.getList();
+
+		String areaListJson = JSONArray.fromObject(areaList).toString();
+		model.addAttribute("areaListJson", areaListJson);
+		model.addAttribute("areaList", areaList);
 		FrontUtils.frontData(request, model, site);
 		model.addAttribute("mcfg", mcfg);
 		model.addAttribute("items", items);
@@ -85,7 +91,7 @@ public class RegisterAct {
 	}
 
 	@RequestMapping(value = "/register.jspx", method = RequestMethod.POST)
-	public String submit(String username, String email, String password,int groupId,
+	public String submit(String username, String email, String password,int groupId,Integer provinceId,Integer cityId,Integer regionId,
 			CmsUserExt userExt, String captcha, String nextUrl,
 			HttpServletRequest request, HttpServletResponse response,
 			ModelMap model) throws IOException {
@@ -101,6 +107,9 @@ public class RegisterAct {
 			return FrontUtils.showError(request, response, model, errors);
 		}
 		String ip = RequestUtils.getIpAddr(request);
+		if(provinceId!=null) userExt.setProvince(areaManager.findById(provinceId));
+		if(cityId!=null) userExt.setCity(areaManager.findById(cityId));
+		if(regionId!=null) userExt.setRegion(areaManager.findById(regionId));
 		Map<String,String>attrs=RequestUtils.getRequestMap(request, "attr_");
 		if (config.getEmailValidate()) {
 			EmailSender sender = configMng.getEmailSender();
