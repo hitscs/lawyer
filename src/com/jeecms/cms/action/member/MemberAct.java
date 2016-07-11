@@ -84,11 +84,11 @@ public class MemberAct {
 		String goodAtField = "";
 		String professionalField = "";
 
-		if (null != lawyer && StringUtils.isNotBlank(lawyer.getGoodAtField())) {
+		if (null != lawyer && StringUtils.isNotBlank(lawyer.getGoodAtField())&&lawyer.getGoodAtField().length()>1) {
 			goodAtField = lawyer.getGoodAtField().substring(1, lawyer.getGoodAtField().length() - 1);
 		}
 
-		if (null != lawyer && StringUtils.isNotBlank(lawyer.getProfessionalField())) {
+		if (null != lawyer && StringUtils.isNotBlank(lawyer.getProfessionalField())&&lawyer.getProfessionalField().length()>1) {
 			professionalField = lawyer.getProfessionalField().substring(1, lawyer.getProfessionalField().length() - 1);
 		}
 		if(professionalField!=null&&!professionalField.equals("")){
@@ -163,11 +163,11 @@ public class MemberAct {
 		String goodAtField = "";
 		String professionalField = "";
 
-		if (null != lawyer && StringUtils.isNotBlank(lawyer.getGoodAtField())) {
+		if (null != lawyer && StringUtils.isNotBlank(lawyer.getGoodAtField())&&lawyer.getGoodAtField().length()>1) {
 			goodAtField = lawyer.getGoodAtField().substring(1, lawyer.getGoodAtField().length() - 1);
 		}
 
-		if (null != lawyer && StringUtils.isNotBlank(lawyer.getProfessionalField())) {
+		if (null != lawyer && StringUtils.isNotBlank(lawyer.getProfessionalField())&&lawyer.getProfessionalField().length()>1) {
 			professionalField = lawyer.getProfessionalField().substring(1, lawyer.getProfessionalField().length() - 1);
 		}
 		String[] goodAtFieldArray = goodAtField.split(",");

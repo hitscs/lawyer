@@ -1,12 +1,17 @@
 package com.jeecms.lawyer.manager.impl;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
+
+import javax.mail.MessagingException;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.jeecms.common.email.EmailSender;
+import com.jeecms.common.email.MessageTemplate;
 import com.jeecms.common.hibernate3.Updater;
 import com.jeecms.common.page.Pagination;
 import com.jeecms.core.entity.CmsUser;
@@ -51,7 +56,18 @@ public class LawyerMngImpl implements LawyerMng {
 		
 		return user;
 	}
-	
+	public CmsUser registerMember(String username, String email, String password, String ip, Integer groupId, Integer grain,Integer provinceId,Integer cityId,Integer regionId, boolean disabled, CmsUserExt userExt, Lawyer lawyer,Map<String, String> attr,
+			Boolean activation, EmailSender sender, MessageTemplate msgTpl) throws UnsupportedEncodingException, MessagingException {
+		CmsUser user = new CmsUser();
+		if(provinceId!=null) userExt.setProvince(areaMng.findById(provinceId));
+		if(cityId!=null) userExt.setCity(areaMng.findById(cityId));
+		if(regionId!=null) userExt.setRegion(areaMng.findById(regionId));
+		user=cmsUserMng.registerMember(username, email, password, ip,
+				groupId,disabled,userExt,attr, false, sender, msgTpl);
+		lawyerDao.save(lawyer,user);
+		
+		return user;
+	}	
 	public CmsUser updateMember(Integer id, String email, String password,
 			Boolean isDisabled,Integer provinceId,Integer cityId,Integer regionId, CmsUserExt ext,Lawyer lawyer, Integer groupId,Integer grain,Map<String,String>attr) {
 		CmsUser entity = cmsUserMng.findById(id);

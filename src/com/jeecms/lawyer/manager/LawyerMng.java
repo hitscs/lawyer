@@ -1,8 +1,13 @@
 package com.jeecms.lawyer.manager;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.MessagingException;
+
+import com.jeecms.common.email.EmailSender;
+import com.jeecms.common.email.MessageTemplate;
 import com.jeecms.common.page.Pagination;
 import com.jeecms.core.entity.CmsUser;
 import com.jeecms.core.entity.CmsUserExt;
@@ -18,7 +23,8 @@ public abstract interface LawyerMng
 			int pageNo, int pageSize); 
 	public CmsUser registerMember(String username, String email,
 			String password, String ip, Integer groupId,Integer grain,Integer provinceId,Integer cityId,Integer regionId, boolean disabled,CmsUserExt userExt,Lawyer lawyer,Map<String,String>attr);
-
+	public CmsUser registerMember(String username, String email, String password, String ip, Integer groupId, Integer grain,Integer provinceId,Integer cityId,Integer regionId, boolean disabled, CmsUserExt userExt, Lawyer lawyer,Map<String, String> attr,
+			Boolean activation, EmailSender sender, MessageTemplate msgTpl)throws UnsupportedEncodingException, MessagingException ;
 	public CmsUser updateMember(Integer id, String email, String password,
 			Boolean isDisabled,Integer provinceId,Integer cityId,Integer regionId, CmsUserExt ext,Lawyer lawyer, Integer groupId,Integer grain,Map<String,String>attr) ;
 

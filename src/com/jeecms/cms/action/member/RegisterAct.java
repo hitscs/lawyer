@@ -85,7 +85,7 @@ public class RegisterAct {
 	}
 
 	@RequestMapping(value = "/register.jspx", method = RequestMethod.POST)
-	public String submit(String username, String email, String password,
+	public String submit(String username, String email, String password,int groupId,
 			CmsUserExt userExt, String captcha, String nextUrl,
 			HttpServletRequest request, HttpServletResponse response,
 			ModelMap model) throws IOException {
@@ -114,7 +114,7 @@ public class RegisterAct {
 			} else {
 				try {
 					cmsUserMng.registerMember(username, email, password, ip,
-							null,disabled,userExt,attrs, false, sender, msgTpl);
+							groupId,disabled,userExt,attrs, false, sender, msgTpl);
 					model.addAttribute("status", 0);
 				} catch (UnsupportedEncodingException e) {
 					// 发送邮件异常
@@ -138,7 +138,7 @@ public class RegisterAct {
 						TPLDIR_MEMBER, REGISTER_RESULT);
 			}
 		} else {
-			cmsUserMng.registerMember(username, email, password, ip, null,null,disabled,userExt,attrs);
+			cmsUserMng.registerMember(username, email, password, ip, groupId,null,disabled,userExt,attrs);
 			log.info("member register success. username={}", username);
 			FrontUtils.frontData(request, model, site);
 			FrontUtils.frontPageData(request, model);
@@ -214,7 +214,7 @@ public class RegisterAct {
 		}
 		String ip = RequestUtils.getIpAddr(request);
 		Map<String,String>attrs=RequestUtils.getRequestMap(request, "attr_");
-/*		if (config.getEmailValidate()) {
+		if (config.getEmailValidate()) {
 			EmailSender sender = configMng.getEmailSender();
 			MessageTemplate msgTpl = configMng.getRegisterMessageTemplate();
 			if (sender == null) {
@@ -225,7 +225,8 @@ public class RegisterAct {
 				model.addAttribute("status", 5);
 			} else {
 				try {
-					lawyerMng.registerMember(username, email, password, ip, groupId, grain, provinceId, cityId, regionId, disabled, userExt, lawyer, attrs);
+					lawyerMng.registerMember(username, email, password, ip, groupId, grain, provinceId, cityId, regionId, disabled, userExt, lawyer, attrs, false, sender, msgTpl);
+
 					model.addAttribute("status", 0);
 				} catch (UnsupportedEncodingException e) {
 					// 发送邮件异常
@@ -248,7 +249,7 @@ public class RegisterAct {
 				return FrontUtils.getTplPath(request, site.getSolutionPath(),
 						TPLDIR_MEMBER, REGISTER_RESULT);
 			}
-		} else {*/
+		} else {
 			lawyerMng.registerMember(username, email, password, ip, groupId, grain, provinceId, cityId, regionId, disabled, userExt, lawyer, attrs);
 			log.info("member register success. username={}", username);
 			FrontUtils.frontData(request, model, site);
@@ -256,7 +257,7 @@ public class RegisterAct {
 			model.addAttribute("success", true);
 			return FrontUtils.getTplPath(request, site.getSolutionPath(),
 					TPLDIR_MEMBER, LOGIN_INPUT);
-/*		}*/
+		}
 
 	}
 	@RequestMapping(value = "/active.jspx", method = RequestMethod.GET)
