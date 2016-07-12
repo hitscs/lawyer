@@ -106,7 +106,7 @@
 				<div class="lawyer_ul">
 					<ul>
 						[#if pagination.list?size gt 0] [#list pagination.list as c]
-						<li><a class="pic" href="">
+						<li><a class="pic" href="${base}/lawyer/detail.jspx?id=${c[1].id}">
           	   [#if c[1].userImg??]
 	          	   	[#if c[1].userImg!=""]
 	               		<img src="${c[1].userImg!}" />
@@ -125,7 +125,7 @@
 									<p>执业机构：${c[2].company!}</p>
 									<p>擅长领域：${c[2].professionalField!}</p>
 								</div>
-							</div> <a class="lawyer_ul_btn" href="" target="_blank">点击咨询<em></em></a></li> [/#list] [/#if]
+							</div> <a class="lawyer_ul_btn" href="${base}/lawyer/detail.jspx?id=${c[1].id}" target="_blank">点击咨询<em></em></a></li> [/#list] [/#if]
 					</ul>
 				</div>
 			</div>

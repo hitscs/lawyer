@@ -71,7 +71,7 @@ public class LawyerAct {
 		}
 		if ((id == null) || (lawyer == null)) {
 			WebErrors errors = WebErrors.create(request);
-			errors.addErrorCode("not fount test");
+			errors.addErrorCode("该律师页面不存在");
 			FrontUtils.showError(request, response, model, errors);
 		}
 		model.addAttribute("lawyer", lawyer);

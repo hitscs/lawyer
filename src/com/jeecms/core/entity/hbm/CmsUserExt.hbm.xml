@@ -10,7 +10,7 @@
 		<property name="realname" column="realname" type="string" not-null="false" length="100"/>
 		<property name="gender" column="gender" type="java.lang.Boolean" not-null="false"/>
 		<property name="birthday" column="birthday" type="timestamp" not-null="false" length="19"/>
-		<property name="intro" column="intro" type="string" not-null="false" length="255"/>
+		<property name="intro" column="intro" type="string" not-null="false" length="5000"/>
 		<property name="comefrom" column="comefrom" type="string" not-null="false" length="150"/>
 		<property name="qq" column="qq" type="string" not-null="false" length="100"/>
 		<property name="msn" column="msn" type="string" not-null="false" length="100"/>
