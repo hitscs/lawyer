@@ -3997,7 +3997,7 @@ margin-right: 8px;display: block;overflow: hidden;white-space: nowrap;-o-text-ov
 .reg_form dl{width:403px;height:28px;margin:0 auto;padding:10px;border:1px solid #d5d5d5;margin-bottom:27px;}
 .reg_form dl dt{width:70px;height:28px;float:left;margin-left:8px;line-height:28px;color:#212121;font-size:14px;font-weight:normal;}
 .reg_form dl dd{margin-left:80px;}
-.reg_form dl dd input{width:90%;border:none;line-height:28px;height:28px;color:#828282;font-size:12px;font-weight:normal;outline:none;}
+.reg_form dl dd input{width:60%;border:none;line-height:28px;height:28px;color:#828282;font-size:12px;font-weight:normal;outline:none;}
 
 
 

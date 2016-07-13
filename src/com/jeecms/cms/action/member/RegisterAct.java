@@ -185,7 +185,7 @@ public class RegisterAct {
 				TPLDIR_MEMBER, REGISTERLAWYER);
 	}
 /**
- * 律师注册-----未验证信箱（激活）
+ * 律师注册
  * @param username
  * @param email
  * @param password

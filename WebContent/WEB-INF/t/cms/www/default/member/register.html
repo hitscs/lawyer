@@ -10,68 +10,91 @@
 <script src="/${res}/lawyer/js/js_jquery-1.11.1.min.js" type="text/javascript"></script>
 <script src="/${res}/lawyer/js/common.js" type="text/javascript"></script>
 <script type="text/javascript">
+
+function validateusername(){
+	var username= $('#username').val();
+	if(username==""){
+        $('#usernameInfo').html('<font color="red">用户名不能为空</font>');
+	return false;}
+	else{
+        var usern = new RegExp("^[A-Za-z0-9]+$");
+        if (false == usern.test(username)) {
+                $('#usernameInfo').html('<font color="red">只能由字母数字组成！</font>');
+                return false;
+        }
+        if (username.length<4||username.length>14) {
+            $('#usernameInfo').html('<font color="red">长度只能为4-14位！</font>');
+            return false;
+        }    		
+        $.ajax({
+            url:'username_unique.jspx',
+            type:'post',
+            data:{'username':username},
+            success:function(data,statusText){
+                
+                if(data==false){
+                    $('#usernameInfo').html('<font color="red">用户名已存在！</font>');
+                    return false;
+                }
+                
+                else{
+                    $('#usernameInfo').html('<font color="green">可用</font>');
+                    return true;
+                }
+            }
+        });
+	}
+}
+
+function validatepassword(){
+    	var password= $('#password').val();
+    	if(password==""){
+            $('#passwordInfo').html('<font color="red">密码不能为空</font>');
+    	return false;}
+        if (password.length<6||password.length>12) {
+            $('#passwordInfo').html('<font color="red">长度只能为6-12位！</font>');
+            return false;
+         }else {
+        	 $('#passwordInfo').html('<font color="green">可用</font>'); 
+         return true;
+         }
+
+
+}
+function validatepasswords(){
+    
+    	var password= $('#password').val();
+    	var passwords= $('#passwords').val();
+    	if(passwords==""){
+            $('#passwordsInfo').html('<font color="red">确认密码不能为空</font>');
+    	return false;}
+        if (password!=passwords) {
+            $('#passwordsInfo').html('<font color="red">与密码不匹配！</font>');
+            return false;
+         }else{
+        	 $('#passwordsInfo').html('<font color="green">正确</font>');   
+        	 return true;
+         }
+
+    
+}
 $(function(){
     $('#username').focusout(function(){
-            $.ajax({
-                url:'username_unique.jspx',
-                type:'post',
-                data:{'username':$('#username').val()},
-                success:function(data,statusText){
-                    
-                    if(data==false)
-                        $('#emailInfo').html('<font color="red">用户名已存在！</font>');
-                    else{
-                        if($('#email').val()=="")
-                            $('#emailInfo').html('<font color="red">邮箱不能为空</font>');
-                        else{
-                        $('#emailInfo').html('<font color="green">可用</font>');
-                        eok=true;
-                        }
-                    }
-                }
-            });
+    	validateusername();
+
     });
-     
+	$('#password').focusout(function(){
+		validatepassword();
+	     
+	
+	})
+ 	$('#passwords').focusout(function(){
+		validatepasswords();
+	     
+	});     
 });
 
-
-    $(function() {
-	$('#password')
-		.keyup(
-			function() {
-			    var strongRegex = new RegExp(
-				    "^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$",
-				    "g");
-			    var mediumRegex = new RegExp(
-				    "^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$",
-				    "g");
-			    var enoughRegex = new RegExp("(?=.{6,}).*", "g");
-
-			    if (false == enoughRegex.test($(this).val())) {
-				$('.pw-bar .pw-weak').removeClass('pw-on');
-				$('.pw-bar .pw-medium').removeClass('pw-on');
-				$('.pw-bar .pw-strong').removeClass('pw-on');
-				//密码小于六位的时候，密码强度图片都为灰色 
-			    } else if (strongRegex.test($(this).val())) {
-				$('.pw-bar .pw-weak').addClass('pw-on');
-				$('.pw-bar .pw-medium').addClass('pw-on');
-				$('.pw-bar .pw-strong').addClass('pw-on');
-				//密码为八位及以上并且字母数字特殊字符三项都包括,强度最强 
-			    } else if (mediumRegex.test($(this).val())) {
-				$('.pw-bar .pw-weak').addClass('pw-on');
-				$('.pw-bar .pw-medium').addClass('pw-on');
-				$('.pw-bar .pw-strong').removeClass('pw-on');
-				//密码为七位及以上并且字母、数字、特殊字符三项中有两项，强度是中等 
-			    } else {
-				$('.pw-bar .pw-weak').addClass('pw-on');
-				$('.pw-bar .pw-medium').removeClass('pw-on');
-				$('.pw-bar .pw-strong').removeClass('pw-on');
-				//如果密码为6为及以下，就算字母、数字、特殊字符三项都包括，强度也是弱的 
-			    }
-			    return true;
-			});
-    })
-    
+   
     /** 
 	 * 加载市 
 	 * 
@@ -105,6 +128,13 @@ $(function(){
 	$("#cityId").html(html);
 	
     })
+    
+    function register(){
+    	
+
+    		document.all.registerForm.submit();   
+    	
+    }
 </script>
 </head>
 <body>
@@ -146,38 +176,31 @@ $(function(){
 						<li><a href="${base}/registerLawyer.jspx" target="_self">律师会员</a></li>
 						<li class="cur"><a href="${base}/register.jspx" target="_self">公众会员</a></li>
 						<li><a href="#" target="_self">律所会员</a></li>
-						<h6 class="clear"></h6>
+						
 					</ul>
 				</div>
-				<form id="jvForm" action="${base}/register.jspx" method="post" style="padding-top: 20px">
+
+					<div class="reg_form">
+									<form id="registerForm" name="registerForm" action="${base}/register.jspx" method="post" style="padding-top: 20px">
 								<input type="hidden" id="groupId" name="groupId" value="1"/>
 				<input type="hidden" id="grain" name="grain" value="0"/>
-					<div class="reg_form">
 						<dl>
 							<dt>用户名：</dt>
 							<dd>
-								<input class="text" id="username" vld="{required:true,rangelength:[${site.usernameMinLen},20],username:true,remote:'username_unique.jspx',messages:{remote:'用户名已存在！'}}" name="username" type="text" value="4-14个字节，有字母、数字或者下划线组成" onfocus="if (value =='4-14个字节，有字母、数字或者下划线组成'){value =''}"
-									onblur="if (value ==''){value='4-14个字节，有字母、数字或者下划线组成'}" /><span id="emailInfo"></span>
+								<input class="text" id="username" name="username" type="text" placeholder="4-14个字节，由字母、数字组成" /><span id="usernameInfo"></span>
 							</dd>
 						</dl>
-						<dl style="margin-bottom: 0;">
-							<dt>设置密码：</dt>
+						<dl>
+							<dt>密码：</dt>
 							<dd>
-								<input id="password" type="password" name="password" class="text" value="4-14个字节，有字母、数字或者下划线组成" onfocus="if (value =='4-14个字节，有字母、数字或者下划线组成'){value =''}" onblur="if (value ==''){value='4-14个字节，有字母、数字或者下划线组成'}" />
+								<input id="password" type="password" name="password" class="text"/><span id="passwordInfo"></span>
 							</dd>
 						</dl>
-						<div id="level" class="pw-strength">
-							<div class="pw-bar">
-								<span class="pw-weak"></span><span class="pw-medium"></span><span class="pw-strong"></span>
-							</div>
-							<div class="pw-txt">
-								<span>弱</span> <span>中</span> <span>强</span>
-							</div>
-						</div>
+
 						<dl>
 							<dt>确认密码：</dt>
 							<dd>
-								<input class="text" type="password" equalto="#password" value="4-14个字节，有字母、数字或者下划线组成" onfocus="if (value =='4-14个字节，有字母、数字或者下划线组成'){value =''}" onblur="if (value ==''){value='4-14个字节，有字母、数字或者下划线组成'}" />
+								<input class="text" type="password" id="passwords"/><span id="passwordsInfo"></span>
 							</dd>
 						</dl>
 						<dl>
@@ -204,7 +227,7 @@ $(function(){
 						<dl>
 							<dt>邮箱：</dt>
 							<dd>
-								<input id="email" maxlength="30" vld="{remote:'email_unique.jspx',messages:{remote:'email已经被使用！'}}" name="email" type="text" class="text" value="4-14个字节，有字母、数字或者下划线组成" onfocus="if (value =='4-14个字节，有字母、数字或者下划线组成'){value =''}" onblur="if (value ==''){value='4-14个字节，有字母、数字或者下划线组成'}" />
+								<input id="email" maxlength="30" name="email" type="text" class="text"/>
 							</dd>
 						</dl>
 						<dl>
@@ -224,16 +247,10 @@ $(function(){
 						</dl>
 							
 							<div align="center"><img id="guestbookCaptcha" onclick="this.src='${base}/captcha.svl?d='+new Date()" alt="" src="${base}/captcha.svl" /></div>
-								
-							
-
-						<!-- 					<div class="txtcheckbox">
-						<input name="xieyi" type="checkbox" value="1" id="yhxy" checked="checked">&nbsp;我已同意<a href="">《律之家网络服务使用协议》</a>
-					</div> -->
-						<!-- <a href="#" class="reg_btn">立即注册</a> -->
-						<input class="reg_btn" type="submit" name="register" value="立即注册" />
-					</div>
 				</form>
+						<button class="reg_btn" name="register" onclick="register()" >立即注册</button>
+					</div>
+
 				
 			</div>
 		</div>

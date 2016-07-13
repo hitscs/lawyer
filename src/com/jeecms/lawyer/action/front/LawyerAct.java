@@ -67,7 +67,7 @@ public class LawyerAct {
 		}
 		if ((id == null) || (lawyer == null)) {
 			WebErrors errors = WebErrors.create(request);
-			errors.addErrorCode("该律师页面不存在");
+			errors.addErrorCode("comment.contentNotFound");
 			FrontUtils.showError(request, response, model, errors);
 		}
 		model.addAttribute("lawyer", lawyer);
