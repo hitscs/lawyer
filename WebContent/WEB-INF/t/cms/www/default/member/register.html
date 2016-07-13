@@ -10,6 +10,31 @@
 <script src="/${res}/lawyer/js/js_jquery-1.11.1.min.js" type="text/javascript"></script>
 <script src="/${res}/lawyer/js/common.js" type="text/javascript"></script>
 <script type="text/javascript">
+$(function(){
+    $('#username').focusout(function(){
+            $.ajax({
+                url:'username_unique.jspx',
+                type:'post',
+                data:{'username':$('#username').val()},
+                success:function(data,statusText){
+                    
+                    if(data==false)
+                        $('#emailInfo').html('<font color="red">用户名已存在！</font>');
+                    else{
+                        if($('#email').val()=="")
+                            $('#emailInfo').html('<font color="red">邮箱不能为空</font>');
+                        else{
+                        $('#emailInfo').html('<font color="green">可用</font>');
+                        eok=true;
+                        }
+                    }
+                }
+            });
+    });
+     
+});
+
+
     $(function() {
 	$('#password')
 		.keyup(
@@ -132,7 +157,7 @@
 							<dt>用户名：</dt>
 							<dd>
 								<input class="text" id="username" vld="{required:true,rangelength:[${site.usernameMinLen},20],username:true,remote:'username_unique.jspx',messages:{remote:'用户名已存在！'}}" name="username" type="text" value="4-14个字节，有字母、数字或者下划线组成" onfocus="if (value =='4-14个字节，有字母、数字或者下划线组成'){value =''}"
-									onblur="if (value ==''){value='4-14个字节，有字母、数字或者下划线组成'}" />
+									onblur="if (value ==''){value='4-14个字节，有字母、数字或者下划线组成'}" /><span id="emailInfo"></span>
 							</dd>
 						</dl>
 						<dl style="margin-bottom: 0;">

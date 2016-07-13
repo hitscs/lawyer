@@ -134,7 +134,10 @@ public class AskAct {
 		model.addAttribute("currentMenu", "askIndex");
 		FrontUtils.frontData(request, model, site);
 		FrontUtils.frontPageData(request, model);
-		return "redirect:ask.jspx";
+		
+        if(null!=toUserId){
+	    return "redirect:detail.jspx?id="+toUserId;
+        }else return "redirect:ask.jspx";
 		//return "redirect:/comment.jspx?contentId="+c.getId();
 		//return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", ASK);
 	}	

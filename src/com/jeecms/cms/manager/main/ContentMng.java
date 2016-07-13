@@ -45,7 +45,25 @@ public interface ContentMng {
 	 */
 	public Pagination getPageForMember(String title, Integer channelId,
 			Integer siteId, Integer modelId,Integer memberId, int pageNo, int pageSize);
-
+	/**
+	 * 获得公开咨询。供会员中心使用。
+	 * 
+	 * @param title
+	 *            文章标题
+	 * @param channelId
+	 *            栏目ID
+	 * @param siteId
+	 *            站点ID
+	 * @param memberId
+	 *            会员ID
+	 * @param pageNo
+	 *            页码
+	 * @param pageSize
+	 *            每页大小
+	 * @return 文章分页对象
+	 */
+	public Pagination getPageOpen(String title, Integer channelId,
+			Integer siteId, Integer modelId,Integer memberId, int pageNo, int pageSize);
 	/**
 	 * 获得指向我的文章分页。供会员中心使用。
 	 * 

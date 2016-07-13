@@ -81,6 +81,48 @@ public class ContentDaoImpl extends HibernateBaseDao<Content, Integer>
 		appendOrder(f, orderBy);
 		return find(f, pageNo, pageSize);
 	}
+	public Pagination getPageOpen(String title, Integer typeId,Integer currUserId,
+			Integer inputUserId, boolean topLevel, boolean recommend,
+			ContentStatus status, Byte checkStep, Integer siteId,Integer modelId,
+			Integer channelId,int orderBy, int pageNo, int pageSize) {
+		Finder f = Finder.create("select  bean from Content bean ");
+		if (prepared == status || passed == status || rejected == status) {
+			f.append(" join bean.contentCheckSet check");
+		}
+		if (channelId != null) {
+			f.append(" join bean.channel channel,Channel parent");
+			f.append(" where channel.lft between parent.lft and parent.rgt");
+			f.append(" and channel.site.id=parent.site.id");
+			f.append(" and parent.id=:parentId");
+			f.setParam("parentId", channelId);
+		} else if (siteId != null) {
+			f.append(" where bean.site.id=:siteId  ");
+			f.setParam("siteId", siteId);
+		} else {
+			f.append(" where 1=1");
+		}
+		if (prepared == status) {
+			f.append(" and check.checkStep<:checkStep");
+			f.append(" and check.rejected=false");
+			f.setParam("checkStep", checkStep);
+		} else if (passed == status) {
+			f.append(" and check.checkStep=:checkStep");
+			f.append(" and check.rejected=false");
+			f.setParam("checkStep", checkStep);
+		} else if (rejected == status) {
+			//退回只有本级可以查看
+			f.append(" and check.checkStep=:checkStep");
+			f.append(" and check.rejected=true");
+			f.setParam("checkStep", checkStep);
+		}
+		if(modelId!=null){
+			f.append(" and bean.model.id=:modelId").setParam("modelId", modelId);
+		}
+		f.append(" and bean.toUser.id=null");
+		appendQuery(f, title, typeId, inputUserId, status, topLevel, recommend);
+		appendOrder(f, orderBy);
+		return find(f, pageNo, pageSize);
+	}
 	public Pagination getPageToMe(String title, Integer typeId,Integer toUserId,
 			boolean topLevel, boolean recommend,
 			ContentStatus status, Byte checkStep, Integer siteId,Integer modelId,

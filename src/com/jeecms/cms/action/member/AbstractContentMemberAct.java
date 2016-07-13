@@ -88,7 +88,30 @@ public class AbstractContentMemberAct {
 		return FrontUtils.getTplPath(request, site.getSolutionPath(),
 				TPLDIR_MEMBER, nextUrl);
 	}	
-	
+	protected String askOpenList(String q, Integer modelId,Integer queryChannelId,String nextUrl,Integer pageNo,
+			HttpServletRequest request, ModelMap model) {
+		CmsSite site = CmsUtils.getSite(request);
+		CmsUser user = CmsUtils.getUser(request);
+		FrontUtils.frontData(request, model, site);
+		MemberConfig mcfg = site.getConfig().getMemberConfig();
+		// 没有开启会员功能
+		if (!mcfg.isMemberOn()) {
+			return FrontUtils.showMessage(request, model, "member.memberClose");
+		}
+		if (user == null) {
+			return FrontUtils.showLogin(request, model, site);
+		}
+		Pagination p = contentMng.getPageOpen(q, queryChannelId,site.getId(), modelId,null, cpn(pageNo), 20);
+		model.addAttribute("pagination", p);
+		if (!StringUtils.isBlank(q)) {
+			model.addAttribute("q", q);
+		}
+		if (modelId != null) {
+			model.addAttribute("modelId", modelId);
+		}
+		return FrontUtils.getTplPath(request, site.getSolutionPath(),
+				TPLDIR_MEMBER, nextUrl);
+	}	
 	protected String askMeList(String q, Integer modelId,Integer queryChannelId,String nextUrl,Integer pageNo,
 			HttpServletRequest request, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
