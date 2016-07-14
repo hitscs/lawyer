@@ -123,13 +123,13 @@ function submitOnlineAskN(){
 					<div class="space10"></div>
 					<p>所在地区：[#if lawyer.user.province??] ${lawyer.user.province.name!}[/#if][#if lawyer.user.city??]-- ${lawyer.user.city.name!}[/#if]</p>
 					<p>
-						手 机：<strong>${lawyer.user.moble!}</strong>
+						手 机：<strong>${lawyer.user.mobile!?html}</strong>
 					</p>
 					<p>
-						电 话：<strong>${lawyer.user.phone!}</strong>
+						电 话：<strong>${lawyer.user.phone!?html}</strong>
 					</p>
 					<p>
-						邮 箱：<strong>${lawyer.user.qq!}</strong>
+						邮 箱：<strong>${lawyer.user.email!}</strong>
 					</p>
 					<p>
 						(电话<strong>咨询免费</strong>，咨询请说明来自<strong>律之家</strong>)
@@ -153,7 +153,7 @@ function submitOnlineAskN(){
 					<div class="space10"></div>
 					<h5>1、电话咨询</h5>
 					<p>
-						如果您有法律问题的疑惑和困扰可以直接与律师沟通，律师免费咨询电话：<strong>${lawyer.user.phone!}</strong>，对于您提出的问题律师会给予最佳的解决方案。欢迎致电！（电话咨询免费，咨询请说明来自法律快车）
+						如果您有法律问题的疑惑和困扰可以直接与律师沟通，律师免费咨询电话：<strong>${lawyer.user.phone!?html}</strong>，对于您提出的问题律师会给予最佳的解决方案。欢迎致电！（电话咨询免费，咨询请说明来自法律快车）
 					</p>
 					<div class="space20"></div>
 					<h5>2、在线咨询</h5>

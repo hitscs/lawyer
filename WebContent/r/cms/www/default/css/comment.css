@@ -1,0 +1,104 @@
+.hundred100 {
+    width: 100%;
+}
+
+.rim06 {
+    background: #fcfcfc none repeat scroll 0 0;
+    border: 1px solid #d8d8d8;
+}
+
+.pinglun {
+    font-size: 12px;
+    width: 100%;
+}
+.LanMu01-2 {
+    background-image: url("../img/tuku/title1-2.gif");
+    height: 30px;
+    width: 100%;
+}
+.LanMu01-1 {
+    background-image: url("../img/tuku/title1-1.gif");
+    float: left;
+    height: 30px;
+    width: 23px;
+}
+.LanMu01-2 span {
+    color: #2b4099;
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 30px;
+}
+.LanMu01-3 {
+    background-image: url("../img/tuku/title1-3.gif");
+    float: right;
+    height: 30px;
+    width: 10px;
+}
+.clear-10 {
+    clear: both;
+    height: 10px;
+}
+.pltable {
+    height: 180px;
+    margin: auto;
+    width: 95%;
+}
+.plfl1 {
+    float: left;
+    line-height: 26px;
+    text-align: right;
+    width: 80px;
+}
+.plfr1 {
+    float: left;
+}
+.cinput {
+    border: 1px solid #ccc;
+    height: 80px;
+    line-height: 24px;
+    width: 90%;
+}
+.plfl2 {
+    float: left;
+    line-height: 26px;
+    margin-top: 10px;
+    text-align: right;
+    width: 80px;
+}
+
+.published {
+    background: #ff7e0c none repeat scroll 0 0;
+    border: 0 none;
+    color: #fff;
+    cursor: pointer;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    width: 80px;
+}
+
+#commentList {
+    float: right;
+    font-size: 12px;
+    line-height: 30px;
+    margin-right: 5px;
+}
+#commentList a {
+    font-size: 12px;
+}
+#commentListContainer {
+    font-size: 12px;
+    line-height: 24px;
+    margin: auto;
+    width: 97%;
+}
+.plcode {
+    border: 1px solid #ccc;
+    height: 26px;
+    line-height: 26px;
+    width: 100px;
+}
+img {
+    border: 0 none;
+}
