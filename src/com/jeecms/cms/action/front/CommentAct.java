@@ -155,11 +155,11 @@ public class CommentAct {
 			// 需要登录才能评论
 			json.put("success", false);
 			json.put("status", 4);
-		}else if (hasCommented(user, content)) {
+		}/*else if (hasCommented(user, content)) {
 			// 已经评论过，不能重复评论
 			json.put("success", false);
 			json.put("status", 5);
-		} else {
+		} */else {
 			boolean checked = false;
 			Integer userId = null;
 			if (user != null) {

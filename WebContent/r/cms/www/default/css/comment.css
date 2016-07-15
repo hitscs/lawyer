@@ -102,3 +102,21 @@
 img {
     border: 0 none;
 }
+dl.rmpl dt {
+    margin: 5px 0 0;
+}
+dl.rmpl dt span {
+    color: #d80c18;
+}
+dl.rmpl dd {
+    color: #8e8e8e;
+    margin: 0 0 5px;
+}
+dl.rmpl dd.line {
+    border-bottom: 1px dotted #ccc;
+}
+.pagebar {
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
