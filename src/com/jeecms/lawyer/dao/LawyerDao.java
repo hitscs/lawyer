@@ -16,6 +16,7 @@ public abstract interface LawyerDao
 			Integer provinceId,Integer cityId,Integer regionId, String realname,String professionalField,String goodAtField, Integer groupId, Boolean disabled, Boolean admin, Integer rank,
 			int pageNo, int pageSize); 
   public abstract List getListByComment(Integer siteId, Boolean disabled, int pageNo, int pageSize);
+  public abstract List getListByComment();
   public abstract List<Lawyer> getList(int paramInt, boolean paramBoolean);
   
   public abstract Lawyer findById(Integer paramInteger);

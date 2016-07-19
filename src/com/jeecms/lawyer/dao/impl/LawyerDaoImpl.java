@@ -3,13 +3,13 @@ package com.jeecms.lawyer.dao.impl;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import com.jeecms.common.hibernate3.Finder;
 import com.jeecms.common.hibernate3.HibernateBaseDao;
 import com.jeecms.common.page.Pagination;
 import com.jeecms.core.entity.CmsUser;
-import com.jeecms.core.entity.CmsUserExt;
 import com.jeecms.lawyer.entity.Lawyer;
 
 @Repository
@@ -124,22 +124,14 @@ public class LawyerDaoImpl extends HibernateBaseDao<Lawyer, Integer>implements c
 	/**
 	 * 获取的是律师回复的文章的数量（文章数）
 	 */
-/*		public List getListByComment(Integer siteId, Boolean disabled) {
-			Finder f = Finder.create("select count(*) as num ,bean.commentUser as user from CmsComment bean  ");
+		public List getListByComment() {
+			Finder f = Finder.create("select count(*) as num,a.user from ( select count(*),bean.content,bean.commentUser as user from CmsComment bean group by bean.content,bean.commentUser ) a group by a.user ");
 
-				f.append(" where 1=1 ");
 
-			
-				f.append(" and bean.commentUser.group.id=3");
-
-			if (disabled != null) {
-				f.append(" and bean.disabled=:disabled");
-				f.setParam("disabled", disabled);
-			}
-			f.append(" group by  bean.commentUser.id  ");
 			f.append("  order by num desc");
+			
 			return find(f);
-		}*/	
+		}	
 	public List<Lawyer> getList(int count, boolean cache) {
 		Finder finder = Finder.create("from Lawyer");
 		finder.setCacheable(cache);

@@ -52,7 +52,11 @@ public class LawyerMngImpl implements LawyerMng {
 			List page = lawyerDao.getListByComment(siteId, disabled, pageNo, pageSize);
 			return page;
 		}
-
+		public List getListByComment() {
+			
+			List page = lawyerDao.getListByComment();
+			return page;
+		}
 	public CmsUser registerMember(String username, String email, String password, String ip, Integer groupId, Integer grain,Integer provinceId,Integer cityId,Integer regionId, boolean disabled, CmsUserExt userExt, Lawyer lawyer,Map<String, String> attr) {
 		CmsUser user = new CmsUser();
 		if(provinceId!=null) userExt.setProvince(areaMng.findById(provinceId));

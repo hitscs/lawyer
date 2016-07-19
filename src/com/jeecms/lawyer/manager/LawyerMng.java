@@ -30,6 +30,15 @@ public abstract interface LawyerMng
    * @return
    */
   public abstract List getListByComment(Integer siteId, Boolean disabled,int pageNo, int pageSize);
+  /**
+   * 通过回复过的文章数量获取律师
+   * @param siteId
+   * @param disabled
+   * @param pageNo
+   * @param pageSize
+   * @return
+   */
+  public abstract List getListByComment();
 	public CmsUser registerMember(String username, String email,
 			String password, String ip, Integer groupId,Integer grain,Integer provinceId,Integer cityId,Integer regionId, boolean disabled,CmsUserExt userExt,Lawyer lawyer,Map<String,String>attr);
 	public CmsUser registerMember(String username, String email, String password, String ip, Integer groupId, Integer grain,Integer provinceId,Integer cityId,Integer regionId, boolean disabled, CmsUserExt userExt, Lawyer lawyer,Map<String, String> attr,

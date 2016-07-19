@@ -58,11 +58,12 @@ public class AskAct {
 
 		List<Area> areaList = areaManager.getList();
 		List<LawyerType> lawyerTypeList = lawyerTypeManager.getList();
-		List lawyerList =lawyerMng.getListByComment(null, null, 1, 10);
-		
+		List lawyerCommentList =lawyerMng.getListByComment(null, null, 1, 10);
+		//List lawyerContentList =lawyerMng.getListByComment();
 
 		String areaListJson = JSONArray.fromObject(areaList).toString();
-		model.addAttribute("lawyerList", lawyerList);
+		model.addAttribute("lawyerCommentList", lawyerCommentList);
+		//model.addAttribute("lawyerContentList", lawyerContentList);
 		model.addAttribute("areaListJson", areaListJson);
 		model.addAttribute("areaList", areaList);
 		model.addAttribute("lawyerTypeList", lawyerTypeList);
