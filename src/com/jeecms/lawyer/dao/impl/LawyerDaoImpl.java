@@ -102,6 +102,44 @@ public class LawyerDaoImpl extends HibernateBaseDao<Lawyer, Integer>implements c
 		f.append(" order by bean.id desc");
 		return find(f, pageNo, pageSize);
 	}
+/**
+ * 获取的是律师回复的数量（所有的回复）
+ */
+	public List getListByComment(Integer siteId, Boolean disabled, int pageNo, int pageSize) {
+		Finder f = Finder.create("select count(*) as num ,bean.commentUser as user from CmsComment bean  ");
+
+			f.append(" where 1=1 ");
+
+		
+			f.append(" and bean.commentUser.group.id=3");
+
+		if (disabled != null) {
+			f.append(" and bean.disabled=:disabled");
+			f.setParam("disabled", disabled);
+		}
+		f.append(" group by  bean.commentUser.id  ");
+		f.append("  order by num desc");
+		return find(f);
+	}
+	/**
+	 * 获取的是律师回复的文章的数量（文章数）
+	 */
+/*		public List getListByComment(Integer siteId, Boolean disabled) {
+			Finder f = Finder.create("select count(*) as num ,bean.commentUser as user from CmsComment bean  ");
+
+				f.append(" where 1=1 ");
+
+			
+				f.append(" and bean.commentUser.group.id=3");
+
+			if (disabled != null) {
+				f.append(" and bean.disabled=:disabled");
+				f.setParam("disabled", disabled);
+			}
+			f.append(" group by  bean.commentUser.id  ");
+			f.append("  order by num desc");
+			return find(f);
+		}*/	
 	public List<Lawyer> getList(int count, boolean cache) {
 		Finder finder = Finder.create("from Lawyer");
 		finder.setCacheable(cache);
@@ -137,4 +175,5 @@ public class LawyerDaoImpl extends HibernateBaseDao<Lawyer, Integer>implements c
 	protected Class<Lawyer> getEntityClass() {
 		return Lawyer.class;
 	}
+
 }

@@ -1,6 +1,7 @@
 package com.jeecms.lawyer.manager.impl;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.Map;
 
 import javax.mail.MessagingException;
@@ -45,6 +46,12 @@ public class LawyerMngImpl implements LawyerMng {
 		  
 		  
 	  }
+		
+		public List getListByComment(Integer siteId, Boolean disabled, int pageNo, int pageSize) {
+			
+			List page = lawyerDao.getListByComment(siteId, disabled, pageNo, pageSize);
+			return page;
+		}
 
 	public CmsUser registerMember(String username, String email, String password, String ip, Integer groupId, Integer grain,Integer provinceId,Integer cityId,Integer regionId, boolean disabled, CmsUserExt userExt, Lawyer lawyer,Map<String, String> attr) {
 		CmsUser user = new CmsUser();
@@ -212,5 +219,6 @@ public class LawyerMngImpl implements LawyerMng {
 	public void setDao(LawyerDao lawyerDao) {
 		this.lawyerDao = lawyerDao;
 	}
+
 	
 }

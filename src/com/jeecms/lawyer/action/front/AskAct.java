@@ -20,6 +20,7 @@ import com.jeecms.cms.manager.main.ChannelMng;
 import com.jeecms.cms.manager.main.CmsModelMng;
 import com.jeecms.cms.manager.main.ContentMng;
 import com.jeecms.cms.manager.main.ContentTypeMng;
+import com.jeecms.common.page.Pagination;
 import com.jeecms.common.upload.FileRepository;
 import com.jeecms.common.util.StrUtils;
 import com.jeecms.common.web.RequestUtils;
@@ -44,7 +45,8 @@ import net.sf.json.JSONArray;
 @Controller
 public class AskAct {
 	public static final String ASK = "tpl.askIndex";
-
+	@Autowired
+	private LawyerMng lawyerMng;
 	@Autowired
 	private AreaMng areaManager;
 	@Autowired
@@ -56,8 +58,11 @@ public class AskAct {
 
 		List<Area> areaList = areaManager.getList();
 		List<LawyerType> lawyerTypeList = lawyerTypeManager.getList();
+		List lawyerList =lawyerMng.getListByComment(null, null, 1, 10);
+		
 
 		String areaListJson = JSONArray.fromObject(areaList).toString();
+		model.addAttribute("lawyerList", lawyerList);
 		model.addAttribute("areaListJson", areaListJson);
 		model.addAttribute("areaList", areaList);
 		model.addAttribute("lawyerTypeList", lawyerTypeList);

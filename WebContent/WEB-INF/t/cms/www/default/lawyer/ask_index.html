@@ -7,8 +7,8 @@
 <link type="text/css" rel="stylesheet" href="/${res}/lawyer/css/style.css" />
 <!-- <script src="/${res}/lawyer/js/jquery-1.8.2.min.js" type="text/javascript"></script> -->
 <link type="text/css" rel="stylesheet" href="/${res}/lawyer/css/promotion_index.css" />
-<!-- <script src="/${res}/lawyer/js/js_jquery-1.11.1.min.js" type="text/javascript"></script> -->
-<script src="${resSys}/jquery.js" type="text/javascript"></script>
+<script src="/${res}/lawyer/js/js_jquery-1.11.1.min.js" type="text/javascript"></script>
+<!-- <script src="${resSys}/jquery.js" type="text/javascript"></script> -->
 <script src="/${res}/lawyer/js/common.js" type="text/javascript"></script>
 <script type="text/javascript" src="/${res}/lawyer/js/jquery.spinner.js"></script>
 <script type="text/javascript">
@@ -21,38 +21,29 @@
 		<div class="imain">
 			<div class="ileft">
 				<div class="tabPanel">
-					<ul class="ileft_a">
-						<li class="hit"><span>按地区找咨询</span></li>
-						<li><span class="fr">按专业找咨询</span></li>
+					<ul class="ileft_a"> 
+						<li class="hit"><span>按专业找咨询</span></li>
+						<!-- <li><span class="fr">按专业找咨询</span></li> -->
 					</ul>
 					<div class="panes">
 						<div class="pane" style="display: block;">
 							<ul class="pane_a">
-								<li>
-									<h3>北京地区</h3>
-									<div class="pane_list">
-										<a href="#">海淀律师</a> <a href="#">海淀律师</a> <a href="#">海淀律师</a> <a href="#">海淀律师</a> <a href="#">海淀律师</a> <a href="#">海淀律师</a>
-										<h6 class="clear"></h6>
-									</div>
-								</li>
+								
+						[#list lawyerTypeList as a] [#if a.pId==0 ]
+						
+							<li>
+								<h3>${a.name}</h3>
+								<div class="pane_list">
+									[#assign rowNum=0] [#list lawyerTypeList as c] 
+									[#if a.id==c.pId&&rowNum<3 ] [#assign rowNum=rowNum+1] <a href="${base}/lawyer/lawyerList.jspx?professionalField=${c.id}">${c.name}</a>
+									[/#if] [/#list]
+									<h6 class="clear"></h6>
+								</div> 
+							</li>
+						
+						[/#if] [/#list]								
 							</ul>
-							<ul class="pane_b">
-								<li>
-									<h3>热门专业律师</h3>
-									<div class="pane_list">
-										<a href="#">北京离婚律师</a> <a href="#">北京房地产律师</a> <a href="#">北京刑事辩护律师</a> <a href="#">北京房地产律师</a> <a href="#">北京债权债务律师</a> <a href="#">北京离婚律师</a> <a href="#">北京房地产律师</a> <a href="#">北京离婚律师</a>
-										<h6 class="clear"></h6>
-									</div>
-								</li>
-							</ul>
-							<ul class="pane_c">
-								<li>
-									<h3>全国律师</h3>
-									<div class="pane_list" id="areaList">
-										<h6 class="clear"></h6>
-									</div>
-								</li>
-							</ul>
+
 						</div>
 					</div>
 				</div>
@@ -62,11 +53,8 @@
 					<img src="/${res}/lawyer/images/tel.jpg" />
 				</h2>
 				<form action="ask_save.jspx" name="form" id="form">
-					<input type="hidden" id="channelId" name="channelId" value="79" /> 
+					<input type="hidden" id="channelId" name="channelId" value="316" /> 
 					<input type="hidden" id="modelId" name="modelId" value="12" /> 
-<!-- 					<input type="hidden" id="" name="" value="" /> 
-					<input type="hidden" id="" name="" value="" /> 
-					<input type="hidden" id="" name="" value="" /> -->
 					<div class="consult_a">
 						<div class="consult_a_t">把你的困难告诉律师吧</div>
 						<div class="consult_b">
@@ -116,7 +104,7 @@
 					<div class="clear"></div>
 					<div class="consult_d_con">
 						<ul style="display: block;">
-						[@cms_content_list count='4' orderBy='4'  titLen='18' channelOption='1' channelId='79']
+						[@cms_content_list count='4' orderBy='4'  titLen='18' channelOption='1' channelId='316']
 						 [#list tag_list as a]
 							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li>
 						 [/#list] 
@@ -158,28 +146,35 @@
 					<span>推荐咨询律师</span>
 				</div>
 				<div class="star">
+				
+				
+							[@cms_content_list count='2' titLen='24' orderBy='7' channelOption='1' channelId='296'] 
+							[#list tag_list as a]
 					<div class="star_a">
 						<div class="star_a_l">
-							<img src="/${res}/lawyer/images/75265928562.jpg" />
+						<a href="${a.attr.goto!'#'}"> 
+								[#if a.typeImg??] 
+									[#if a.typeImg!=""] 
+									<img src="${a.typeImg!}" /> 
+									[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+									[/#if] 
+								[#else] 
+									<img src="/${res}/img/member/member-phtot.gif" /> 
+								[/#if]
+						</a>
 						</div>
 						<div class="star_a_r">
-							<h2>马丹洋律师</h2>
-							<h3>139 1093 8880</h3>
-							<p>介绍：最近活动最近活动最近活动最近活动最近活</p>
+							<h2><a href="${a.attr.goto!'#'}" target="_blank">${a.title}</a></h2>
+							<h3>${a.attr.telephone!'400-888-8340'}</h3>
+							<p>介绍：[@text_cut s=a.attr.description len=titLen /]</p>
 						</div>
 						<div class="clear"></div>
 					</div>
-					<div class="star_a">
-						<div class="star_a_l">
-							<img src="/${res}/lawyer/images/75265928562.jpg" />
-						</div>
-						<div class="star_a_r">
-							<h2>马丹洋律师</h2>
-							<h3>139 1093 8880</h3>
-							<p>介绍：最近活动最近活动最近活动最近活动最近活</p>
-						</div>
-						<div class="clear"></div>
-					</div>
+							[/#list] 
+							[/@cms_content_list]				
+				
+
 				</div>
 			</div>
 			<div class="clear"></div>
@@ -193,7 +188,7 @@
 				</div>
 				<div class="star">
 					<ul>
-						[@cms_content_list count='4' orderBy='4'  titLen='18' channelOption='1' channelId='79']
+						[@cms_content_list count='4' orderBy='9'  titLen='18' channelOption='1' channelId='316']
 						 [#list tag_list as a]
 							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li>
 						 [/#list] 
@@ -207,7 +202,7 @@
 				</div>
 				<div class="star">
 					<ul>
-						[@cms_content_list count='4' orderBy='4'  titLen='18' channelOption='1' channelId='79']
+						[@cms_content_list count='4' orderBy='13'  titLen='18' channelOption='1' channelId='316']
 						 [#list tag_list as a]
 							<li> <a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a> </li>
 						 [/#list] 

@@ -21,6 +21,15 @@ public abstract interface LawyerMng
   public abstract Pagination getPageByCondition(Integer siteId,
 			Integer provinceId,Integer cityId,Integer regionId, String realname,String professionalField,String goodAtField, Integer groupId, Boolean disabled, Boolean admin, Integer rank,
 			int pageNo, int pageSize); 
+  /**
+   * 通过回复数量获取律师
+   * @param siteId
+   * @param disabled
+   * @param pageNo
+   * @param pageSize
+   * @return
+   */
+  public abstract List getListByComment(Integer siteId, Boolean disabled,int pageNo, int pageSize);
 	public CmsUser registerMember(String username, String email,
 			String password, String ip, Integer groupId,Integer grain,Integer provinceId,Integer cityId,Integer regionId, boolean disabled,CmsUserExt userExt,Lawyer lawyer,Map<String,String>attr);
 	public CmsUser registerMember(String username, String email, String password, String ip, Integer groupId, Integer grain,Integer provinceId,Integer cityId,Integer regionId, boolean disabled, CmsUserExt userExt, Lawyer lawyer,Map<String, String> attr,

@@ -106,6 +106,13 @@ public class LawyerAct {
 			goodAtFieldS = "," + goodAtField + ",";
 		else goodAtFieldS=goodAtFieldF1;
 		
+		if(cityId!=null&&null==provinceId){
+			
+			provinceId=areaManager.findById(cityId).getPid();
+			
+		}
+		
+		
 		Pagination pagination = lawyerMng.getPageByCondition(site.getId(), provinceId, cityId, regionId, realname, professionalFieldS, goodAtFieldS, 3, false, false, null, 1, 10);
 		//把取得的律师专业和特长由id转换为名称
 		if(pagination.getTotalCount()>0){

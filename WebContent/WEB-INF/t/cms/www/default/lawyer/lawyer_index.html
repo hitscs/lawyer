@@ -4,25 +4,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>专业律师</title>
-<link type="text/css" rel="stylesheet"
-	href="/${res}/lawyer/css/style.css" />
-<script src="/${res}/lawyer/js/jquery-1.8.2.min.js"
-	type="text/javascript"></script>
-<link type="text/css" rel="stylesheet"
-	href="/${res}/lawyer/css/promotion_index.css" />
-<script src="/${res}/lawyer/js/js_jquery-1.11.1.min.js"
-	type="text/javascript"></script>
+<link type="text/css" rel="stylesheet" href="/${res}/lawyer/css/style.css" />
+<script src="/${res}/lawyer/js/jquery-1.8.2.min.js" type="text/javascript"></script>
+<link type="text/css" rel="stylesheet" href="/${res}/lawyer/css/promotion_index.css" />
+<script src="/${res}/lawyer/js/js_jquery-1.11.1.min.js" type="text/javascript"></script>
 <script src="/${res}/lawyer/js/common.js" type="text/javascript"></script>
-<script type="text/javascript" charset="utf-8"
-	src="/${res}/lawyer/js/lrscroll.js"></script>
+<script type="text/javascript" charset="utf-8" src="/${res}/lawyer/js/lrscroll.js"></script>
 <script type="text/javascript">
 	/** 
 	 * 加载市 
 	 * 
 	 */
 	function loadCity() {
-		var data = ${areaListJson}
-		;
+		var data = ${areaListJson};
 		var provinceId = $("#provinceId").val();
 
 		var html = "<option value=''>--选择城市--</option>";
@@ -40,8 +34,7 @@
 	 * 
 	 */
 	function loadCity_lvsuo() {
-		var data = ${areaListJson}
-		;
+		var data = ${areaListJson};
 		var provinceId = $("#provinceId_lvsuo").val();
 
 		var html = "<option value=''>--选择城市--</option>";
@@ -63,9 +56,7 @@
 </script>
 </head>
 <body>
-	[#include "../lawyer/include/header.html"/] [#include
-	"../lawyer/include/search_csi.html"/] [#include
-	"../lawyer/include/navi.html"/]
+	[#include "../lawyer/include/header.html"/] [#include "../lawyer/include/search_csi.html"/] [#include "../lawyer/include/navi.html"/]
 	<div id="wrapper">
 		<div class="main">
 			<div class="lawyer_l">
@@ -83,7 +74,7 @@
 									a.id==c.pId&&rowNum<6 ] [#assign rowNum=rowNum+1] <a href="${base}/lawyer/lawyerList.jspx?professionalField=${c.id}">${c.name}</a>
 									[/#if] [/#list]
 									<h6 class="clear"></h6>
-								</div> <!-- <span>名誉/肖像/人身权</span> -->
+								</div>
 							</li>
 						</ul>
 						[/#if] [/#list]
@@ -278,7 +269,7 @@
 								[#else] 
 									<img src="/${res}/img/member/member-phtot.gif" /> 
 								[/#if] 
-									<img src="${a.typeImg}" alt="" />
+									
 									</a>
 								</div>
 								<div class="info_r">
@@ -317,7 +308,7 @@
 								[#else] 
 									<img src="/${res}/img/member/member-phtot.gif" /> 
 								[/#if] 
-									<img src="${a.typeImg}" alt="" />
+									
 									</a>
 								</div>
 								<div class="info_r">
@@ -357,7 +348,7 @@
 								[#else] 
 									<img src="/${res}/img/member/member-phtot.gif" /> 
 								[/#if] 
-									<img src="${a.typeImg}" alt="" />
+									
 									</a>
 								</div>
 								<div class="info_r">
@@ -396,7 +387,7 @@
 								[#else] 
 									<img src="/${res}/img/member/member-phtot.gif" /> 
 								[/#if] 
-									<img src="${a.typeImg}" alt="" />
+									
 									</a>
 								</div>
 								<div class="info_r">
@@ -464,7 +455,7 @@
 								[#else] 
 									<img src="/${res}/img/member/member-phtot.gif" /> 
 								[/#if] 
-									<img src="${a.typeImg}" alt="" />
+									
 									</a>
 								</div>
 								<div class="info_r">
@@ -503,7 +494,7 @@
 								[#else] 
 									<img src="/${res}/img/member/member-phtot.gif" /> 
 								[/#if] 
-									<img src="${a.typeImg}" alt="" />
+									
 									</a>
 								</div>
 								<div class="info_r">
@@ -543,7 +534,7 @@
 								[#else] 
 									<img src="/${res}/img/member/member-phtot.gif" /> 
 								[/#if] 
-									<img src="${a.typeImg}" alt="" />
+									
 									</a>
 								</div>
 								<div class="info_r">
@@ -582,7 +573,7 @@
 								[#else] 
 									<img src="/${res}/img/member/member-phtot.gif" /> 
 								[/#if] 
-									<img src="${a.typeImg}" alt="" />
+									
 									</a>
 								</div>
 								<div class="info_r">
@@ -650,7 +641,7 @@
 								[#else] 
 									<img src="/${res}/img/member/member-phtot.gif" /> 
 								[/#if] 
-									<img src="${a.typeImg}" alt="" />
+									
 									</a>
 								</div>
 								<div class="info_r">
@@ -689,7 +680,7 @@
 								[#else] 
 									<img src="/${res}/img/member/member-phtot.gif" /> 
 								[/#if] 
-									<img src="${a.typeImg}" alt="" />
+									
 									</a>
 								</div>
 								<div class="info_r">
@@ -729,7 +720,7 @@
 								[#else] 
 									<img src="/${res}/img/member/member-phtot.gif" /> 
 								[/#if] 
-									<img src="${a.typeImg}" alt="" />
+									
 									</a>
 								</div>
 								<div class="info_r">
@@ -768,7 +759,7 @@
 								[#else] 
 									<img src="/${res}/img/member/member-phtot.gif" /> 
 								[/#if] 
-									<img src="${a.typeImg}" alt="" />
+									
 									</a>
 								</div>
 								<div class="info_r">
