@@ -102,6 +102,27 @@ public abstract class HibernateSimpleDao {
 		List list = query.list();
 		return list;
 	}
+	
+/**
+ * 通过SQL查询
+ * 	
+ */
+	protected List findBySQL(String sql) {
+		
+		List queryList = getSession().createSQLQuery(sql).list() ;
+
+		return queryList;
+	}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	/**
 	 * 根据查询函数与参数列表创建Query对象,后续可进行更多处理,辅助函数.

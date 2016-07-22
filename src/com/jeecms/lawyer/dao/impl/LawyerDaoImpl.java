@@ -14,9 +14,7 @@ import com.jeecms.lawyer.entity.Lawyer;
 
 @Repository
 public class LawyerDaoImpl extends HibernateBaseDao<Lawyer, Integer>implements com.jeecms.lawyer.dao.LawyerDao {
-	public Pagination getPage(String username, String email, Integer siteId,
-			Integer groupId, Boolean disabled, Boolean admin, Integer rank,
-			int pageNo, int pageSize) {
+	public Pagination getPage(String username, String email, Integer siteId, Integer groupId, Boolean disabled, Boolean admin, Integer rank, int pageNo, int pageSize) {
 		Finder f = Finder.create("select bean from CmsUser bean");
 		if (siteId != null) {
 			f.append(" join bean.userSites userSite");
@@ -52,12 +50,12 @@ public class LawyerDaoImpl extends HibernateBaseDao<Lawyer, Integer>implements c
 		f.append(" order by bean.id desc");
 		return find(f, pageNo, pageSize);
 	}
-	public Pagination getPageByCondition(Integer siteId,
-			Integer provinceId,Integer cityId,Integer regionId, String realname,String professionalField,String goodAtField, Integer groupId, Boolean disabled, Boolean admin, Integer rank,
-			int pageNo, int pageSize) {
+
+	public Pagination getPageByCondition(Integer siteId, Integer provinceId, Integer cityId, Integer regionId, String realname, String professionalField, String goodAtField, Integer groupId,
+			Boolean disabled, Boolean admin, Integer rank, int pageNo, int pageSize) {
 		Finder f = Finder.create("  from CmsUser bean join bean.userExtSet userExtSet join bean.lawyerSet lawyerSet ");
 
-			f.append(" where 1=1 ");
+		f.append(" where 1=1 ");
 
 		if (!StringUtils.isBlank(realname)) {
 			f.append(" and userExtSet.realname like :realname");
@@ -71,17 +69,17 @@ public class LawyerDaoImpl extends HibernateBaseDao<Lawyer, Integer>implements c
 			f.append(" and lawyerSet.goodAtField like :goodAtField");
 			f.setParam("goodAtField", "%" + goodAtField + "%");
 		}
-		if (null!=provinceId) {
+		if (null != provinceId) {
 			f.append(" and userExtSet.province.id = :provinceId");
-			f.setParam("provinceId", provinceId );
+			f.setParam("provinceId", provinceId);
 		}
-		if (null!=cityId) {
+		if (null != cityId) {
 			f.append(" and userExtSet.city.id = :cityId");
 			f.setParam("cityId", cityId);
 		}
-		if (null!=regionId) {
+		if (null != regionId) {
 			f.append(" and userExtSet.region.id = :regionId");
-			f.setParam("regionId", regionId );
+			f.setParam("regionId", regionId);
 		}
 		if (groupId != null) {
 			f.append(" and bean.group.id=:groupId");
@@ -102,16 +100,16 @@ public class LawyerDaoImpl extends HibernateBaseDao<Lawyer, Integer>implements c
 		f.append(" order by bean.id desc");
 		return find(f, pageNo, pageSize);
 	}
-/**
- * 获取的是律师回复的数量（所有的回复）
- */
+
+	/**
+	 * 获取的是律师回复的数量（所有的回复）
+	 */
 	public List getListByComment(Integer siteId, Boolean disabled, int pageNo, int pageSize) {
-		Finder f = Finder.create("select count(*) as num ,bean.commentUser as user from CmsComment bean  ");
+		Finder f = Finder.create("select count(1) as num ,bean.commentUser as user from CmsComment bean  ");
 
-			f.append(" where 1=1 ");
+		f.append(" where 1=1 ");
 
-		
-			f.append(" and bean.commentUser.group.id=3");
+		f.append(" and bean.commentUser.group.id=3");
 
 		if (disabled != null) {
 			f.append(" and bean.disabled=:disabled");
@@ -121,17 +119,20 @@ public class LawyerDaoImpl extends HibernateBaseDao<Lawyer, Integer>implements c
 		f.append("  order by num desc");
 		return find(f);
 	}
+
 	/**
 	 * 获取的是律师回复的文章的数量（文章数）
 	 */
-		public List getListByComment() {
-			Finder f = Finder.create("select count(*) as num,a.user from ( select count(*),bean.content,bean.commentUser as user from CmsComment bean group by bean.content,bean.commentUser ) a group by a.user ");
+	public List getListByComment() {
+		String sql = "select count(1) as num,a.userid,userext.realname,userext.mobile " 
+		        + " from ( select count(1),bean.content_id,bean.comment_user_id as userid  "
+				+ " from jc_comment bean group by bean.content_id,bean.comment_user_id ) a " 
+		        + " inner  join jc_user user on a.userid=user.user_id AND user.group_id=3 "
+				+ " left join jc_user_ext userext on a.userid=userext.user_id " 
+		        + " group by a.userid  order by num desc";
+		return findBySQL(sql);
+	}
 
-
-			f.append("  order by num desc");
-			
-			return find(f);
-		}	
 	public List<Lawyer> getList(int count, boolean cache) {
 		Finder finder = Finder.create("from Lawyer");
 		finder.setCacheable(cache);
@@ -150,12 +151,14 @@ public class LawyerDaoImpl extends HibernateBaseDao<Lawyer, Integer>implements c
 		getSession().save(lawyer);
 		return lawyer;
 	}
+
 	public Lawyer update(Lawyer lawyer, CmsUser user) {
 
 		lawyer.setUser(user);
 		getSession().update(lawyer);
 		return lawyer;
 	}
+
 	public Lawyer deleteById(Integer id) {
 		Lawyer entity = (Lawyer) super.get(id);
 		if (entity != null) {
