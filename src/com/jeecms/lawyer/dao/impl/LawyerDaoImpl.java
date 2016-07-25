@@ -105,31 +105,27 @@ public class LawyerDaoImpl extends HibernateBaseDao<Lawyer, Integer>implements c
 	 * 获取的是律师回复的数量（所有的回复）
 	 */
 	public List getListByComment(Integer siteId, Boolean disabled, int pageNo, int pageSize) {
-		Finder f = Finder.create("select count(1) as num ,bean.commentUser as user from CmsComment bean  ");
-
-		f.append(" where 1=1 ");
-
-		f.append(" and bean.commentUser.group.id=3");
-
-		if (disabled != null) {
-			f.append(" and bean.disabled=:disabled");
-			f.setParam("disabled", disabled);
-		}
-		f.append(" group by  bean.commentUser.id  ");
-		f.append("  order by num desc");
-		return find(f);
+		
+		
+		String sql ="select count(1) as num,user.user_id,userext.realname,userext.mobile, userext.user_img,userext.intro "
+				+ " from jc_comment bean  "
+				+ " inner  join jc_user user on user.user_id=bean.comment_user_id AND user.group_id=3 "
+				+ " inner  join jc_user_ext userext on bean.comment_user_id=userext.user_id "
+				+ " group by  bean.comment_user_id "
+				+ " order by num desc ";	
+		return findBySQL(sql);
 	}
 
 	/**
 	 * 获取的是律师回复的文章的数量（文章数）
 	 */
 	public List getListByComment() {
-		String sql = "select count(1) as num,a.userid,userext.realname,userext.mobile " 
+		String sql = "select count(1) as num,a.userid,userext.realname,userext.mobile, userext.user_img " 
 		        + " from ( select count(1),bean.content_id,bean.comment_user_id as userid  "
 				+ " from jc_comment bean group by bean.content_id,bean.comment_user_id ) a " 
 		        + " inner  join jc_user user on a.userid=user.user_id AND user.group_id=3 "
 				+ " left join jc_user_ext userext on a.userid=userext.user_id " 
-		        + " group by a.userid  order by num desc";
+		        + " group by a.userid  order by num desc limit 4 ";
 		return findBySQL(sql);
 	}
 

@@ -124,23 +124,50 @@
 					<span>咨询之星</span>
 				</div>
 				<div class="star">
+				
+				
+				[#if lawyerCommentList?size gt 0]
+				[#list lawyerCommentList as a]
+				[#if a_index == 0]
 					<div class="star_a">
 						<div class="star_a_l">
-							<img src="/${res}/lawyer/images/75265928562.jpg" />
+						[#if a[4]??]
+	          	   	    [#if a[4]!=""]
+	               		<img src="${a[4]!}" />
+	                    [#else]
+	               		<img src="/${res}/img/member/member-phtot.gif"/>
+	               	    [/#if]
+                    [#else]
+                    <img src="/${res}/img/member/member-phtot.gif"/>
+                    [/#if]
 						</div>
 						<div class="star_a_r">
-							<h2>马丹洋律师</h2>
-							<h3>139 1093 8880</h3>
-							<p>介绍：最近活动最近活动最近活动最近活动最近活</p>
+							<h2><a href="${base}/lawyer/detail.jspx?id=${a[1]}"><strong>${a[2]!}律师</strong></a></h2>
+							<h3>${a[3]!}</h3>
+							<p>介绍：${a[5]?substring(0,20)}</p>
 						</div>
 						<div class="clear"></div>
-					</div>
-					<ul>
-						<li><a href="#"><strong>李律师：</strong>是上本科大二时当的兵，请问复</a></li>
-						<li><a href="#"><strong>李律师：</strong>是上本科大二时当的兵，请问复</a></li>
-						<li><a href="#"><strong>李律师：</strong>是上本科大二时当的兵，请问复</a></li>
-						<li><a href="#"><strong>李律师：</strong>是上本科大二时当的兵，请问复</a></li>
-					</ul>
+					</div>				
+						
+				[/#if]
+				
+				[/#list]
+                [/#if]
+                
+                
+                
+				[#if lawyerCommentList?size gt 1]
+				<ul>
+                [#list lawyerCommentList as a]
+				[#if a_index gt 0]
+					<li><a href="${base}/lawyer/detail.jspx?id=${a[1]}"><strong>${a[2]!}律师：</strong>${a[5]?substring(0,20)}</a></li>
+						
+				[/#if]
+				
+				[/#list]
+				</ul>
+                [/#if]
+					
 				</div>
 				<div class="title_t3">
 					<span>推荐咨询律师</span>
@@ -215,78 +242,39 @@
 					<span>律师回复排行榜</span>
 				</div>
 				<div class="reply">
+				[#if lawyerContentList?size gt 0]
+				[#list lawyerContentList as a]
+				
 					<div class="reply_box">
-						<a href="#" class="reply_box_btn">免费<br />咨询
+						<a href="${base}/lawyer/detail.jspx?id=${a[1]}" class="reply_box_btn">免费<br />咨询
 						</a>
 						<div class="reply_l">
 							<div class="reply_pic">
-								<img src="/${res}/lawyer/images/75265928562.jpg" />
+					[#if a[4]??]
+	          	   	    [#if a[4]!=""]
+	               		<img src="${a[4]!}" />
+	                    [#else]
+	               		<img src="/${res}/img/member/member-phtot.gif"/>
+	               	    [/#if]
+                    [#else]
+                    <img src="/${res}/img/member/member-phtot.gif"/>
+                    [/#if]
 							</div>
 							<div class="reply_r">
 								<h2>
-									<a href="#">马丹洋律师</a>
+									<a href="#">${a[2]}律师</a>
 								</h2>
 								<h3>
-									解决问题总数：<em>15796</em>
+									解决问题总数：<em>${a[0]}</em>
 								</h3>
-								<h4>139 1093 8880</h4>
+								<h4>${a[3]!}</h4>
 							</div>
 						</div>
-					</div>
-					<div class="reply_box">
-						<a href="#" class="reply_box_btn">免费<br />咨询
-						</a>
-						<div class="reply_l">
-							<div class="reply_pic">
-								<img src="/${res}/lawyer/images/75265928562.jpg" />
-							</div>
-							<div class="reply_r">
-								<h2>
-									<a href="#">马丹洋律师</a>
-								</h2>
-								<h3>
-									解决问题总数：<em>15796</em>
-								</h3>
-								<h4>139 1093 8880</h4>
-							</div>
-						</div>
-					</div>
-					<div class="reply_box">
-						<a href="#" class="reply_box_btn">免费<br />咨询
-						</a>
-						<div class="reply_l">
-							<div class="reply_pic">
-								<img src="/${res}/lawyer/images/75265928562.jpg" />
-							</div>
-							<div class="reply_r">
-								<h2>
-									<a href="#">马丹洋律师</a>
-								</h2>
-								<h3>
-									解决问题总数：<em>15796</em>
-								</h3>
-								<h4>139 1093 8880</h4>
-							</div>
-						</div>
-					</div>
-					<div class="reply_box">
-						<a href="#" class="reply_box_btn">免费<br />咨询
-						</a>
-						<div class="reply_l">
-							<div class="reply_pic">
-								<img src="/${res}/lawyer/images/75265928562.jpg" />
-							</div>
-							<div class="reply_r">
-								<h2>
-									<a href="#">马丹洋律师</a>
-								</h2>
-								<h3>
-									解决问题总数：<em>15796</em>
-								</h3>
-								<h4>139 1093 8880</h4>
-							</div>
-						</div>
-					</div>
+					</div>				
+				
+				
+				[/#list]
+                [/#if]
 				</div>
 			</div>
 			<div class="clear"></div>

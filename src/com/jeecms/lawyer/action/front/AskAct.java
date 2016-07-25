@@ -62,8 +62,8 @@ public class AskAct {
 		List lawyerContentList =lawyerMng.getListByComment();
 
 		String areaListJson = JSONArray.fromObject(areaList).toString();
-		model.addAttribute("lawyerCommentList", lawyerCommentList);
-		model.addAttribute("lawyerContentList", lawyerContentList);
+		model.addAttribute("lawyerCommentList", lawyerCommentList);//回复数量排行（一篇文章可以多条回复）
+		model.addAttribute("lawyerContentList", lawyerContentList);//文章数量排行
 		model.addAttribute("areaListJson", areaListJson);
 		model.addAttribute("areaList", areaList);
 		model.addAttribute("lawyerTypeList", lawyerTypeList);
