@@ -9,127 +9,127 @@
 <link type="text/css" rel="stylesheet" href="/${res}/lawyer/css/promotion_index.css" />
 <script src="/${res}/lawyer/js/js_jquery-1.11.1.min.js" type="text/javascript"></script>
 <script src="/${res}/lawyer/js/common.js" type="text/javascript"></script>
-
 <script type="text/javascript">
+
 function validateusername(){
 	var username= $('#username').val();
 	if(username==""){
-    $('#usernameInfo').html('<font color="red">用户名不能为空</font>');
+        $('#usernameInfo').html('<font color="red">用户名不能为空</font>');
 	return false;}
 	else{
-    var usern = new RegExp("^[A-Za-z0-9]+$");
-    if (false == usern.test(username)) {
-            $('#usernameInfo').html('<font color="red">只能由字母数字组成！</font>');
-            return false;
-    }
-    if (username.length<4||username.length>14) {
-        $('#usernameInfo').html('<font color="red">长度只能为4-14位！</font>');
-        return false;
-    }    		
-    $.ajax({
-        url:'username_unique.jspx',
-        type:'post',
-        data:{'username':username},
-        success:function(data,statusText){
-            
-            if(data==false){
-                $('#usernameInfo').html('<font color="red">用户名已存在！</font>');
+        var usern = new RegExp("^[A-Za-z0-9]+$");
+        if (false == usern.test(username)) {
+                $('#usernameInfo').html('<font color="red">只能由字母数字组成！</font>');
                 return false;
-            }
-            
-            else{
-                $('#usernameInfo').html('<font color="green">可用</font>');
+        }
+        if (username.length<4||username.length>14) {
+            $('#usernameInfo').html('<font color="red">长度只能为4-14位！</font>');
+            return false;
+        }    		
+        $.ajax({
+            url:'username_unique.jspx',
+            type:'post',
+            data:{'username':username},
+            success:function(data,statusText){
                 
-            }
-        }, 
-        error: function(e) { 
-    	return false;
-    	} 
-    });
+                if(data==false){
+                    $('#usernameInfo').html('<font color="red">用户名已存在！</font>');
+                    return false;
+                }
+                
+                else{
+                    $('#usernameInfo').html('<font color="green">可用</font>');
+                    
+                }
+            }, 
+            error: function(e) { 
+        	return false;
+        	} 
+        });
 	}
 }
 
 function validatepassword(){
-	var password= $('#password').val();
-	if(password==""){
-        $('#passwordInfo').html('<font color="red">密码不能为空</font>');
-	return false;}
-    if (password.length<6||password.length>12) {
-        $('#passwordInfo').html('<font color="red">长度只能为6-12位！</font>');
-        return false;
-     }else {
-    	 $('#passwordInfo').html('<font color="green">可用</font>'); 
-     
-     }
+    	var password= $('#password').val();
+    	if(password==""){
+            $('#passwordInfo').html('<font color="red">密码不能为空</font>');
+    	return false;}
+        if (password.length<6||password.length>12) {
+            $('#passwordInfo').html('<font color="red">长度只能为6-12位！</font>');
+            return false;
+         }else {
+        	 $('#passwordInfo').html('<font color="green">可用</font>'); 
+         
+         }
 
 
 }
 function validatepasswords(){
+    
+    	var password= $('#password').val();
+    	var passwords= $('#passwords').val();
+    	if(passwords==""){
+            $('#passwordsInfo').html('<font color="red">确认密码不能为空</font>');
+    	    return false;}
+    	if (passwords.length<6||passwords.length>12) {
+            $('#passwordsInfo').html('<font color="red">长度只能为6-12位！</font>');
+            return false;
+         }
+        if (password!=passwords) {
+            $('#passwordsInfo').html('<font color="red">与密码不匹配！</font>');
+            return false;
+         }else{
+        	 $('#passwordsInfo').html('<font color="green">正确</font>');   
+        	 
+         }
 
-	var password= $('#password').val();
-	var passwords= $('#passwords').val();
-	if(passwords==""){
-        $('#passwordsInfo').html('<font color="red">确认密码不能为空</font>');
-	    return false;}
-	if (passwords.length<6||passwords.length>12) {
-        $('#passwordsInfo').html('<font color="red">长度只能为6-12位！</font>');
-        return false;
-     }
-    if (password!=passwords) {
-        $('#passwordsInfo').html('<font color="red">与密码不匹配！</font>');
-        return false;
-     }else{
-    	 $('#passwordsInfo').html('<font color="green">正确</font>');   
-    	 
-     }
-
-
+    
 }
 
 //验证E-mail地址是否合法
 function validateemail(){
-var str=$('#email').val();
+    var str=$('#email').val();
 	if(str==""){
 	        $('#emailInfo').html('<font color="red">信箱不能为空</font>');
 		return false;}
-//在JavaScript中，正则表达式只能使用"/"开头和结束，不能使用双引号
- var Expression=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
- var objExp=new RegExp(Expression);  //创建正则表达式对象
- if (false == objExp.test(str)) {
-     $('#emailInfo').html('<font color="red">信箱格式不正确！</font>');
-     return false;
- } else{
-
- $('#emailInfo').html('<font color="green">正确</font>');  
- }
+  //在JavaScript中，正则表达式只能使用"/"开头和结束，不能使用双引号
+     var Expression=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+     var objExp=new RegExp(Expression);  //创建正则表达式对象
+     if (false == objExp.test(str)) {
+         $('#emailInfo').html('<font color="red">信箱格式不正确！</font>');
+         return false;
+     } else{
+    
+     $('#emailInfo').html('<font color="green">正确</font>');  
+     }
 }
-
+ 
 
 
 
 
 $(function(){
-$('#username').focusout(function(){
-	validateusername();
+    $('#username').focusout(function(){
+    	validateusername();
 
-});
+    });
 	$('#password').focusout(function(){
 		validatepassword();
 	     
 	
 	})
-	$('#passwords').focusout(function(){
+ 	$('#passwords').focusout(function(){
 		validatepasswords();
 	     
 	});  
-	$('#email').focusout(function(){
-	   validateemail();
+ 	$('#email').focusout(function(){
+ 	   validateemail();
 	     
 	}); 
 });
 
-
-/** 
+   
+    /** 
 	 * 加载市 
 	 * 
 	 */
@@ -147,7 +147,7 @@ $('#username').focusout(function(){
 		}
 		$("#cityId").html(html);
 	}
-$(function() { 
+    $(function() { 
 	var data = ${areaListJson};
 	var provinceId = $("#provinceId").val();
 
@@ -161,18 +161,18 @@ $(function() {
 	}
 	$("#cityId").html(html);
 	
-})
-
-function register(){
+    })
+    
+    function register(){
 	var aaa=validateusername();
 	
 	var bbb=validatepassword();
 	var ccc=validatepasswords();
 	var ddd=validateemail();
 	if(false!=aaa&&false!=bbb&&false!=ccc&&false!=ddd)
-		document.all.registerForm.submit();   
-	
-}
+    		document.all.registerForm.submit();   
+    	
+    }
 </script>
 </head>
 <body>
@@ -211,16 +211,16 @@ function register(){
 			<div class="reg">
 				<div class="reg_tab">
 					<ul>
-						<li class="cur"><a href="${base}/registerLawyer.jspx" target="_self">律师会员</a></li>
+						<li><a href="${base}/registerLawyer.jspx" target="_self">律师会员</a></li>
 						<li><a href="${base}/register.jspx" target="_self">公众会员</a></li>
-						<li><a href="${base}/registerLvsuo.jspx" target="_self">律所会员</a></li>
+						<li class="cur"><a href="${base}/registerLvsuo.jspx" target="_self">律所会员</a></li>
 						
 					</ul>
 				</div>
 
 					<div class="reg_form">
-				<form id="registerForm" name="registerForm" action="${base}/registerLawyer.jspx" method="post" style="padding-top: 20px">
-				<input type="hidden" id="groupId" name="groupId" value="3"/>
+									<form id="registerForm" name="registerForm" action="${base}/registerLvsuo.jspx" method="post" style="padding-top: 20px">
+								<input type="hidden" id="groupId" name="groupId" value="4"/>
 				<input type="hidden" id="grain" name="grain" value="0"/>
 						<dl>
 							<dt>用户名：</dt>
@@ -231,7 +231,7 @@ function register(){
 						<dl>
 							<dt>密码：</dt>
 							<dd>
-								<input id="password" type="password" name="password" class="text" placeholder="6-12个字节"/><span id="passwordInfo"></span>
+								<input id="password" type="password" name="password" class="text"/><span id="passwordInfo"></span>
 							</dd>
 						</dl>
 
@@ -242,11 +242,11 @@ function register(){
 							</dd>
 						</dl>
 						<dl>
-							<dt>真实姓名：</dt>
+							<dt>律所名称：</dt>
 							<dd>
 								<input id="realname" maxlength="30"  name="realname" type="text" class="text"  />
 							</dd>
-						</dl>	
+						</dl>						
  						<dl>
 							<dt>所在地区：</dt>
 							<dd>
@@ -261,29 +261,17 @@ function register(){
 												<option value="${a.id}">${a.name}</option> [/#if] [/#list]
 											</select>
 							</dd>
-						</dl>	
-						<dl>
-							<dt>执业证号：</dt>
-							<dd>
-								<input id="certificateNumber" maxlength="30"  name="certificateNumber" type="text" class="text"  />
-							</dd>
-						</dl>
-						<dl>
-							<dt>所在律所：</dt>
-							<dd>
-								<input id="company" maxlength="30"  name="company" type="text" class="text"  />
-							</dd>
-						</dl>																							
+						</dl>						
 						<dl>
 							<dt>邮箱：</dt>
 							<dd>
-                             <input id="email" maxlength="30" name="email" type="text" class="text" placeholder="xxx@xxx.xxx"/><span id="emailInfo"></span>
+								<input id="email" maxlength="30" name="email" type="text" class="text"/><span id="emailInfo"></span>
 							</dd>
 						</dl>
 						<dl>
-							<dt>手机号码：</dt>
+							<dt>电话号码：</dt>
 							<dd>
-								<input id="mobile" maxlength="30"  name="mobile" type="text" class="text"  />
+								<input id="phone" maxlength="30"  name="phone" type="text" class="text"  />
 							</dd>
 						</dl>						
 						
@@ -297,8 +285,7 @@ function register(){
 						</dl>
 							
 							<div align="center"><img id="guestbookCaptcha" onclick="this.src='${base}/captcha.svl?d='+new Date()" alt="" src="${base}/captcha.svl" /></div>
-				</form>								
-
+				</form>
 						<button class="reg_btn" name="register" onclick="register()" >立即注册</button>
 					</div>
 
