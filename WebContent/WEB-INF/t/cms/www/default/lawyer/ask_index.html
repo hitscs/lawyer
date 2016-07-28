@@ -13,10 +13,39 @@
 <script type="text/javascript" src="/${res}/lawyer/js/jquery.spinner.js"></script>
 <script type="text/javascript">
 //$("#jvForm").validate();
+function submitAsk(){
+	var user=$("#user").val();
+	var title=$("#title").val();
+	var txt=$("#txt").val();
+	var telephone=$("#attr_telephone").val();
+	if(user==""){
+		alert("请登录后提交！");
+		return false;
+	}
+	if(title==""){
+		alert("请填写标题！");
+		return false;
+	}
+	if(txt==""){
+		alert("请填写问题内容！");
+		return false;
+	}
+	if(telephone==""){
+		alert("请填写电话！");
+		return false;
+	}
+	document.all.askform.submit(); 
+	
+}
 </script>
 </head>
 <body>
 	[#include "../lawyer/include/header.html"/] [#include "../lawyer/include/search_csi.html"/] [#include "../lawyer/include/navi.html"/]
+	[#if user??]
+	<input type="hidden" id="user" value="${user.username} "/>
+	[#else]
+	<input type="hidden" id="user" value=""/>
+	[/#if]
 	<div id="wrapper">
 		<div class="imain">
 			<div class="ileft">
@@ -52,14 +81,14 @@
 				<h2 class="consult_tel">
 					<img src="/${res}/lawyer/images/tel.jpg" />
 				</h2>
-				<form action="ask_save.jspx" name="form" id="form">
+				<form action="ask_save.jspx" name="askform" id="askform">
 					<input type="hidden" id="channelId" name="channelId" value="316" /> 
 					<input type="hidden" id="modelId" name="modelId" value="12" /> 
 					<div class="consult_a">
 						<div class="consult_a_t">把你的困难告诉律师吧</div>
 						<div class="consult_b">
 							<div class="consult_b_title">
-								<input type="text" id="title" name="title" required="true" value="点击这里输入问题标题" onfocus="if (value =='点击这里输入问题标题'){value =''}" onblur="if (value ==''){value='点击这里输入问题标题'}" />
+								<span>标题：</span><input type="text" style="padding-left: 10px;width: 300px" id="title" name="title" placeholder="点击这里输入问题标题!" />
 							</div>
 							<h4>
 								<strong>问题分类：</strong>
@@ -76,15 +105,15 @@
 									[/#list]
 								</select>
 							</h4>
-							<div class="consult_b_con">
-								<textarea id="txt" name="txt"  required="true"  onfocus="if (value =='请在此输入所需问题的内容，问题说明越详细，回到问题就会越准确！'){value =''}" onblur="if (value ==''){value='请在此输入所需问题的内容，问题说明越详细，回到问题就会越准确！'}">请在此输入所需问题的内容，问题说明越详细，回到问题就会越准确！</textarea>
+							<div class="consult_b_con"> 
+								<textarea id="txt" name="txt"  placeholder="请在此输入所需问题的内容，问题说明越详细，回到问题就会越准确！"></textarea>
 							</div>
 						</div>
 						<div class="consult_c">
 							<dl>
-								<input type="submit" value="提交问题" class="consult_c_btn"/>
+								<input type="button" value="提交问题" class="consult_c_btn" onclick="submitAsk()"/>
 								<dt>
-									<span>手机号码：</span><input type="text" id="attr.telephone" name="attr.telephone" value="手机号码" required="true" onfocus="if (value =='手机号码'){value =''}" onblur="if (value ==''){value='手机号码'}" />
+									<span>手机号码：</span><input type="text" id="attr_telephone" name="attr_telephone" placeholder="点击这里输入手机号码!"/>
 <!-- 																<span>验证码：</span><input type="text" name="captcha" maxlength="20" class="required"/> <img src="${base}/captcha.svl" onclick="this.src='${base}/captcha.svl?d='+new Date()*1" width="100" height="35"/></div>
 								
  -->								</dt>
