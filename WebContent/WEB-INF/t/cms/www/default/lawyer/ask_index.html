@@ -13,6 +13,13 @@
 <script type="text/javascript" src="/${res}/lawyer/js/jquery.spinner.js"></script>
 <script type="text/javascript">
 //$("#jvForm").validate();
+$(function(){
+	var messageSend=$("#messageSend").val();
+	if(messageSend=="ok"){
+		alert("提交成功！");
+
+	}
+});
 function submitAsk(){
 	var user=$("#user").val();
 	var title=$("#title").val();
@@ -81,6 +88,12 @@ function submitAsk(){
 				<h2 class="consult_tel">
 					<img src="/${res}/lawyer/images/tel.jpg" />
 				</h2>
+											[#if messageSend??]
+	<input type="hidden" id="messageSend" value="${messageSend} "/>
+	[#else]
+	<input type="hidden" id="messageSend" value=""/>
+	[/#if]
+			
 				<form action="ask_save.jspx" name="askform" id="askform">
 					<input type="hidden" id="channelId" name="channelId" value="316" /> 
 					<input type="hidden" id="modelId" name="modelId" value="12" /> 

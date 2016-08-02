@@ -133,6 +133,7 @@ public class EntrustAct {
 		//return FrontUtils.showSuccess(request, model, nextUrl);
 		
 		model.addAttribute("currentMenu", "askIndex");
+		model.addAttribute("message", "ok");
 		FrontUtils.frontData(request, model, site);
 		FrontUtils.frontPageData(request, model);
 		return "redirect:entrust.jspx";

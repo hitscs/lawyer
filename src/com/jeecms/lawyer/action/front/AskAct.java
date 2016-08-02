@@ -53,7 +53,7 @@ public class AskAct {
 	private LawyerTypeMng lawyerTypeManager;
 
 	@RequestMapping(value = { "/lawyer/ask.jspx" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	public String index(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+	public String index(HttpServletRequest request, HttpServletResponse response,String messageSend, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 
 		List<Area> areaList = areaManager.getList();
@@ -68,6 +68,7 @@ public class AskAct {
 		model.addAttribute("areaList", areaList);
 		model.addAttribute("lawyerTypeList", lawyerTypeList);
 		model.addAttribute("currentMenu", "askIndex");
+		model.addAttribute("messageSend", messageSend);
 		FrontUtils.frontData(request, model, site);
 		FrontUtils.frontPageData(request, model);
 		return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", ASK);
@@ -138,12 +139,13 @@ public class AskAct {
 		//return FrontUtils.showSuccess(request, model, nextUrl);
 		
 		model.addAttribute("currentMenu", "askIndex");
+		//model.addAttribute("messageSend", "ok");
 		FrontUtils.frontData(request, model, site);
 		FrontUtils.frontPageData(request, model);
 		
         if(null!=toUserId){
-	    return "redirect:detail.jspx?id="+toUserId;
-        }else return "redirect:ask.jspx";
+	    return "redirect:detail.jspx?messageSend=ok&id="+toUserId;
+        }else return "redirect:ask.jspx?messageSend=ok";
 		//return "redirect:/comment.jspx?contentId="+c.getId();
 		//return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", ASK);
 	}	
