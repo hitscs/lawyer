@@ -14,11 +14,14 @@
 <script type="text/javascript">
 //$("#jvForm").validate();
 $(function(){
-	var messageSend=$("#messageSend").val();
-	if(messageSend=="ok"){
-		alert("提交成功！");
+    var location="${base}/lawyer/ask.jspx";
+	var message=$("#message").val();
+    	//alert(message);
+    	if(message=="ok"){
+    		alert("提交成功！");
+    		location.replace(location);
 
-	}
+    	}
 });
 function submitAsk(){
 	var user=$("#user").val();
@@ -88,10 +91,10 @@ function submitAsk(){
 				<h2 class="consult_tel">
 					<img src="/${res}/lawyer/images/tel.jpg" />
 				</h2>
-											[#if messageSend??]
-	<input type="hidden" id="messageSend" value="${messageSend} "/>
+											[#if message??]
+	<input type="hidden" id="message" value="${message}"/>
 	[#else]
-	<input type="hidden" id="messageSend" value=""/>
+	<input type="hidden" id="message" value=""/>
 	[/#if]
 			
 				<form action="ask_save.jspx" name="askform" id="askform">

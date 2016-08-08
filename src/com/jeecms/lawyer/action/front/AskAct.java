@@ -69,8 +69,9 @@ public class AskAct {
 		model.addAttribute("lawyerTypeList", lawyerTypeList);
 		model.addAttribute("currentMenu", "askIndex");
 		model.addAttribute("message", message);
+		
 		FrontUtils.frontData(request, model, site);
-		FrontUtils.frontPageData(request, model);
+		//FrontUtils.frontPageData(request, model);
 		return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", ASK);
 	}
 	
@@ -140,9 +141,9 @@ public class AskAct {
 		
 		model.addAttribute("currentMenu", "askIndex");
 		//model.addAttribute("messageSend", "ok");
-		request.removeAttribute("");
+		request.removeAttribute("txt");
 		FrontUtils.frontData(request, model, site);
-		FrontUtils.frontPageData(request, model);
+		//FrontUtils.frontPageData(request, model);
 		
         if(null!=toUserId){
 	    return "redirect:detail.jspx?message=ok&id="+toUserId;

@@ -98,18 +98,13 @@
 				<div class="clear"></div>
 			</div>
 			<div class="right">
-				<div class="title_t">
-					<span>联系我们</span>
-				</div>
-				<div class="contact">
-					<h2>某某集团有限公司</h2>
-					<p>邮箱：</p>
-					<p>网址：</p>
-					<p class="h20"></p>
-					<p>地址：</p>
-					<p>电话：</p>
-					<p>传真：</p>
-				</div>
+					<div class="title_t">
+						<span>法律法规</span>
+					</div>
+					<ul>
+						[@cms_content_list count='9' titLen='24' orderBy='7' channelOption='1' channelId='319'] [#list tag_list as a]
+						<li><a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a></li> [/#list] [/@cms_content_list]
+					</ul>
 			</div>
 			<div class="clear"></div>
 		</div>

@@ -8,7 +8,14 @@
 <link type="text/css" rel="stylesheet" href="/${res}/lawyer/css/a_002.css" />
 <link rel="stylesheet" type="text/css" href="/${res}/lawyer/css/a.css" />
 <script type="text/javascript">
+$(function(){
+	var message=$("#message").val();
+	//alert(message);
+	if(message=="ok"){
+		alert("提交成功！");
 
+	}
+});
 function submitOnlineAskN(){
 	var user=$("#user").val();
 	var title=$("#title").val();
@@ -182,6 +189,11 @@ function submitOnlineAskN(){
 	<input type="hidden" id="user" value="${user.username} "/>
 	[#else]
 	<input type="hidden" id="user" value=""/>
+	[/#if]
+									[#if message??]
+	<input type="hidden" id="message" value="${message} "/>
+	[#else]
+	<input type="hidden" id="message" value=""/>
 	[/#if]
 					<form action="ask_save.jspx" name="askForm" id="askForm">
 					<input type="hidden" id="channelId" name="channelId" value="317" /> 

@@ -51,7 +51,7 @@ public class EntrustAct {
 	private LawyerTypeMng lawyerTypeManager;
 
 	@RequestMapping(value = { "/lawyer/entrust.jspx" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	public String index(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+	public String index(HttpServletRequest request, HttpServletResponse response, String message, ModelMap model) {
 		CmsSite site = CmsUtils.getSite(request);
 
 		List<Area> areaList = areaManager.getList();
@@ -62,6 +62,7 @@ public class EntrustAct {
 		model.addAttribute("areaList", areaList);
 		//model.addAttribute("lawyerTypeList", lawyerTypeList);
 		model.addAttribute("currentMenu", "entrustIndex");
+		model.addAttribute("message", message);
 		FrontUtils.frontData(request, model, site);
 		FrontUtils.frontPageData(request, model);
 		return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", Entrust);
@@ -133,10 +134,10 @@ public class EntrustAct {
 		//return FrontUtils.showSuccess(request, model, nextUrl);
 		
 		model.addAttribute("currentMenu", "askIndex");
-		model.addAttribute("message", "ok");
+		//model.addAttribute("message", "ok");
 		FrontUtils.frontData(request, model, site);
-		FrontUtils.frontPageData(request, model);
-		return "redirect:entrust.jspx";
+		//FrontUtils.frontPageData(request, model);
+		return "redirect:entrust.jspx?message=ok";
 		//return "redirect:/comment.jspx?contentId="+c.getId();
 		//return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", ASK);
 	}	
