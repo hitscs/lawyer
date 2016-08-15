@@ -21,7 +21,7 @@
 						 [/@cms_content_list]						
 					</dl>
 					<dl class="fwc">
-						<dt>发布咨询帮助</dt>
+						<dt>案件委托帮助</dt>
 							[@cms_content_list count='4' orderBy='4'  titLen='18' channelOption='1' channelId='310']
 						 [#list tag_list as a]
 						<dd>
@@ -31,7 +31,7 @@
 						 [/@cms_content_list]	
 					</dl>
 					<dl class="fwr">
-						<dt>发布咨询帮助</dt>
+						<dt>其他常见问题</dt>
 							[@cms_content_list count='4' orderBy='4'  titLen='18' channelOption='1' channelId='311']
 						 [#list tag_list as a]
 						<dd>
@@ -51,7 +51,7 @@
 				</h2>
 				<div class="fwrap_l">
 					<dl class="fwl">
-						<dt>发布咨询帮助</dt>
+						<dt>回复咨询帮助</dt>
 							[@cms_content_list count='4' orderBy='4'  titLen='18' channelOption='1' channelId='312']
 						 [#list tag_list as a]
 						<dd>
@@ -61,7 +61,7 @@
 						 [/@cms_content_list]	
 					</dl>
 					<dl class="fwc">
-						<dt>发布咨询帮助</dt>
+						<dt>案件接洽帮助</dt>
 							[@cms_content_list count='4' orderBy='4'  titLen='18' channelOption='1' channelId='313']
 						 [#list tag_list as a]
 						<dd>
@@ -71,7 +71,7 @@
 						 [/@cms_content_list]
 					</dl>
 					<dl class="fwr">
-						<dt>发布咨询帮助</dt>
+						<dt>合作加盟问题</dt>
 							[@cms_content_list count='4' orderBy='4'  titLen='18' channelOption='1' channelId='314']
 						 [#list tag_list as a]
 						<dd>
@@ -119,8 +119,11 @@
 							|<a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a>
 						 [/#list] 
 						 [/@cms_content_list]
-
-	|<a href="#">诚聘英才</a>
+						 							[@cms_content_list count='1' orderBy='4'  titLen='18' channelOption='1' channelId='320']
+						 [#list tag_list as a]
+							|<a href="${a.url}" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen /] </a>
+						 [/#list] 
+						 [/@cms_content_list]
 	
 	<br /> 律之家 版权所有 2015-2016 京ICP备16025882号-01
 </div>
