@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>专业律师</title>
+<script src="/${res}/lawyer/js/jquery-1.8.2.min.js" type="text/javascript"></script>
+<link type="text/css" rel="stylesheet" href="/${res}/lawyer/css/a_002.css" />
+<link rel="stylesheet" type="text/css" href="/${res}/lawyer/css/a.css" />
+<script type="text/javascript">
+$(function(){
+	var message=$("#message").val();
+	//alert(message);
+	if(message=="ok"){
+		alert("提交成功！");
+
+	}
+});
+function submitOnlineAskN(){
+	var user=$("#user").val();
+	var title=$("#title").val();
+	var txt=$("#txt").val();
+	var telephone=$("#attr_telephone").val();
+	if(user==""){
+		alert("请登录后提交！");
+		return false;
+	}
+	if(title==""){
+		alert("请填写标题！");
+		return false;
+	}
+	if(txt==""){
+		alert("请填写问题内容！");
+		return false;
+	}
+	if(telephone==""){
+		alert("请填写电话！");
+		return false;
+	}
+    document.all.askForm.submit();
+    
+}
+
+</script>
+
+
+
+
+</head>
+<body>
+	<div class="top-nav">
+		<div class="top-nav-main" id="topLogin">
+			<div class="top-nav-right"></div>
+			<div class="top-nav-left">
+				[#if user??]
+				<div class="top-nav-left-inner">
+					欢迎您: ${user.username} &nbsp; ${user.group.name} &nbsp; <a href="${base}/member/index.jspx">会员中心</a>&nbsp;<a href="${base}/logout.jspx?returnUrl=/">退出登录</a>
+				</div>
+				[#else]
+				<script type="text/javascript">
+		    function login() {
+			if ($("#username").val() == ''
+				|| $("#password").val() == '') {
+			    //alert("请输入用户名和密码登录");
+			    window.location.href = "${base}/login.jspx";
+			} else {
+			    document.all.loginForm.submit();
+			}
+
+		    }
+		</script>
+				<form id="loginForm" name="loginForm" action="${base}/login.jspx" method="post">
+					<div class="top-nav-left-inner">
+						<input type="hidden" name="returnUrl" value="${location}" /> <span class="login"><i></i><input id="username" name="username" title="用户名不能为空" placeholder="用户名" class="loginname" type="text" /> </span> <span class="password"><i></i><input id="password" name="password" title="密码不能为空"
+							placeholder="密码" type="password" class="loginpw" /></span> <a href="#" onclick="login()" class="zf_btn_a"><input value="登录" class="zf_btn_d" type="button" /></a> <a href="${base}/register.jspx" class="regbtn" target="_blank"><span>注册</span></a>
+					</div>
+				</form>
+			</div>
+			[/#if]
+		</div>
+	</div>
+	<div class="wrap-all blue clearfix">
+		<div class="header">
+			<div class="header-main">
+				<div class="header-main-l fl">
+					<h1>${lawyer.user.realname!}律师主页</h1>
+					<h4 title="">
+						<font color="blue"></font>
+					</h4>
+				</div>
+			</div>
+		</div>
+		<div class="nav">
+			<div class="nav-main">
+				<ul class="hauto">
+					<li><a href="${base}/lawyer/detail.jspx?id=${lawyer.id}">主页</a></li>
+					<li><a href="#">律师介绍</a></li>
+					<li><a href="#">法律咨询</a></li>
+					<li><a href="#">联系方式</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="announcement">
+			<h3>公告</h3>
+			<div>
+				<ul>
+					<li><a>欢迎您来到我的个人主页！如果您有法律问题，可以直接打电话与我沟通。我会及时的帮您解决法律问题。</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="banner">
+			<div class="qming"></div>
+			<a href="#"><img src="/${res}/lawyer/images/banner.jpg" height="162" width="960" /></a>
+		</div>
+		<div class="cls"></div>
+		<div class="cont-main clearfix">
+			<div class="cont-main-l fl clearfix">
+				<div class="lawyer-info">
+					<h2>
+						<strong>律师</strong>档案
+					</h2>
+					<div class="space10"></div>
+					<div class="lawyer-main hauto">
+						<div class="lawyer-img fl">
+               [#if lawyer.user.userImg??]
+	          	   	[#if lawyer.user.userImg!=""]
+	               		<img src="${lawyer.user.userImg!}"  height="136" width="109"/>
+	               [#else]
+	               		<img src="/${res}/img/member/member-phtot.gif"  height="136" width="109"/>
+	               	 [/#if]
+               [#else]
+               <img src="/${res}/img/member/member-phtot.gif"  height="136" width="109"/>
+               [/#if]							
+							
+							
+						</div>
+						<div class="lawyer-msg fr">
+							<h3>
+								<a href="${base}/lawyer/detail.jspx?id=${lawyer.id}">${lawyer.user.realname!}律师</a>
+							</h3>
+<!-- 							<p>
+								解决问题总数: <span class="red">22001</span>
+							</p>
+							<div class="honor">
+								认证<a href="http://www.lawtime.cn/lawyer/auth108450837108455931" title="法律快车认证律师" target="_blank"><img src="test_files/renz.gif" /></a> VIP<a href="http://www.lawtime.cn/lawyermember/" title="法律快车加盟律师" target="_blank"><img src="test_files/yao.gif"></a>
+							</div> -->
+							<a class="ask-btn btn" href="${base}/lawyer/detail.jspx?id=${lawyer.id}">免费在线咨询</a>
+						</div>
+					</div>
+					<div class="space10"></div>
+					<p>所在地区：[#if lawyer.user.province??] ${lawyer.user.province.name!}[/#if][#if lawyer.user.city??]-- ${lawyer.user.city.name!}[/#if]</p>
+					<p>
+						手 机：<strong>${lawyer.user.mobile!?html}</strong>
+					</p>
+					<p>
+						电 话：<strong>${lawyer.user.phone!?html}</strong>
+					</p>
+					<p>
+						邮 箱：<strong>${lawyer.user.email!}</strong>
+					</p>
+					<p>
+						(电话<strong>咨询免费</strong>，咨询请说明来自<strong>律之家</strong>)
+					</p>
+					<p>
+						执业证号：${lawyer.certificateNumber!}
+					</p>
+					<p>执业机构：${lawyer.company!}</p>
+					<!-- <p>联系地址：北京市海淀区上地十街辉煌国际西六号楼3层310室</p> -->
+					<div class="vip-ico"></div>
+				</div>
+				<div class="space15"></div>
+			</div>
+			<div class="cont-main-r fr clearfix">
+				<div class="cont-h hauto">
+					<div class="title">
+						<h3>
+							向<strong>${lawyer.user.realname!}律师</strong>进行在线法律咨询
+						</h3>
+					</div>
+					<div class="space10"></div>
+					<h5>1、电话咨询</h5>
+					<p>
+						如果您有法律问题的疑惑和困扰可以直接与律师沟通，律师免费咨询电话：<strong>${lawyer.user.phone!?html}</strong>，对于您提出的问题律师会给予最佳的解决方案。欢迎致电！（电话咨询免费，咨询请说明来自法律快车）
+					</p>
+					<div class="space20"></div>
+					<h5>2、在线咨询</h5>
+					<div class="space15"></div>
+						[#if user??]
+	<input type="hidden" id="user" value="${user.username} "/>
+	[#else]
+	<input type="hidden" id="user" value=""/>
+	[/#if]
+									[#if message??]
+	<input type="hidden" id="message" value="${message} "/>
+	[#else]
+	<input type="hidden" id="message" value=""/>
+	[/#if]
+					<form action="ask_save.jspx" name="askForm" id="askForm">
+					<input type="hidden" id="channelId" name="channelId" value="317" /> 
+					<input type="hidden" id="modelId" name="modelId" value="12" /> 
+					<input type="hidden" id="toUserId" name="toUserId" value="${lawyer.id}" /> 
+					
+						<dl class="ask-box hauto">
+							<dd>
+								<label>标题：</label><input name="title" id="title" class="txt" maxlength="75" type="text" />
+							</dd>
+							<dd>
+								<label>内容：</label>
+								<textarea class="txtarea" name="txt" id="txt"></textarea>
+							</dd>
+							<dd>
+								<label>电话：</label><input class="tel" id="attr_telephone" name="attr_telephone" type="text" /><em>（注：您的电话号码仅回复您问题的律师有权查看）</em>
+							</dd>
+							<dd>
+								<label></label> 
+								
+								<input name="submitask" class="btn" value="提交咨询" onclick="submitOnlineAskN();" type="button" /> 
+								<input class="btn" value="重新填写" type="reset" />
+							</dd>
+						</dl>
+					</form>
+				</div>
+				<div class="space20"></div>
+			</div>
+		</div>
+		<div class="space20"></div>
+		<div class="footer hauto">
+			<div class="footer-bottom hauto">
+				<div class="footer-copyright fl">
+					<p class="tc"></p>
+					<p class="tc">
+						<a href="http://www.miitbeian.gov.cn/" target="_blank">律之家 版权所有 2015-2016 京ICP备16025882号-01</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
