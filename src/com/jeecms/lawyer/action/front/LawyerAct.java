@@ -64,6 +64,24 @@ public class LawyerAct {
 		Lawyer lawyer = null;
 		if (id != null) {
 			lawyer = this.lawyerMng.findById(id);
+			String professionalFieldString=lawyer.getProfessionalField();
+			//String goodAtFieldString=lawyer.getGoodAtField();
+			if(professionalFieldString!=null&&!professionalFieldString.equals("")){
+				professionalFieldString=professionalFieldString.substring(1, professionalFieldString.length()-1);
+				String[] pArray =professionalFieldString.split(",");
+				String pString="";
+				for(int j=0;j<pArray.length;j++){
+					LawyerType lawyerType = lawyerTypeManager.findById(Integer.parseInt(pArray[j]));
+					pString=pString+lawyerType.getName()+",";
+					
+				}
+				professionalFieldString=pString.substring(0, pString.length()-1);
+			}
+			lawyer.setProfessionalField(professionalFieldString);
+			
+			
+			
+			
 		}
 		if ((id == null) || (lawyer == null)) {
 			WebErrors errors = WebErrors.create(request);
@@ -74,7 +92,38 @@ public class LawyerAct {
 		FrontUtils.frontData(request, model, site);
 		return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", "tpl.lawyerDetail");
 	}
-
+	@RequestMapping(value = { "/lawyer/lawyer_ask.jspx" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public String ask(Integer id, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+		CmsSite site = CmsUtils.getSite(request);
+		Lawyer lawyer = null;
+		if (id != null) {
+			lawyer = this.lawyerMng.findById(id);
+		}
+		if ((id == null) || (lawyer == null)) {
+			WebErrors errors = WebErrors.create(request);
+			errors.addErrorCode("comment.contentNotFound");
+			FrontUtils.showError(request, response, model, errors);
+		}
+		model.addAttribute("lawyer", lawyer);
+		FrontUtils.frontData(request, model, site);
+		return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", "tpl.lawyerAsk");
+	}
+	@RequestMapping(value = { "/lawyer/info.jspx" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public String info(Integer id, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+		CmsSite site = CmsUtils.getSite(request);
+		Lawyer lawyer = null;
+		if (id != null) {
+			lawyer = this.lawyerMng.findById(id);
+		}
+		if ((id == null) || (lawyer == null)) {
+			WebErrors errors = WebErrors.create(request);
+			errors.addErrorCode("comment.contentNotFound");
+			FrontUtils.showError(request, response, model, errors);
+		}
+		model.addAttribute("lawyer", lawyer);
+		FrontUtils.frontData(request, model, site);
+		return FrontUtils.getTplPath(request, site.getSolutionPath(), "lawyer", "tpl.lawyerInfo");
+	}
 	@RequestMapping(value = { "/lawyer/lawyerList.jspx" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
 	public String lawyerList(String realname, String professionalField, String goodAtField, String professionalFieldF, String goodAtFieldF,Integer groupId, Integer provinceId, Integer cityId, Integer regionId, HttpServletRequest request,
 			HttpServletResponse response, ModelMap model) {

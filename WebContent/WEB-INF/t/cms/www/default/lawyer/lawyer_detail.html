@@ -50,7 +50,16 @@ function submitOnlineAskN(){
 <body>
 	<div class="top-nav">
 		<div class="top-nav-main" id="topLogin">
-			<div class="top-nav-right"></div>
+			<div class="top-nav-right">
+						<div class="top-nav-left-inner">
+			<a href="${site.url!}" class="regbtn"
+							target="_blank"><span>首页</span></a>
+							<a href="${base}/lawyer/ask.jspx" class="regbtn"
+							target="_blank"><span>法律咨询</span></a>
+							<a href="${base}/lawyer/index.jspx" class="regbtn"
+							target="_blank"><span>找律师</span></a>
+			</div>
+			</div>
 			<div class="top-nav-left">
 				[#if user??]
 				<div class="top-nav-left-inner">
@@ -94,9 +103,9 @@ function submitOnlineAskN(){
 			<div class="nav-main">
 				<ul class="hauto">
 					<li><a href="${base}/lawyer/detail.jspx?id=${lawyer.id}">主页</a></li>
-					<li><a href="#">律师介绍</a></li>
-					<li><a href="#">法律咨询</a></li>
-					<li><a href="#">联系方式</a></li>
+					<li><a href="${base}/lawyer/info.jspx?id=${lawyer.id}">律师介绍</a></li>
+					<li><a href="${base}/lawyer/lawyer_ask.jspx?id=${lawyer.id}">法律咨询</a></li>
+					<!-- <li><a href="#">联系方式</a></li> -->
 				</ul>
 			</div>
 		</div>
@@ -171,6 +180,38 @@ function submitOnlineAskN(){
 				<div class="space15"></div>
 			</div>
 			<div class="cont-main-r fr clearfix">
+							<div class="cont-h hauto">
+					<div class="title">
+						<h3>
+							<strong>${lawyer.user.realname!}律师</strong>简介
+						</h3>
+					</div>
+					<div class="space10"></div>
+					
+					<p>
+						<strong>${lawyer.user.intro!}</strong>
+					</p>
+					<div class="space20"></div>
+
+
+				</div>
+				<div class="space20"></div>
+								<div class="cont-h hauto">
+					<div class="title">
+						<h3>
+							<strong>专业领域</strong>
+						</h3>
+					</div>
+					<div class="space10"></div>
+					
+					<p>
+						<strong>${lawyer.professionalField!}</strong>
+					</p>
+					<div class="space20"></div>
+
+
+				</div>
+				<div class="space20"></div>
 				<div class="cont-h hauto">
 					<div class="title">
 						<h3>
